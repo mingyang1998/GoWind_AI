@@ -1,0 +1,107 @@
+/* Tailwind v4 —— 关闭 Preflight（与 Antd + 项目 global.css reset 共存），
+   只导入 theme + utilities。dark: 变体重定向到 [data-theme=dark]，与
+   ThemeProvider 在 <html> 上写 data-theme 的策略一致。 */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
+
+@theme {
+  /* 项目用到的、不在 v4 默认主题里的动画 */
+  --animate-fade-in: fade-in 0.3s ease-out;
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* 登录页左侧品牌区光晕的缓慢呼吸 */
+  --animate-breathe: breathe 6s ease-in-out infinite;
+  @keyframes breathe {
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.08);
+    }
+  }
+}
+
+/* ============================================
+   登录表单输入控件统一化
+   仅作用于 .login-form 内的 antd 输入控件。
+   统一高度 h-11、圆角 rounded-xl（与卡片/按钮一致）。
+   背景/边框用半透明灰覆盖 antd darkAlgorithm 的过深底色，
+   使 placeholder 与输入文字清晰可读。
+   focus 时叠加主色 ring 发光（token 色，跟随主题）。
+   ============================================ */
+.login-form .ant-input-affix-wrapper,
+.login-form .ant-input-password {
+  height: 2.75rem;
+  border-radius: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.login-form .ant-input-affix-wrapper:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.login-form .ant-input-affix-wrapper:focus-within {
+  border-color: var(--ant-color-primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ant-color-primary) 35%, transparent);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* placeholder 浅灰，保证暗色下可读 */
+.login-form .ant-input::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1;
+}
+
+/* 输入文字色跟随主题 token */
+.login-form .ant-input {
+  color: var(--ant-color-text);
+  background: transparent;
+}
+
+/* 登录按钮：统一高度 h-11、圆角 rounded-xl（与卡片一致） */
+.login-form .login-submit-btn {
+  height: 2.75rem !important;
+  border-radius: 0.75rem !important;
+}
+
+/* 统一 Form.Item 间距，确保所有表单元素两端对齐 */
+.login-form .ant-form-item {
+  margin-bottom: 1.25rem;
+}
+
+/* 记住账号行：减小 antd large 尺寸的默认 min-height */
+.login-form .login-remember-item .ant-form-item-control-input {
+  min-height: auto;
+}
+
+/* 浅色模式下卡片内输入框背景为纯白，覆盖默认半透明黑 */
+[data-theme=light] .login-form .ant-input-affix-wrapper,
+[data-theme=light] .login-form .ant-input-password {
+  background-color: #fff;
+  border-color: #e5e7eb;
+}
+
+[data-theme=light] .login-form .ant-input-affix-wrapper:hover {
+  border-color: #d1d5db;
+}
+
+[data-theme=light] .login-form .ant-input-affix-wrapper:focus-within {
+  border-color: var(--ant-color-primary);
+  background-color: #fff;
+}

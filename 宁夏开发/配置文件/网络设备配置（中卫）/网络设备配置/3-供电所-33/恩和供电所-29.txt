@@ -1,0 +1,697 @@
+show running
+
+Building Configuration...done
+
+
+
+! Current configuration : 6735 bytes
+
+!
+
+! Last configuration change at BEIJING(UTC+08:00) Wed Jun 25 20:27:20 2025
+
+! Flash config last updated at BEIJING(UTC+08:00) Thu Aug 28 11:42:06 2025 by zwjadmin2017
+
+! Configuration version 0.11
+
+!
+
+
+!software version 9.7.41.1(integrity)
+
+!software image file flash0: /flash/sp35-g-9.7.41.1(R).pck
+
+!compiled on Jan 25 2022, 18:09:42
+
+
+hostname EnHeGongDianSuoCE
+
+            
+
+
+enable password 1db7ef94c3cc0e97ebee27031211 encrypt
+
+
+
+
+
+
+
+password-control complexity min-length 12
+
+password-control complexity composition type-number 4
+
+
+role audit-admin
+
+---MORE---
+             
+ exit
+
+role network-admin
+
+ exit
+
+role network-operator
+
+ exit
+
+role security-admin
+
+ exit
+
+
+local-user zwjadmin2017 class manager
+
+ service-type console ssh
+
+ privilege 15
+
+ password 7 962f481f8075a8b809e319bc02cbbdea061d63f339c7421cb44f83527e821181
+
+ exit
+
+local-user zwjadmin2018 class manager
+
+ service-type ssh
+
+ privilege 10
+
+ password 7 8d9a11fc2deda42218c2d2557ebbec398e4f88dc3f673837b99544205d6d286a
+
+ exit
+
+local-user zwjadmin2019 class manager
+
+ service-type ssh
+
+ privilege 0
+
+ password 7 21dd4dc70b63a1010d93305caf8c57ffe2878fb9a69b628dd4a480df95354385
+
+ exit
+
+
+
+---MORE---
+             
+
+ip load-sharing per-destination
+
+ipv6 load-sharing per-destination
+
+
+
+ip access-list standard 1
+
+ 10 permit host 10.217.199.87
+
+ 20 permit host 10.217.199.97
+
+ 30 permit host 10.217.199.86
+
+ 40 permit host 10.217.199.66
+
+ 50 permit host 10.217.199.70
+
+ 60 permit host 10.217.199.68
+
+ 70 permit host 10.217.199.80
+
+ 80 permit host 10.217.199.123
+
+ 90 permit host 10.217.199.103
+
+ 100 permit host 10.217.193.65
+
+ 110 permit host 10.217.7.5
+
+ 120 permit host 127.0.0.1
+
+ 1000 deny any
+
+ exit
+
+
+
+
+
+
+
+
+
+---MORE---
+             
+
+domain system
+
+ aaa authorization login local 
+
+ exit
+
+
+aaa authorization console
+
+aaa authorization config-commands
+
+
+
+
+
+vlan 1
+
+ exit
+
+
+vlan 100
+
+ name NeiWang
+
+ exit
+
+
+vlan 1001
+
+ name EnHeBianPE G3/1/6
+
+ exit
+
+
+
+
+
+
+---MORE---
+             
+
+
+
+
+
+
+
+
+
+
+
+
+!slot_0_MyPower-S4330-54TXP(V1)
+
+!slot 0
+
+!cardtype_0_0x19d
+
+interface gigabitethernet0/1
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/2
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/3
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/4
+
+ switchport access vlan 100
+
+---MORE---
+             
+ exit
+
+interface gigabitethernet0/5
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/6
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/7
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/8
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/9
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/10
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/11
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/12
+
+ switchport access vlan 100
+
+---MORE---
+             
+ exit
+
+interface gigabitethernet0/13
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/14
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/15
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/16
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/17
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/18
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/19
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/20
+
+---MORE---
+             
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/21
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/22
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/23
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/24
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/25
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/26
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/27
+
+---MORE---
+             
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/28
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/29
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/30
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/31
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/32
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/33
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/34
+
+---MORE---
+             
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/35
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/36
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/37
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/38
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/39
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/40
+
+ shutdown
+
+---MORE---
+             
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/41
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/42
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/43
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/44
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/45
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/46
+
+ shutdown
+
+---MORE---
+             
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/47
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface gigabitethernet0/48
+
+ shutdown
+
+ switchport access vlan 100
+
+ exit
+
+interface tengigabitethernet0/49
+
+ description EnHeBianPE G3/1/6
+
+ switchport access vlan 1001
+
+ exit
+
+!end
+
+
+
+
+
+
+telnet server disable
+
+
+
+                       
+
+
+
+
+---MORE---
+             
+
+interface vlan100
+
+ description NeiWang
+
+ ip address 10.217.217.222 255.255.255.224
+
+ exit
+
+
+
+interface vlan1001
+
+ description EnHeBianPE G3/1/6
+
+ ip address 10.216.143.46 255.255.255.252
+
+ exit
+
+
+
+interface null0
+
+ exit
+
+
+                                     
+
+ip route 0.0.0.0 0.0.0.0 10.216.143.45
+
+
+ntp enable
+
+ntp server 10.216.126.225
+
+ntp server 10.216.126.226
+
+
+clock timezone BEIJING 8
+
+---MORE---
+             
+
+
+login-secure ssh quick-connect max-times 10
+
+login-secure ssh quick-connect restrict-interval 600
+
+
+
+snmp-server start 
+
+snmp-server view default 1.2 include
+
+snmp-server view default 1.0.8802 include
+
+snmp-server view default 1.1.2 include
+
+snmp-server view default 1.3.111 include
+
+snmp-server view default 1.3.6.1 include
+
+snmp-server community fa73d5f7a0d5061ee45e0caf811114� view default ro
+
+snmp-server group SNMP_group v3 authpriv read default 
+
+snmp-server user SNMP_user SNMP_group v3 auth md5 5896e563950dfe5edcc613637a8e61� encrypt des 4ef994eaced02be849bb568626a79a� access 1
+
+snmp-server host 10.217.193.65 traps community 8e5c0aed0bae93802920fdd501129a� version 2 
+
+snmp-server host 10.217.7.5 traps community dea3603a72458d72fbae4880d81c8f� version 2 
+
+
+ip ssh server
+
+
+
+
+
+
+
+
+---MORE---
+             
+line vty 0 15
+
+ access-class 1 in
+
+ login aaa 
+
+ exit
+
+
+
+logging server loghost ip 10.217.7.5
+
+logging server elk ip 10.217.193.101
+
+logging server log ip 10.217.193.65
+
+
+!vst_config
+
+
+!mode member information
+
+!mode member end
+
+
+
+!mode vsl information
+
+!mode vsl end
+
+
+!vst_end
+
+
+!end 
+
+
+
+
+EnHeGongDianSuoCE#

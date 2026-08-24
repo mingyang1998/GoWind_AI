@@ -1,0 +1,72 @@
+/* reset 放进 base 层，使其低于 Tailwind utilities 层，
+   否则无层 *{padding:0} 会压过 utilities 层的 p-* 类（CSS cascade：
+   无层样式永远优先于有层样式，与 specificity 无关）。 */
+@layer base {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important; /* 禁止全局滚动条，ProLayout 内部自己管理 */
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+}
+
+#root {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important; /* 必须使用 flex 布局，否则高度传递会断裂 */
+    flex-direction: column;
+}
+
+.ant-pro-layout {
+    height: 100% !important;
+    min-height: auto !important;
+}
+}
+
+/* 内容区域滚动条样式 —— 跟随 antd 主题 token，亮/暗模式自动切换 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--ant-color-fill-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--ant-color-fill-secondary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--ant-color-fill);
+}
+
+/* 表格操作列图标按钮加大点击区域和间距 */
+.ant-table-cell .ant-space-horizontal {
+    gap: 12px !important;
+}
+
+.ant-table-cell .ant-space-item a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    min-height: 32px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.ant-table-cell .ant-space-item a:hover {
+    background-color: var(--ant-color-fill-tertiary);
+}

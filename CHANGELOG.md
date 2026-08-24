@@ -1,0 +1,44 @@
+# 更新日志
+
+本项目遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 规范，
+版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
+
+> 历史条目基于 Git 提交记录回溯整理，仅记录对使用者有影响的功能性变更，
+> 日常重构、代码风格、CI 调整等不在逐一列举。
+
+## [Unreleased]
+
+### 新增
+- 新增项目治理文件：`CONTRIBUTING.md`、`SECURITY.md`、`CHANGELOG.md`，
+  以及 `.github/` 下的 Issue / PR 模板与行为准则。
+
+## [0.x] — 早期开发版本
+
+GoWind Admin 当前处于 `0.x` 阶段，尚无正式发布版本。
+下列条目为近期（以 Git 提交记录为准）对使用者有影响的变更摘要。
+
+### 新增
+- 基于多租户的 RBAC 体系：用户、租户、角色、权限、菜单、组织、职位管理。
+- 套餐与配额管理：租户订阅套餐及其资源配额（模块白名单、用量上限等）的计量与管控。
+- 三套前端：React 19 + Ant Design V6、Vue3 + Element Plus、Vue3 + Vben（Ant Design Vue），
+  共享同一套由 proto 生成的 TypeScript HTTP 客户端。
+- 代码生成管线：proto → Go HTTP/gRPC + OpenAPI + TS 客户端；Ent schema → ORM；
+  Wire 依赖注入。
+- 文件上传与下载链路（MinIO / 本地存储），含元数据落库与安全校验。
+- 异步任务调度（Asynq）、SSE 服务端推送、多语言脚本引擎（Lua / JavaScript）与 Hook 插件系统。
+- 登录增加租户编号 `tenant_code` 解析租户。
+
+### 修复
+- 修复多租户场景下按非主键字段查询导致的隔离缺陷与 `ent not singular` 登录失败。
+- 修复消息全员广播阻塞请求、错误全吞与撤销非原子问题。
+- 修复建租户时重复检测失效、租户范围查询未过滤等问题。
+- 移除生产路径遗留的 `.Debug()` 与 `syncWithOpenAPI` 的 `Fatal` 调用。
+- 修复登录 `loginMethodConverter` 漏注册与生产路径遗留 `.Debug()`。
+- 修复文件上传下载、用户关联更新、凭证解密等多处缺陷。
+- 禁用预签名上传路径并隐藏登录页注册 / 找回密码入口。
+- 编辑器按需懒加载，切断 barrel 对子编辑器的静态 re-export。
+
+### 变更
+- 移除 `lucide-vue-next` 依赖。
+
+> 本段为历史摘要，后续正式发版将按 Keep a Changelog 规范逐版本记录。

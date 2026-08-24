@@ -1,0 +1,234 @@
+dis cu 
+#
+ version 5.20.99, Release 1106
+#
+ sysname BaiLuBianCE
+#
+ clock timezone bj add 08:00:00
+#
+ domain default enable system
+#
+ ipv6
+#
+ undo ip http enable
+#
+ password-recovery enable
+#
+acl number 2000
+ rule 1 permit source 10.217.199.86 0
+ rule 2 permit source 10.217.199.66 0
+ rule 3 permit source 10.217.199.97 0
+ rule 5 permit source 10.217.199.68 0
+ rule 6 permit source 10.217.199.70 0
+ rule 7 permit source 10.217.199.80 0
+ rule 8 permit source 10.217.199.103 0
+ rule 10 permit source 10.217.194.186 0
+ rule 11 permit source 10.217.193.70 0
+ rule 12 permit source 10.217.193.65 0
+ rule 13 permit source 10.217.193.101 0
+ rule 14 permit source 10.217.199.87 0
+ rule 100 deny
+#
+vlan 1
+#
+vlan 100
+#
+vlan 1002
+ description MingShaBian
+#
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+#
+user-group system
+ group-attribute allow-guest
+local-user zwjadmin2017
+ password cipher $c$3$gACKakamK1NUtlz7GPeimUk9ieg5EYXzAn6/76VfljQ=
+ authorization-attribute level 3
+ service-type ssh terminal
+local-user zwjadmin2018
+ password cipher $c$3$rYGQ60ETa2v0+tIZPqIFqNI4fXKwLd67uUc61Ps3fBs=
+ authorization-attribute idle-cut 20
+ authorization-attribute level 1
+ service-type ssh
+local-user zwjadmin2019
+ password cipher $c$3$fXXnfZgc+j1f95mt4iaiPDuuYjaIbQjxwpxZid4aO7s=
+ authorization-attribute idle-cut 20
+ service-type ssh
+#
+interface NULL0
+#
+interface Vlan-interface100
+ description BaiLuBian
+ ip address 10.217.216.14 255.255.255.240
+#
+interface Vlan-interface1002
+ ip address 10.216.142.158 255.255.255.252
+interface Ethernet1/0/1
+ port access vlan 100
+#
+interface Ethernet1/0/2
+ port access vlan 100
+#
+interface Ethernet1/0/3
+ port access vlan 100
+#
+interface Ethernet1/0/4
+ port access vlan 100
+#
+interface Ethernet1/0/5
+ description TongYiShiPing-NVR-216.8
+ port access vlan 100
+#
+interface Ethernet1/0/6
+ port access vlan 100
+#
+interface Ethernet1/0/7
+ port access vlan 100
+#
+ port access vlan 100
+#
+interface Ethernet1/0/9
+ port access vlan 100
+#
+interface Ethernet1/0/10
+ port access vlan 100
+#
+interface Ethernet1/0/11
+ port access vlan 100
+#
+interface Ethernet1/0/12
+ port access vlan 100
+#
+interface Ethernet1/0/13
+ port access vlan 100
+#
+interface Ethernet1/0/14
+ port access vlan 100
+#
+interface Ethernet1/0/15
+ port access vlan 100
+interface Ethernet1/0/16
+ port access vlan 100
+#
+interface Ethernet1/0/17
+ port access vlan 100
+#
+interface Ethernet1/0/18
+ port access vlan 100
+#
+interface Ethernet1/0/19
+ port access vlan 100
+#
+interface Ethernet1/0/20
+ port access vlan 100
+#
+interface Ethernet1/0/21
+ port access vlan 100
+#
+interface Ethernet1/0/22
+ port access vlan 100
+#
+interface Ethernet1/0/23
+#
+interface Ethernet1/0/24
+ port access vlan 100
+#
+interface Ethernet1/0/25
+#
+interface Ethernet1/0/26
+#
+interface Ethernet1/0/27
+#
+interface Ethernet1/0/28
+#
+interface Ethernet1/0/29
+#
+interface Ethernet1/0/30
+#
+interface Ethernet1/0/31
+#
+interface Ethernet1/0/32
+#
+interface Ethernet1/0/33
+#
+#
+interface Ethernet1/0/35
+#
+interface Ethernet1/0/36
+#
+interface Ethernet1/0/37
+#
+interface Ethernet1/0/38
+#
+interface Ethernet1/0/39
+#
+interface Ethernet1/0/40
+#
+interface Ethernet1/0/41
+#
+interface Ethernet1/0/42
+#
+interface Ethernet1/0/43
+#
+interface Ethernet1/0/44
+#
+interface Ethernet1/0/45
+interface Ethernet1/0/46
+#
+interface Ethernet1/0/47
+#
+interface Ethernet1/0/48
+#
+interface GigabitEthernet1/0/49
+ description MingShaBianCE G1/0/27
+ port access vlan 1002
+#
+interface GigabitEthernet1/0/50
+#
+interface GigabitEthernet1/0/51
+#
+interface GigabitEthernet1/0/52
+#
+ospf 1
+ area 0.0.0.2
+  network 10.217.216.0 0.0.0.15
+  network 10.216.142.156 0.0.0.3
+#
+ info-center loghost 10.217.193.65
+#
+ snmp-agent
+ snmp-agent local-engineid 383030303633413236353133363030423033303841463943
+ snmp-agent community read nxepc-read
+ snmp-agent sys-info version all
+#
+ ntp-service unicast-server 10.216.126.226 priority
+ ntp-service unicast-server 10.216.126.225
+#
+ ssh server enable
+ ssh user zwjadmin2017 service-type stelnet authentication-type password
+#
+ arp static 10.217.216.10 0000-0000-0001
+ arp static 10.217.216.7 f493-9ff4-8cfe
+ arp static 10.217.216.6 0000-0000-0001
+ arp static 10.217.216.8 9c14-63d8-405d
+ arp static 10.217.216.13 60e8-5b1c-e22f
+#
+ load xml-configuration
+#
+ load tr069-configuration
+#
+ authentication-mode password
+ set authentication password cipher $c$3$mWySLGuZksMZXzyKn7dYHcjN2z33M7oIJXBiYJIzj3o=
+ idle-timeout 8 0
+user-interface vty 0 15
+ acl 2000 inbound
+ authentication-mode scheme
+ user privilege level 3
+ idle-timeout 8 0
+ protocol inbound ssh
+#
+return
+<BaiLuBianCE>

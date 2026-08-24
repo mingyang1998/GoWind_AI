@@ -1,0 +1,1085 @@
+﻿logging file default snmplog
+         
+ZaoYuanBian.M6000-5S#show running-config
+!<mim>
+!configuration saved at 17:04:53 Wed Jan 28 2026 by write zdb
+!configuration saved at 17:04:59 Wed Jan 28 2026 by write txt
+!last configuration change at 17:04:40 Wed Jan 28 2026 by zwjadmin2017
+commit-mode default automatic
+!</mim>
+!<system-config>
+hostname ZaoYuanBian.M6000-5S
+nvram boot-server 192.1.2.8
+nvram boot-server ipv6 2000::1
+nvram default-gateway 192.1.2.8
+nvram default-gateway ipv6 2000::1
+nvram boot-username upp
+nvram ftp-path /
+!</system-config>
+!<vrf>
+ip vrf SUPERVPN
+  rd 64600:20
+  route-target import 64600:20
+  route-target export 64600:20
+  address-family ipv4
+  $
+$
+ip vrf spd
+  rd 64600:12
+  route-target import 64600:12
+  route-target export 64600:12
+  address-family ipv4
+  $
+$
+ip vrf spi
+  rd 64600:10
+  route-target import 64600:10
+  route-target export 64600:10
+  address-family ipv4
+  $
+$
+ip vrf spims
+  rd 64600:17
+  route-target import 64600:17
+  route-target export 64600:17
+  address-family ipv4
+  $
+$
+ip vrf spt
+  rd 64600:11
+  route-target import 64600:11
+  route-target export 64600:11
+  address-family ipv4
+  $
+$
+ip vrf spv6
+  rd 64600:15
+  route-target import 64600:15
+  route-target export 64600:15
+  address-family ipv4
+  $
+$
+ip vrf spvv
+  rd 64600:13
+  route-target import 64600:13
+  route-target export 64600:13
+  address-family ipv4
+  $
+$
+!</vrf>
+!<if-intf>
+interface gei-0/1/0/1
+  no shutdown
+$
+interface gei-0/1/0/1.1001
+  description to ZaoYuanBianMCE G1/1/1
+  ip vrf forwarding spi
+  ip address 10.216.132.157 255.255.255.252
+$
+interface gei-0/1/0/2
+  description XinSiGouCE
+  ip vrf forwarding spi
+  ip address 10.216.132.205 255.255.255.252
+  no shutdown
+$
+interface gei-0/1/0/3
+  description to KaiGeBianPE G2/0/2
+  ip address 11.80.9.14 255.255.255.252
+  no shutdown
+$
+interface gei-0/1/0/4
+$
+interface gei-0/1/0/5
+$
+interface gei-0/1/0/6
+$        
+interface gei-0/1/0/7
+  description to NingAnBianPE G0/1/0/19
+  ip address 11.80.9.134 255.255.255.252
+  no shutdown
+$
+interface gei-0/1/0/8
+$
+interface gei-0/1/0/9
+$
+interface gei-0/1/0/10
+$
+interface gei-0/1/0/11
+$
+interface gei-0/1/0/12
+$
+interface gei-0/1/0/13
+$
+interface gei-0/1/0/14
+$
+interface gei-0/1/0/15
+$
+interface gei-0/1/0/16
+$
+interface gei-0/1/0/17
+$
+interface gei-0/1/0/18
+$
+interface gei-0/1/0/19
+$
+interface gei-0/1/0/20
+$
+interface spi-0/1/0/1
+$
+interface qx_eth-0/5/0/1
+$
+interface qx_eth-0/6/0/1
+$
+interface mgmt_eth
+  ip address 192.168.0.1 255.255.255.0
+  ipv6 address 2000::8/64
+$
+interface loopback0
+  ip address 11.81.249.242 255.255.255.255
+$
+interface loopback1
+  ip address 11.81.249.241 255.255.255.255
+$
+interface loopback2
+  ip address 11.81.249.240 255.255.255.255
+$
+interface loopback3
+  ip vrf forwarding spi
+  ip address 10.216.127.116 255.255.255.255
+$
+interface null1
+$
+interface qx1
+$
+!</if-intf>
+!<port-physical-config>
+interface gei-0/1/0/2
+  negotiation negotiation-force
+$
+!</port-physical-config>
+!<clock-mgr>
+clock timezone bj 8
+!</clock-mgr>
+!<switchvlan>
+switchvlan-configuration
+  vlan 1
+  $
+  vlan 1003
+  $
+$
+!</switchvlan>
+!<vlan>
+vlan-configuration
+  interface gei-0/1/0/1.1001
+    encapsulation-dot1q 1001
+  $
+$
+!</vlan>
+!<ipv4-acl>
+ipv4-access-list 2000
+  rule 1 permit vrf spi 10.217.199.86 0.0.0.0
+  rule 2 permit vrf spi 10.217.199.66 0.0.0.0
+  rule 3 permit vrf spi 10.217.199.68 0.0.0.0
+  rule 4 permit vrf spi 10.217.199.70 0.0.0.0
+  rule 5 permit vrf spi 10.217.199.80 0.0.0.0
+  rule 6 permit vrf spi 10.217.199.103 0.0.0.0
+  rule 7 permit vrf spi 10.217.199.123 0.0.0.0
+  rule 8 permit 11.81.249.0 0.0.0.255
+  rule 9 permit 11.80.9.0 0.0.0.255
+  rule 10 permit 10.217.194.186 0.0.0.0
+  rule 11 permit vrf spi 10.217.199.97 0.0.0.0
+  rule 12 permit vrf spi 10.216.242.73 0.0.0.0
+  rule 13 permit vrf spi 10.216.242.74 0.0.0.0
+  rule 14 permit vrf spi 10.216.242.76 0.0.0.0
+  rule 15 permit vrf spi 10.216.242.79 0.0.0.0
+  rule 16 permit vrf spi 10.216.242.92 0.0.0.0
+  rule 17 permit vrf spi 10.216.242.96 0.0.0.0
+  rule 18 permit vrf spi 10.217.7.5 0.0.0.0
+  rule 19 permit vrf spi 10.217.193.65 0.0.0.0
+  rule 20 permit vrf spi 10.216.2.102 0.0.0.0
+  rule 21 permit vrf spi 10.216.2.103 0.0.0.0
+  rule 22 permit vrf spi 10.217.193.101 0.0.0.0
+  rule 23 permit vrf spi 10.217.199.87 0.0.0.0
+  rule 100 deny any
+$
+ipv4-access-list 2100
+  rule 1 permit 10.90.86.0 0.0.0.255
+$
+ipv4-access-list 3020
+  rule 100 permit vrf spi 10.217.199.66 0.0.0.0
+  rule 101 permit vrf spi 10.217.199.68 0.0.0.0
+  rule 102 permit vrf spi 10.217.199.70 0.0.0.0
+  rule 103 permit vrf spi 10.217.199.80 0.0.0.0
+  rule 104 permit vrf spi 10.217.199.86 0.0.0.0
+  rule 106 permit vrf spi 10.217.199.97 0.0.0.0
+  rule 107 permit vrf spi 10.217.199.79 0.0.0.0
+  rule 108 permit vrf spi 10.217.199.103 0.0.0.0
+  rule 109 permit vrf spi 10.217.199.123 0.0.0.0
+  rule 110 permit vrf spi 10.217.193.65 0.0.0.0
+  rule 111 permit vrf spi 10.217.7.5 0.0.0.0
+  rule 112 permit vrf spi 10.217.241.253 0.0.0.0
+  rule 113 permit vrf spi 10.217.242.83 0.0.0.0
+  rule 114 permit vrf spi 10.217.212.161 0.0.0.0
+  rule 115 permit vrf spi 10.216.88.160 0.0.0.15
+  rule 116 permit vrf spi 10.217.199.87 0.0.0.0
+  rule 392 permit vrf spi 25.80.60.55 0.0.0.0
+  rule 1001 deny vrf spi tcp any any eq 4006
+  rule 1002 deny vrf spi tcp any any eq 5225
+  rule 1003 deny vrf spi tcp any any eq 2425
+  rule 1004 deny vrf spi udp any any eq 2425
+  rule 1010 deny vrf spi 120.241.147.233 0.0.0.0
+  rule 1011 deny vrf spi 54.213.173.26 0.0.0.0
+  rule 1012 deny vrf spi 104.200.22.130 0.0.0.0
+  rule 1013 deny vrf spi 23.210.215.91 0.0.0.0
+  rule 1014 deny vrf spi 68.168.98.61 0.0.0.0
+  rule 1015 deny vrf spi 63.251.106.25 0.0.0.0
+  rule 1016 deny vrf spi 104.200.23.95 0.0.0.0
+  rule 1017 deny vrf spi 161.97.135.0 0.0.0.255
+  rule 1018 deny vrf spi 104.18.26.28 0.0.0.0
+  rule 1019 deny vrf spi 104.18.27.28 0.0.0.0
+  rule 1020 deny vrf spi 220.181.174.169 0.0.0.0
+  rule 1021 deny vrf spi 172.66.40.153 0.0.0.0
+  rule 1022 deny vrf spi 172.66.43.103 0.0.0.0
+  rule 1500 deny vrf spi tcp any any eq 445
+  rule 1501 deny vrf spi tcp any any eq 1
+  rule 1502 deny vrf spi tcp any any eq 22
+  rule 1503 deny vrf spi tcp any any eq 31
+  rule 1504 deny vrf spi tcp any any eq 88
+  rule 1505 deny vrf spi tcp any any eq 99
+  rule 1506 deny vrf spi tcp any any eq 135
+  rule 1507 deny vrf spi udp any any eq 135
+  rule 1509 deny vrf spi tcp any any eq 137
+  rule 1510 deny vrf spi tcp any any eq 138
+  rule 1511 deny vrf spi tcp any any eq 139
+  rule 1512 deny vrf spi tcp any any eq 443
+  rule 1514 deny vrf spi udp any any eq 445
+  rule 1516 deny vrf spi tcp any any eq 456
+  rule 1517 deny vrf spi tcp any any eq 548
+  rule 1518 deny vrf spi tcp any any eq 553
+  rule 1519 deny vrf spi tcp any any eq 554
+  rule 1520 deny vrf spi tcp any any eq 555
+  rule 1521 deny vrf spi tcp any any eq 568
+  rule 1522 deny vrf spi tcp any any eq 569
+  rule 1523 deny vrf spi tcp any any eq 593
+  rule 1524 deny vrf spi tcp any any eq 635
+  rule 1525 deny vrf spi tcp any any eq 666
+  rule 1526 deny vrf spi tcp any any eq 777
+  rule 1527 deny vrf spi tcp any any eq 990
+  rule 1528 deny vrf spi tcp any any eq 1001
+  rule 1529 deny vrf spi tcp any any eq 1011
+  rule 1530 deny vrf spi tcp any any eq 1024
+  rule 1531 deny vrf spi tcp any any eq 1025
+  rule 1532 deny vrf spi tcp any any eq 1026
+  rule 1533 deny vrf spi tcp any any eq 1027
+  rule 1534 deny vrf spi tcp any any eq 1028
+  rule 1535 deny vrf spi tcp any any eq 1029
+  rule 1536 deny vrf spi tcp any any eq 1033
+  rule 1537 deny vrf spi tcp any any eq 1170
+  rule 1538 deny vrf spi tcp any any eq 1234
+  rule 1539 deny vrf spi tcp any any eq 1243
+  rule 1540 deny vrf spi tcp any any eq 1245
+  rule 1541 deny vrf spi tcp any any eq 1433
+  rule 1542 deny vrf spi tcp any any eq 1492
+  rule 1543 deny vrf spi tcp any any eq 1521
+  rule 1544 deny vrf spi tcp any any eq 1524
+  rule 1545 deny vrf spi tcp any any eq 1600
+  rule 1546 deny vrf spi tcp any any eq 1807
+  rule 1547 deny vrf spi tcp any any eq 1981
+  rule 1548 deny vrf spi tcp any any eq 1999
+  rule 1549 deny vrf spi tcp any any eq 2000
+  rule 1550 deny vrf spi tcp any any eq 2001
+  rule 1551 deny vrf spi tcp any any eq 2023
+  rule 1552 deny vrf spi tcp any any eq 2115
+  rule 1553 deny vrf spi tcp any any eq 2140
+  rule 1554 deny vrf spi tcp any any eq 2375
+  rule 1555 deny vrf spi udp any any eq 2375
+  rule 1557 deny vrf spi tcp any any eq 2583
+  rule 1558 deny vrf spi tcp any any eq 2745
+  rule 1559 deny vrf spi tcp any any eq 2801
+  rule 1560 deny vrf spi tcp any any eq 3000
+  rule 1561 deny vrf spi tcp any any eq 3024
+  rule 1562 deny vrf spi tcp any any eq 3127
+  rule 1563 deny vrf spi tcp any any eq 3129
+  rule 1564 deny vrf spi tcp any any eq 3150
+  rule 1565 deny vrf spi tcp any any eq 3210
+  rule 1566 deny vrf spi tcp any any eq 3306
+  rule 1567 deny vrf spi tcp any any eq 3389
+  rule 1568 deny vrf spi tcp any any eq 3700
+  rule 1569 deny vrf spi tcp any any eq 3996
+  rule 1570 deny vrf spi tcp any any eq 4011
+  rule 1571 deny vrf spi tcp any any eq 4060
+  rule 1572 deny vrf spi tcp any any eq 4092
+  rule 1573 deny vrf spi tcp any any eq 4321
+  rule 1574 deny vrf spi tcp any any eq 4422
+  rule 1575 deny vrf spi tcp any any eq 4433
+  rule 1576 deny vrf spi tcp any any eq 4444
+  rule 1577 deny vrf spi tcp any any eq 4590
+  rule 1578 deny vrf spi tcp any any eq 4899
+  rule 1579 deny vrf spi tcp any any eq 5000
+  rule 1580 deny vrf spi tcp any any eq 5001
+  rule 1581 deny vrf spi tcp any any eq 5002
+  rule 1582 deny vrf spi tcp any any eq 5321
+  rule 1583 deny vrf spi tcp any any eq 5357
+  rule 1584 deny vrf spi tcp any any eq 5400
+  rule 1585 deny vrf spi tcp any any eq 5401
+  rule 1586 deny vrf spi tcp any any eq 5402
+  rule 1587 deny vrf spi tcp any any eq 5550
+  rule 1588 deny vrf spi tcp any any eq 5554
+  rule 1589 deny vrf spi tcp any any eq 5569
+  rule 1590 deny vrf spi tcp any any eq 5666
+  rule 1591 deny vrf spi tcp any any eq 5742
+  rule 1592 deny vrf spi tcp any any eq 5900
+  rule 1593 deny vrf spi tcp any any eq 6000
+  rule 1594 deny vrf spi tcp any any eq 6112
+  rule 1595 deny vrf spi tcp any any eq 6192
+  rule 1596 deny vrf spi tcp any any eq 6267
+  rule 1597 deny vrf spi tcp any any eq 6400
+  rule 1598 deny vrf spi tcp any any eq 6670
+  rule 1599 deny vrf spi tcp any any eq 6671
+  rule 1600 deny vrf spi tcp any any eq 6711
+  rule 1601 deny vrf spi tcp any any eq 6712
+  rule 1602 deny vrf spi tcp any any eq 6776
+  rule 1603 deny vrf spi tcp any any eq 6883
+  rule 1604 deny vrf spi tcp any any eq 6969
+  rule 1605 deny vrf spi tcp any any eq 7001
+  rule 1606 deny vrf spi tcp any any eq 7300
+  rule 1607 deny vrf spi tcp any any eq 7301
+  rule 1608 deny vrf spi tcp any any eq 7306
+  rule 1609 deny vrf spi tcp any any eq 7307
+  rule 1610 deny vrf spi tcp any any eq 7308
+  rule 1611 deny vrf spi tcp any any eq 7323
+  rule 1612 deny vrf spi tcp any any eq 7626
+  rule 1613 deny vrf spi tcp any any eq 7789
+  rule 1614 deny vrf spi tcp any any eq 8080
+  rule 1615 deny vrf spi tcp any any eq 8443
+  rule 1616 deny vrf spi tcp any any eq 9000
+  rule 1617 deny vrf spi tcp any any eq 9090
+  rule 1618 deny vrf spi tcp any any eq 9100
+  rule 1619 deny vrf spi tcp any any eq 9400
+  rule 1620 deny vrf spi tcp any any eq 9401
+  rule 1621 deny vrf spi tcp any any eq 9402
+  rule 1622 deny vrf spi tcp any any eq 9875
+  rule 1623 deny vrf spi tcp any any eq 9989
+  rule 1624 deny vrf spi tcp any any eq 10000
+  rule 1625 deny vrf spi tcp any any eq 10022
+  rule 1626 deny vrf spi tcp any any eq 10067
+  rule 1627 deny vrf spi tcp any any eq 10167
+  rule 1628 deny vrf spi tcp any any eq 11000
+  rule 1629 deny vrf spi tcp any any eq 11223
+  rule 1630 deny vrf spi tcp any any eq 11521
+  rule 1631 deny vrf spi tcp any any eq 12076
+  rule 1632 deny vrf spi tcp any any eq 12223
+  rule 1633 deny vrf spi tcp any any eq 12346
+  rule 1634 deny vrf spi tcp any any eq 12361
+  rule 1635 deny vrf spi tcp any any eq 13223
+  rule 1636 deny vrf spi tcp any any eq 13389
+  rule 1637 deny vrf spi tcp any any eq 16960
+  rule 1638 deny vrf spi tcp any any eq 17001
+  rule 1639 deny vrf spi tcp any any eq 17027
+  rule 1640 deny vrf spi tcp any any eq 19132
+  rule 1641 deny vrf spi tcp any any eq 19191
+  rule 1642 deny vrf spi tcp any any eq 20034
+  rule 1643 deny vrf spi tcp any any eq 20432
+  rule 1644 deny vrf spi tcp any any eq 21554
+  rule 1645 deny vrf spi tcp any any eq 22222
+  rule 1646 deny vrf spi tcp any any eq 23456
+  rule 1647 deny vrf spi tcp any any eq 25565
+  rule 1648 deny vrf spi tcp any any eq 26274
+  rule 1649 deny vrf spi tcp any any eq 27374
+  rule 1650 deny vrf spi tcp any any eq 30100
+  rule 1651 deny vrf spi tcp any any eq 30303
+  rule 1652 deny vrf spi tcp any any eq 30999
+  rule 1653 deny vrf spi tcp any any eq 31337
+  rule 1654 deny vrf spi tcp any any eq 31338
+  rule 1655 deny vrf spi tcp any any eq 31339
+  rule 1656 deny vrf spi tcp any any eq 31666
+  rule 1657 deny vrf spi tcp any any eq 31789
+  rule 1658 deny vrf spi tcp any any eq 33333
+  rule 1659 deny vrf spi tcp any any eq 34324
+  rule 1660 deny vrf spi tcp any any eq 40412
+  rule 1661 deny vrf spi tcp any any eq 40421
+  rule 1662 deny vrf spi tcp any any eq 40422
+  rule 1663 deny vrf spi tcp any any eq 40423
+  rule 1664 deny vrf spi tcp any any eq 40426
+  rule 1665 deny vrf spi tcp any any eq 43210
+  rule 1666 deny vrf spi tcp any any eq 44445
+  rule 1667 deny vrf spi tcp any any eq 47262
+  rule 1668 deny vrf spi tcp any any eq 47878
+  rule 1669 deny vrf spi tcp any any eq 49152
+  rule 1670 deny vrf spi tcp any any eq 49153
+  rule 1671 deny vrf spi tcp any any eq 49154
+  rule 1672 deny vrf spi tcp any any eq 49155
+  rule 1673 deny vrf spi tcp any any eq 49156
+  rule 1674 deny vrf spi tcp any any eq 49157
+  rule 1675 deny vrf spi tcp any any eq 50505
+  rule 1676 deny vrf spi tcp any any eq 50766
+  rule 1677 deny vrf spi tcp any any eq 53001
+  rule 1678 deny vrf spi tcp any any eq 54321
+  rule 1679 deny vrf spi tcp any any eq 60000
+  rule 1680 deny vrf spi tcp any any eq 61466
+  rule 1681 deny vrf spi tcp any any eq 64101
+  rule 1682 deny vrf spi tcp any any eq 65000
+  rule 1683 deny vrf spi tcp any any eq finger
+  rule 1684 deny vrf spi tcp any any eq ftp
+  rule 1685 deny vrf spi tcp any any eq login
+  rule 1686 deny vrf spi tcp any any eq smtp
+  rule 1687 deny vrf spi tcp any any eq telnet
+  rule 1688 deny vrf spi tcp any any eq www
+  rule 3100 permit vrf spi 10.217.192.0 0.0.15.255
+  rule 3101 permit vrf spi 10.217.210.0 0.0.0.255
+  rule 3102 permit vrf spi 10.217.211.0 0.0.0.255
+  rule 3103 permit vrf spi 10.217.212.0 0.0.0.255
+  rule 3104 permit vrf spi 10.217.213.0 0.0.0.255
+  rule 3105 permit vrf spi 10.217.214.0 0.0.0.255
+  rule 3106 permit vrf spi 10.217.215.0 0.0.0.255
+  rule 3107 permit vrf spi 10.217.216.0 0.0.0.255
+  rule 3108 permit vrf spi 10.217.217.0 0.0.0.255
+  rule 3109 permit vrf spi 10.217.250.0 0.0.0.255
+  rule 3110 permit vrf spi 10.217.79.0 0.0.0.255
+  rule 3111 permit vrf spi 25.80.51.0 0.0.0.31
+  rule 3112 permit vrf spi 25.80.51.31 0.0.0.0
+  rule 3113 permit vrf spi 25.80.51.32 0.0.0.0
+  rule 3114 permit vrf spi 25.80.51.33 0.0.0.0
+  rule 3115 permit vrf spi 25.80.51.34 0.0.0.0
+  rule 3116 permit vrf spi 10.216.2.210 0.0.0.0
+  rule 3117 permit vrf spi 10.1.101.3 0.0.0.0
+  rule 3118 permit vrf spi 10.217.193.75 0.0.0.0
+  rule 3119 permit vrf spi 10.217.193.78 0.0.0.0
+  rule 3120 permit vrf spi 10.217.5.11 0.0.0.0
+  rule 3121 permit vrf spi 10.217.5.12 0.0.0.0
+  rule 3122 permit vrf spi 10.217.5.14 0.0.0.0
+  rule 3123 permit vrf spi 10.217.5.19 0.0.0.0
+  rule 3124 permit vrf spi 10.217.5.10 0.0.0.0
+  rule 3125 permit vrf spi 10.217.248.11 0.0.0.0
+  rule 3126 permit vrf spi 10.217.248.12 0.0.0.0
+  rule 3127 permit vrf spi 10.217.248.13 0.0.0.0
+  rule 3128 permit vrf spi 10.217.248.14 0.0.0.0
+  rule 3129 permit vrf spi 10.217.248.15 0.0.0.0
+  rule 3130 permit vrf spi 10.217.248.16 0.0.0.0
+  rule 3131 permit vrf spi 25.80.71.79 0.0.0.0
+  rule 3132 permit vrf spi 25.80.72.93 0.0.0.0
+  rule 3133 permit vrf spi 10.217.9.172 0.0.0.0
+  rule 3134 permit vrf spi 10.4.71.222 0.0.0.0
+  rule 3135 permit vrf spi 20.164.5.1 0.0.0.0
+  rule 3136 permit vrf spi 20.164.5.4 0.0.0.0
+  rule 3137 permit vrf spi 10.217.251.38 0.0.0.0
+  rule 3138 permit vrf spi 10.216.151.210 0.0.0.0
+  rule 3139 permit vrf spi 25.80.21.69 0.0.0.0
+  rule 3140 permit vrf spi 25.80.71.8 0.0.0.0
+  rule 3141 permit vrf spi 25.80.45.161 0.0.0.0
+  rule 3142 permit vrf spi 25.80.45.231 0.0.0.0
+  rule 3143 permit vrf spi 10.217.193.91 0.0.0.0
+  rule 3144 permit vrf spi 10.217.193.90 0.0.0.0
+  rule 3145 permit vrf spi 10.216.2.82 0.0.0.0
+  rule 3146 permit vrf spi 10.217.1.1 0.0.0.0
+  rule 3147 permit vrf spi 10.217.2.200 0.0.0.0
+  rule 3148 permit vrf spi 10.217.5.132 0.0.0.0
+  rule 3149 permit vrf spi 10.1.182.251 0.0.0.0
+  rule 3150 permit vrf spi 10.1.39.23 0.0.0.0
+  rule 3151 permit vrf spi 10.1.146.253 0.0.0.0
+  rule 3152 permit vrf spi 10.4.101.1 0.0.0.0
+  rule 3153 permit vrf spi 10.4.52.60 0.0.0.0
+  rule 3154 permit vrf spi 20.81.11.141 0.0.0.0
+  rule 3155 permit vrf spi 20.81.11.142 0.0.0.0
+  rule 3156 permit vrf spi 20.81.11.143 0.0.0.0
+  rule 3157 permit vrf spi 20.81.11.144 0.0.0.0
+  rule 3158 permit vrf spi 20.81.11.145 0.0.0.0
+  rule 3159 permit vrf spi 20.81.11.146 0.0.0.0
+  rule 3160 permit vrf spi tcp 25.80.60.107 0.0.0.0 any eq 30080
+  rule 3161 permit vrf spi 20.81.12.200 0.0.0.0
+  rule 3162 permit vrf spi 10.217.6.161 0.0.0.0
+  rule 3163 permit vrf spi 10.217.12.69 0.0.0.0
+  rule 3164 permit vrf spi 10.217.12.70 0.0.0.0
+  rule 3165 permit vrf spi 10.217.12.71 0.0.0.0
+  rule 3166 permit vrf spi 10.217.12.72 0.0.0.0
+  rule 3167 permit vrf spi 10.217.12.73 0.0.0.0
+  rule 3168 permit vrf spi 10.217.12.74 0.0.0.0
+  rule 3169 permit vrf spi 10.217.12.75 0.0.0.0
+  rule 3170 permit vrf spi 10.217.12.77 0.0.0.0
+  rule 3171 permit vrf spi 10.217.12.107 0.0.0.0
+  rule 3172 permit vrf spi 10.217.12.232 0.0.0.0
+  rule 3173 permit vrf spi 10.217.8.169 0.0.0.0
+  rule 3174 permit vrf spi 10.217.8.170 0.0.0.0
+  rule 3175 permit vrf spi 10.217.8.171 0.0.0.0
+  rule 3176 permit vrf spi 10.217.8.172 0.0.0.0
+  rule 3177 permit vrf spi 10.217.8.173 0.0.0.0
+  rule 3178 permit vrf spi 10.217.8.201 0.0.0.0
+  rule 3179 permit vrf spi 10.217.5.217 0.0.0.0
+  rule 3180 permit vrf spi 10.217.12.221 0.0.0.0
+  rule 3181 permit vrf spi 10.217.12.225 0.0.0.0
+  rule 3182 permit vrf spi 10.217.12.228 0.0.0.0
+  rule 3183 permit vrf spi 10.217.12.229 0.0.0.0
+  rule 3184 permit vrf spi 10.217.12.230 0.0.0.0
+  rule 3185 permit vrf spi 10.216.168.212 0.0.0.0
+  rule 3186 permit vrf spi 10.217.2.210 0.0.0.0
+  rule 3187 permit vrf spi 10.4.101.10 0.0.0.0
+  rule 3188 permit vrf spi 10.4.101.11 0.0.0.0
+  rule 3189 permit vrf spi 10.216.2.191 0.0.0.0
+  rule 3190 permit vrf spi 10.217.8.71 0.0.0.0
+  rule 3192 permit vrf spi 10.1.180.109 0.0.0.0
+  rule 3193 permit vrf spi 10.1.180.112 0.0.0.0
+  rule 3194 permit vrf spi 10.1.180.113 0.0.0.0
+  rule 3195 permit vrf spi 10.1.180.85 0.0.0.0
+  rule 3196 permit vrf spi 10.1.180.86 0.0.0.0
+  rule 3197 permit vrf spi 10.217.12.112 0.0.0.0
+  rule 3198 permit vrf spi 10.217.12.113 0.0.0.0
+  rule 3199 permit vrf spi 10.217.8.72 0.0.0.0
+  rule 3200 permit vrf spi 10.4.101.4 0.0.0.0
+  rule 3201 permit vrf spi 20.1.40.106 0.0.0.0
+  rule 3202 permit vrf spi 20.1.40.147 0.0.0.0
+  rule 3203 permit vrf spi 20.1.40.195 0.0.0.0
+  rule 3204 permit vrf spi 20.1.40.217 0.0.0.0
+  rule 3205 permit vrf spi 20.1.40.234 0.0.0.0
+  rule 3206 permit vrf spi 20.1.40.63 0.0.0.0
+  rule 3207 permit vrf spi 20.1.41.139 0.0.0.0
+  rule 3208 permit vrf spi 20.1.41.142 0.0.0.0
+  rule 3209 permit vrf spi 20.1.41.150 0.0.0.0
+  rule 3210 permit vrf spi 20.1.41.180 0.0.0.0
+  rule 3211 permit vrf spi 20.1.41.222 0.0.0.0
+  rule 3212 permit vrf spi 20.1.41.69 0.0.0.0
+  rule 3213 permit vrf spi 20.1.41.70 0.0.0.0
+  rule 3214 permit vrf spi 20.1.41.71 0.0.0.0
+  rule 3215 permit vrf spi 20.1.41.72 0.0.0.0
+  rule 3216 permit vrf spi 20.1.42.58 0.0.0.0
+  rule 3217 permit vrf spi 20.1.42.84 0.0.0.0
+  rule 3218 permit vrf spi 20.1.43.135 0.0.0.0
+  rule 3219 permit vrf spi 20.1.43.151 0.0.0.0
+  rule 3220 permit vrf spi 20.1.43.152 0.0.0.0
+  rule 3221 permit vrf spi 20.1.43.157 0.0.0.0
+  rule 3222 permit vrf spi 20.1.43.205 0.0.0.0
+  rule 3223 permit vrf spi 20.1.43.71 0.0.0.0
+  rule 3224 permit vrf spi 20.1.43.86 0.0.0.0
+  rule 3225 permit vrf spi 20.1.59.193 0.0.0.0
+  rule 3226 permit vrf spi 25.1.162.247 0.0.0.0
+  rule 3227 permit vrf spi 25.1.163.17 0.0.0.0
+  rule 3228 permit vrf spi 25.1.163.18 0.0.0.0
+  rule 3229 permit vrf spi 25.1.163.31 0.0.0.0
+  rule 3230 permit vrf spi 25.1.163.45 0.0.0.0
+  rule 3231 permit vrf spi 25.1.163.50 0.0.0.0
+  rule 3232 permit vrf spi 25.1.163.54 0.0.0.0
+  rule 3233 permit vrf spi 10.1.105.9 0.0.0.0
+  rule 3234 permit vrf spi 10.4.34.182 0.0.0.0
+  rule 3235 permit vrf spi 10.64.2.111 0.0.0.0
+  rule 3236 permit vrf spi 10.4.39.180 0.0.0.0
+  rule 3237 permit vrf spi 10.217.1.199 0.0.0.0
+  rule 3238 permit vrf spi 10.217.12.224 0.0.0.0
+  rule 3239 permit vrf spi 10.1.182.178 0.0.0.0
+  rule 3240 permit vrf spi 10.217.12.201 0.0.0.0
+  rule 3241 permit vrf spi 10.217.12.169 0.0.0.0
+  rule 3242 permit vrf spi 10.217.12.124 0.0.0.0
+  rule 3243 permit vrf spi 10.217.12.226 0.0.0.0
+  rule 3244 permit vrf spi 10.216.143.82 0.0.0.0
+  rule 3245 permit vrf spi 10.217.12.108 0.0.0.0
+  rule 3246 permit vrf spi 10.217.12.111 0.0.0.0
+  rule 3247 permit vrf spi 10.217.12.231 0.0.0.0
+  rule 3248 permit vrf spi 10.217.12.109 0.0.0.0
+  rule 3249 permit vrf spi 10.217.12.125 0.0.0.0
+  rule 3250 permit vrf spi 10.200.193.2 0.0.0.0
+  rule 3251 permit vrf spi 10.217.1.129 0.0.0.0
+  rule 3252 permit vrf spi 10.217.1.4 0.0.0.0
+  rule 3253 permit vrf spi 10.217.12.227 0.0.0.0
+  rule 3254 permit vrf spi 10.217.1.42 0.0.0.0
+  rule 3255 permit vrf spi 10.217.6.239 0.0.0.0
+  rule 3256 permit vrf spi 10.217.1.175 0.0.0.0
+  rule 3257 permit vrf spi 10.1.182.187 0.0.0.0
+  rule 3258 permit vrf spi 10.1.182.181 0.0.0.0
+  rule 3259 permit vrf spi 10.1.182.183 0.0.0.0
+  rule 3260 permit vrf spi 10.217.1.102 0.0.0.0
+  rule 3261 permit vrf spi 10.217.4.163 0.0.0.0
+  rule 3262 permit vrf spi 10.217.5.133 0.0.0.0
+  rule 3263 permit vrf spi 10.217.12.222 0.0.0.0
+  rule 3264 permit vrf spi 10.4.73.175 0.0.0.0
+  rule 3265 permit vrf spi 10.216.12.212 0.0.0.0
+  rule 3266 permit vrf spi 10.216.209.112 0.0.0.0
+  rule 3267 permit vrf spi 10.217.9.171 0.0.0.0
+  rule 3268 permit vrf spi 10.217.9.173 0.0.0.0
+  rule 3269 permit vrf spi 10.217.5.186 0.0.0.0
+  rule 3270 permit vrf spi 10.217.6.147 0.0.0.0
+  rule 3271 permit vrf spi 25.80.229.6 0.0.0.0
+  rule 3272 permit vrf spi 25.80.71.64 0.0.0.0
+  rule 3273 permit vrf spi 25.80.71.65 0.0.0.0
+  rule 3274 permit vrf spi 25.80.71.37 0.0.0.0
+  rule 3275 permit vrf spi 25.80.71.38 0.0.0.0
+  rule 3276 permit vrf spi 20.80.201.14 0.0.0.0
+  rule 3277 permit vrf spi 10.144.4.122 0.0.0.0
+  rule 3278 permit vrf spi 20.1.39.3 0.0.0.0
+  rule 3279 permit vrf spi 25.80.21.110 0.0.0.0
+  rule 3280 permit vrf spi 10.4.40.180 0.0.0.0
+  rule 3281 permit vrf spi 20.81.11.36 0.0.0.0
+  rule 3282 permit vrf spi 10.4.101.0 0.0.0.255
+  rule 3283 permit vrf spi 25.80.44.111 0.0.0.0
+  rule 3284 permit vrf spi 10.217.13.10 0.0.0.0
+  rule 3285 permit vrf spi 10.217.12.220 0.0.0.0
+  rule 3286 permit vrf spi 10.217.15.146 0.0.0.0
+  rule 3287 permit vrf spi 10.64.2.110 0.0.0.0
+  rule 3288 permit vrf spi 10.64.2.122 0.0.0.0
+  rule 3289 permit vrf spi 10.4.34.130 0.0.0.0
+  rule 3290 permit vrf spi 20.80.201.111 0.0.0.0
+  rule 3291 permit vrf spi 20.80.201.112 0.0.0.0
+  rule 3292 permit vrf spi 20.80.201.113 0.0.0.0
+  rule 3293 permit vrf spi 10.216.168.183 0.0.0.0
+  rule 3294 permit vrf spi 10.64.15.37 0.0.0.0
+  rule 3295 permit vrf spi 10.64.16.116 0.0.0.0
+  rule 3296 permit vrf spi 10.64.16.155 0.0.0.0
+  rule 3297 permit vrf spi 10.216.242.35 0.0.0.0
+  rule 3298 permit vrf spi 20.1.63.144 0.0.0.0
+  rule 3299 permit vrf spi 10.216.31.156 0.0.0.0
+  rule 3300 permit vrf spi 25.80.44.8 0.0.0.0
+  rule 3301 permit vrf spi 10.1.16.44 0.0.0.0
+  rule 3302 permit vrf spi 10.217.8.110 0.0.0.0
+  rule 3303 permit vrf spi 10.217.11.222 0.0.0.0
+  rule 3304 permit vrf spi 10.217.2.72 0.0.0.0
+  rule 3305 permit vrf spi 10.217.2.73 0.0.0.0
+  rule 3306 permit vrf spi 20.80.11.4 0.0.0.0
+  rule 3307 permit vrf spi 20.80.11.5 0.0.0.0
+  rule 3308 permit vrf spi 20.80.11.6 0.0.0.0
+  rule 3309 permit vrf spi 10.217.248.1 0.0.0.0
+  rule 3310 permit vrf spi 10.216.248.2 0.0.0.0
+  rule 3311 permit vrf spi 25.80.0.236 0.0.0.0
+  rule 3312 permit vrf spi 10.4.83.90 0.0.0.0
+  rule 3313 permit vrf spi 10.4.35.134 0.0.0.0
+  rule 3314 permit vrf spi 10.216.177.50 0.0.0.0
+  rule 3315 permit vrf spi 10.216.177.51 0.0.0.0
+  rule 3316 permit vrf spi 25.80.51.230 0.0.0.0
+  rule 3317 permit vrf spi 10.217.1.41 0.0.0.0
+  rule 3318 permit vrf spi 10.64.16.39 0.0.0.0
+  rule 3319 permit vrf spi 10.216.33.10 0.0.0.0
+  rule 3320 permit vrf spi 25.80.72.57 0.0.0.0
+  rule 3321 permit vrf spi 20.1.60.136 0.0.0.0
+  rule 3322 permit vrf spi 20.81.11.67 0.0.0.0
+  rule 3323 permit vrf spi 25.80.71.85 0.0.0.0
+  rule 3324 permit vrf spi 20.80.201.155 0.0.0.0
+  rule 3325 permit vrf spi 20.80.201.156 0.0.0.0
+  rule 3326 permit vrf spi 20.80.201.157 0.0.0.0
+  rule 3327 permit vrf spi 20.80.201.158 0.0.0.0
+  rule 3328 permit vrf spi 20.80.10.19 0.0.0.0
+  rule 3329 permit vrf spi 25.80.31.48 0.0.0.0
+  rule 3330 permit vrf spi 25.80.60.83 0.0.0.0
+  rule 3331 permit vrf spi 25.80.60.192 0.0.0.31
+  rule 3332 permit vrf spi 25.80.21.18 0.0.0.0
+  rule 3333 permit vrf spi 25.80.60.157 0.0.0.0
+  rule 3334 permit vrf spi 25.80.60.151 0.0.0.0
+  rule 3335 permit vrf spi 25.80.52.19 0.0.0.0
+  rule 3336 permit vrf spi 25.80.41.112 0.0.0.0
+  rule 3345 permit vrf spi 10.64.15.40 0.0.0.0
+  rule 3365 permit vrf spi 25.80.72.88 0.0.0.0
+  rule 3366 permit vrf spi 25.80.72.34 0.0.0.0
+  rule 3367 permit vrf spi 25.80.72.23 0.0.0.0
+  rule 3368 permit vrf spi 25.80.32.173 0.0.0.0
+  rule 3369 permit vrf spi 25.80.32.13 0.0.0.0
+  rule 3370 permit vrf spi 25.80.5.194 0.0.0.0
+  rule 3371 permit vrf spi 25.80.71.0 0.0.0.255
+  rule 3372 permit vrf spi 10.216.168.111 0.0.0.0
+  rule 3373 permit vrf spi 25.80.43.4 0.0.0.0
+  rule 3374 permit vrf spi 25.80.60.217 0.0.0.0
+  rule 3375 permit vrf spi 20.1.56.165 0.0.0.0
+  rule 3376 permit vrf spi 10.4.81.78 0.0.0.0
+  rule 3377 permit vrf spi 10.201.193.10 0.0.0.0
+  rule 3378 permit vrf spi 20.1.39.35 0.0.0.0
+  rule 3379 permit vrf spi 20.1.42.62 0.0.0.0
+  rule 3380 permit vrf spi 10.217.193.58 0.0.0.0
+  rule 3381 permit vrf spi 10.86.76.177 0.0.0.0
+  rule 3382 permit vrf spi 20.1.59.175 0.0.0.0
+  rule 3383 permit vrf spi 20.80.201.94 0.0.0.0
+  rule 3384 permit vrf spi 10.216.11.242 0.0.0.0
+  rule 3385 permit vrf spi 10.216.11.230 0.0.0.0
+  rule 3386 permit vrf spi 20.1.59.198 0.0.0.0
+  rule 3387 permit vrf spi 10.90.86.188 0.0.0.0
+  rule 3388 permit vrf spi 25.80.72.50 0.0.0.0
+  rule 3389 permit vrf spi 20.1.62.32 0.0.0.0
+  rule 3390 permit vrf spi 20.1.63.36 0.0.0.0
+  rule 3391 permit vrf spi 25.80.42.111 0.0.0.0
+  rule 3393 permit vrf spi 20.1.56.201 0.0.0.0
+  rule 3394 permit vrf spi 10.217.193.59 0.0.0.0
+  rule 3395 permit vrf spi 20.1.62.162 0.0.0.0
+  rule 3396 permit vrf spi 10.216.179.5 0.0.0.0
+  rule 3397 permit vrf spi 10.1.182.245 0.0.0.0
+  rule 3398 permit vrf spi 10.1.182.247 0.0.0.0
+  rule 3399 permit vrf spi 20.1.59.21 0.0.0.0
+  rule 3400 permit vrf spi 20.1.60.210 0.0.0.0
+  rule 3401 permit vrf spi 25.80.60.37 0.0.0.0
+  rule 3999 deny any
+$
+ipv4-access-list 3100
+  rule 1 permit vrf spi 10.216.46.161 0.0.0.0
+  rule 2 permit vrf spi 10.216.46.166 0.0.0.0
+  rule 3 permit vrf spi 10.216.46.177 0.0.0.0
+  rule 5 permit vrf spi tcp 10.217.196.220 0.0.0.0 eq www any
+  rule 6 permit vrf spi tcp 10.217.199.86 0.0.0.0 eq 3389 any
+  rule 7 permit vrf spi tcp 10.216.2.191 0.0.0.0 eq 9600 any
+  rule 8 permit vrf spi tcp 10.217.196.219 0.0.0.0 eq 9600 any
+  rule 9 permit vrf spi tcp 10.217.192.0 0.0.63.255 eq www any
+  rule 10 permit vrf spi tcp 10.217.199.66 0.0.0.0 eq 22 any
+  rule 20 permit vrf spi tcp 10.217.199.68 0.0.0.0 eq 22 any
+  rule 40 permit vrf spi tcp 10.217.199.80 0.0.0.0 eq 22 any
+  rule 50 permit vrf spi tcp 10.217.199.86 0.0.0.0 eq 22 any
+  rule 60 permit vrf spi tcp 10.217.199.97 0.0.0.0 eq 22 any
+  rule 70 permit vrf spi tcp 10.217.199.103 0.0.0.0 eq 22 any
+  rule 80 permit vrf spi tcp 10.217.199.123 0.0.0.0 eq 22 any
+  rule 90 permit vrf spi tcp 10.217.7.5 0.0.0.0 eq 22 any
+  rule 430 permit vrf spi tcp 10.217.9.171 0.0.0.0 eq 102 any
+  rule 431 permit vrf spi tcp 10.217.9.172 0.0.0.0 eq 102 any
+  rule 432 permit vrf spi tcp 10.217.9.173 0.0.0.0 eq 102 any
+  rule 433 permit vrf spi tcp 10.217.9.174 0.0.0.0 eq 102 any
+  rule 440 permit vrf spi tcp 10.217.192.0 0.0.63.255 range 37778-37778 any
+  rule 442 permit vrf spi tcp 10.216.0.0 0.0.255.255 eq www any
+  rule 540 permit vrf spi tcp 10.217.1.175 0.0.0.0 eq telnet any
+  rule 545 permit vrf spi tcp 10.217.1.175 0.0.0.0 eq 135 any
+  rule 790 deny vrf spi udp any eq 137 any
+  rule 2005 permit vrf spi 20.176.5.209 0.0.0.0
+  rule 2010 permit vrf spi 10.217.0.0 0.0.255.255
+  rule 2020 permit vrf spi 10.216.0.0 0.0.255.255
+  rule 2030 permit vrf spi 10.1.65.0 0.0.0.255
+  rule 2040 permit vrf spi 10.1.101.0 0.0.0.255
+  rule 2050 permit vrf spi 10.1.102.0 0.0.0.255
+  rule 2060 permit vrf spi 10.1.142.0 0.0.0.255
+  rule 2070 permit vrf spi 10.1.168.0 0.0.0.255
+  rule 2080 permit vrf spi 10.1.169.0 0.0.0.255
+  rule 2090 permit vrf spi 10.1.182.0 0.0.0.255
+  rule 2100 permit vrf spi 10.1.195.0 0.0.0.255
+  rule 2110 permit vrf spi 10.2.47.0 0.0.0.255
+  rule 2120 permit vrf spi 10.4.34.0 0.0.0.255
+  rule 2130 permit vrf spi 10.4.35.0 0.0.0.255
+  rule 2140 permit vrf spi 10.4.44.0 0.0.0.255
+  rule 2150 permit vrf spi 10.64.15.0 0.0.0.255
+  rule 2160 permit vrf spi 10.85.23.0 0.0.0.255
+  rule 2170 permit vrf spi 10.1.16.44 0.0.0.0
+  rule 2180 permit vrf spi 10.1.17.16 0.0.0.0
+  rule 2190 permit vrf spi 10.1.17.49 0.0.0.0
+  rule 2200 permit vrf spi 10.1.18.33 0.0.0.0
+  rule 2210 permit vrf spi 10.1.21.76 0.0.0.0
+  rule 2220 permit vrf spi 10.1.21.90 0.0.0.0
+  rule 2230 permit vrf spi 10.1.21.91 0.0.0.0
+  rule 2240 permit vrf spi 10.1.28.6 0.0.0.0
+  rule 2250 permit vrf spi 10.1.28.16 0.0.0.0
+  rule 2260 permit vrf spi 10.1.28.22 0.0.0.0
+  rule 2270 permit vrf spi 10.1.28.88 0.0.0.0
+  rule 2280 permit vrf spi 10.1.74.10 0.0.0.0
+  rule 2290 permit vrf spi 10.1.74.66 0.0.0.0
+  rule 2300 permit vrf spi 10.1.74.84 0.0.0.0
+  rule 2310 permit vrf spi 10.1.115.209 0.0.0.0
+  rule 2320 permit vrf spi 10.1.150.12 0.0.0.0
+  rule 2330 permit vrf spi 10.1.150.246 0.0.0.0
+  rule 2340 permit vrf spi 10.1.177.24 0.0.0.0
+  rule 2350 permit vrf spi 10.1.177.39 0.0.0.0
+  rule 2360 permit vrf spi 10.1.180.3 0.0.0.0
+  rule 2370 permit vrf spi 10.1.180.141 0.0.0.0
+  rule 2380 permit vrf spi 10.2.29.55 0.0.0.0
+  rule 2390 permit vrf spi 10.4.39.61 0.0.0.0
+  rule 2400 permit vrf spi 10.4.39.180 0.0.0.0
+  rule 2410 permit vrf spi 10.4.41.17 0.0.0.0
+  rule 2420 permit vrf spi 10.4.53.59 0.0.0.0
+  rule 2430 permit vrf spi 10.5.16.141 0.0.0.0
+  rule 2440 permit vrf spi 10.64.3.102 0.0.0.0
+  rule 2450 permit vrf spi 10.85.16.139 0.0.0.0
+  rule 2455 permit vrf spi 10.85.16.141 0.0.0.0
+  rule 2460 permit vrf spi 10.85.25.248 0.0.0.0
+  rule 2470 permit vrf spi 10.90.130.156 0.0.0.0
+  rule 2480 permit vrf spi 10.137.248.207 0.0.0.0
+  rule 2490 permit vrf spi 10.1.17.64 0.0.0.0
+  rule 2500 permit vrf spi 10.1.177.209 0.0.0.0
+  rule 2510 permit vrf spi 10.1.17.109 0.0.0.0
+  rule 2520 permit vrf spi 10.64.2.0 0.0.0.255
+  rule 2530 permit vrf spi 10.1.146.253 0.0.0.0
+  rule 2540 permit vrf spi 10.1.177.23 0.0.0.0
+  rule 2550 permit vrf spi 10.1.17.70 0.0.0.0
+  rule 2560 permit vrf spi 10.1.21.86 0.0.0.0
+  rule 2570 permit vrf spi 10.68.28.111 0.0.0.0
+  rule 2580 permit vrf spi 10.68.24.163 0.0.0.0
+  rule 2590 permit vrf spi 10.4.69.18 0.0.0.0
+  rule 2600 permit vrf spi 10.4.39.70 0.0.0.0
+  rule 2610 permit vrf spi 10.85.4.165 0.0.0.0
+  rule 2615 permit vrf spi 10.200.193.2 0.0.0.0
+  rule 2620 permit vrf spi 10.4.70.192 0.0.0.0
+  rule 2622 permit vrf spi 10.118.80.89 0.0.0.0
+  rule 2623 permit vrf spi 10.128.4.3 0.0.0.0
+  rule 2624 permit vrf spi 10.224.15.7 0.0.0.0
+  rule 2625 permit vrf spi 10.163.225.6 0.0.0.0
+  rule 2626 permit vrf spi 10.209.2.184 0.0.0.0
+  rule 2627 permit vrf spi 10.157.48.76 0.0.0.0
+  rule 2628 permit vrf spi 10.120.5.247 0.0.0.0
+  rule 2629 permit vrf spi 10.122.1.65 0.0.0.0
+  rule 2630 permit vrf spi 10.124.75.57 0.0.0.0
+  rule 2631 permit vrf spi 10.141.2.54 0.0.0.0
+  rule 2632 permit vrf spi 10.118.82.90 0.0.0.0
+  rule 2633 permit vrf spi 10.131.21.60 0.0.0.0
+  rule 2634 permit vrf spi 10.137.252.29 0.0.0.0
+  rule 2635 permit vrf spi 10.134.1.244 0.0.0.0
+  rule 2636 permit vrf spi 10.138.1.196 0.0.0.0
+  rule 2637 permit vrf spi 10.142.13.152 0.0.0.0
+  rule 2638 permit vrf spi 10.228.0.2 0.0.0.0
+  rule 2639 permit vrf spi 10.233.1.216 0.0.0.0
+  rule 2640 permit vrf spi 10.230.1.3 0.0.0.0
+  rule 2641 permit vrf spi 10.234.14.154 0.0.0.0
+  rule 2642 permit vrf spi 10.176.1.122 0.0.0.0
+  rule 2643 permit vrf spi 10.185.1.57 0.0.0.0
+  rule 2644 permit vrf spi 10.160.2.120 0.0.0.0
+  rule 2645 permit vrf spi 10.165.1.215 0.0.0.0
+  rule 2646 permit vrf spi 10.166.4.100 0.0.0.0
+  rule 2647 permit vrf spi 10.1.118.80 0.0.0.0
+  rule 2648 permit vrf spi 10.208.1.145 0.0.0.0
+  rule 2649 permit vrf spi 10.212.19.16 0.0.0.0
+  rule 2650 permit vrf spi 10.215.29.210 0.0.0.0
+  rule 2651 permit vrf spi 10.218.3.200 0.0.0.0
+  rule 2652 permit vrf spi 10.182.14.249 0.0.0.0
+  rule 2653 permit vrf spi 10.1.80.165 0.0.0.0
+  rule 2654 permit vrf spi 10.87.6.1 0.0.0.0
+  rule 2655 permit vrf spi 10.1.80.225 0.0.0.0
+  rule 2657 permit vrf spi 10.144.1.21 0.0.0.0
+  rule 2658 permit vrf spi 10.1.65.1 0.0.0.0
+  rule 2659 permit vrf spi 10.149.0.50 0.0.0.0
+  rule 2660 permit vrf spi 10.1.115.21 0.0.0.0
+  rule 2661 permit vrf spi 10.141.230.155 0.0.0.0
+  rule 2662 permit vrf spi 10.4.4.116 0.0.0.0
+  rule 2663 permit vrf spi 10.4.4.113 0.0.0.0
+  rule 2664 permit vrf spi 10.1.70.18 0.0.0.0
+  rule 2665 permit vrf spi 10.4.39.231 0.0.0.0
+  rule 2666 permit vrf spi 10.4.41.252 0.0.0.0
+$
+!</ipv4-acl>
+!<system-user>
+system-user
+  authorization-template 1
+    bind aaa-authorization-template 2001
+  $
+  authentication-template 1
+    bind aaa-authentication-template 2001
+  $
+  user-name zwjadmin2017
+    bind authentication-template 1
+    bind authorization-template 1
+    password encrypted c734019e3bbadb79155c8e723dd5183021f1ac0758e2369323d680ac7b317fe2
+  $
+  user-name zwjadmin2019
+    bind authentication-template 1
+    bind authorization-template 1
+    password encrypted d077d95d2f60da7334ad1445f7bd4b83c43409ddbf0a236625840bbdcd57b9d3
+  $
+$
+!</system-user>
+!<ntp>
+ntp enable
+ntp server 11.81.249.250 priority 5
+ntp server 10.216.126.226 priority 1
+ntp server 11.81.249.253 priority 3
+ntp source interface loopback1
+!</ntp>
+!<port-acl>
+interface gei-0/1/0/2
+  ipv4-access-group egress 3020
+$
+!</port-acl>
+!<ptp>
+ptp
+  fixed-mode
+  $
+  free-mode
+  $
+$
+!</ptp>
+!<aaa>
+aaa-authentication-template 2001
+  aaa-authentication-type local
+$
+aaa-authorization-template 2001
+  aaa-authorization-type none
+$
+!</aaa>
+!<stp>
+spantree
+$
+!</stp>
+!<ssh>
+ssh server access-class ipv4 2000
+!</ssh>
+!<ldp>
+mpls ldp instance 1
+  interface gei-0/1/0/3
+  $
+  interface gei-0/1/0/7
+  $
+  router-id loopback0
+$
+!</ldp>
+!<alarm>
+logging file default almlog
+  accept on
+$
+logging file default cmdlog
+  buffer 1000
+$
+logging file default netclog
+  accept on
+$
+logging file default snmplog
+  accept on
+$
+logging file default srvlog
+  accept on
+  interval 10
+$
+logging file default weblog
+  accept on
+$
+logging snmp
+  accept on
+  match cmdlog
+$
+syslog-server facility local7
+syslog-server host vrf spi 10.217.214.253 alarmlog cmdlog debugmsg servicelog braslog natlog urllog nat-translationlog nat-portrangelog netconflog haglog snmplog weblog
+syslog-server host vrf spi 10.217.7.5 alarmlog cmdlog debugmsg servicelog braslog natlog urllog nat-translationlog nat-portrangelog netconflog haglog snmplog weblog
+syslog-server host vrf spi 10.217.193.65 alarmlog cmdlog debugmsg servicelog braslog natlog urllog nat-translationlog nat-portrangelog netconflog haglog snmplog weblog
+syslog-server source interface loopback3
+!</alarm>
+!<snmp>
+snmp-server access-list ipv4 snmp
+snmp-server community encrypted cfa606f98d3fc19fa18609fa8315e5afaa109be02bc22ce0aa3fb4de2e5d6e97 view AllView ro 
+snmp-server community encrypted 772d512739585b53761b48320bd55cacf7ad81a47c72c12dc83f2291b57461b7 view AllView ro 
+snmp-server enable inform snmp
+snmp-server enable inform vpn
+snmp-server enable inform bgp
+snmp-server enable inform ospf
+snmp-server enable inform rmon
+snmp-server enable inform stalarm
+snmp-server enable trap snmp
+snmp-server enable trap vpn
+snmp-server enable trap bgp
+snmp-server enable trap ospf
+snmp-server enable trap rmon
+snmp-server enable trap stalarm
+snmp-server host 10.216.2.248 trap version 2c encrypted 772d512739585b53761b48320bd55cacf7ad81a47c72c12dc83f2291b57461b7 udp-port 162 snmp bgp mac ospf stp ppp arp rmon udld cfm efm lacp mc-elam tcp sctp stalarm cps interface acl fib pim isis rip msdp aps
+snmp-server host 10.216.2.95 trap version 2c encrypted 772d512739585b53761b48320bd55cacf7ad81a47c72c12dc83f2291b57461b7 udp-port 162 snmp bgp mac ospf stp ppp arp rmon udld cfm efm lacp mc-elam tcp sctp stalarm cps interface acl fib pim isis rip msdp aps
+snmp-server host 10.216.2.58 trap version 2c encrypted cfa606f98d3fc19fa18609fa8315e5afaa109be02bc22ce0aa3fb4de2e5d6e97 udp-port 162 snmp bgp mac ospf stp ppp arp rmon udld cfm efm lacp mc-elam tcp sctp stalarm cps interface acl fib pim isis rip msdp aps
+snmp-server host 10.217.193.65 trap version 2c encrypted cfa606f98d3fc19fa18609fa8315e5afaa109be02bc22ce0aa3fb4de2e5d6e97 udp-port 162 snmp bgp mac ospf stp ppp arp rmon udld cfm efm lacp mc-elam tcp sctp stalarm cps interface acl fib pim isis rip msdp aps
+snmp-server host 10.217.5.197 trap version 2c encrypted cfa606f98d3fc19fa18609fa8315e5afaa109be02bc22ce0aa3fb4de2e5d6e97 udp-port 162 snmp bgp mac ospf stp ppp arp rmon udld cfm efm lacp mc-elam tcp sctp stalarm cps interface acl fib pim isis rip msdp aps
+snmp-server host 10.217.5.67 trap version 2c encrypted cfa606f98d3fc19fa18609fa8315e5afaa109be02bc22ce0aa3fb4de2e5d6e97 udp-port 162 snmp bgp mac ospf stp ppp arp rmon udld cfm efm lacp mc-elam tcp sctp stalarm cps interface acl fib pim isis rip msdp aps
+snmp-server host 10.217.7.5 trap version 2c encrypted cfa606f98d3fc19fa18609fa8315e5afaa109be02bc22ce0aa3fb4de2e5d6e97 udp-port 162 snmp bgp mac ospf stp ppp arp rmon udld cfm efm lacp mc-elam tcp sctp stalarm cps interface acl fib pim isis rip msdp aps
+snmp-server trap-source interface loopback3
+snmp-server version v2c enable
+!</snmp>
+!<telnet>
+line telnet server disable
+!</telnet>
+!<monitor>
+monitor session 1
+$
+!</monitor>
+!<bgp>
+router bgp 18740
+  synchronization disable
+  network 11.81.249.242 255.255.255.255
+  neighbor 11.81.249.250 remote-as 18740
+  neighbor 11.81.249.250 activate disable
+  neighbor 11.81.249.250 update-source loopback1
+  neighbor 11.81.249.253 remote-as 18740
+  neighbor 11.81.249.253 activate disable
+  neighbor 11.81.249.253 update-source loopback1
+  address-family link-state
+  $
+  address-family ipv4 mdt
+  $
+  address-family ipv4 vrf spi
+    redistribute connected
+    redistribute ospf-ext 1
+    redistribute ospf-int 1
+  $
+  address-family ipv4 multicast
+  $
+  address-family ipv4 flowspec
+  $
+  address-family l2vpn evpn
+  $
+  address-family l2vpn vpls
+  $
+  address-family vpnv4
+    neighbor 11.81.249.250 activate
+    neighbor 11.81.249.250 send-community
+    neighbor 11.81.249.253 activate
+    neighbor 11.81.249.253 send-community
+  $
+  address-family vpnv4 mcast
+  $
+  address-family vpnv4 multicast
+  $
+  address-family vpnv4 flowspec
+  $      
+  address-family ipv6
+    synchronization disable
+  $
+  address-family ipv6 multicast
+  $
+  address-family vpnv6
+  $
+  address-family vpnv6 mcast
+  $
+  address-family vpnv6 multicast
+  $
+  address-family route-target
+  $
+$
+!</bgp>
+!<isis>
+router isis 100
+  area 49.0955
+  system-id 0110.8124.9242
+  metric-style wide
+  lsp-gen-interval 1 50 50 level-2
+  interface gei-0/1/0/3
+    ip router isis
+    bfd-enable
+    circuit-type level-2-only
+    network point-to-point
+  $
+  interface loopback0
+    ip router isis
+  $
+  interface loopback1
+    ip router isis
+  $
+  interface loopback2
+    ip router isis
+  $
+  interface gei-0/1/0/7
+    ip router isis
+    bfd-enable
+    circuit-type level-2-only
+    network point-to-point
+  $
+$
+!</isis>
+!<ospfv2>
+router ospf 1 vrf spi
+  area 0.0.0.2
+    network 10.216.132.156 0.0.0.3
+    network 10.216.132.204 0.0.0.3
+    network 10.216.127.116 0.0.0.0
+  $
+  notify default route always
+$
+!</ospfv2>
+ZaoYuanBian.M6000-5S#                           SHOW int
+ZaoYuanBian.M6000-5S#                           show interface b
+ZaoYuanBian.M6000-5S#                           show interface brief
+Interface      Portattribute  Mode  BW(Mbps)  Admin Phy   Prot  Description 
+gei-0/1/0/1    optical    Duplex/full  1000   up    up    up    
+gei-0/1/0/2    optical    Duplex/full  1000   up    up    up    XinSiGouCE
+gei-0/1/0/3    optical    Duplex/full  1000   up    up    up    to KaiGeBianPE G
+                                                                2/0/2
+gei-0/1/0/4    optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/5    optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/6    optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/7    optical    Duplex/full  1000   up    up    up    to NingAnBianPE 
+                                                                G0/1/0/19
+gei-0/1/0/8    optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/9    optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/10   optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/11   optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/12   optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/13   optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/14   optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/15   optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/16   optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/17   optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/18   optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/19   optical    Duplex/full  1000   down  down  down  
+gei-0/1/0/20   optical    Duplex/full  1000   down  down  down  

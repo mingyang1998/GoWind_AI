@@ -1,0 +1,452 @@
+dis cu 
+#
+sysname NXZHW-HaiXingGongSiPE
+#
+info-center source default channel 2 log level warning
+info-center loghost source LoopBack3
+info-center loghost 10.217.7.5 vpn-instance spi
+info-center loghost 10.217.193.65 vpn-instance spi
+info-center loghost 10.217.214.253 vpn-instance spi
+#
+vlan batch 1 200 700 901 1002 to 1003
+#
+undo user-security-policy enable
+#
+undo telnet server enable
+undo telnet ipv6 server enable
+#
+clock timezone beijing add 08:00:00
+#
+set optional function tm-pmc disable
+#
+undo set power input-power
+#
+snmp-agent trap type entity-trap
+#
+diffserv domain 5p3dbas
+diffserv domain 5p3d
+#
+service-template template-default0
+service-template template-default1
+service-template template-default2
+service-template template-default3
+service-template template-default4
+#
+ip vpn-instance SUPERVPN
+ ipv4-family
+  route-distinguisher 64600:20
+  vpn-target 64600:20 export-extcommunity
+  vpn-target 64600:20 import-extcommunity
+#
+ip vpn-instance spd
+ ipv4-family
+  route-distinguisher 64600:12
+  vpn-target 64600:12 export-extcommunity
+  vpn-target 64600:12 import-extcommunity
+#
+ip vpn-instance spi
+ ipv4-family
+  vpn-target 64600:10 export-extcommunity
+  vpn-target 64600:10 import-extcommunity
+ ipv6-family
+  route-distinguisher 64600:10
+  vpn-target 64600:10 export-extcommunity
+  vpn-target 64600:10 import-extcommunity
+#
+ip vpn-instance spims
+ ipv4-family
+  route-distinguisher 64600:17
+  vpn-target 64600:17 export-extcommunity
+  vpn-target 64600:17 import-extcommunity
+#
+ip vpn-instance spt
+ ipv4-family
+  route-distinguisher 64600:11
+  vpn-target 64600:11 export-extcommunity
+  vpn-target 64600:11 import-extcommunity
+#
+ip vpn-instance spv6
+ ipv4-family
+  route-distinguisher 64600:15
+  vpn-target 64600:15 export-extcommunity
+#
+ip vpn-instance spvv
+ ipv4-family
+  route-distinguisher 64600:13
+  vpn-target 64600:13 export-extcommunity
+  vpn-target 64600:13 import-extcommunity
+#
+vlan 700
+ description yingjizhihuiZHUJI
+#
+hwtacacs-server template gwwgjry
+ hwtacacs-server authentication 10.216.2.102 vpn-instance spi
+ hwtacacs-server authentication 10.216.2.103 vpn-instance spi secondary
+ hwtacacs-server authorization 10.216.2.102 vpn-instance spi
+ hwtacacs-server authorization 10.216.2.103 vpn-instance spi secondary
+ hwtacacs-server accounting 10.216.2.102 vpn-instance spi
+ hwtacacs-server accounting 10.216.2.103 vpn-instance spi secondary
+ hwtacacs-server source-ip 10.216.126.13
+ hwtacacs-server shared-key cipher %^%#,:P@>y%.{R:A$~)nw7*1-1}kBjQ'<TW&@JO#A=iY%^%#
+ undo hwtacacs-server user-name domain-included
+#
+bfd
+ snmp-agent bfd trap-interval 120
+mpls lsr-id 11.81.249.200
+mpls
+#
+mpls ldp
+#
+#
+rsa peer-public-key 29.81.248.238
+ public-key-code begin
+  308188
+    028180
+      C3F9864F B8B353E4 6C246A67 6B5BA5A0 A4F22C55 95EAC5C2 5B4B078D 212C89EC
+      99C78BE3 22F3339F C2713BC1 40F332AC 2619349D 41FABF06 21572820 7D0CAA7B
+      A3314F65 83BB0D0D A6C105B4 724018D8 75E6C508 73236411 DFEB1D8A F128FD68
+      F6292AA1 BA1F862D AD784D0C BFE9B9D4 E78640DF 25B58330 E2B11084 8AAD27FD
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 11.80.9.77
+ public-key-code begin
+  30820109
+    02820100
+      82C048BE CC234C79 B610D57C E5E77FD4 9FC8644B D00EB1EC 6B2A7379 3ED60697
+      0155A080 F04BD3E3 93147B5D 341C5353 53ACEE91 6998C5AE F69AD3EE EEC21D9C
+      9ABFBB88 B4C71E20 70F1200A 0F6F8D42 0E8619EB 11151360 F84D272A DA16814A
+      1583CF79 163758C3 6A95625B 5C331719 275D1CEF 6FDD4205 1E8034D7 569865EB
+      4ED56D14 48E75429 C564CE04 59DE4678 51519AB5 4C3DDEF7 A9F1F73E 8DC23E65
+      D089B090 C601E6EC 89F8CE18 774835F7 87C23D9A 7173E750 65D1F831 445CCAC9
+      AC742F56 C155AE6A 3C5017C3 7C7A5D78 A1A3D7D8 FCC75138 25FE2F80 9ED1BB73
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+acl number 2000
+ rule 0 permit vpn-instance spi source 10.217.199.97 0
+ rule 1 permit vpn-instance spi source 10.217.199.86 0
+ rule 2 permit vpn-instance spi source 10.217.199.66 0
+ rule 3 permit vpn-instance spi source 10.217.199.68 0
+ rule 4 permit vpn-instance spi source 10.217.199.70 0
+ rule 5 permit vpn-instance spi source 10.217.199.80 0
+ rule 6 permit vpn-instance spi source 10.217.199.103 0
+ rule 7 permit vpn-instance spi source 10.217.199.123 0
+ rule 8 permit source 11.81.249.0 0.0.0.255
+ rule 9 permit source 11.80.9.0 0.0.0.255
+ rule 11 permit source 10.217.193.70 0
+ rule 12 permit source 10.217.193.65 0
+ rule 13 permit vpn-instance spi source 10.216.2.102 0
+ rule 14 permit vpn-instance spi source 10.216.2.103 0
+ rule 15 permit source 10.217.7.0 0.0.0.255
+ rule 16 permit vpn-instance spi source 10.217.193.101 0
+ rule 17 permit vpn-instance spi source 10.216.168.168 0
+ rule 18 permit vpn-instance spi source 10.217.199.87 0
+ rule 20 deny
+#
+acl number 2060
+#
+acl number 3020
+#
+dot1x-template 1
+#
+aaa
+ access-speed adjustment system-state threshold main-memory-usage alarm 94 resume 89
+ access-speed adjustment system-state threshold slot-memory-usage alarm 94 resume 89
+ local-user xxwlyw2015 password irreversible-cipher $1a$@7No!<R9E8${\s_4,)Vg<da4(MY7FF,ccfOB1Ag:'8fgS;%`WP:$
+ local-user xxwlyw2015 service-type ssh
+ local-user xxwlyw2015 level 6
+ local-user xxwlyw2015 state block fail-times 3 interval 5
+ local-user zwjadmin2017 service-type ssh
+ local-user zwjadmin2017 level 15
+ local-user zwjadmin2017 state block fail-times 3 interval 5
+ authentication-scheme default0
+ authentication-scheme default1
+ authentication-scheme default
+  authentication-mode local radius
+ authentication-scheme auth-tacacs
+  authentication-mode local hwtacacs
+ #
+ authorization-scheme default
+ authorization-scheme author-tacacs
+  authorization-mode local hwtacacs if-authenticated
+ #
+ accounting-scheme default0
+ accounting-scheme default1
+ accounting-scheme acc-tacacs
+  accounting-mode hwtacacs
+  accounting start-fail online
+ #
+ domain default0
+ domain default1
+ domain default_admin
+  authorization-scheme author-tacacs
+  accounting-scheme acc-tacacs
+  hwtacacs-server gwwgjry
+ #
+#
+multicastbandwidth
+#
+isis 1
+#
+isis 100
+ graceful-restart
+ is-level level-2
+ cost-style wide-compatible
+ timer lsp-generation 1 50 50 level-2
+ bfd all-interfaces enable
+ bfd all-interfaces min-tx-interval 100 min-rx-interval 100
+ network-entity 49.0955.0110.8124.9200.00
+ log-peer-change
+ maximum load-balancing 8
+ set-overload on-startup
+#
+ntp-service server disable
+ntp-service ipv6 server disable
+ntp-service unicast-server 11.81.249.253
+ntp-service unicast-server 10.217.8.131
+#
+interface Aux0/0/1
+ link-protocol ppp
+ undo shutdown
+#
+interface Vlanif700
+ description TO-yingjizhihuiZHUJI
+ ip binding vpn-instance spvv
+ ip address 10.199.164.233 255.255.255.248
+#
+interface Virtual-Template0
+ ppp authentication-mode auto
+#
+interface GigabitEthernet0/0/0
+ speed auto
+ duplex auto
+ undo shutdown
+ ip address 192.168.0.100 255.255.255.0
+#
+interface GigabitEthernet3/0/0
+ undo shutdown
+interface GigabitEthernet3/0/1
+ undo shutdown
+#
+interface GigabitEthernet3/0/2
+ undo shutdown
+#
+interface GigabitEthernet3/0/3
+ portswitch
+ description to yingjizhihuiZHUJI
+ undo shutdown
+ port link-type access
+ port default vlan 700
+#
+interface GigabitEthernet3/0/4
+ undo shutdown
+#
+interface GigabitEthernet3/0/5
+ undo shutdown
+#
+interface GigabitEthernet3/0/6
+ negotiation auto
+ description to HaiYuanBianPE G3/1/3
+ undo shutdown
+ isis enable 100
+ isis circuit-type p2p
+ isis circuit-level level-2
+ isis timer hello 3
+ isis small-hello
+ mpls
+ mpls ldp
+#
+interface GigabitEthernet3/0/7
+ description FW-G0/6
+ undo shutdown
+ ip binding vpn-instance spvv
+ ip address 29.81.248.237 255.255.255.252
+#
+interface GigabitEthernet3/1/0
+ undo shutdown
+#
+interface GigabitEthernet3/1/1
+ undo shutdown
+#
+interface GigabitEthernet3/1/2
+ undo shutdown
+#
+ description vpn-spims to jiaohuan
+ undo shutdown
+ ip binding vpn-instance spims
+ ip address 30.83.255.50 255.255.255.252
+#
+interface GigabitEthernet3/1/4
+ description HaiXingGongSi-XinXiFW
+ undo shutdown
+ ip binding vpn-instance spi
+ ip address 10.216.142.169 255.255.255.252
+#
+interface GigabitEthernet3/1/5
+ undo shutdown
+#
+interface GigabitEthernet3/1/6
+ negotiation auto
+ description HaiXingGongSiPE G3/1/6 TO XinXiCE G1/0/26
+ undo shutdown
+#
+interface GigabitEthernet3/1/7
+ negotiation auto
+ description XinHaiBianPE G3/1/6
+ undo shutdown
+ isis enable 100
+ isis circuit-type p2p
+ isis circuit-level level-2
+ isis timer hello 3
+ isis small-hello
+ mpls
+ mpls ldp
+#
+interface NULL0
+#
+interface LoopBack0
+ ip address 11.81.249.200 255.255.255.255
+ isis enable 100
+#
+interface LoopBack1
+ ip address 11.81.249.199 255.255.255.255
+ isis enable 100
+#
+interface LoopBack2
+ ip address 11.81.249.198 255.255.255.255
+ isis enable 100
+#
+interface LoopBack3
+ ip address 10.216.126.13 255.255.255.255
+#
+l2tp-group default-lac
+#
+l2tp-group default-lns
+#
+bgp 18740
+ router-id 11.81.249.200
+ peer 11.81.249.250 as-number 18740
+ peer 11.81.249.250 connect-interface LoopBack1
+ peer 11.81.249.253 as-number 18740
+ peer 11.81.249.253 connect-interface LoopBack1
+ #
+ ipv4-family unicast
+  undo synchronization
+  undo peer 11.81.249.250 enable
+  undo peer 11.81.249.253 enable
+ #
+ ipv4-family vpnv4
+  undo policy vpn-target
+  peer 11.81.249.250 enable
+  peer 11.81.249.250 advertise-community
+  peer 11.81.249.253 enable
+ #
+ ipv4-family vpn-instance spi
+  import-route direct
+  import-route ospf 1
+ #
+ ipv4-family vpn-instance spims
+  import-route direct
+  import-route ospf 3
+ #
+ ipv4-family vpn-instance spvv
+  import-route direct
+  import-route ospf 2
+ #
+ ipv6-family vpnv6
+  policy vpn-target
+  peer 11.81.249.253 enable
+  peer 11.81.249.253 advertise-community
+#
+ospf 1 vpn-instance spi
+ default-route-advertise always
+ vpn-instance-capability simple
+ area 0.0.0.2
+  network 10.216.126.13 0.0.0.0
+#
+ospf 2 vpn-instance spvv
+ default-route-advertise always
+ vpn-instance-capability simple
+ area 0.0.0.2
+  network 10.199.164.232 0.0.0.7
+  network 29.81.248.236 0.0.0.3
+#
+ospf 3 vpn-instance spims
+ default-route-advertise always
+ vpn-instance-capability simple
+ area 0.0.0.2
+  network 30.83.255.48 0.0.0.3
+#
+arp static 10.217.207.175 0000-0000-1115 vpn-instance spi
+arp static 10.217.207.155 0000-0000-1115 vpn-instance spi
+arp static 10.217.207.46 0000-0000-1115 vpn-instance spi
+arp static 10.217.207.203 1860-24b1-8c12 vpn-instance spi
+arp static 10.217.207.168 1860-24b1-8c12
+arp static 10.217.207.163 0000-0000-0001
+#
+snmp-agent
+snmp-agent local-engineid 800007DB03600810293984
+snmp-agent community read cipher %^%#X~=0(lcHV~Fdtf.kqs]MVU\bVR/Y#R7;z=X>p*K'u5LGBwoaF%o:t=J{Iba0z5xD+B[[JYK&v}5K4RcE%^%#
+snmp-agent community read cipher %^%#]9hNPr'A6/sb~%JW=z}9w5djGLZ`kSt_wbG]d8.)5`"X-l`2T*]m{]4gx^J*Psl3VE#(bI;{u}$Y<oZT%^%#
+snmp-agent community write cipher %^%#AT}u*Z@HF)3!T0$2F\`Ii1{A->Ec8S@u_VNy+0RAD+lk!Se%3>dZRA>9z!i;vEq[Pr{Co1ngqiYP)!&V%^%#
+snmp-agent sys-info version all
+snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname cipher %^%#i~%)F;+X77wfNA;FH%!U+"=D/saaqRla83*v_R\)%^%#
+snmp-agent target-host trap address udp-domain 10.217.193.65 params securityname cipher %^%#inS]VWlP-+H#c9&X:Tt"z#0D~$`a(V_I~]NK'G+Q%^%#
+snmp-agent target-host trap address udp-domain 10.217.5.197 params securityname cipher %^%#P]1606Z'%C}O&B~,d"@$-Ywb6]q]gPK>0/QK]V#D%^%#
+snmp-agent target-host trap address udp-domain 10.217.5.198 params securityname cipher %^%#dL/:,N0oj5(H'DSRRc%&*6i('fvnL</1OI-r1y~&%^%#
+snmp-agent target-host trap address udp-domain 10.217.5.67 params securityname cipher %^%#ubr99VW8GCbaWO&6)+USF65g<y(2c;K/5qKHWvi(%^%#
+snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname cipher %^%#Utm[+dL]lB-^W$.KA]Y&!`b'=53^>4#<;NB)9!]9%^%#
+snmp-agent target-host trap address udp-domain 10.217.8.145 params securityname cipher %^%#09UfV(}@r0'1[aE=0$]7M>okD*8d@2]U0r0Cx;v)%^%#
+snmp-agent target-host trap address udp-domain 10.217.8.146 params securityname cipher %^%#|#}T<maQ+%PctQJY(}3N5J]z8j'a"25Ozy/>Own=%^%#
+snmp-agent target-host trap address udp-domain 10.217.8.147 params securityname cipher %^%#;oU_SmxJBOqoWV#jbt-Z_;_p@eBthSDeE*FyZ-mW%^%#
+snmp-agent target-host trap address udp-domain 10.216.2.248 params securityname cipher %^%#y!$`R%^6*Q>Hk2;*yM6;:<__%QV_9MRb;,P>~rSR%^%#
+snmp-agent target-host trap address udp-domain 10.216.2.95 params securityname cipher %^%#ga6vDQS8E-=KWM3K{v<8]G8W@ECQk5Nsh[En/G$E%^%#
+snmp-agent trap source LoopBack3
+snmp-agent trap enable
+#
+undo ssh server compatible-ssh1x enable
+stelnet ipv4 server enable
+stelnet ipv6 server enable
+ssh authentication-type default password
+ssh user xxwlyw2015
+ssh user xxwlyw2015 service-type stelnet
+ssh user zwjadmin
+ssh user zwjadmin service-type all
+ssh user zwjadmin2017
+ssh user zwjadmin2017 authentication-type password
+ssh user zwjadmin2017 service-type stelnet
+ssh client first-time enable
+ssh client 11.80.9.77 assign rsa-key 11.80.9.77
+ssh client 29.81.248.238 assign rsa-key 29.81.248.238
+#
+nqa test-instance imclinktopologypleaseignore ping
+ test-type icmp
+ destination-address ipv4 10.216.126.13
+ frequency 270
+ probe-count 1
+ start now
+#
+user-interface con 0
+ authentication-mode password
+ set authentication password cipher $1a$(~QxT0K;6Y$9m2SDgGY=X7%1S$,R<mAg/=/Zn,/WSt;Q#YBX6`2$
+ idle-timeout 8 0
+user-interface aux 0
+user-interface vty 0 4
+ authentication-mode aaa
+ user privilege level 3
+ idle-timeout 8 0
+user-interface vty 16 20
+#
+local-aaa-server
+#
+license
+#
+soc
+#
+return
+<NXZHW-HaiXingGongSiPE>

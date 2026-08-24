@@ -1,0 +1,85 @@
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  postgres:
+    image: docker.io/bitnami/postgresql:latest
+    restart: always
+    ports:
+      # 宿主机 5432 已被原生 Windows PostgreSQL 服务占用，改映射到 15432
+      - "15432:5432"
+    networks:
+      - app-tier
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=*Abcd123456
+      - POSTGRES_DB=gwa
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+
+  #  mysql:
+  #    image: docker.io/mariadb:latest
+  #    container_name: mysql
+  #    hostname: mysql
+  #    restart: always
+  #    ports:
+  #      - "3306:3306"
+  #    networks:
+  #      - app-tier
+  #    environment:
+  #      - MARIADB_ROOT_PASSWORD=*Abcd123456
+  #      - MARIADB_USER=admin
+  #      - MARIADB_PASSWORD=*Abcd123456
+  #      - MARIADB_DATABASE=gwc
+  #      - ALLOW_EMPTY_PASSWORD=yes
+  #      - TZ=Asia/Shanghai
+  #    command:
+  #      --max_connections=5000
+  #      --max_allowed_packet=64M
+  #      --wait_timeout=600
+  #      --interactive_timeout=600
+  #      --net_read_timeout=120
+  #      --net_write_timeout=120
+  #      --skip-name-resolve
+  #      --back_log=2048
+  #    ulimits:
+  #      nofile:
+  #        soft: 65535
+  #        hard: 65535
+
+  redis:
+    image: docker.io/bitnami/redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - app-tier
+    environment:
+      - ALLOW_EMPTY_PASSWORD=no
+      - REDIS_PASSWORD=*Abcd123456
+      - REDIS_AOF_ENABLED=no
+      - REDIS_IO_THREADS_DO_READS=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG
+#    volumes:
+#      - ${APP_ROOT:-/root/app}/redis/data:/bitnami/redis/data
+
+  minio:
+    image: docker.io/minio/minio:latest
+    restart: always
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    networks:
+      - app-tier
+    environment:
+      - MINIO_ROOT_USER=root
+      - MINIO_ROOT_PASSWORD=*Abcd123456
+      - MINIO_DEFAULT_BUCKETS=images
+      - MINIO_FORCE_NEW_KEYS=yes
+      - BITNAMI_DEBUG=true
+#    volumes:
+#      - ${APP_ROOT:-/root/app}/minio/data:/data
+    command: server /data --console-address ':9001'

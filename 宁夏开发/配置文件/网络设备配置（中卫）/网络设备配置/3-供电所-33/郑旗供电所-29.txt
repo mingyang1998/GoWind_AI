@@ -1,0 +1,295 @@
+dis cu
+!Software Version V200R011C10SPC600
+#
+sysname ZhengQiSuoCE
+#
+info-center loghost source Vlanif100
+info-center loghost 10.217.7.5
+info-center loghost 10.217.193.65
+info-center loghost 10.217.193.101
+#
+vlan batch 100 1003
+#
+authentication-profile name default_authen_profile
+authentication-profile name dot1x_authen_profile
+authentication-profile name mac_authen_profile
+authentication-profile name portal_authen_profile
+authentication-profile name dot1xmac_authen_profile
+authentication-profile name multi_authen_profile
+#
+undo http server enable
+undo http secure-server enable
+#
+clock timezone bj add 08:00:00
+#
+radius-server template default
+ecc peer-public-key 10.216.143.94 encoding-type der
+ public-key-code begin
+    040085AD 983B0B71 6BDAAA22 5F63063A 525934DA 772D094D FE0A5061 E8B67644
+    B62ACDA4 80181E73 BCFD3EA9 2F86A212 6A6162EA 832B7378 74360E00 AB5407FC
+    A67EAC00 3A6417A5 A65DF4EB E045E274 B971CDA2 DF61EF07 9BE48633 2E8785F6
+    FECCCAF4 FEDE79FF D36AEFF7 ED90697C 3DB26C7C 9DC6AD85 C38571EE 33827986
+    5D4EED87 B3
+ public-key-code end
+peer-public-key end
+#
+pki realm default
+ certificate-check none
+#
+acl number 2000
+ rule 1 permit source 10.217.199.86 0
+ rule 2 permit source 10.217.199.66 0
+ rule 3 permit source 10.217.199.97 0
+ rule 5 permit source 10.217.199.68 0
+ rule 6 permit source 10.217.199.70 0
+ rule 7 permit source 10.217.199.80 0
+ rule 8 permit source 10.217.199.103 0
+ rule 9 permit source 10.217.199.123 0
+ rule 10 permit source 10.217.194.186 0
+ rule 15 permit source 10.217.193.65 0
+ rule 16 permit source 10.217.199.87 0
+ rule 17 permit source 10.217.7.5 0
+ rule 18 permit source 10.217.193.101 0
+ rule 1000 deny
+#
+free-rule-template name default_free_rule
+#
+portal-access-profile name portal_access_profile
+#
+vlan 100
+ description ZhengQiSuoNeiWang
+vlan 1003
+ description XiyanBianCE g1/1/2
+#
+aaa
+ authentication-scheme default
+ authentication-scheme radius
+  authentication-mode radius
+ authorization-scheme default
+ accounting-scheme default
+ local-aaa-user password policy administrator
+  password history record number 0
+ domain default
+  authentication-scheme radius
+  radius-server default
+ domain default_admin
+  authentication-scheme default
+ undo local-user admin
+ local-user zwjadmin2017 password irreversible-cipher $1a$2WMfJl`'k'$fNDn,0\Kc'[xaY")VUtI~6I-3L{|+*SW2q*#~McS$
+ local-user zwjadmin2017 privilege level 15
+ local-user zwjadmin2017 service-type terminal ssh
+ local-user zwjadmin2018 password irreversible-cipher $1a$nnG;<toGGY$7{6)CZ|Wj~/FzxTHLzfM&X$@Kze:|T5:ut)|*813$
+ local-user zwjadmin2018 privilege level 10
+ local-user zwjadmin2018 service-type ssh
+ local-user zwjadmin2019 password irreversible-cipher $1a$k]2!ECuoh>$jJG:Dh|ScGo.m^@.wBY@{wd:+hBXl+Y>]rF9P*("$
+ local-user zwjadmin2019 privilege level 0
+ local-user zwjadmin2019 service-type ssh
+#
+ntp-service server disable
+ntp-service ipv6 server disable
+ntp-service unicast-server 10.216.126.226 preference
+ntp-service unicast-server 10.216.126.225
+#
+interface Vlanif1
+#
+ ip address 10.217.250.254 255.255.255.224
+#
+interface Vlanif1003
+ ip address 10.216.143.94 255.255.255.252
+#
+interface MEth0/0/1
+#
+interface GigabitEthernet0/0/1
+ port default vlan 100
+#
+interface GigabitEthernet0/0/2
+ port default vlan 100
+#
+interface GigabitEthernet0/0/3
+ port default vlan 100
+#
+interface GigabitEthernet0/0/4
+ port default vlan 100
+#
+interface GigabitEthernet0/0/5
+ port default vlan 100
+#
+interface GigabitEthernet0/0/6
+#
+interface GigabitEthernet0/0/7
+ port default vlan 100
+#
+interface GigabitEthernet0/0/8
+ port default vlan 100
+#
+interface GigabitEthernet0/0/9
+ port default vlan 100
+#
+interface GigabitEthernet0/0/10
+ port default vlan 100
+#
+interface GigabitEthernet0/0/11
+ port default vlan 100
+#
+interface GigabitEthernet0/0/12
+ port default vlan 100
+#
+interface GigabitEthernet0/0/13
+ port default vlan 100
+#
+interface GigabitEthernet0/0/14
+#
+interface GigabitEthernet0/0/15
+ port default vlan 100
+#
+interface GigabitEthernet0/0/16
+ port default vlan 100
+#
+interface GigabitEthernet0/0/17
+ port default vlan 100
+#
+interface GigabitEthernet0/0/18
+ port default vlan 100
+#
+interface GigabitEthernet0/0/19
+ port default vlan 100
+#
+interface GigabitEthernet0/0/20
+ port default vlan 100
+#
+interface GigabitEthernet0/0/21
+ port default vlan 100
+#
+interface GigabitEthernet0/0/22
+#
+interface GigabitEthernet0/0/23
+ port default vlan 100
+#
+interface GigabitEthernet0/0/24
+ port default vlan 100
+#
+interface GigabitEthernet0/0/25
+ port default vlan 100
+#
+interface GigabitEthernet0/0/26
+ port default vlan 100
+#
+interface GigabitEthernet0/0/27
+ port default vlan 100
+#
+interface GigabitEthernet0/0/28
+ port default vlan 100
+#
+interface GigabitEthernet0/0/29
+ port default vlan 100
+#
+interface GigabitEthernet0/0/30
+#
+interface GigabitEthernet0/0/31
+ port default vlan 100
+#
+interface GigabitEthernet0/0/32
+ port default vlan 100
+#
+interface GigabitEthernet0/0/33
+ port default vlan 100
+#
+interface GigabitEthernet0/0/34
+ port default vlan 100
+#
+interface GigabitEthernet0/0/35
+ port default vlan 100
+#
+interface GigabitEthernet0/0/36
+ port default vlan 100
+#
+interface GigabitEthernet0/0/37
+ port default vlan 100
+#
+interface GigabitEthernet0/0/38
+#
+interface GigabitEthernet0/0/39
+ port default vlan 100
+#
+interface GigabitEthernet0/0/40
+ port default vlan 100
+#
+interface GigabitEthernet0/0/41
+ port default vlan 100
+#
+interface GigabitEthernet0/0/42
+ port default vlan 100
+#
+interface GigabitEthernet0/0/43
+ port default vlan 100
+#
+interface GigabitEthernet0/0/44
+ port default vlan 100
+#
+interface GigabitEthernet0/0/45
+ port default vlan 100
+#
+interface GigabitEthernet0/0/46
+#
+interface GigabitEthernet0/0/47
+ port default vlan 100
+#
+interface GigabitEthernet0/0/48
+ port default vlan 100
+#
+interface GigabitEthernet0/0/49
+ description toXiYanBianCE G1/1/2
+ port default vlan 1003
+#
+interface GigabitEthernet0/0/50
+#
+interface GigabitEthernet0/0/51
+#
+interface GigabitEthernet0/0/52
+#
+interface NULL0
+#
+ospf 1
+ area 0.0.0.2
+  network 10.216.143.92 0.0.0.3
+  network 10.217.250.224 0.0.0.31
+arp static 10.217.250.230 c051-7e5b-9622
+arp static 10.217.250.225 0000-0000-0001
+arp static 10.217.250.253 dc4a-3e9b-d91a
+#
+ip route-static 0.0.0.0 0.0.0.0 10.216.143.93
+#
+snmp-agent
+snmp-agent local-engineid 800007DB03CCBBFE24A850
+snmp-agent sys-info version v3
+snmp-agent group v3 SNMP_group authentication read-view SNMP_group
+snmp-agent group v3 SNMP_group privacy acl 2000
+snmp-agent target-host trap address udp-domain 10.217.193.65 params securityname cipher %^%#,[iK'0bkz$VxkpWC6g^W=lZ]M]t~u+f!qRMwq81!%^%#
+snmp-agent target-host trap address udp-domain 10.217.193.101 params securityname cipher %^%#|bM<#nCxFSdH5uO:uh4J'br>VGu'Q@7>dx2VXVM6%^%#
+snmp-agent target-host trap address udp-domain 10.217.193.65 params securityname cipher %^%#^]Q+(!tMx+K-9W38WKW*B6\,F>YH[9k2;e9#5Ca1%^%#
+snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname cipher %^%#]b;[KX(8]Dq=z9G7qxQJb^KZ%]@kCTm"/Q/yq:e7%^%#
+snmp-agent usm-user v3 SNMP_user
+snmp-agent usm-user v3 SNMP_user group SNMP_group
+snmp-agent usm-user v3 SNMP_user authentication-mode md5 cipher %^%#H!&3@t@g5Y7md;BdeM,9d(~|'w\2sR"\9l$^\Ow4%^%#
+snmp-agent usm-user v3 SNMP_user privacy-mode des56 cipher %^%#s2n_Y'w>m7o=@@M7~a@7d(~|'w\2sR"\9l$^\Ow4%^%#
+snmp-agent trap enable
+#
+stelnet ipv4 server enable
+stelnet ipv6 server enable
+ssh client 10.216.143.94 assign ecc-key 10.216.143.94
+#
+user-interface con 0
+ authentication-mode password
+ set authentication password cipher $1a$LLjfHTqqQ3$$6da3{zX[0(o4^N1Y-$=x")nJ{")6H"KPZ0&kQ|6$
+user-interface vty 0 4
+ acl 2000 inbound
+ authentication-mode aaa
+ idle-timeout 8 0
+user-interface vty 16 20
+#
+dot1x-access-profile name dot1x_access_profile
+#
+mac-access-profile name mac_access_profile
+#
+return
+<ZhengQiSuoCE>

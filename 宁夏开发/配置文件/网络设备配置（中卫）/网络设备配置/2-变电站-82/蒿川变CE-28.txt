@@ -1,0 +1,140 @@
+dis cu 
+#
+ version 5.20, Release 2202
+#
+ sysname HaoChuanBianCE
+#
+ info-center loghost 10.217.193.101
+#
+ irf mac-address persistent timer
+ irf auto-update enable
+ undo irf link-delay
+#
+ domain default enable system
+#
+ undo ip ttl-expires
+#
+ undo ip http enable
+#
+vlan 1
+#
+vlan 100
+#
+vlan 1002
+ description XingRenBianCE G2/0/3
+radius scheme system
+ server-type extended
+ primary authentication 127.0.0.1 1645
+ primary accounting 127.0.0.1 1646
+ user-name-format without-domain
+#
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+#
+user-group system
+#
+local-user zwjadmin2017
+ password cipher G-C4#()^US0:9S,EI:O]HQ!!
+ authorization-attribute level 3
+ service-type ssh terminal
+#
+interface NULL0
+#
+interface Vlan-interface100
+#
+interface Vlan-interface1002
+ description XingRenBianCE G2/0/3
+ ip address 10.216.143.50 255.255.255.252
+#
+interface GigabitEthernet1/0/1
+ port access vlan 100
+#
+interface GigabitEthernet1/0/2
+ description YongDianXinXiCaiJi
+ port access vlan 100
+#
+interface GigabitEthernet1/0/3
+ port access vlan 100
+#
+interface GigabitEthernet1/0/4
+ description BanGongDianNao
+ port access vlan 100
+#
+interface GigabitEthernet1/0/5
+#
+interface GigabitEthernet1/0/6
+ port access vlan 100
+#
+interface GigabitEthernet1/0/7
+ description TonngYiShiPing-NVR-217.230
+ port access vlan 100
+#
+interface GigabitEthernet1/0/8
+ description jiankong
+ port access vlan 100
+#
+interface GigabitEthernet1/0/9
+#
+interface GigabitEthernet1/0/10
+#
+interface GigabitEthernet1/0/11
+#
+interface GigabitEthernet1/0/12
+#
+interface GigabitEthernet1/0/13
+#
+interface GigabitEthernet1/0/14
+#
+#
+interface GigabitEthernet1/0/16
+#
+interface GigabitEthernet1/0/17
+#
+interface GigabitEthernet1/0/18
+#
+interface GigabitEthernet1/0/19
+#
+interface GigabitEthernet1/0/20
+#
+interface GigabitEthernet1/0/21
+#
+interface GigabitEthernet1/0/22
+ shutdown
+#
+interface GigabitEthernet1/0/23
+#
+interface GigabitEthernet1/0/24
+ shutdown
+#
+interface GigabitEthernet1/0/25
+ port access vlan 1002
+#
+interface GigabitEthernet1/0/26
+#
+interface GigabitEthernet1/0/27
+ shutdown
+#
+interface GigabitEthernet1/0/28
+ shutdown
+#
+ospf 1
+ area 0.0.0.2
+  network 10.216.143.48 0.0.0.3
+  network 10.217.217.224 0.0.0.15
+#
+ ssh server enable
+ ssh user zwjadmin2017 service-type stelnet authentication-type password
+#
+ arp static 10.217.217.232 4cf5-dc29-35f9
+#
+user-interface aux 0
+ authentication-mode scheme
+user-interface vty 0 4
+ authentication-mode scheme
+ protocol inbound ssh
+#
+return
+<HaoChuanBianCE>

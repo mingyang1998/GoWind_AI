@@ -1,0 +1,275 @@
+dis cu 
+#
+ version 5.20, Release 2202
+#
+ sysname DanYangBianCE
+#
+ clock timezone bj add 08:00:00
+#
+ info-center source default channel 2 log level warnings
+ info-center loghost source LoopBack0
+ info-center loghost 10.217.7.5 facility local6
+ info-center loghost 10.217.193.60
+ info-center loghost 10.217.193.65
+ info-center loghost 10.217.193.101
+#
+ irf mac-address persistent timer
+ irf auto-update enable
+ undo irf link-delay
+#
+ domain default enable system
+#
+ undo ip ttl-expires
+#
+ undo ip http enable
+acl number 2000
+ rule 1 permit source 10.217.199.86 0
+ rule 2 permit source 10.217.199.66 0
+ rule 3 permit source 10.217.199.97 0
+ rule 5 permit source 10.217.199.68 0
+ rule 6 permit source 10.217.199.70 0
+ rule 7 permit source 10.217.199.80 0
+ rule 8 permit source 10.217.199.103 0
+ rule 9 permit source 10.217.199.123 0
+ rule 10 permit source 10.217.194.186 0
+ rule 11 permit source 10.217.7.5 0
+ rule 12 permit source 10.217.193.65 0
+ rule 13 permit source 10.217.193.101 0
+ rule 14 permit source 10.216.168.168 0
+ rule 15 permit source 10.217.199.87 0
+ rule 1000 deny
+#
+acl number 3200
+ rule 10 permit ip source 10.217.0.0 0.0.255.255
+ rule 20 permit ip source 10.216.0.0 0.0.255.255
+ rule 30 permit ip source 10.1.182.0 0.0.0.255
+ rule 40 permit ip source 10.1.102.0 0.0.0.255
+ rule 60 permit ip source 10.1.101.0 0.0.0.255
+ rule 70 permit ip source 10.1.168.0 0.0.0.255
+ rule 80 permit ip source 10.64.15.0 0.0.0.255
+ rule 90 permit ip source 10.1.169.0 0.0.0.255
+ rule 100 permit ip source 10.64.2.0 0.0.0.255
+ rule 150 permit ip source 10.4.71.180 0
+ rule 151 permit ip source 10.216.168.168 0
+ rule 152 permit ip source 10.217.8.131 0
+acl number 3300
+ rule 100 deny ip
+acl number 3500
+ rule 10 deny tcp source-port eq 135
+ rule 20 deny tcp source-port eq 137
+ rule 30 deny tcp source-port eq 138
+ rule 40 deny tcp source-port eq 139
+ rule 50 deny tcp source-port eq 445
+ rule 60 deny tcp source-port eq 3389
+ rule 70 deny udp source-port eq 135
+ rule 80 deny udp source-port eq netbios-ns
+ rule 90 deny udp source-port eq netbios-dgm
+ rule 100 deny udp source-port eq netbios-ssn
+ rule 110 deny udp source-port eq 445
+ rule 130 deny tcp destination-port eq 135
+ rule 140 deny tcp destination-port eq 137
+ rule 150 deny tcp destination-port eq 138
+ rule 160 deny tcp destination-port eq 139
+ rule 170 deny tcp destination-port eq 445
+ rule 180 deny tcp destination-port eq 3389
+ rule 190 deny udp destination-port eq 135
+ rule 200 deny udp destination-port eq netbios-ns
+ rule 210 deny udp destination-port eq netbios-dgm
+ rule 220 deny udp destination-port eq netbios-ssn
+ rule 230 deny udp destination-port eq 445
+ rule 240 deny udp destination-port eq 3389
+ rule 250 deny tcp destination-port eq ftp
+ rule 260 deny tcp source-port eq ftp
+#
+vlan 1
+#
+vlan 400
+#
+vlan 1004
+#
+radius scheme system
+ primary authentication 127.0.0.1 1645
+ primary accounting 127.0.0.1 1646
+ user-name-format without-domain
+#
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+#
+traffic classifier permit operator and
+ if-match acl 3200
+traffic classifier DuanKou operator or
+ if-match acl 3500
+traffic classifier deny operator and
+ if-match acl 3300
+#
+traffic behavior permit
+ filter permit
+traffic behavior DuanKou
+ filter deny
+traffic behavior deny
+#
+qos policy fanghu
+ classifier DuanKou behavior DuanKou
+ classifier permit behavior permit
+ classifier deny behavior deny
+#
+user-group system
+#
+local-user xxwlyw2015
+ password cipher YBC@^T6(\,6'DH3X>$&-$1!!
+ authorization-attribute idle-cut 20
+ authorization-attribute level 1
+ access-limit 3
+ service-type ssh
+local-user zwjadmin2017
+ password cipher G-C4#()^US0:9S,EI:O]HQ!!
+ authorization-attribute idle-cut 20
+ authorization-attribute level 3
+ access-limit 3
+ service-type ssh terminal
+local-user zwjadmin2018
+ password cipher G-C4#()^US/.Z\U,I5K9<A!!
+ service-type ssh
+local-user zwjadmin2019
+ password cipher OZ:,UQIYM0D:9S,EI:O]HQ!!
+ authorization-attribute idle-cut 20
+ access-limit 3
+ service-type ssh terminal
+#
+interface NULL0
+#
+interface LoopBack0
+ ip address 10.216.126.153 255.255.255.255
+#
+interface Vlan-interface400
+ ip address 10.217.213.78 255.255.255.240
+#
+interface Vlan-interface1004
+ ip address 10.216.149.29 255.255.255.252
+#
+interface GigabitEthernet1/0/1
+ description TongYiShiPing-NVR-213.77
+ port access vlan 400
+#
+ description YongDianXinXiCaiJi
+ port access vlan 400
+#
+interface GigabitEthernet1/0/3
+ description BanGongDianNao
+ port access vlan 400
+#
+interface GigabitEthernet1/0/4
+ port access vlan 400
+#
+interface GigabitEthernet1/0/5
+ port access vlan 400
+#
+interface GigabitEthernet1/0/6
+ description diannengzzhiliang-72
+ port access vlan 400
+#
+interface GigabitEthernet1/0/7
+ description ZhiNengXUNJIAN-USG
+ port access vlan 400
+#
+interface GigabitEthernet1/0/8
+interface GigabitEthernet1/0/9
+#
+interface GigabitEthernet1/0/10
+#
+interface GigabitEthernet1/0/11
+#
+interface GigabitEthernet1/0/12
+#
+interface GigabitEthernet1/0/13
+#
+interface GigabitEthernet1/0/14
+#
+interface GigabitEthernet1/0/15
+#
+interface GigabitEthernet1/0/16
+#
+interface GigabitEthernet1/0/17
+#
+interface GigabitEthernet1/0/18
+#
+interface GigabitEthernet1/0/19
+#
+#
+interface GigabitEthernet1/0/21
+#
+interface GigabitEthernet1/0/22
+ shutdown
+#
+interface GigabitEthernet1/0/23
+#
+interface GigabitEthernet1/0/24
+#
+interface GigabitEthernet1/0/25
+ description to_MuHeBianPE_H3C6608_G3/1/1
+ port access vlan 1004
+#
+interface GigabitEthernet1/0/26
+ shutdown
+#
+interface GigabitEthernet1/0/27
+ shutdown
+#
+interface GigabitEthernet1/0/28
+ shutdown
+ospf 1
+ area 0.0.0.2
+  network 10.216.126.153 0.0.0.0
+  network 10.216.149.28 0.0.0.3
+  network 10.217.213.64 0.0.0.15
+#
+ snmp-agent
+ snmp-agent local-engineid 800063A2030023893B1787
+ snmp-agent community read nxepc-read
+ snmp-agent community read SG-I5968WLJ
+ snmp-agent community read SG-I6000WLL
+ snmp-agent sys-info version all
+ snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.5.197 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.5.198 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.8.145 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.8.146 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.8.147 params securityname nxepc-read
+ snmp-agent trap source LoopBack0
+#
+ ntp-service unicast-server 10.216.126.226 priority
+#
+ ssh server enable
+ ssh user xxwlyw2015 service-type stelnet authentication-type password
+ ssh user zwjadmin2017 service-type stelnet authentication-type password
+#
+ arp static 10.217.213.65 0000-0000-0001
+ arp static 10.217.213.66 0000-0000-0001
+ arp static 10.217.213.68 0000-0000-0001
+ arp static 10.217.213.69 0000-0000-0001
+ arp static 10.217.213.70 0000-0000-0001
+ arp static 10.217.213.71 0000-0000-0001
+ arp static 10.217.213.74 0000-0000-0001
+ arp static 10.217.213.72 00b7-8d00-df3c
+ arp static 10.217.213.73 c051-7e0e-eae5
+ arp static 10.217.213.75 0851-1404-4816
+ arp static 10.217.213.76 6c0b-8403-f61f
+ arp static 10.217.213.77 2857-be8e-2081 400 GigabitEthernet1/0/1
+#
+user-interface aux 0 8
+ authentication-mode password
+ set authentication password cipher G-C4#()^US0:9S,EI:O]HQ!!
+ idle-timeout 8 0
+ acl 2000 inbound
+ authentication-mode scheme
+ user privilege level 3
+ set authentication password cipher G-C4#()^US0:9S,EI:O]HQ!!
+ idle-timeout 8 0
+ protocol inbound ssh
+#
+return
+<DanYangBianCE>

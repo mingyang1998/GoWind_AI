@@ -1,0 +1,747 @@
+dis cu 
+
+#
+
+ version 7.1.070, Release 6126P38
+
+#
+
+ sysname GuangZhuangSuoCE
+
+#
+
+ irf mac-address persistent timer
+
+ irf auto-update enable
+
+ undo irf link-delay
+
+ irf member 1 priority 1
+
+#
+
+ospf 1
+
+#
+
+ lldp global enable
+
+#
+
+ password-recovery enable
+
+#
+
+vlan 1
+
+#
+
+vlan 100
+
+ description GuanZhuangSuoCE
+
+#
+
+vlan 1004
+
+ description TO yangmingBianCE G0/0/4
+
+
+               
+#
+
+ stp global enable
+
+#
+
+interface NULL0
+
+#
+
+interface Vlan-interface100
+
+ description GuanZhuangSuoCE
+
+ ip address 10.217.216.222 255.255.255.224
+
+#
+
+interface Vlan-interface1004
+
+ description TO yangmingBianCE
+
+ ip address 10.216.142.238 255.255.255.252
+
+#
+
+interface GigabitEthernet1/0/1
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/2
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/3
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/4
+
+
+               
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/5
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/6
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/7
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/8
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/9
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/10
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/11
+
+ description iad
+
+ port access vlan 100
+
+
+               
+ packet-filter 3001 outbound
+
+#
+
+interface GigabitEthernet1/0/12
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/13
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/14
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/15
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/16
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/17
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/18
+
+ port access vlan 100
+
+#
+
+
+               
+interface GigabitEthernet1/0/19
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/20
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/21
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/22
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/23
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/24
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/25
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/26
+
+ port access vlan 100
+
+
+               
+#
+
+interface GigabitEthernet1/0/27
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/28
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/29
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/30
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/31
+
+#
+
+interface GigabitEthernet1/0/32
+
+#
+
+interface GigabitEthernet1/0/33
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/34
+
+ port access vlan 100
+
+#
+
+
+               
+interface GigabitEthernet1/0/35
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/36
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/37
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/38
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/39
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/40
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/41
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/42
+
+ port access vlan 100
+
+
+               
+#
+
+interface GigabitEthernet1/0/43
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/44
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/45
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/46
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/47
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/48
+
+ port access vlan 100
+
+#
+
+interface M-GigabitEthernet0/0/0
+
+#
+
+interface Ten-GigabitEthernet1/0/49
+
+ port access vlan 1004
+
+
+               
+ speed 1000 
+
+ duplex full
+
+#
+
+interface Ten-GigabitEthernet1/0/50
+
+#
+
+interface Ten-GigabitEthernet1/0/51
+
+#
+
+interface Ten-GigabitEthernet1/0/52
+
+#
+
+ scheduler logfile size 16
+
+#
+
+line class aux
+
+ user-role network-admin
+
+#
+
+line class usb
+
+ user-role network-admin
+
+#
+
+line class vty
+
+ user-role network-operator
+
+#
+
+line aux 0
+
+ authentication-mode password
+
+ user-role network-admin
+
+
+               
+ set authentication password hash $h$6$rnMIUCjvKPWhhZsj$OuOf3O1MRhf9LzFnufUlGHxJRyM5MrIpYmP6R/4hTy+7CTARmsxgSHRiUFXuZS0eyS3YPvGGiqn9JCVCHyywbQ==
+
+#
+
+line vty 0 15
+
+ authentication-mode scheme
+
+ user-role network-operator
+
+ protocol inbound ssh
+
+#
+
+line vty 16 63
+
+ user-role network-operator
+
+#
+
+ ip route-static 0.0.0.0 0 10.216.142.237
+
+#
+
+ snmp-agent
+
+ snmp-agent local-engineid 800063A2809C061B4DAA4800000001
+
+ snmp-agent community read nxepc-read
+
+ snmp-agent sys-info version all 
+
+ snmp-agent target-host trap address udp-domain 10.217.193.65 params securityname nxepc-read
+
+ snmp-agent trap enable arp 
+
+ snmp-agent trap enable radius 
+
+ snmp-agent trap enable stp 
+
+ snmp-agent trap enable syslog 
+
+ snmp-agent trap source Vlan-interface1004
+
+#
+
+
+               
+ ssh server enable
+
+ ssh user zwjadmin2017 service-type stelnet authentication-type password
+
+ ssh server acl 2000
+
+#
+
+ arp static 10.217.216.193 6c4b-90b9-d580
+
+ arp static 10.217.216.194 0000-0000-0001
+
+ arp static 10.217.216.196 1c83-4183-d8a9
+
+ arp static 10.217.216.198 0000-0000-0001
+
+ arp static 10.217.216.199 6c4b-90b8-3cc4
+
+ arp static 10.217.216.200 047c-1666-7514
+
+ arp static 10.217.216.201 08a1-8930-213c
+
+ arp static 10.217.216.202 0000-0000-1130
+
+ arp static 10.217.216.203 0000-0000-1130
+
+ arp static 10.217.216.204 0000-0000-1130
+
+ arp static 10.217.216.205 0000-0000-1130
+
+ arp static 10.217.216.206 0000-0000-0001
+
+ arp static 10.217.216.207 0000-0000-1130
+
+ arp static 10.217.216.208 0000-0000-1130
+
+ arp static 10.217.216.209 0000-0000-1130
+
+ arp static 10.217.216.210 0000-0000-1130
+
+ arp static 10.217.216.211 0000-0000-1130
+
+ arp static 10.217.216.212 0000-0000-1130
+
+ arp static 10.217.216.213 0000-0000-1130
+
+
+               
+ arp static 10.217.216.214 0000-0000-1130
+
+ arp static 10.217.216.215 0000-0000-1130
+
+ arp static 10.217.216.216 e019-5452-3928
+
+ arp static 10.217.216.217 5803-fbcc-4ec0
+
+ arp static 10.217.216.218 0030-1855-09d1
+
+ arp static 10.217.216.219 00e0-aed7-3166
+
+#
+
+acl number 2000
+
+ rule 1 permit source 10.217.199.86 0
+
+ rule 2 permit source 10.217.199.66 0
+
+ rule 3 permit source 10.217.199.97 0
+
+ rule 5 permit source 10.217.199.68 0
+
+ rule 6 permit source 10.217.199.70 0
+
+ rule 7 permit source 10.217.199.80 0
+
+ rule 8 permit source 10.217.199.103 0
+
+ rule 9 permit source 10.217.199.123 0
+
+ rule 10 permit source 10.217.194.186 0
+
+ rule 15 permit source 10.217.193.65 0
+
+ rule 16 permit source 10.217.199.87 0
+
+ rule 17 permit source 10.217.7.5 0
+
+ rule 1000 deny
+
+#
+
+acl number 3001
+
+
+               
+ rule 20 permit ip source 10.217.200.21 0
+
+ rule 30 permit ip source 10.217.200.17 0
+
+ rule 40 permit ip source 10.216.11.242 0
+
+ rule 50 permit ip source 10.216.11.230 0
+
+ rule 60 permit ip source 10.217.199.132 0
+
+ rule 70 permit ip source 10.217.199.154 0
+
+ rule 80 permit ip source 10.217.199.87 0
+
+ rule 100 deny ip
+
+#
+
+radius scheme system
+
+ user-name-format without-domain
+
+#
+
+domain system
+
+#
+
+ domain default enable system
+
+#
+
+role name level-0
+
+ description Predefined level-0 role
+
+#
+
+role name level-1
+
+ description Predefined level-1 role
+
+#
+
+role name level-2
+
+
+               
+ description Predefined level-2 role
+
+#
+
+role name level-3
+
+ description Predefined level-3 role
+
+#
+
+role name level-4
+
+ description Predefined level-4 role
+
+#
+
+role name level-5
+
+ description Predefined level-5 role
+
+#
+
+role name level-6
+
+ description Predefined level-6 role
+
+#
+
+role name level-7
+
+ description Predefined level-7 role
+
+#
+
+role name level-8
+
+ description Predefined level-8 role
+
+#
+
+role name level-9
+
+ description Predefined level-9 role
+
+#
+
+
+               
+role name level-10
+
+ description Predefined level-10 role
+
+#
+
+role name level-11
+
+ description Predefined level-11 role
+
+#
+
+role name level-12
+
+ description Predefined level-12 role
+
+#
+
+role name level-13
+
+ description Predefined level-13 role
+
+#
+
+role name level-14
+
+ description Predefined level-14 role
+
+#
+
+user-group system
+
+#
+
+local-user zwjadmin2017 class manage
+
+ password hash $h$6$kqMSN4yVbMMKyuBu$TlXU+mvx+7rUAKJlUK6nwbiO78N2PyB4s6c4XUuV3Y3oxB6cFtm2d9LfGmuJ4m8TATh3x8fQCsPsDjoqJyTw7A==
+
+ service-type ssh terminal
+
+ authorization-attribute user-role network-admin
+
+ authorization-attribute user-role network-operator
+
+#
+
+
+               
+local-user zwjadmin2018 class manage
+
+ password hash $h$6$iRzom4fTR9oP/Z0t$lt2xtpiPXUKXe4dWj4QAFnyxzOYRL0Tj1icTh2MqvZrKGza5jOoDJ9DWX4zP/MbdWgXB9TU/DAobSUPYNcCy+g==
+
+ service-type ssh
+
+ authorization-attribute user-role level-10
+
+ authorization-attribute user-role network-operator
+
+#
+
+local-user zwjadmin2019 class manage
+
+ password hash $h$6$ICMgAx5lEJw7I5Ji$5qhFiIAzQ8sPvznqNuAT0LW+/94OqE/RGGqEArdv59eaGwceh4VW8BtWB3PafDW/XHzkoxhmRacO6uZ67njLow==
+
+ service-type ssh
+
+ authorization-attribute user-role network-operator
+
+#
+
+return
+
+<GuangZhuangSuoCE>

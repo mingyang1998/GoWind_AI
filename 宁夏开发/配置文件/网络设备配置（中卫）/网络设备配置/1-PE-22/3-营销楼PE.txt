@@ -1,0 +1,486 @@
+dis cu 
+#
+sysname NXZHW-YingXiaoLouPE
+#
+info-center source default channel 2 log level warning
+info-center loghost source LoopBack3
+info-center loghost 10.217.7.5 vpn-instance spi
+info-center loghost 10.217.193.65 vpn-instance spi
+info-center loghost 10.217.214.253 vpn-instance spi
+#
+ipv6
+#
+vlan batch 300
+#
+undo telnet server enable
+undo telnet ipv6 server enable
+#
+clock timezone beijing add 08:00:00
+#
+undo set power input-power
+#
+snmp-agent trap type entity-trap
+#
+diffserv domain default
+diffserv domain 5p3dbas
+#
+service-template template-default0
+service-template template-default1
+service-template template-default2
+service-template template-default3
+service-template template-default4
+#
+ip vpn-instance SUPERVPN
+ ipv4-family
+  route-distinguisher 64600:20
+  vpn-target 64600:20 export-extcommunity
+  vpn-target 64600:20 import-extcommunity
+#
+ip vpn-instance nx_pd
+ ipv4-family
+  route-distinguisher 32014:100
+  vpn-target 32014:100 export-extcommunity
+  vpn-target 32014:100 import-extcommunity
+#
+ip vpn-instance spd
+ ipv4-family
+  route-distinguisher 64600:12
+  vpn-target 64600:12 export-extcommunity
+#
+ip vpn-instance spi
+ ipv4-family
+  route-distinguisher 64600:10
+  vpn-target 64600:10 export-extcommunity
+  vpn-target 64600:10 import-extcommunity
+ ipv6-family
+  route-distinguisher 64600:10
+  vpn-target 64600:10 export-extcommunity
+  vpn-target 64600:10 import-extcommunity
+#
+ip vpn-instance spims
+ ipv4-family
+  route-distinguisher 64600:17
+  vpn-target 64600:17 export-extcommunity
+  vpn-target 64600:17 import-extcommunity
+#
+ip vpn-instance spt
+ ipv4-family
+  route-distinguisher 64600:11
+  vpn-target 64600:11 export-extcommunity
+  vpn-target 64600:11 import-extcommunity
+#
+ ipv4-family
+  route-distinguisher 64600:15
+  vpn-target 64600:15 export-extcommunity
+  vpn-target 64600:15 import-extcommunity
+#
+ip vpn-instance spvv
+ ipv4-family
+  route-distinguisher 64600:13
+  vpn-target 64600:13 export-extcommunity
+  vpn-target 64600:13 import-extcommunity
+#
+bfd
+#
+mpls lsr-id 11.81.249.185
+mpls
+#
+mpls ldp
+#
+#
+rsa peer-public-key 10.217.214.254
+ public-key-code begin
+  308188
+    028180
+      151C77A3 1221FD46 235D79F3 5FAC5F83 47EFB5A0 6F9BEBD6 FF32C5B5 8BD55B7A
+      D577F827 2D2460B8 3F3ABF27 E7C75A5A A906BB24 B523F4CC F9B7C217 FF7C8140
+      C6935A48 79F887C8 90EBAA7F 2D47A445 725E326B 1BC35219 AC05E421 F6AC3417
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 10.216.149.114
+ public-key-code begin
+  308188
+    028180
+      C37A64C1 D83463E4 46197034 7D5F192E E3726F55 7F3E9745 EE06F0D6 E5C60C34
+      151C77A3 1221FD46 235D79F3 5FAC5F83 47EFB5A0 6F9BEBD6 FF32C5B5 8BD55B7A
+      D577F827 2D2460B8 3F3ABF27 E7C75A5A A906BB24 B523F4CC F9B7C217 FF7C8140
+      C6935A48 79F887C8 90EBAA7F 2D47A445 725E326B 1BC35219 AC05E421 F6AC3417
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 30.83.255.141
+ public-key-code begin
+    028180
+      BFCE4FB1 2D4027DA B5C9E7D3 E1355F7E B5820A7C 89F39DA6 24F7BFA3 7C89FFC5
+      A4B4088B BBC4B1C3 36C1A219 17711CA9 26FAF119 4C5C3D12 4FDE39E0 E7F24190
+      858B93E2 C09DC6DA 4A358F47 1AD312D6 836EF500 8E54285D 3969C566 403DC17C
+      55D8EFAF 0AAE489F FA6FFC4A B085215C FE721B85 7E7B47BA 68D162B1 DF69AC7F
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 127.0.0.1
+ public-key-code begin
+  308188
+    028180
+      C240980F 7B1B2B8C C6B07D5D 393A1CE5 A547AE3C 8B0A508B B2242793 1A5E1129
+      AE7D2F57 199CA6A9 332678C2 ADAD2391 D0DCB091 CAB22EB6 60C2DD9B ADB415EE
+      D2DEBEC5 2FFBEFA4 F53505C4 B61A64B3 8495856E 00708B94 04A4D330 60CF8CA8
+      0AEF1853 8EE6CCFB 69FDB280 B1240180 F8B5381E 317C8A8A 981465D4 6F9AAA2F
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+ rule 0 permit vpn-instance spi source 10.217.199.97 0
+ rule 1 permit vpn-instance spi source 10.217.199.86 0
+ rule 2 permit vpn-instance spi source 10.217.199.66 0
+ rule 3 permit vpn-instance spi source 10.217.199.68 0
+ rule 4 permit vpn-instance spi source 10.217.199.70 0
+ rule 5 permit vpn-instance spi source 10.217.199.80 0
+ rule 6 permit vpn-instance spi source 10.217.199.103 0
+ rule 7 permit vpn-instance spi source 10.217.199.123 0
+ rule 8 permit source 11.81.249.0 0.0.0.255
+ rule 9 permit source 11.80.9.0 0.0.0.255
+ rule 10 permit vpn-instance spi source 10.216.1.241 0
+ rule 11 permit vpn-instance spi source 10.216.1.243 0
+ rule 12 permit vpn-instance spi source 10.216.168.168 0
+ rule 13 permit vpn-instance spi source 10.217.193.101 0
+ rule 14 permit vpn-instance spi source 10.217.199.87 0
+ rule 15 permit source 10.217.199.97 0
+ rule 16 permit vpn-instance spi source 10.217.193.65 0
+ rule 17 permit vpn-instance spi source 10.217.7.5 0
+ rule 20 deny
+#
+acl number 3020
+#
+dot1x-template 1
+aaa
+ local-user zwjadmin2017 password irreversible-cipher $1a$^}&]&h4`_V$ims_@31T;@4Pjl1c;!n2<f`$53B!hO`{BV<=G,5<$
+ local-user zwjadmin2017 service-type terminal ssh
+ local-user zwjadmin2017 level 15
+ local-user zwjadmin2017 state block fail-times 3 interval 5
+ local-user zwjadmin2019 password irreversible-cipher $1a${-IY<%f&W.$Of-#:D@{7K'+19VL5Z1Mboy*/1;HL)&zFGY%u0P($
+ local-user zwjadmin2019 service-type terminal ssh
+ local-user zwjadmin2019 level 15
+ local-user zwjadmin2019 state block fail-times 3 interval 5
+ authentication-scheme default0
+ authentication-scheme default1
+ authentication-scheme default
+  authentication-mode local radius
+ #
+ authorization-scheme default
+ #
+ accounting-scheme default0
+ accounting-scheme default1
+ #
+ domain default0
+ domain default1
+ domain default_admin
+ #
+multicastbandwidth
+#
+isis 1
+#
+isis 100
+ graceful-restart
+ is-level level-2
+ cost-style wide-compatible
+ timer lsp-generation 1 50 50 level-2
+ bfd all-interfaces enable
+ bfd all-interfaces min-tx-interval 100 min-rx-interval 100
+ network-entity 49.0955.0110.8124.9185.00
+ log-peer-change
+ maximum load-balancing 8
+ set-overload on-startup
+ #
+ ipv6 enable topology ipv6
+ #
+#
+ospfv3 1 vpn-instance spi
+ router-id 10.217.79.23
+#
+ntp-service server disable
+ntp-service unicast-server 11.81.249.250
+ntp-service unicast-server 11.81.249.253
+ntp-service unicast-server 10.217.8.131
+#
+interface Aux0/0/1
+ link-protocol ppp
+ undo shutdown
+#
+interface Vlanif300
+ description ShiPinCE G2/0/4 HuaWeiYiTiHua
+ ip binding vpn-instance spvv
+#
+interface Eth-Trunk1
+ ip binding vpn-instance spi
+ ipv6 enable
+ ip address 10.216.142.161 255.255.255.252
+ ipv6 address 2405:6F00:2054:1000:8000::11/126
+ ospfv3 1 area 0.0.0.2
+#
+interface Virtual-Template0
+ ppp authentication-mode auto
+#
+interface GigabitEthernet0/0/0
+ duplex auto
+ undo shutdown
+#
+interface GigabitEthernet3/0/0
+ description to-WeiChangBianPE
+ undo shutdown
+ ip address 11.80.9.153 255.255.255.252
+ isis enable 100
+ isis circuit-type p2p
+ isis circuit-level level-2
+ isis timer hello 3
+ isis small-hello
+ mpls
+ mpls ldp
+#
+interface GigabitEthernet3/0/1
+ shutdown
+#
+interface GigabitEthernet3/0/2
+ undo shutdown
+ ip binding vpn-instance spims
+ ip address 30.83.255.142 255.255.255.252
+#
+ undo shutdown
+ eth-trunk 1
+#
+interface GigabitEthernet3/0/4
+ negotiation auto
+ description to-WeiChangBianPE
+ undo shutdown
+#
+interface GigabitEthernet3/0/5
+ shutdown
+#
+interface GigabitEthernet3/0/6
+ shutdown
+#
+interface GigabitEthernet3/0/7
+ shutdown
+#
+interface GigabitEthernet3/1/0
+ shutdown
+#
+interface GigabitEthernet3/1/1
+ description to-JuDaLouHeXin-BACK
+ undo shutdown
+ ip address 10.216.143.209 255.255.255.252
+ ospf cost 10
+#
+interface GigabitEthernet3/1/2
+ description to-DiaoDuCE-bakclink
+ undo shutdown
+ ip binding vpn-instance spd
+ ip address 10.64.254.17 255.255.255.252
+#
+interface GigabitEthernet3/1/3
+ description to-NXPDce-BACKLINK
+ undo shutdown
+ ip binding vpn-instance nx_pd
+ ip address 10.216.151.109 255.255.255.252
+#
+interface GigabitEthernet3/1/4
+ portswitch
+ negotiation auto
+ undo shutdown
+ port link-type access
+ port default vlan 300
+#
+interface GigabitEthernet3/1/5
+ eth-trunk 1
+#
+interface GigabitEthernet3/1/6
+ negotiation auto
+ description to ZhongWeiGongSiGuGanPE1 G5/3/1
+ undo shutdown
+ ipv6 enable
+ ip address 11.80.9.106 255.255.255.252
+ ipv6 address 2405:6F00:3F54:1020::8/127
+ isis enable 100
+ isis ipv6 enable 100
+ isis circuit-type p2p
+ isis circuit-level level-2
+ isis timer hello 3
+ isis small-hello
+ mpls
+ mpls ldp
+#
+interface GigabitEthernet3/1/7
+ negotiation auto
+ description YingXiaoLou_HuiJuA_0/0/24
+ shutdown
+ ip binding vpn-instance spi
+ ip address 10.216.149.113 255.255.255.252
+#
+interface NULL0
+#
+interface LoopBack0
+ ipv6 enable
+ ip address 11.81.249.185 255.255.255.255
+ ipv6 address 2405:6F00:3F54:1000::7/128
+ isis enable 100
+ isis ipv6 enable 100
+#
+interface LoopBack1
+ ipv6 enable
+ ip address 11.81.249.184 255.255.255.255
+ ipv6 address 2405:6F00:3F54:1000::8/128
+ isis enable 100
+ isis ipv6 enable 100
+#
+interface LoopBack2
+ ipv6 enable
+ ip address 11.81.249.183 255.255.255.255
+ ipv6 address 2405:6F00:3F54:1000::9/128
+ isis enable 100
+#
+interface LoopBack3
+ ip binding vpn-instance spi
+ ipv6 enable
+ ip address 10.217.79.23 255.255.255.255
+ ipv6 address 2405:6F00:2054:1000::3/128
+ ospfv3 1 area 0.0.0.2
+#
+l2tp-group default-lac
+ tunnel name YingXiaoLouPE
+#
+l2tp-group default-lns
+ tunnel name YingXiaoLouPE
+#
+bgp 18740
+ router-id 11.81.249.185
+ peer 11.81.249.250 as-number 18740
+ peer 11.81.249.250 connect-interface LoopBack1
+ peer 11.81.249.253 as-number 18740
+ peer 11.81.249.253 connect-interface LoopBack1
+ peer 2405:6F00:3F54:1000::2 as-number 18740
+ peer 2405:6F00:3F54:1000::2 connect-interface LoopBack1
+ #
+  undo synchronization
+  undo peer 11.81.249.250 enable
+  undo peer 11.81.249.253 enable
+ #
+ ipv4-family vpnv4
+  undo policy vpn-target
+  peer 11.81.249.250 enable
+  peer 11.81.249.250 advertise-community
+  peer 11.81.249.253 enable
+  peer 11.81.249.253 advertise-community
+ #
+ ipv4-family vpn-instance nx_pd
+  import-route direct
+  import-route ospf 8
+ #
+ ipv4-family vpn-instance spd
+  import-route direct
+  import-route ospf 3
+ #
+ ipv4-family vpn-instance spi
+  import-route direct
+  import-route ospf 1
+ #
+  import-route direct
+  import-route ospf 5
+ #
+ ipv4-family vpn-instance spvv
+  import-route direct
+  import-route ospf 2
+ #
+ ipv6-family vpnv6
+  undo policy vpn-target
+  peer 11.81.249.253 enable
+  peer 11.81.249.253 advertise-community
+ #
+ ipv6-family vpn-instance spi
+  import-route direct
+  import-route ospfv3 1
+#
+ospf 1 vpn-instance spi
+ default-route-advertise always
+ preference ase 100
+ vpn-instance-capability simple
+ area 0.0.0.2
+  network 10.216.142.160 0.0.0.3
+  network 10.216.143.208 0.0.0.3
+  network 10.217.79.23 0.0.0.0
+  network 10.217.198.48 0.0.0.15
+  network 10.217.215.224 0.0.0.31
+#
+ospf 2 vpn-instance spvv
+ default-route-advertise always
+ import-route direct
+ vpn-instance-capability simple
+ area 0.0.0.2
+#
+ospf 3 vpn-instance spd
+ default-route-advertise always
+ vpn-instance-capability simple
+ area 0.0.0.2
+  network 10.64.254.16 0.0.0.3
+#
+ospf 5 vpn-instance spims
+ default-route-advertise always
+ vpn-instance-capability simple
+ area 0.0.0.0
+  network 30.83.255.140 0.0.0.3
+#
+ospf 8 vpn-instance nx_pd
+ vpn-instance-capability simple
+ area 0.0.0.0
+  network 10.216.151.108 0.0.0.3
+#
+snmp-agent
+snmp-agent local-engineid 800007DB03600810293989
+snmp-agent community read cipher %$%$},SQA)f;`BMjtH"888~+Ii^)/4JW>t~No7#J:=W;.NROi^,IafR8TFvH(%/VrT*@G5J)^5Ii%$%$
+snmp-agent sys-info version all
+snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname cipher @%@%;7'=-Rtbx4>KvsM`uvk3z\i|@%@%
+snmp-agent target-host trap address udp-domain 10.217.193.65 params securityname cipher @%@%Q1W_HGDTZDmA5%H+j=OPSvrt@%@%
+snmp-agent target-host trap address udp-domain 10.217.7.5 vpn-instance spi params securityname cipher @%@%C\6qFx:Rn9-#h#O%e5Q)IjZg@%@%
+snmp-agent trap source LoopBack3
+snmp-agent trap enable
+#
+undo ssh server compatible-ssh1x enable
+stelnet server enable
+ssh user zwjadmin2017
+ssh user zwjadmin2017 authentication-type password
+ssh user zwjadmin2017 service-type stelnet
+ssh user zwjadmin2019
+ssh user zwjadmin2019 authentication-type password
+ssh user zwjadmin2019 service-type stelnet
+ssh client first-time enable
+ssh client 10.217.214.254 assign rsa-key 10.217.214.254
+ssh client 127.0.0.1 assign rsa-key 127.0.0.1
+ssh client 30.83.255.141 assign rsa-key 30.83.255.141
+#
+user-interface con 0
+ authentication-mode password
+ set authentication password cipher $1a$`Y+i8haHsA$]savF}Z.5:OaagN$Jx1"Rnn~NcI{#"Keat!s<Z-~$
+ idle-timeout 8 0
+user-interface aux 0
+user-interface vty 0 4
+ acl 2000 inbound
+ authentication-mode aaa
+ user privilege level 15
+ idle-timeout 8 0
+ protocol inbound ssh
+user-interface vty 16 20
+#
+local-aaa-server
+#
+license
+#
+soc
+#
+<NXZHW-YingXiaoLouPE>

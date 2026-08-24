@@ -1,0 +1,699 @@
+dis cu 
+
+#
+
+ version 7.1.070, Release 6318P01
+
+#
+
+ sysname LiuYingBianCE
+
+#
+
+ clock timezone bj add 08:00:00
+
+#
+
+ irf mac-address persistent timer
+
+ irf auto-update enable
+
+ undo irf link-delay
+
+ irf member 1 priority 1
+
+#
+
+ lldp global enable
+
+#
+
+ password-recovery enable
+
+#
+
+vlan 1
+
+#
+
+vlan 100
+
+ description to changlesuo
+
+#
+
+vlan 200
+
+#
+
+
+               
+vlan 1001
+
+#
+
+ stp global enable
+
+#
+
+interface NULL0
+
+#
+
+interface Vlan-interface1
+
+ ip address dhcp-alloc
+
+ dhcp client identifier ascii 3cd2e5836c2e-VLAN0001
+
+#
+
+interface Vlan-interface1001
+
+ ip address 10.216.142.230 255.255.255.252
+
+#
+
+interface GigabitEthernet1/0/1
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/2
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/3
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/4
+
+
+               
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/5
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/6
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/7
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/8
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/9
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/10
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/11
+
+ port access vlan 200
+
+#
+
+
+               
+interface GigabitEthernet1/0/12
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/13
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/14
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/15
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/16
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/17
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/18
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/19
+
+ port access vlan 200
+
+
+               
+#
+
+interface GigabitEthernet1/0/20
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/21
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/22
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/23
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/24
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/25
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/26
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/27
+
+
+               
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/28
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/29
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/30
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/31
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/32
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/33
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/34
+
+ port access vlan 200
+
+#
+
+
+               
+interface GigabitEthernet1/0/35
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/36
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/37
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/38
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/39
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/40
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/41
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/42
+
+ port access vlan 200
+
+
+               
+#
+
+interface GigabitEthernet1/0/43
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/44
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/45
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/46
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/47
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/48
+
+ port access vlan 200
+
+#
+
+interface M-GigabitEthernet0/0/0
+
+#
+
+interface Ten-GigabitEthernet1/0/49
+
+ description to changlebian
+
+
+               
+ port link-type trunk
+
+ port trunk permit vlan 1 100 200 1001
+
+ speed 1000 
+
+ duplex full
+
+#
+
+interface Ten-GigabitEthernet1/0/50
+
+ description to changlesuo
+
+ port access vlan 100
+
+#
+
+interface Ten-GigabitEthernet1/0/51
+
+#
+
+interface Ten-GigabitEthernet1/0/52
+
+#
+
+ scheduler logfile size 16
+
+#
+
+line class aux
+
+ user-role network-admin
+
+#
+
+line class usb
+
+ user-role network-admin
+
+#
+
+line class vty
+
+ user-role network-operator
+
+
+               
+#
+
+line aux 0
+
+ authentication-mode scheme
+
+ user-role network-admin
+
+#
+
+line vty 0 4
+
+ authentication-mode scheme
+
+ user-role network-operator
+
+ protocol inbound ssh
+
+#
+
+line vty 5 63
+
+ user-role network-operator
+
+#
+
+ ip route-static 0.0.0.0 0 10.216.142.229
+
+#
+
+ info-center loghost 10.217.7.5
+
+ info-center loghost 10.217.193.101
+
+ info-center loghost 10.271.193.65
+
+#
+
+ snmp-agent
+
+ snmp-agent local-engineid 800063A2803CD2E5836C3200000001
+
+ snmp-agent community read nxepc-read
+
+ snmp-agent sys-info version v2c v3 
+
+
+               
+ snmp-agent target-host trap address udp-domain 10.217.193.65 params securityname nxepc-read
+
+ snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname nxepc-read
+
+ undo snmp-agent trap enable configuration 
+
+ undo snmp-agent trap enable mac-address 
+
+ undo snmp-agent trap enable standard 
+
+ undo snmp-agent trap enable system 
+
+ snmp-agent trap log
+
+#
+
+ ssh server enable
+
+ ssh server acl 2000
+
+#
+
+ arp static 10.217.216.136 0000-0000-0001
+
+#
+
+ ntp-service unicast-server 10.216.126.226 priority
+
+ ntp-service unicast-server 10.216.126.225
+
+#
+
+acl number 2000
+
+ rule 1 permit source 10.217.199.86 0
+
+ rule 2 permit source 10.217.199.66 0
+
+ rule 3 permit source 10.217.199.97 0
+
+ rule 5 permit source 10.217.199.68 0
+
+ rule 6 permit source 10.217.199.70 0
+
+ rule 7 permit source 10.217.199.80 0
+
+
+               
+ rule 8 permit source 10.217.199.103 0
+
+ rule 9 permit source 10.217.199.123 0
+
+ rule 10 permit source 10.217.194.186 0
+
+ rule 11 permit source 10.217.193.65 0
+
+ rule 12 permit source 10.217.193.101 0
+
+ rule 13 permit source 10.216.168.168 0
+
+ rule 14 permit source 10.217.199.87 0
+
+ rule 15 permit source 127.0.0.1 0
+
+ rule 1000 deny
+
+#
+
+radius scheme system
+
+ user-name-format without-domain
+
+#
+
+domain system
+
+#
+
+ domain default enable system
+
+#
+
+role name level-0
+
+ description Predefined level-0 role
+
+#
+
+role name level-1
+
+ description Predefined level-1 role
+
+#
+
+
+               
+role name level-2
+
+ description Predefined level-2 role
+
+#
+
+role name level-3
+
+ description Predefined level-3 role
+
+#
+
+role name level-4
+
+ description Predefined level-4 role
+
+#
+
+role name level-5
+
+ description Predefined level-5 role
+
+#
+
+role name level-6
+
+ description Predefined level-6 role
+
+#
+
+role name level-7
+
+ description Predefined level-7 role
+
+#
+
+role name level-8
+
+ description Predefined level-8 role
+
+#
+
+role name level-9
+
+ description Predefined level-9 role
+
+
+               
+#
+
+role name level-10
+
+ description Predefined level-10 role
+
+#
+
+role name level-11
+
+ description Predefined level-11 role
+
+#
+
+role name level-12
+
+ description Predefined level-12 role
+
+#
+
+role name level-13
+
+ description Predefined level-13 role
+
+#
+
+role name level-14
+
+ description Predefined level-14 role
+
+#
+
+user-group system
+
+#
+
+local-user zwjadmin2017 class manage
+
+ password hash $h$6$P7vuPH7XYGzB5iZ6$wSIIkxC91EBuWDSDZazrBy3oCihu9dzJgjL8ZPMNLpqBMv/RVT600Fuw9qDDqsFNLJ+WS5VitEL6MBHiKzOYkw==
+
+ service-type ssh terminal
+
+ authorization-attribute user-role level-15
+
+#
+
+
+               
+local-user zwjadmin2018 class manage
+
+ password hash $h$6$sQxpBfqTMK30SBBo$zQW427RQT44/ZPnIQ69EuEfLnV6CJAZsDzkjoIDOHtQ2jDFOk1ls1bJ2Wm4ePvDjKbJVk1iGpgkZ9MLfaCImug==
+
+ service-type ssh
+
+ authorization-attribute user-role network-operator
+
+#
+
+local-user zwjadmin2019 class manage
+
+ password hash $h$6$WmLAbsp6mQeaEkSp$EAOAxzh/e7RKZSMuCs1smqpfq6r9t0uv1M7tav1d7rbTRM/NWCqQwqbLojQ5Gkub5iusVWP/UNsBtbHFhq7IfA==
+
+ service-type ssh
+
+ authorization-attribute user-role level-1
+
+ authorization-attribute user-role network-operator
+
+#
+
+return
+
+<LiuYingBianCE>

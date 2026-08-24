@@ -1,0 +1,197 @@
+dis cu 
+#
+ version 5.20, Release 6616P05
+#
+ sysname JingZhuangBianPE
+#
+ clock timezone bj add 08:00:00
+#
+ password-control login-attempt 3 exceed lock-time 10
+#
+ domain default enable system
+#
+ undo ip http enable
+#
+switch-mode standard
+switch-mode routing slot 2
+#
+acl number 2000
+ rule 1 permit source 10.217.199.86 0
+ rule 2 permit source 10.217.199.66 0
+ rule 3 permit source 10.217.199.97 0
+ rule 5 permit source 10.217.199.68 0
+ rule 6 permit source 10.217.199.70 0
+ rule 7 permit source 10.217.199.80 0
+ rule 9 permit source 10.217.199.123 0
+ rule 10 permit source 10.217.199.74 0
+ rule 11 permit source 10.217.7.5 0
+ rule 19 permit source 10.217.193.65 0
+ rule 20 permit source 10.217.193.101 0
+ rule 21 permit source 10.216.168.168 0
+ rule 100 deny
+#
+acl number 3010
+ rule 0 deny tcp destination-port eq 2425
+ rule 5 deny udp destination-port eq 2425
+ rule 10 permit ip
+acl number 3020
+ rule 5 permit ip source 10.217.199.86 0
+ rule 601 permit ip source 10.217.199.66 0
+ rule 602 permit ip source 10.217.199.68 0
+ rule 603 permit ip source 10.217.199.103 0
+ rule 604 permit ip source 10.217.199.123 0
+ rule 605 permit ip source 10.217.199.70 0
+ rule 606 permit ip source 10.217.199.97 0
+ rule 607 permit ip source 10.217.7.5 0
+#
+#
+vlan 1001
+ description XingRenBianPE G3/0/0
+#
+vlan 1002
+ description JingZhungBianCE G1/0/51
+#
+vlan 1003
+#
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+#
+ public-key peer 127.0.0.1
+  public-key-code begin
+   308201B73082012C06072A8648CE3804013082011F02818100D757262C4584C44C211F18BD
+   96E5F061C4F0A423F7FE6B6B85B34CEF72CE14A0D3A5222FE08CECE65BE6C265854889DC1E
+   DBD13EC8B274DA9F75BA26CCB987723602787E922BA84421F22C3C89CB9B06FD60FE01941D
+   DD77FE6B12893DA76EEBC1D128D97F0678D7722B5341C8506F358214B16A2FAC4B36895038
+   7811C7DA33021500C773218C737EC8EE993B4F2DED30F48EDACE915F0281810082269009E1
+   35D02492B3959EC6499625BC4FA5082E22C5B374E16DD00132CE71B020217091AC717B6123
+   91C76C1FB2E88317C1BD8171D41ECB83E210C03CC9B32E810561C21621C73D6DAAC028F4B1
+   585DA7F42519718CC9B09EEF038184000281806E78C0CA1D48CBB2104898E003E167C15F7A
+   48564B26D8010789E14FF893FE6A9251A093BFAB208129A24BB38EF657D3EA36C093181B3A
+   F3873EE4593A4B5AD33486BE8FA645514BCE30DB98068E900480EA4DAEC69844D6C269A9B0
+   F6B99BBFD62D7259B8F9B89B2C0E2AEB68F3F0E12CC73ED42E08EA0B6244DE19577746EF
+  public-key-code end
+ peer-public-key end
+#
+user-group system
+#
+local-user zwjadmin2017
+ password cipher G-C4#()^US0:9S,EI:O]HQ!!
+ authorization-attribute level 3
+ access-limit 3
+ service-type ssh terminal
+local-user zwjadmin2018
+ password cipher G-C4#()^US/.Z\U,I5K9<A!!
+ authorization-attribute idle-cut 20
+ authorization-attribute level 1
+ service-type ssh
+local-user zwjadmin2019
+ authorization-attribute idle-cut 20
+ service-type ssh
+#
+interface NULL0
+#
+interface LoopBack0
+ ip address 10.217.79.21 255.255.255.255
+#
+interface Vlan-interface1001
+ description XingRenBianPE G3/0/0
+ ip address 10.216.142.62 255.255.255.252
+#
+interface Vlan-interface1002
+ ip address 10.216.142.65 255.255.255.252
+#
+interface Vlan-interface1003
+#
+interface GigabitEthernet2/0/3
+ port link-mode route
+ description to YingShuiQiaoBianPE
+#
+interface GigabitEthernet2/0/5
+ description to nuanyangbianCE
+ ip address 10.216.142.70 255.255.255.252
+#
+interface GigabitEthernet2/0/1
+ port link-mode bridge
+ description XingRenBianPE G3/0/0
+ port access vlan 1001
+#
+interface GigabitEthernet2/0/2
+ port link-mode bridge
+ description to JingZhuangBianCE
+ port access vlan 1002
+#
+interface GigabitEthernet2/0/4
+ port link-mode bridge
+#
+interface GigabitEthernet2/0/6
+ port link-mode bridge
+#
+interface GigabitEthernet2/0/7
+ port link-mode bridge
+#
+ port link-mode bridge
+#
+interface GigabitEthernet2/0/9
+ port link-mode bridge
+#
+interface GigabitEthernet2/0/10
+ port link-mode bridge
+#
+interface GigabitEthernet2/0/11
+ port link-mode bridge
+#
+interface GigabitEthernet2/0/12
+ port link-mode bridge
+#
+interface M-Ethernet0/0/0
+#
+ospf 1
+ area 0.0.0.2
+  network 10.216.142.60 0.0.0.3
+  network 10.216.142.64 0.0.0.3
+  network 10.216.142.68 0.0.0.3
+  network 10.217.79.21 0.0.0.0
+ info-center source default channel 2 log level warnings
+ info-center loghost source Vlan-interface1002
+ info-center loghost 10.217.7.5 facility local6
+ info-center loghost 10.217.193.65
+ info-center loghost 10.217.193.101
+#
+ snmp-agent
+ snmp-agent local-engineid 800063A2033CE5A6800F71
+ snmp-agent community read nxepc-read
+ snmp-agent sys-info version all
+ snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.193.65 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname nxepc-read
+ snmp-agent trap enable default-route
+#
+ ntp-service unicast-server 10.216.126.226 priority
+ ntp-service unicast-server 10.216.126.225
+#
+ ssh server enable
+ ssh user zwjadmin2017 service-type stelnet authentication-type password
+ ssh client authentication server 127.0.0.1 assign publickey 127.0.0.1
+#
+#
+user-interface aux 0
+ authentication-mode password
+ set authentication password cipher G-C4#()^US0:9S,EI:O]HQ!!
+user-interface aux 1
+user-interface vty 0 4
+ authentication-mode scheme
+ user privilege level 3
+ idle-timeout 8 0
+ protocol inbound ssh
+user-interface vty 5 15
+ acl 2000 inbound
+ authentication-mode scheme
+ user privilege level 3
+ idle-timeout 8 0
+ protocol inbound ssh
+#
+return
+<JingZhuangBianPE>

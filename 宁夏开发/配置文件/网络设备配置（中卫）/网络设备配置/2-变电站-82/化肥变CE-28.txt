@@ -1,0 +1,657 @@
+dis cu 
+
+#
+
+ version 7.1.070, Release 6126P38
+
+#
+
+ sysname HuaFeiBianMCE
+
+#
+
+ clock timezone bj add 08:00:00
+
+#
+
+ irf mac-address persistent timer
+
+ irf auto-update enable
+
+ undo irf link-delay
+
+ irf member 1 priority 1
+
+#
+
+ospf 1
+
+ area 0.0.0.2
+
+  network 10.216.142.124 0.0.0.3
+
+  network 10.217.210.160 0.0.0.15
+
+#
+
+ lldp global enable
+
+#
+
+ password-recovery enable
+
+#
+
+vlan 1
+
+#
+
+
+               
+vlan 100
+
+ description HuaFeiBianMCE
+
+#
+
+vlan 1001
+
+ description To GuanDiBian G3/2/6
+
+#
+
+ stp global enable
+
+#
+
+interface NULL0
+
+#
+
+interface Vlan-interface1
+
+ ip address 192.168.1.3 255.255.255.0
+
+#
+
+interface Vlan-interface100
+
+ description HuaFeiBianMCE
+
+ ip address 10.217.210.174 255.255.255.240
+
+#
+
+interface Vlan-interface1001
+
+ description To GuanDiBian G3/2/6
+
+ ip address 10.216.142.126 255.255.255.252
+
+#
+
+interface GigabitEthernet1/0/1
+
+ description YongDianXinXiCaiJi
+
+
+               
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/2
+
+ description WuFangJieSuoYaoShiGuanLiJi
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/3
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/4
+
+ description HuaFeiBianBanGongDianNao
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/5
+
+ description TongYiShiPing-NVR-210.161
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/6
+
+#
+
+interface GigabitEthernet1/0/7
+
+ description Damenkakou
+
+ port access vlan 100
+
+#
+
+
+               
+interface GigabitEthernet1/0/8
+
+ description Cewenqiuji
+
+ port access vlan 100
+
+#
+
+interface GigabitEthernet1/0/9
+
+#
+
+interface GigabitEthernet1/0/10
+
+#
+
+interface GigabitEthernet1/0/11
+
+#
+
+interface GigabitEthernet1/0/12
+
+#
+
+interface GigabitEthernet1/0/13
+
+#
+
+interface GigabitEthernet1/0/14
+
+#
+
+interface GigabitEthernet1/0/15
+
+#
+
+interface GigabitEthernet1/0/16
+
+#
+
+interface GigabitEthernet1/0/17
+
+#
+
+interface GigabitEthernet1/0/18
+
+
+               
+#
+
+interface GigabitEthernet1/0/19
+
+#
+
+interface GigabitEthernet1/0/20
+
+#
+
+interface GigabitEthernet1/0/21
+
+#
+
+interface GigabitEthernet1/0/22
+
+#
+
+interface GigabitEthernet1/0/23
+
+#
+
+interface GigabitEthernet1/0/24
+
+#
+
+interface GigabitEthernet1/0/25
+
+#
+
+interface GigabitEthernet1/0/26
+
+#
+
+interface GigabitEthernet1/0/27
+
+#
+
+interface GigabitEthernet1/0/28
+
+#
+
+interface GigabitEthernet1/0/29
+
+#
+
+
+               
+interface GigabitEthernet1/0/30
+
+#
+
+interface GigabitEthernet1/0/31
+
+#
+
+interface GigabitEthernet1/0/32
+
+#
+
+interface GigabitEthernet1/0/33
+
+#
+
+interface GigabitEthernet1/0/34
+
+#
+
+interface GigabitEthernet1/0/35
+
+#
+
+interface GigabitEthernet1/0/36
+
+#
+
+interface GigabitEthernet1/0/37
+
+#
+
+interface GigabitEthernet1/0/38
+
+#
+
+interface GigabitEthernet1/0/39
+
+#
+
+interface GigabitEthernet1/0/40
+
+#
+
+interface GigabitEthernet1/0/41
+
+
+               
+#
+
+interface GigabitEthernet1/0/42
+
+#
+
+interface GigabitEthernet1/0/43
+
+#
+
+interface GigabitEthernet1/0/44
+
+#
+
+interface GigabitEthernet1/0/45
+
+#
+
+interface GigabitEthernet1/0/46
+
+#
+
+interface GigabitEthernet1/0/47
+
+#
+
+interface GigabitEthernet1/0/48
+
+#
+
+interface M-GigabitEthernet0/0/0
+
+#
+
+interface Ten-GigabitEthernet1/0/49
+
+ description to GuanDiBian G3/2/6
+
+ port access vlan 1001
+
+#
+
+interface Ten-GigabitEthernet1/0/50
+
+#
+
+
+               
+interface Ten-GigabitEthernet1/0/51
+
+#
+
+interface Ten-GigabitEthernet1/0/52
+
+#
+
+ scheduler logfile size 16
+
+#
+
+line class aux
+
+ user-role network-admin
+
+#
+
+line class usb
+
+ user-role network-admin
+
+#
+
+line class vty
+
+ user-role network-operator
+
+#
+
+line aux 0
+
+ authentication-mode password
+
+ user-role network-admin
+
+ set authentication password hash $h$6$Cc0aDmPMCqwZY8sZ$oUFa7XTuglem8RI6Ikucytw8R7eKedfHwdT3k0hHTLlqlAKanCAx3E5fhGkQ0jseVwbzkhq7RRJiJNdd7EQapw==
+
+ idle-timeout 8 0
+
+#
+
+line vty 0 15
+
+ authentication-mode scheme
+
+
+               
+ user-role network-operator
+
+ protocol inbound ssh
+
+ idle-timeout 8 0
+
+#
+
+line vty 16 63
+
+ user-role network-operator
+
+#
+
+ info-center loghost source Vlan-interface1001
+
+ info-center loghost 10.217.7.5 facility local6
+
+ info-center loghost 10.217.193.65
+
+ info-center loghost 10.217.193.101
+
+#
+
+ snmp-agent
+
+ snmp-agent local-engineid 800063A28038ADBE880E3000000001
+
+ snmp-agent community read nxepc-read
+
+ snmp-agent sys-info version all 
+
+ snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname nxepc-read
+
+ snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname nxepc-read
+
+ snmp-agent trap enable arp 
+
+ snmp-agent trap enable radius 
+
+ snmp-agent trap enable stp 
+
+ snmp-agent trap enable syslog 
+
+ snmp-agent trap source Vlan-interface1001
+
+
+               
+#
+
+ ssh server enable
+
+ ssh server authentication-timeout 120
+
+ ssh user zwjadmin2017 service-type stelnet authentication-type password
+
+ ssh server acl 2000
+
+#
+
+ arp static 10.217.210.170 c051-7e55-28de
+
+#
+
+ ntp-service unicast-server 10.216.126.226 priority
+
+ ntp-service unicast-server 10.216.126.225
+
+#
+
+acl number 2000
+
+ rule 1 permit source 10.217.199.86 0
+
+ rule 2 permit source 10.217.199.66 0
+
+ rule 3 permit source 10.217.199.97 0
+
+ rule 5 permit source 10.217.199.68 0
+
+ rule 6 permit source 10.217.199.70 0
+
+ rule 7 permit source 10.217.199.80 0
+
+ rule 8 permit source 10.217.199.103 0
+
+ rule 9 permit source 10.217.199.123 0
+
+ rule 10 permit source 10.217.194.186 0
+
+ rule 11 permit source 10.217.193.70 0
+
+ rule 12 permit source 10.217.193.65 0
+
+
+               
+ rule 13 permit source 10.217.193.101 0
+
+ rule 14 permit source 10.216.168.168 0
+
+ rule 15 permit source 10.217.199.87 0
+
+ rule 100 deny
+
+#
+
+ password-control login-attempt 3 exceed lock-time 20
+
+#
+
+radius scheme system
+
+ user-name-format without-domain
+
+#
+
+domain system
+
+#
+
+ domain default enable system
+
+#
+
+role name level-0
+
+ description Predefined level-0 role
+
+#
+
+role name level-1
+
+ description Predefined level-1 role
+
+#
+
+role name level-2
+
+ description Predefined level-2 role
+
+#
+
+
+               
+role name level-3
+
+ description Predefined level-3 role
+
+#
+
+role name level-4
+
+ description Predefined level-4 role
+
+#
+
+role name level-5
+
+ description Predefined level-5 role
+
+#
+
+role name level-6
+
+ description Predefined level-6 role
+
+#
+
+role name level-7
+
+ description Predefined level-7 role
+
+#
+
+role name level-8
+
+ description Predefined level-8 role
+
+#
+
+role name level-9
+
+ description Predefined level-9 role
+
+#
+
+role name level-10
+
+ description Predefined level-10 role
+
+
+               
+#
+
+role name level-11
+
+ description Predefined level-11 role
+
+#
+
+role name level-12
+
+ description Predefined level-12 role
+
+#
+
+role name level-13
+
+ description Predefined level-13 role
+
+#
+
+role name level-14
+
+ description Predefined level-14 role
+
+#
+
+user-group system
+
+#
+
+local-user zwjadmin2017 class manage
+
+ password hash $h$6$7DZluIFKJsoXeaSI$IDa3+ffkSwSx/a8MiQGueMJZiX2qFvWXMz4W0xG80THPNgMNvgGjebZvw6+eQkx5e7ExEqlfe4qjVwT7pDH2Yg==
+
+ access-limit 3
+
+ service-type ssh terminal
+
+ authorization-attribute idle-cut 20
+
+ authorization-attribute user-role level-15
+
+ authorization-attribute user-role network-operator
+
+#
+
+
+               
+local-user zwjadmin2018 class manage
+
+ password hash $h$6$t6d84He5BJVsii6u$IhF+U9pbdw+cQ9ISG7ccVuV2rep4CsEBhXtYq6APZdO/cgOEWAX6CpY3t4mynRlwkcU/GlJkCpIiye57EwsKKw==
+
+ service-type ssh
+
+ authorization-attribute user-role level-10
+
+ authorization-attribute user-role network-operator
+
+#
+
+local-user zwjadmin2019 class manage
+
+ password hash $h$6$iNyNws/qjIgGz8tq$gFEX/jSWzD6XbGsktQgvaZZNa5ara5dpGqg/WcXCAx+H44BuL363d3h5qU4KOiFGPiPXvsJAVc6K8h05sC/ubA==
+
+ access-limit 3
+
+ service-type ssh terminal
+
+ authorization-attribute idle-cut 20
+
+ authorization-attribute user-role level-6
+
+ authorization-attribute user-role network-operator
+
+#
+
+return
+
+<HuaFeiBianMCE>

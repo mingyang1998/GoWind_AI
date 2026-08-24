@@ -1,0 +1,232 @@
+dis cu 
+#
+ version 5.20.106, Release 3303P41
+#
+ sysname RouYuanBianPE
+#
+ clock timezone bj add 08:00:00
+#
+ password-control login-attempt 3 exceed lock-time 10
+ password-control login idle-time 0
+#
+ domain default enable system
+#
+ password-recovery enable
+#
+acl number 2000
+ rule 1 permit source 10.217.199.86 0
+ rule 2 permit source 10.217.199.66 0
+ rule 3 permit source 10.217.199.97 0
+ rule 5 permit source 10.217.199.68 0
+ rule 6 permit source 10.217.199.70 0
+ rule 7 permit source 10.217.199.80 0
+ rule 8 permit source 10.217.199.103 0
+ rule 9 permit source 10.217.199.123 0
+ rule 11 permit source 10.217.193.70 0
+ rule 12 permit source 10.217.193.65 0
+ rule 13 permit source 10.217.193.101 0
+ rule 14 permit source 10.216.168.168 0
+ rule 100 deny
+#
+acl number 3200
+ rule 10 permit ip source 10.217.0.0 0.0.255.255
+ rule 20 permit ip source 10.216.0.0 0.0.255.255
+ rule 30 permit ip source 10.1.182.0 0.0.0.255
+ rule 40 permit ip source 10.1.102.0 0.0.0.255
+ rule 50 permit ip source 10.1.195.0 0.0.0.255
+ rule 60 permit ip source 10.1.101.0 0.0.0.255
+ rule 70 permit ip source 10.1.168.0 0.0.0.255
+ rule 80 permit ip source 10.64.15.0 0.0.0.255
+ rule 90 permit ip source 10.1.169.0 0.0.0.255
+ rule 91 permit ip source 10.217.8.131 0
+ rule 92 permit ip source 10.216.168.168 0
+ rule 93 permit ip source 10.216.246.212 0
+ rule 94 permit ip source 10.216.246.213 0
+ rule 95 permit ip source 10.216.246.215 0
+ rule 96 permit ip source 10.216.246.216 0
+acl number 3300
+ rule 100 deny ip
+acl number 3500
+ rule 10 deny tcp source-port eq 135
+ rule 20 deny tcp source-port eq 137
+ rule 30 deny tcp source-port eq 138
+ rule 40 deny tcp source-port eq 139
+ rule 50 deny tcp source-port eq 445
+ rule 60 deny tcp source-port eq 3389
+ rule 70 deny udp source-port eq 135
+ rule 80 deny udp source-port eq netbios-ns
+ rule 90 deny udp source-port eq netbios-dgm
+ rule 100 deny udp source-port eq netbios-ssn
+ rule 110 deny udp source-port eq 445
+ rule 120 deny udp source-port eq 3389
+ rule 130 deny tcp destination-port eq 135
+ rule 140 deny tcp destination-port eq 137
+ rule 150 deny tcp destination-port eq 138
+ rule 160 deny tcp destination-port eq 139
+ rule 170 deny tcp destination-port eq 445
+ rule 180 deny tcp destination-port eq 3389
+ rule 190 deny udp destination-port eq 135
+ rule 210 deny udp destination-port eq netbios-dgm
+ rule 220 deny udp destination-port eq netbios-ssn
+ rule 230 deny udp destination-port eq 445
+ rule 240 deny udp destination-port eq 3389
+ rule 250 deny tcp destination-port eq ftp
+ rule 260 deny tcp source-port eq ftp
+#
+vlan 1
+#
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+#
+traffic classifier permit operator and
+ if-match acl 3200
+traffic classifier DuanKou operator or
+ if-match acl 3500
+traffic classifier deny operator and
+ if-match acl 3300
+#
+ filter permit
+traffic behavior DuanKou
+ filter deny
+traffic behavior deny
+ filter deny
+#
+qos policy fanghu
+ classifier permit behavior permit
+ classifier DuanKou behavior DuanKou
+ classifier deny behavior deny
+#
+isis 1
+#
+user-group system
+ group-attribute allow-guest
+#
+local-user huawei
+ password cipher $c$3$fwcFR+3G444uF3vQj/eUIUh+nLe79XhRcXRk/yY=
+ authorization-attribute level 3
+ service-type telnet terminal
+local-user xxwlyw2015
+ password cipher $c$3$l8t8FP4IZ9bv2GILu+qPco6mc7mjNlR5lW1JVxqSBQ==
+ service-type ssh
+local-user zwjadmin2017
+ password cipher $c$3$jmy5eaiexQ5Js4BCw5f903RLrWpjNW+lVHRKQAPGpDw=
+ authorization-attribute level 3
+ service-type ssh terminal
+local-user zwjadmin2019
+ password cipher $c$3$W9BzrtpvC4tzkKELiL7EQiQfsc5bxa2dscBr9KEQCVU=
+ authorization-attribute level 3
+ service-type ssh
+#
+interface NULL0
+#
+interface LoopBack0
+ ip address 10.217.79.30 255.255.255.255
+#
+interface GigabitEthernet2/0/0
+ port link-mode route
+#
+interface GigabitEthernet2/0/1
+ port link-mode route
+#
+interface GigabitEthernet3/0/0
+#
+interface GigabitEthernet3/0/1
+ port link-mode route
+#
+interface GigabitEthernet3/1/0
+ port link-mode route
+ description to KaiGeBian G2/0/5
+ ip address 10.216.148.94 255.255.255.252
+#
+interface GigabitEthernet3/1/1
+ port link-mode route
+ description MoLouBianXinXiHuiJu G3/1/1
+ ip address 10.216.132.49 255.255.255.252
+#
+interface GigabitEthernet3/1/2
+ port link-mode route
+#
+interface GigabitEthernet3/1/3
+ port link-mode route
+#
+interface GigabitEthernet3/1/4
+ port link-mode route
+interface GigabitEthernet3/1/5
+ port link-mode route
+#
+interface GigabitEthernet3/1/6
+ port link-mode route
+#
+interface GigabitEthernet3/1/7
+ port link-mode route
+#
+interface GigabitEthernet3/2/0
+ port link-mode route
+ description to RouYuanBianMCE G0/0/1
+ ip address 10.216.132.105 255.255.255.252
+#
+interface GigabitEthernet3/2/1
+ port link-mode route
+#
+interface GigabitEthernet3/2/2
+ port link-mode route
+#
+interface GigabitEthernet3/2/3
+ port link-mode route
+interface GigabitEthernet3/2/4
+ port link-mode route
+#
+interface GigabitEthernet3/2/5
+ port link-mode route
+#
+interface GigabitEthernet3/2/6
+ port link-mode route
+#
+interface GigabitEthernet3/2/7
+ port link-mode route
+#
+interface M-GigabitEthernet0/0/0
+ ip address 192.168.168.1 255.255.255.0
+#
+ospf 1 router-id 10.216.148.94
+ area 0.0.0.2
+  network 10.216.148.92 0.0.0.3
+  network 10.216.132.104 0.0.0.3
+  network 10.216.132.48 0.0.0.3
+  network 10.217.79.30 0.0.0.0
+#
+ info-center loghost 10.217.193.101
+#
+ snmp-agent
+ snmp-agent local-engineid 800063A20374258A132B6D
+ snmp-agent community read nxepc-read
+ snmp-agent sys-info version all
+ snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname nxepc-read
+ snmp-agent trap enable default-route
+#
+ ntp-service unicast-server 10.216.126.226 priority
+ ntp-service unicast-server 10.216.126.225
+#
+ ssh server enable
+ ssh user xxwlyw2015 service-type stelnet authentication-type password
+ ssh user zwjadmin2017 service-type stelnet authentication-type password
+#
+user-interface con 0
+user-interface con 1
+ authentication-mode password
+ set authentication password cipher $c$3$YNxwZGQJ713CNRzu8fUbSJjmiQ7fZPSH7KFrfazMlVU=
+ idle-timeout 8 0
+user-interface vty 0 4
+ acl 2000 inbound
+ authentication-mode scheme
+ user privilege level 3
+ set authentication password cipher $c$3$mKhYNNRPKtsd5wsflMskP7pTLihY+MsFtpb8+cHvAZQ=
+ idle-timeout 8 0
+ protocol inbound ssh
+#
+return
+<RouYuanBianPE>

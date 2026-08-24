@@ -1,0 +1,296 @@
+dis cu
+!Software Version V200R011C10SPC600
+#
+sysname MaChangHuBianMCE
+#
+info-center loghost 10.217.193.101
+#
+vlan batch 100 1005
+#
+authentication-profile name default_authen_profile
+authentication-profile name dot1x_authen_profile
+authentication-profile name mac_authen_profile
+authentication-profile name portal_authen_profile
+authentication-profile name dot1xmac_authen_profile
+authentication-profile name multi_authen_profile
+#
+undo http server enable
+undo http secure-server enable
+#
+clock timezone bj add 08:00:00
+#
+radius-server template default
+#
+pki realm default
+ certificate-check none
+acl number 2000
+ rule 1 permit source 10.217.199.86 0
+ rule 2 permit source 10.217.199.66 0
+ rule 3 permit source 10.217.199.97 0
+ rule 5 permit source 10.217.199.68 0
+ rule 6 permit source 10.217.199.70 0
+ rule 7 permit source 10.217.199.80 0
+ rule 8 permit source 10.217.199.103 0
+ rule 9 permit source 10.217.199.123 0
+ rule 10 permit source 10.217.194.186 0
+ rule 11 permit source 10.217.193.65 0
+ rule 12 permit source 10.217.193.101 0
+ rule 13 permit source 10.216.168.168 0
+ rule 14 permit source 10.217.199.87 0
+ rule 100 permit source 10.217.199.79 0
+ rule 1000 deny
+#
+acl number 3020
+ rule 5 permit ip source 10.217.0.0 0.0.255.255
+ rule 100 permit ip source 10.217.199.79 0
+ rule 101 permit ip source 10.217.199.87 0
+ rule 102 permit ip source 20.81.11.36 0
+ rule 1000 deny ip
+free-rule-template name default_free_rule
+#
+portal-access-profile name portal_access_profile
+#
+vlan 100
+ description MCHB-neiwang
+vlan 1005
+ description to to YingShuiQiaoBianPE G2/0/5
+#
+aaa
+ authentication-scheme default
+ authentication-scheme radius
+  authentication-mode radius
+ authorization-scheme default
+ accounting-scheme default
+ domain default
+  authentication-scheme radius
+  radius-server default
+ domain default_admin
+  authentication-scheme default
+ undo local-user admin
+ local-user zwjadmin2017 password irreversible-cipher $1a$G-L{6Tn~yP$u.f[V87m}OPj:/F+!#dEp4/0H#%DZ7G5VU<hCX.H$ idle-timeout 10 0
+ local-user zwjadmin2017 privilege level 15
+ local-user zwjadmin2018 password irreversible-cipher $1a$*d|}*j|=*>$V]aw3\Av!U:}l7#E^NvRhtaL.0M_;(FM<|B>vJh>$ idle-timeout 10 0
+ local-user zwjadmin2018 privilege level 10
+ local-user zwjadmin2018 service-type ssh
+ local-user zwjadmin2019 password irreversible-cipher $1a$i3^MAt=zs:$A|;9YTH/P%@Bnz&sk*t>//=#UH5=06LD)_9(,oOM$ idle-timeout 10 0
+ local-user zwjadmin2019 privilege level 0
+ local-user zwjadmin2019 service-type ssh
+#
+ntp-service server disable
+ntp-service ipv6 server disable
+ntp-service unicast-server 10.216.126.226 preference
+ntp-service unicast-server 10.216.126.225
+#
+interface Vlanif1
+#
+interface Vlanif100
+ description MCHB-neiwang
+ ip address 10.217.197.14 255.255.255.240
+#
+interface Vlanif1005
+ description to YingShuiQiaoBianPE G2/0/4
+ ip address 10.216.132.198 255.255.255.252
+#
+interface MEth0/0/1
+interface GigabitEthernet0/0/1
+ port default vlan 100
+#
+interface GigabitEthernet0/0/2
+ port default vlan 100
+#
+interface GigabitEthernet0/0/3
+ port default vlan 100
+#
+interface GigabitEthernet0/0/4
+ description TongYiShiPing-NVR-197.9
+ port default vlan 100
+#
+interface GigabitEthernet0/0/5
+ port default vlan 100
+#
+interface GigabitEthernet0/0/6
+ port default vlan 100
+#
+interface GigabitEthernet0/0/7
+ port default vlan 100
+#
+interface GigabitEthernet0/0/8
+#
+interface GigabitEthernet0/0/9
+ port default vlan 100
+#
+interface GigabitEthernet0/0/10
+ port default vlan 100
+#
+interface GigabitEthernet0/0/11
+ port default vlan 100
+#
+interface GigabitEthernet0/0/12
+ port default vlan 100
+#
+interface GigabitEthernet0/0/13
+ shutdown
+ port default vlan 100
+#
+interface GigabitEthernet0/0/14
+ description ZhiNengXunJian-usg
+ port default vlan 100
+#
+interface GigabitEthernet0/0/15
+ shutdown
+#
+interface GigabitEthernet0/0/16
+ shutdown
+ port default vlan 100
+#
+interface GigabitEthernet0/0/17
+ shutdown
+ port default vlan 100
+#
+interface GigabitEthernet0/0/18
+ shutdown
+ port default vlan 100
+#
+interface GigabitEthernet0/0/19
+ shutdown
+ port default vlan 100
+#
+interface GigabitEthernet0/0/20
+ shutdown
+ port default vlan 100
+#
+interface GigabitEthernet0/0/21
+ shutdown
+interface GigabitEthernet0/0/22
+ shutdown
+#
+interface GigabitEthernet0/0/23
+ shutdown
+#
+interface GigabitEthernet0/0/24
+ shutdown
+#
+interface GigabitEthernet0/0/25
+ shutdown
+#
+interface GigabitEthernet0/0/26
+ shutdown
+#
+interface GigabitEthernet0/0/27
+ shutdown
+#
+interface GigabitEthernet0/0/28
+ shutdown
+#
+interface GigabitEthernet0/0/29
+ shutdown
+interface GigabitEthernet0/0/30
+ shutdown
+#
+interface GigabitEthernet0/0/31
+ shutdown
+#
+interface GigabitEthernet0/0/32
+ shutdown
+#
+interface GigabitEthernet0/0/33
+ shutdown
+#
+interface GigabitEthernet0/0/34
+ shutdown
+#
+interface GigabitEthernet0/0/35
+ shutdown
+#
+interface GigabitEthernet0/0/36
+ shutdown
+#
+interface GigabitEthernet0/0/37
+ shutdown
+interface GigabitEthernet0/0/38
+ shutdown
+#
+interface GigabitEthernet0/0/39
+ shutdown
+#
+interface GigabitEthernet0/0/40
+ shutdown
+#
+interface GigabitEthernet0/0/41
+ shutdown
+#
+interface GigabitEthernet0/0/42
+ shutdown
+#
+interface GigabitEthernet0/0/43
+ shutdown
+#
+interface GigabitEthernet0/0/44
+ shutdown
+#
+interface GigabitEthernet0/0/45
+ shutdown
+interface GigabitEthernet0/0/46
+ shutdown
+#
+interface GigabitEthernet0/0/47
+ shutdown
+#
+interface GigabitEthernet0/0/48
+ shutdown
+#
+interface GigabitEthernet0/0/49
+ description to huiyi
+ port link-type access
+ port default vlan 100
+#
+interface GigabitEthernet0/0/50
+#
+interface GigabitEthernet0/0/51
+#
+interface GigabitEthernet0/0/52
+ description to ZhongWeiBianPE G2/0/8
+ port link-type trunk
+ undo port trunk allow-pass vlan 1
+ port trunk allow-pass vlan 100 1005
+interface NULL0
+#
+interface LoopBack0
+ ip address 10.216.127.139 255.255.255.255
+#
+ospf 1
+ area 0.0.0.2
+  network 10.216.127.139 0.0.0.0
+  network 10.216.132.196 0.0.0.3
+  network 10.217.197.0 0.0.0.15
+#
+arp static 10.217.197.8 0019-b931-d886
+arp static 10.217.197.11 0014-9704-0d5a
+arp static 10.217.197.12 5054-ab17-54ee
+arp static 10.217.197.1 00df-0ad9-c501
+arp static 10.217.197.9 240f-9b04-ae4b
+arp static 10.217.197.10 0851-1404-47ec
+#
+snmp-agent
+snmp-agent local-engineid 800007DB039835ED3A3C50
+snmp-agent community read cipher %^%#arSv&3=ybAvn3:4H!a.DE!d3FAM#`AtZ^L@&[d2"~(w)J6{(W$kV9q(f/!mIVNjg87xhu>3F6a5GfG8%%^%#
+snmp-agent sys-info version all
+snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname cipher %^%#*Tt)Xh4XiNei]PQpeA|>LK3D~T%Is-kL=1O|%VtC%^%#
+stelnet ipv4 server enable
+stelnet ipv6 server enable
+ssh client first-time enable
+#
+user-interface con 0
+ authentication-mode aaa
+user-interface vty 0 4
+ acl 2000 inbound
+ authentication-mode aaa
+ protocol inbound all
+user-interface vty 16 20
+#
+dot1x-access-profile name dot1x_access_profile
+#
+mac-access-profile name mac_access_profile
+#
+return
+<MaChangHuBianMCE>

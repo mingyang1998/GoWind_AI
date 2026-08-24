@@ -1,0 +1,324 @@
+enable
+XiAnGongDianSuo#show running-config
+Building configuration...
+
+
+Current configuration:
+!
+!version 2.2.0C build 75388
+service timestamps log date
+service timestamps debug date
+service password-encryption
+logging 10.217.193.101
+logging 10.217.193.65
+logging 10.217.7.5
+!
+hostname XiAnGongDianSuo
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode rstp
+!
+!
+!
+!
+!
+!
+ permit  10.217.199.86 255.255.255.255
+ permit  10.217.199.66 255.255.255.255
+ permit  10.217.199.97 255.255.255.255
+ permit  10.217.199.68 255.255.255.255
+ permit  10.217.199.70 255.255.255.255
+ permit  10.217.199.80 255.255.255.255
+ permit  10.217.199.103 255.255.255.255
+ permit  10.217.199.123 255.255.255.255
+ permit  10.217.194.186 255.255.255.255
+ permit  10.217.7.5 255.255.255.255
+ permit  10.217.193.65 255.255.255.255
+ permit  192.168.0.11 255.255.255.255
+ permit  10.217.199.87 255.255.255.255
+ permit  10.217.7.3 255.255.255.255
+ permit  10.217.193.101 255.255.255.255
+!
+ip access-list standard 2001
+ permit  10.217.200.17 255.255.255.255
+ permit  10.217.200.21 255.255.255.255
+ permit  10.216.11.230 255.255.255.255
+ permit  10.216.11.242 255.255.255.255
+ permit  10.217.199.87 255.255.255.255
+ deny  any 
+!
+!
+!
+!
+!
+!
+!
+!
+aaa authentication login default local
+aaa authentication login acl2000 local
+aaa authentication enable default none
+aaa authorization exec default local
+!
+localauthor wangguan2018
+ exec privilege default 14
+!
+localauthor wangguan2019
+ exec privilege default 13
+!
+username admin password 7 0626341E150456483121256C120B
+username zwjadmin2017 password 7 0626341E150456483121256C120B
+uan2018
+username zwjadmin2019 password 7 0626341E150456483121216A120D author-group wangg
+uan2019
+!
+!
+!
+!
+!
+!
+interface Null0
+!
+interface GigaEthernet0/1
+ switchport pvid 100
+!
+interface GigaEthernet0/2
+ switchport pvid 100
+!
+interface GigaEthernet0/3
+ switchport pvid 100
+!
+interface GigaEthernet0/4
+ switchport pvid 100
+interface GigaEthernet0/5
+ switchport pvid 100
+!
+interface GigaEthernet0/6
+ switchport pvid 100
+ ip access-group 2001 egress 
+!
+interface GigaEthernet0/7
+ switchport pvid 100
+!
+interface GigaEthernet0/8
+ switchport pvid 100
+!
+interface GigaEthernet0/9
+ switchport pvid 100
+!
+interface GigaEthernet0/10
+ switchport pvid 100
+!
+interface GigaEthernet0/11
+ switchport pvid 100
+!
+ switchport pvid 100
+!
+interface GigaEthernet0/13
+ switchport pvid 100
+!
+interface GigaEthernet0/14
+ switchport pvid 100
+!
+interface GigaEthernet0/15
+ switchport pvid 100
+!
+interface GigaEthernet0/16
+ switchport pvid 100
+!
+interface GigaEthernet0/17
+ switchport pvid 100
+!
+interface GigaEthernet0/18
+ switchport pvid 100
+!
+interface GigaEthernet0/19
+ switchport pvid 100
+interface GigaEthernet0/20
+ switchport pvid 100
+!
+interface GigaEthernet0/21
+ switchport pvid 100
+!
+interface GigaEthernet0/22
+ switchport pvid 100
+!
+interface GigaEthernet0/23
+ switchport pvid 100
+!
+interface GigaEthernet0/24
+ switchport pvid 100
+!
+interface GigaEthernet0/25
+ switchport pvid 100
+!
+interface GigaEthernet0/26
+ switchport pvid 100
+!
+interface GigaEthernet0/27
+!
+interface GigaEthernet0/28
+ switchport pvid 100
+!
+interface GigaEthernet0/29
+ switchport pvid 100
+!
+interface GigaEthernet0/30
+ switchport pvid 100
+!
+interface GigaEthernet0/31
+ switchport pvid 100
+!
+interface GigaEthernet0/32
+ switchport pvid 100
+!
+interface GigaEthernet0/33
+ switchport pvid 100
+!
+interface GigaEthernet0/34
+ switchport pvid 100
+!
+ switchport pvid 100
+!
+interface GigaEthernet0/36
+ switchport pvid 100
+!
+interface GigaEthernet0/37
+ switchport pvid 100
+!
+interface GigaEthernet0/38
+ switchport pvid 100
+!
+interface GigaEthernet0/39
+ switchport pvid 100
+!
+interface GigaEthernet0/40
+ switchport pvid 100
+!
+interface GigaEthernet0/41
+ switchport pvid 100
+!
+interface GigaEthernet0/42
+ switchport pvid 100
+interface GigaEthernet0/43
+ switchport pvid 100
+!
+interface GigaEthernet0/44
+ switchport pvid 100
+!
+interface GigaEthernet0/45
+!
+interface GigaEthernet0/46
+!
+interface GigaEthernet0/47
+!
+interface GigaEthernet0/48
+!
+interface TGigaEthernet1/1
+!
+interface TGigaEthernet1/2
+!
+interface TGigaEthernet1/3
+!
+interface TGigaEthernet1/4
+!
+!
+interface TGigaEthernet1/6
+!
+interface TGigaEthernet1/7
+!
+interface TGigaEthernet1/8
+ description to xianbian
+ switchport pvid 1004
+!
+interface VLAN1
+ ip address 192.168.0.1 255.255.0.0
+ no ip directed-broadcast
+!
+interface VLAN100
+ ip address 10.217.250.30 255.255.255.224
+ no ip directed-broadcast
+!
+interface VLAN1004
+ ip address 10.216.143.58 255.255.255.252
+ no ip directed-broadcast
+!
+!
+vlan 1,100,1004
+!
+!
+arp 10.217.250.14 00:00:00:00:00:01 VLAN100
+arp 10.217.250.20 2c:f0:5d:11:84:49 VLAN100
+arp 10.217.250.10 04:7c:16:66:71:09 VLAN100
+arp 10.217.250.11 dc:4a:3e:9b:98:77 VLAN100
+arp 10.216.143.57 78:1d:ba:5b:9d:2d VLAN100
+arp 10.216.143.58 98:45:62:ba:5d:84 VLAN100
+arp 10.217.250.9 f0:fa:c7:8c:36:22 VLAN100
+arp 10.217.250.12 6c:4b:90:b9:d7:28 VLAN100
+arp 10.217.250.13 e0:19:54:52:39:31 VLAN100
+arp 10.217.250.2 2c:f0:5d:11:94:be VLAN100
+arp 10.217.250.6 f0:fa:c7:8c:35:56 VLAN100
+arp 10.217.250.7 6c:4b:90:b9:ea:27 VLAN100
+arp 10.217.250.5 fc:4d:d4:f0:8a:90 VLAN100
+arp 10.217.250.27 64:db:8b:a4:f7:05 VLAN100
+arp 10.217.250.25 00:e0:ae:d1:52:a9 VLAN100
+arp 10.217.250.29 c0:51:7e:5b:96:28 VLAN100
+arp 10.217.250.19 6c:4b:90:b9:d9:e2 VLAN100
+arp 10.217.250.16 28:b1:33:0f:64:75 VLAN100
+arp 10.217.250.17 fc:9f:fd:1d:41:54 VLAN100
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip route default 10.216.143.57 
+ip exf
+!
+ipv6 exf
+!
+!
+!
+!
+!
+ip telnet attack-defense
+!
+!
+!
+!
+snmp-server group SNMP_group v3 auth read nxepc-read access acl2000
+snmp-server user SNMP_user SNMP_group v3 encrypted auth md5 0 nxepc-read 
+snmp-server host 10.217.7.5 nxepc-read 
+snmp-server host 10.216.168.168 nxepc-read 
+snmp-server host 10.217.193.65 nxepc-read 
+snmp-server host 10.217.7.5 version v3 auth nxepc-read 
+snmp-server host 10.217.193.65 version v3 auth nxepc-read 
+snmp-server trap-source VLAN100
+snmp-server source-addr 10.217.250.30
+snmp-server view nxepc-read internet included
+!
+privilege exec 14 show running-config 
+!
+!
+ip sshd auth-method acl2000
+ip sshd access-class acl2000
+ip sshd enable
+!
+ntp server 10.216.126.226
+ntp server 10.216.126.225
+!
+!
+!Pending configurations for absent linecards:
+!
+!No configurations pending global
+XiAnGongDianSuo#

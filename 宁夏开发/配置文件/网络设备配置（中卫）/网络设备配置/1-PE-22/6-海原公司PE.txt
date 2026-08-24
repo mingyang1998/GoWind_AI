@@ -1,0 +1,1111 @@
+dis cu 
+#
+sysname NXZHW-HaiYuanGongSiPE
+#
+info-center loghost source LoopBack3
+info-center loghost 10.217.7.5 facility local6
+info-center loghost 10.217.193.65 vpn-instance spi
+info-center loghost 10.217.214.253 vpn-instance spi
+#
+vlan batch 1 100 200 300 400 499 600 700 800 900 to 901
+vlan batch 1001 to 1002 1004 to 1005
+#
+arp learning strict
+#
+undo user-security-policy enable
+#
+undo telnet server enable
+undo telnet ipv6 server enable
+#
+clock timezone bj add 08:00:00
+#
+set optional function tm-pmc disable
+#
+undo set power input-power
+#
+#
+diffserv domain default
+diffserv domain 5p3dbas
+diffserv domain 5p3d
+#
+service-template template-default0
+service-template template-default1
+service-template template-default2
+service-template template-default3
+service-template template-default4
+#
+ip vpn-instance SUPERVPN
+ ipv4-family
+  route-distinguisher 64600:20
+  vpn-target 64600:20 export-extcommunity
+  vpn-target 64600:20 import-extcommunity
+#
+ip vpn-instance spd
+ ipv4-family
+  route-distinguisher 64600:12
+  vpn-target 64600:12 export-extcommunity
+  vpn-target 64600:12 import-extcommunity
+#
+ ipv4-family
+  route-distinguisher 64600:10
+  vpn-target 64600:10 export-extcommunity
+  vpn-target 64600:10 import-extcommunity
+ ipv6-family
+  route-distinguisher 64600:10
+  vpn-target 64600:10 export-extcommunity
+  vpn-target 64600:10 import-extcommunity
+#
+ip vpn-instance spims
+ ipv4-family
+  route-distinguisher 64600:17
+  vpn-target 64600:17 export-extcommunity
+  vpn-target 64600:17 import-extcommunity
+#
+ip vpn-instance spt
+ ipv4-family
+  route-distinguisher 64600:11
+  vpn-target 64600:11 export-extcommunity
+  vpn-target 64600:11 import-extcommunity
+#
+ip vpn-instance spv6
+ ipv4-family
+  vpn-target 64600:15 export-extcommunity
+  vpn-target 64600:15 import-extcommunity
+#
+ip vpn-instance spvv
+ ipv4-family
+  route-distinguisher 64600:13
+  vpn-target 64600:13 export-extcommunity
+  vpn-target 64600:13 import-extcommunity
+#
+vlan 1002
+ description ShiPinVPN CE
+vlan 1005
+ description FW-manage
+#
+hwtacacs-server template gwwgjry
+ hwtacacs-server authentication 10.216.2.102 vpn-instance spi
+ hwtacacs-server authentication 10.216.2.103 vpn-instance spi secondary
+ hwtacacs-server authorization 10.216.2.102 vpn-instance spi
+ hwtacacs-server authorization 10.216.2.103 vpn-instance spi secondary
+ hwtacacs-server accounting 10.216.2.102 vpn-instance spi
+ hwtacacs-server accounting 10.216.2.103 vpn-instance spi secondary
+ hwtacacs-server source-ip 10.216.127.96
+ hwtacacs-server shared-key cipher %^%#UFS-&W2Lr3FYOcI*2IfDO*P!,rF'*EKMYN>G1$Y2%^%#
+#
+bfd
+ snmp-agent bfd trap-interval 120
+#
+mpls lsr-id 11.81.249.203
+mpls
+#
+mpls ldp
+#
+#
+rsa peer-public-key 10.217.204.150
+ public-key-code begin
+  308188
+    028180
+      CA036679 626067C8 4E12FCA9 355AB006 420C82F2 1D5F796B B6C1C703 8D22B492
+      6A2AE9FB 35D1F2F1 98B9FEF5 77256669 1695328D 136A6C00 9E8E2073 38386293
+      3BFE3D75 4D7F48B7 851B38D8 38F72C09 255DBBE1 AA00335B D0384AEB F77BA4F4
+      CE2EA49E 41017AB1 6FA77EC3 F440F289 7955E475 2D35C8FF 3A51A5E5 059B74FF
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+ public-key-code begin
+  308188
+    028180
+      99D68CA8 EEEBEF8D C036CFAC 8BE6A22A A4B15013 D62A0404 0EEF85DC D8655CD2
+      3E62D48F E5822D5C 1F464D32 0ACB7A05 F875942B 4F126425 C50A7F7C 7F7677B3
+      E8D85121 027A58FC 71EB0A98 2F3CD530 10FE8C1F AF1127C7 905A21AE AD0F42C5
+      8BA9C332 DB397348 F46B6EB0 42DEBB2B 1FFB9753 189D8A99 B95F9C9D F7C34F71
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+acl number 2000
+ rule 0 permit vpn-instance spi source 10.217.199.97 0
+ rule 1 permit vpn-instance spi source 10.217.199.86 0
+ rule 2 permit vpn-instance spi source 10.217.199.66 0
+ rule 3 permit vpn-instance spi source 10.217.199.68 0
+ rule 4 permit vpn-instance spi source 10.217.199.70 0
+ rule 5 permit vpn-instance spi source 10.217.199.80 0
+ rule 6 permit vpn-instance spi source 10.217.199.103 0
+ rule 7 permit vpn-instance spi source 10.217.199.123 0
+ rule 8 permit source 11.81.249.0 0.0.0.255
+ rule 9 permit source 11.80.9.0 0.0.0.255
+ rule 13 permit vpn-instance spi source 10.216.242.74 0
+ rule 14 permit vpn-instance spi source 10.216.242.76 0
+ rule 15 permit vpn-instance spi source 10.216.242.79 0
+ rule 16 permit vpn-instance spi source 10.216.242.92 0
+ rule 17 permit vpn-instance spi source 10.216.242.96 0
+ rule 18 permit vpn-instance spi source 10.217.7.5 0
+ rule 19 permit vpn-instance spi source 10.217.193.65 0
+ rule 20 permit vpn-instance spi source 10.216.2.102 0
+ rule 21 permit vpn-instance spi source 10.216.2.103 0
+ rule 22 permit vpn-instance spi source 10.217.193.101 0
+ rule 23 permit vpn-instance spi source 10.216.168.168 0
+ rule 24 permit vpn-instance spi source 10.217.199.87 0
+ rule 100 deny
+#
+acl number 2020
+ rule 100 permit source 10.217.199.66 0
+ rule 101 permit source 10.217.199.68 0
+ rule 102 permit source 10.217.199.70 0
+ rule 103 permit source 10.217.199.80 0
+ rule 104 permit source 10.217.199.86 0
+ rule 106 permit source 10.217.199.97 0
+ rule 107 permit source 10.217.199.79 0
+ rule 108 permit source 10.217.199.103 0
+ rule 110 permit source 10.217.193.65 0
+ rule 111 permit source 10.217.7.5 0
+ rule 112 permit source 10.216.241.253 0
+ rule 113 permit source 10.216.242.83 0
+ rule 116 permit source 10.216.246.240 0.0.0.15
+ rule 117 permit source 10.216.246.227 0
+ rule 119 permit source 10.216.126.226 0
+ rule 120 permit source 10.216.126.225 0
+ rule 121 permit source 10.217.199.87 0
+#
+acl number 2021
+ rule 1 permit source 10.199.164.34 0
+ rule 2 permit source 10.199.164.36 0
+ rule 3 permit source 10.199.164.2 0
+ rule 4 permit source 10.199.164.3 0
+ rule 5 permit source 10.199.164.224 0.0.0.7
+ rule 6 permit source 10.199.164.5 0
+ rule 7 permit source 10.199.164.0 0.0.0.63
+ rule 10 permit source 10.199.164.232 0.0.0.7
+ rule 15 permit source 10.199.164.240 0.0.0.7
+ rule 20 permit source 10.199.164.208 0.0.0.15
+#
+acl number 2030
+#
+acl number 2060
+ rule 5 permit source 29.80.1.6 0
+ rule 10 permit source 29.80.1.7 0
+ rule 20 permit source 29.80.1.8 0
+ rule 30 permit source 29.80.1.9 0
+ rule 40 permit source 29.80.1.10 0
+ rule 50 permit source 29.80.1.11 0
+ rule 60 permit source 29.80.1.12 0
+ rule 70 permit source 29.81.96.5 0
+ rule 80 permit source 29.81.96.6 0
+ rule 90 permit source 29.81.112.3 0
+ rule 100 permit source 29.81.111.131 0
+ rule 110 permit source 29.81.111.3 0
+ rule 111 permit source 29.81.96.8 0
+ rule 112 permit source 29.81.96.131 0
+ rule 113 permit source 29.80.1.66 0
+#
+acl number 2070
+ rule 100 permit
+#
+acl number 3005
+ rule 1 permit tcp source 10.199.164.220 0
+acl number 3010
+ rule 1 permit tcp destination-port eq 4006
+ rule 2 permit tcp destination-port eq 5225
+ rule 3 permit tcp destination-port eq 2425
+ rule 4 permit udp destination-port eq 2425
+ rule 10 permit ip source 120.241.147.233 0
+ rule 11 permit ip source 54.213.173.26 0
+ rule 12 permit ip source 104.200.22.130 0
+ rule 13 permit ip source 23.210.215.91 0
+ rule 14 permit ip source 68.168.98.61 0
+ rule 15 permit ip source 63.251.106.25 0
+ rule 16 permit ip source 104.200.23.95 0
+ rule 17 permit ip source 161.97.135.0 0.0.0.255
+ rule 18 permit ip source 104.18.26.28 0
+ rule 19 permit ip source 104.18.27.28 0
+ rule 20 permit ip source 220.181.174.169 0
+ rule 21 permit ip source 172.66.40.153 0
+ rule 22 permit ip source 172.66.43.103 0
+ rule 27 permit ip source 1.194.195.126 0
+ rule 28 permit ip source 104.107.106.121 0
+ rule 29 permit ip source 104.21.1.86 0
+ rule 30 permit ip source 104.21.17.156 0
+ rule 31 permit ip source 104.21.26.108 0
+ rule 33 permit ip source 119.28.223.199 0
+ rule 34 permit ip source 123.160.114.20 0
+ rule 35 permit ip source 137.220.135.72 0
+ rule 36 permit ip source 139.162.208.121 0
+ rule 37 permit ip source 149.30.242.179 0
+ rule 38 permit ip source 162.43.104.41 0
+ rule 39 permit ip source 171.22.193.37 0
+ rule 40 permit ip source 18.167.79.54 0
+ rule 41 permit ip source 18.180.69.63 0
+ rule 42 permit ip source 18.185.25.67 0
+ rule 43 permit ip source 202.79.175.75 0
+ rule 44 permit ip source 3.38.216.103 0
+ rule 45 permit ip source 3.79.173.192 0
+ rule 46 permit ip source 43.207.156.169 0
+ rule 47 permit ip source 47.100.242.149 0
+ rule 48 permit ip source 49.12.210.52 0
+ rule 49 permit ip source 54.46.108.183 0
+ rule 50 permit ip source 8.141.112.250 0
+ rule 51 permit ip source 82.156.2.112 0
+ rule 52 permit ip source 47.77.197.181 0
+ rule 53 permit ip source 107.151.239.49 0
+ rule 54 permit ip source 23.145.136.51 0
+#
+ rule 100 permit ip source 10.217.192.0 0.0.15.255
+ rule 101 permit ip source 10.217.210.0 0.0.0.255
+ rule 102 permit ip source 10.217.211.0 0.0.0.255
+ rule 103 permit ip source 10.217.212.0 0.0.0.255
+ rule 104 permit ip source 10.217.213.0 0.0.0.255
+ rule 105 permit ip source 10.217.214.0 0.0.0.255
+ rule 106 permit ip source 10.217.215.0 0.0.0.255
+ rule 107 permit ip source 10.217.216.0 0.0.0.255
+ rule 108 permit ip source 10.217.217.0 0.0.0.255
+ rule 109 permit ip source 10.217.250.0 0.0.0.255
+ rule 110 permit ip source 10.217.79.0 0.0.0.255
+ rule 111 permit ip source 25.80.51.0 0.0.0.31
+ rule 112 permit ip source 25.80.51.31 0
+ rule 113 permit ip source 25.80.51.32 0
+ rule 114 permit ip source 25.80.51.33 0
+ rule 115 permit ip source 25.80.51.34 0
+ rule 116 permit ip source 10.216.2.210 0
+ rule 117 permit ip source 10.1.101.3 0
+ rule 118 permit ip source 10.217.193.75 0
+ rule 119 permit ip source 10.217.193.78 0
+ rule 120 permit ip source 10.217.5.11 0
+ rule 121 permit ip source 10.217.5.12 0
+ rule 122 permit ip source 10.217.5.14 0
+ rule 124 permit ip source 10.217.5.10 0
+ rule 125 permit ip source 10.217.248.11 0
+ rule 126 permit ip source 10.217.248.12 0
+ rule 127 permit ip source 10.217.248.13 0
+ rule 128 permit ip source 10.217.248.14 0
+ rule 129 permit ip source 10.217.248.15 0
+ rule 130 permit ip source 10.217.248.16 0
+ rule 131 permit ip source 25.80.71.79 0
+ rule 132 permit ip source 25.80.72.93 0
+ rule 133 permit ip source 10.217.9.172 0
+ rule 134 permit ip source 10.4.71.222 0
+ rule 135 permit ip source 20.164.5.1 0
+ rule 136 permit ip source 20.164.5.4 0
+ rule 137 permit ip source 10.217.251.38 0
+ rule 138 permit ip source 10.216.151.210 0
+ rule 139 permit ip source 25.80.21.69 0
+ rule 140 permit ip source 25.80.71.8 0
+ rule 141 permit ip source 25.80.45.161 0
+ rule 142 permit ip source 25.80.45.231 0
+ rule 143 permit ip source 10.217.193.91 0
+ rule 144 permit ip source 10.217.193.90 0
+ rule 145 permit ip source 10.216.2.82 0
+ rule 146 permit ip source 10.217.1.1 0
+ rule 148 permit ip source 10.217.5.132 0
+ rule 149 permit ip source 10.1.182.251 0
+ rule 150 permit ip source 10.1.39.23 0
+ rule 151 permit ip source 10.1.146.253 0
+ rule 152 permit ip source 10.4.101.1 0
+ rule 153 permit ip source 10.4.52.60 0
+ rule 154 permit ip source 20.81.11.141 0
+ rule 155 permit ip source 20.81.11.142 0
+ rule 156 permit ip source 20.81.11.143 0
+ rule 157 permit ip source 20.81.11.144 0
+ rule 158 permit ip source 20.81.11.145 0
+ rule 159 permit ip source 20.81.11.146 0
+ rule 160 permit ip source 25.80.60.107 0
+ rule 161 permit ip source 20.81.12.200 0
+ rule 162 permit ip source 10.217.6.161 0
+ rule 163 permit ip source 10.217.12.69 0
+ rule 164 permit ip source 10.217.12.70 0
+ rule 165 permit ip source 10.217.12.71 0
+ rule 166 permit ip source 10.217.12.72 0
+ rule 167 permit ip source 10.217.12.73 0
+ rule 168 permit ip source 10.217.12.74 0
+ rule 169 permit ip source 10.217.12.75 0
+ rule 170 permit ip source 10.217.12.77 0
+ rule 172 permit ip source 10.217.12.232 0
+ rule 173 permit ip source 10.217.8.169 0
+ rule 174 permit ip source 10.217.8.170 0
+ rule 175 permit ip source 10.217.8.171 0
+ rule 176 permit ip source 10.217.8.172 0
+ rule 177 permit ip source 10.217.8.173 0
+ rule 178 permit ip source 10.217.8.201 0
+ rule 179 permit ip source 10.217.5.217 0
+ rule 180 permit ip source 10.217.12.221 0
+ rule 181 permit ip source 10.217.12.225 0
+ rule 182 permit ip source 10.217.12.228 0
+ rule 183 permit ip source 10.217.12.229 0
+ rule 184 permit ip source 10.217.12.230 0
+ rule 185 permit ip source 10.216.168.212 0
+ rule 186 permit ip source 10.217.2.210 0
+ rule 187 permit ip source 10.4.101.10 0
+ rule 188 permit ip source 10.4.101.11 0
+ rule 189 permit ip source 10.216.2.191 0
+ rule 190 permit ip source 20.1.59.23 0
+ rule 191 permit ip source 20.1.59.193 0
+ rule 192 permit ip source 20.1.39.3 0
+ rule 193 permit ip source 10.4.101.4 0
+ rule 232 permit ip source 25.1.163.54 0
+ rule 234 permit ip source 10.4.34.182 0
+ rule 235 permit ip source 10.64.2.111 0
+ rule 236 permit ip source 10.4.39.180 0
+ rule 237 permit ip source 10.217.1.199 0
+ rule 238 permit ip source 10.217.12.224 0
+ rule 239 permit ip source 10.1.182.178 0
+ rule 240 permit ip source 10.217.12.201 0
+ rule 241 permit ip source 10.217.12.169 0
+ rule 242 permit ip source 10.217.12.124 0
+ rule 243 permit ip source 10.217.12.226 0
+ rule 244 permit ip source 10.216.143.82 0
+ rule 245 permit ip source 10.217.12.108 0
+ rule 246 permit ip source 10.217.12.111 0
+ rule 247 permit ip source 10.217.12.231 0
+ rule 248 permit ip source 10.217.12.109 0
+ rule 249 permit ip source 10.217.12.125 0
+ rule 250 permit ip source 10.200.193.2 0
+ rule 251 permit ip source 10.217.1.129 0
+ rule 252 permit ip source 10.217.1.4 0
+ rule 253 permit ip source 10.217.12.227 0
+ rule 254 permit ip source 10.217.1.42 0
+ rule 255 permit ip source 10.217.6.239 0
+ rule 256 permit ip source 10.217.1.175 0
+ rule 258 permit ip source 10.1.182.181 0
+ rule 259 permit ip source 10.1.182.183 0
+ rule 260 permit ip source 10.217.1.102 0
+ rule 261 permit ip source 10.217.4.163 0
+ rule 262 permit ip source 10.217.5.133 0
+ rule 263 permit ip source 10.217.12.222 0
+ rule 264 permit ip source 10.4.73.175 0
+ rule 265 permit ip source 10.216.12.212 0
+ rule 266 permit ip source 10.216.209.112 0
+ rule 267 permit ip source 10.217.9.171 0
+ rule 268 permit ip source 10.217.9.173 0
+ rule 269 permit ip source 10.217.5.186 0
+ rule 270 permit ip source 10.217.6.147 0
+ rule 271 permit ip source 25.80.229.6 0
+ rule 272 permit ip source 25.80.71.64 0
+ rule 273 permit ip source 25.80.71.65 0
+ rule 274 permit ip source 25.80.71.37 0
+ rule 275 permit ip source 25.80.71.38 0
+ rule 276 permit ip source 20.80.201.14 0
+ rule 277 permit ip source 10.144.4.122 0
+ rule 279 permit ip source 25.80.21.110 0
+ rule 280 permit ip source 10.4.40.180 0
+ rule 281 permit ip source 20.81.11.36 0
+ rule 283 permit ip source 25.80.44.111 0
+ rule 284 permit ip source 10.217.13.10 0
+ rule 285 permit ip source 10.217.12.220 0
+ rule 286 permit ip source 10.217.15.146 0
+ rule 287 permit ip source 10.64.2.110 0
+ rule 288 permit ip source 10.64.2.122 0
+ rule 289 permit ip source 10.4.34.130 0
+ rule 290 permit ip source 20.80.201.111 0
+ rule 291 permit ip source 20.80.201.112 0
+ rule 292 permit ip source 20.80.201.113 0
+ rule 293 permit ip source 10.216.168.183 0
+ rule 294 permit ip source 10.64.15.37 0
+ rule 295 permit ip source 10.64.16.116 0
+ rule 296 permit ip source 10.64.16.155 0
+ rule 297 permit ip source 10.216.242.35 0
+ rule 298 permit ip source 20.1.63.144 0
+ rule 299 permit ip source 10.216.31.156 0
+ rule 300 permit ip source 25.80.44.8 0
+ rule 301 permit ip source 10.1.16.44 0
+ rule 302 permit ip source 10.217.8.110 0
+ rule 303 permit ip source 10.217.11.222 0
+ rule 304 permit ip source 10.217.2.72 0
+ rule 305 permit ip source 10.217.2.73 0
+ rule 307 permit ip source 20.80.11.5 0
+ rule 308 permit ip source 20.80.11.6 0
+ rule 309 permit ip source 10.217.248.1 0
+ rule 310 permit ip source 10.217.248.2 0
+ rule 311 permit ip source 25.80.0.236 0
+ rule 312 permit ip source 10.4.83.90 0
+ rule 313 permit ip source 10.4.35.134 0
+ rule 314 permit ip source 10.216.177.50 0
+ rule 315 permit ip source 10.216.177.32 0.0.0.31
+ rule 316 permit ip source 25.80.51.230 0
+ rule 317 permit ip source 10.217.1.41 0
+ rule 318 permit ip source 10.64.16.39 0
+ rule 319 permit ip source 10.216.33.10 0
+ rule 320 permit ip source 25.80.72.57 0
+ rule 321 permit ip source 20.1.60.136 0
+ rule 322 permit ip source 20.81.11.67 0
+ rule 323 permit ip source 25.80.71.85 0
+ rule 324 permit ip source 20.80.201.155 0
+ rule 325 permit ip source 20.80.201.156 0
+ rule 326 permit ip source 20.80.201.157 0
+ rule 327 permit ip source 20.80.201.158 0
+ rule 328 permit ip source 20.80.10.19 0
+ rule 329 permit ip source 25.80.31.48 0
+ rule 331 permit ip source 25.80.60.192 0.0.0.31
+ rule 332 permit ip source 25.80.21.18 0
+ rule 333 permit ip source 25.80.60.157 0
+ rule 334 permit ip source 25.80.60.151 0
+ rule 335 permit ip source 25.80.52.19 0
+ rule 336 permit ip source 25.80.52.141 0
+ rule 337 permit ip source 10.4.57.164 0
+ rule 338 permit ip source 10.1.17.64 0
+ rule 339 permit ip source 10.200.240.30 0
+ rule 341 permit ip source 10.50.21.15 0
+ rule 342 permit ip source 10.216.210.48 0
+ rule 343 permit ip source 10.216.210.43 0
+ rule 345 permit ip source 10.64.15.40 0
+ rule 346 permit ip source 25.80.60.8 0
+ rule 347 permit ip source 10.216.172.218 0
+ rule 348 permit ip source 20.80.12.5 0
+ rule 350 permit ip source 20.80.12.2 0
+ rule 353 permit tcp source 25.80.21.58 0 source-port eq 18001
+ rule 354 permit ip source 25.80.21.159 0
+ rule 357 permit ip source 25.80.52.50 0
+ rule 358 permit ip source 25.80.52.48 0.0.0.15
+ rule 359 permit ip source 25.80.42.13 0
+ rule 360 permit ip source 25.80.21.58 0
+ rule 365 permit ip source 25.80.72.88 0
+ rule 366 permit ip source 25.80.72.34 0
+ rule 367 permit ip source 25.80.72.23 0
+ rule 368 permit ip source 25.80.32.173 0
+ rule 369 permit ip source 25.80.32.13 0
+ rule 370 permit ip source 25.80.5.194 0
+ rule 371 permit ip source 25.80.71.0 0.0.0.255
+ rule 372 permit ip source 10.216.168.111 0
+ rule 373 permit ip source 25.80.43.4 0
+ rule 374 permit ip source 25.80.60.217 0
+ rule 375 permit ip source 20.1.56.165 0
+ rule 384 permit ip source 10.216.11.242 0
+ rule 385 permit ip source 10.216.11.230 0
+ rule 390 permit ip source 20.1.63.36 0
+ rule 391 permit ip source 25.80.42.111 0
+ rule 392 permit ip source 25.80.60.55 0
+ rule 393 permit ip source 20.1.56.201 0
+ rule 395 permit ip source 20.1.62.162 0
+ rule 399 permit ip source 20.1.59.21 0
+ rule 400 permit ip source 20.1.60.210 0
+ rule 401 permit ip source 20.1.62.239 0
+ rule 406 permit ip source 10.90.124.105 0
+ rule 409 permit ip source 10.90.124.59 0
+ rule 414 permit ip source 20.1.61.124 0
+ rule 422 permit ip source 25.80.43.49 0
+ rule 425 permit ip source 20.1.57.201 0
+ rule 430 permit ip source 25.80.45.236 0
+ rule 431 permit ip source 25.80.45.150 0
+ rule 433 permit ip source 25.80.45.2 0
+#
+acl number 3100
+ rule 10 permit tcp destination-port eq www
+#
+acl number 3500
+ rule 50 deny tcp source-port eq 445
+ rule 70 deny udp source-port eq 135
+ rule 80 deny udp source-port eq netbios-ns
+ rule 90 deny udp source-port eq netbios-dgm
+ rule 100 deny udp source-port eq netbios-ssn
+ rule 110 deny udp source-port eq 445
+ rule 130 deny tcp destination-port eq 135
+ rule 140 deny tcp destination-port eq 137
+ rule 150 deny tcp destination-port eq 138
+ rule 160 deny tcp destination-port eq 139
+ rule 170 deny tcp destination-port eq 445
+ rule 190 deny udp destination-port eq 135
+ rule 210 deny udp destination-port eq netbios-dgm
+ rule 220 deny udp destination-port eq netbios-ssn
+ rule 230 deny udp destination-port eq 445
+ rule 240 deny tcp destination-port eq telnet
+ rule 250 deny tcp destination-port eq ftp
+ rule 260 deny tcp destination-port eq 3389
+ rule 280 deny tcp destination-port eq 443
+ rule 300 deny tcp destination-port eq 1521
+ rule 310 deny tcp destination-port eq 3306
+ rule 320 deny tcp destination-port eq 5000
+ rule 330 deny tcp destination-port eq 9000
+ rule 340 deny tcp destination-port eq 9090
+ rule 350 deny tcp destination-port eq 60000
+ rule 351 deny tcp destination-port eq 49152
+ rule 352 deny tcp destination-port eq 49153
+ rule 353 deny tcp destination-port eq 49154
+ rule 354 deny tcp destination-port eq 49155
+ rule 355 deny tcp destination-port eq 49156
+ rule 356 deny tcp destination-port eq 49157
+ rule 357 deny tcp destination-port eq 2425
+ rule 358 deny tcp destination-port eq 5900
+ rule 359 deny tcp destination-port eq 1
+ rule 360 deny tcp destination-port eq echo
+ rule 362 deny tcp destination-port eq 31
+ rule 363 deny tcp destination-port eq gopher
+ rule 364 deny tcp destination-port eq finger
+ rule 365 deny tcp destination-port eq 99
+ rule 367 deny tcp destination-port eq nntp
+ rule 368 deny tcp destination-port eq 456
+ rule 369 deny tcp destination-port eq login
+ rule 370 deny tcp destination-port eq cmd
+ rule 371 deny tcp destination-port eq 548
+ rule 372 deny tcp destination-port eq 553
+ rule 373 deny tcp destination-port eq 555
+ rule 374 deny tcp destination-port eq 568
+ rule 375 deny tcp destination-port eq 569
+ rule 376 deny tcp destination-port eq 593
+ rule 377 deny tcp destination-port eq 635
+ rule 378 deny tcp destination-port eq 666
+ rule 379 deny tcp destination-port eq 777
+ rule 380 deny tcp destination-port eq 1001
+ rule 381 deny tcp destination-port eq 1011
+ rule 382 deny tcp destination-port eq 1024
+ rule 383 deny tcp destination-port eq 1025
+ rule 384 deny tcp destination-port eq 1029
+ rule 385 deny tcp destination-port eq 1170
+ rule 387 deny tcp destination-port eq 1243
+ rule 388 deny tcp destination-port eq 1245
+ rule 389 deny tcp destination-port eq 1492
+ rule 390 deny tcp destination-port eq 1524
+ rule 391 deny tcp destination-port eq 1600
+ rule 392 deny tcp destination-port eq 1807
+ rule 393 deny tcp destination-port eq 1981
+ rule 394 deny tcp destination-port eq 1999
+ rule 395 deny tcp destination-port eq 2000
+ rule 396 deny tcp destination-port eq 2001
+ rule 397 deny tcp destination-port eq 2023
+ rule 398 deny tcp destination-port eq 2115
+ rule 399 deny tcp destination-port eq 2140
+ rule 400 deny tcp destination-port eq 2583
+ rule 401 deny tcp destination-port eq 2745
+ rule 402 deny tcp destination-port eq 2801
+ rule 403 deny tcp destination-port eq 3024
+ rule 404 deny tcp destination-port eq 3127
+ rule 405 deny tcp destination-port eq 3129
+ rule 406 deny tcp destination-port eq 3150
+ rule 407 deny tcp destination-port eq 3210
+ rule 408 deny tcp destination-port eq 3700
+ rule 409 deny tcp destination-port eq 3996
+ rule 411 deny tcp destination-port eq 4060
+ rule 412 deny tcp destination-port eq 4092
+ rule 413 deny tcp destination-port eq 4321
+ rule 414 deny tcp destination-port eq 4422
+ rule 415 deny tcp destination-port eq 4433
+ rule 416 deny tcp destination-port eq 4444
+ rule 417 deny tcp destination-port eq 4590
+ rule 418 deny tcp destination-port eq 4899
+ rule 419 deny tcp destination-port eq 5001
+ rule 420 deny tcp destination-port eq 5002
+ rule 421 deny tcp destination-port eq 5321
+ rule 422 deny tcp destination-port eq 5400
+ rule 423 deny tcp destination-port eq 5401
+ rule 424 deny tcp destination-port eq 5402
+ rule 425 deny tcp destination-port eq 5550
+ rule 426 deny tcp destination-port eq 5554
+ rule 427 deny tcp destination-port eq 5569
+ rule 428 deny tcp destination-port eq 5742
+ rule 429 deny tcp destination-port eq 6112
+ rule 430 deny tcp destination-port eq 6192
+ rule 431 deny tcp destination-port eq 6267
+ rule 432 deny tcp destination-port eq 6400
+ rule 433 deny tcp destination-port eq 6670
+ rule 435 deny tcp destination-port eq 6711
+ rule 436 deny tcp destination-port eq 6712
+ rule 437 deny tcp destination-port eq 6776
+ rule 438 deny tcp destination-port eq 6883
+ rule 439 deny tcp destination-port eq 6969
+ rule 440 deny tcp destination-port eq 7300
+ rule 441 deny tcp destination-port eq 7301
+ rule 442 deny tcp destination-port eq 7306
+ rule 443 deny tcp destination-port eq 7307
+ rule 444 deny tcp destination-port eq 7308
+ rule 445 deny tcp destination-port eq 7323
+ rule 446 deny tcp destination-port eq 7626
+ rule 447 deny tcp destination-port eq 7789
+ rule 448 deny tcp destination-port eq 9400
+ rule 449 deny tcp destination-port eq 9401
+ rule 450 deny tcp destination-port eq 9402
+ rule 451 deny tcp destination-port eq 9875
+ rule 452 deny tcp destination-port eq 9989
+ rule 453 deny tcp destination-port eq 10067
+ rule 454 deny tcp destination-port eq 10167
+ rule 455 deny tcp destination-port eq 11000
+ rule 456 deny tcp destination-port eq 11223
+ rule 457 deny tcp destination-port eq 12076
+ rule 459 deny tcp destination-port eq 12346
+ rule 460 deny tcp destination-port eq 12361
+ rule 461 deny tcp destination-port eq 13223
+ rule 462 deny tcp destination-port eq 16960
+ rule 463 deny tcp destination-port eq 17027
+ rule 464 deny tcp destination-port eq 19132
+ rule 465 deny tcp destination-port eq 19191
+ rule 466 deny tcp destination-port eq 20034
+ rule 467 deny tcp destination-port eq 20432
+ rule 468 deny tcp destination-port eq 21554
+ rule 469 deny tcp destination-port eq 22222
+ rule 470 deny tcp destination-port eq 23456
+ rule 471 deny tcp destination-port eq 25565
+ rule 472 deny tcp destination-port eq 26274
+ rule 473 deny tcp destination-port eq 27374
+ rule 474 deny tcp destination-port eq 30100
+ rule 475 deny tcp destination-port eq 30303
+ rule 476 deny tcp destination-port eq 30999
+ rule 477 deny tcp destination-port eq 31337
+ rule 478 deny tcp destination-port eq 31338
+ rule 479 deny tcp destination-port eq 31339
+ rule 480 deny tcp destination-port eq 31666
+ rule 481 deny tcp destination-port eq 31789
+ rule 483 deny tcp destination-port eq 34324
+ rule 484 deny tcp destination-port eq 40412
+ rule 485 deny tcp destination-port eq 40421
+ rule 486 deny tcp destination-port eq 40422
+ rule 487 deny tcp destination-port eq 40423
+ rule 488 deny tcp destination-port eq 40426
+ rule 489 deny tcp destination-port eq 43210
+ rule 490 deny tcp destination-port eq 44445
+ rule 491 deny tcp destination-port eq 47262
+ rule 492 deny tcp destination-port eq 47878
+ rule 493 deny tcp destination-port eq 50505
+ rule 494 deny tcp destination-port eq 50766
+ rule 495 deny tcp destination-port eq 53001
+ rule 496 deny tcp destination-port eq 54321
+ rule 497 deny tcp destination-port eq 61466
+ rule 498 deny tcp destination-port eq 64101
+ rule 499 deny tcp destination-port eq 65000
+ rule 500 deny tcp destination-port eq 1033
+ rule 505 deny tcp destination-port eq sunrpc
+ rule 506 deny tcp destination-port eq 5357
+ rule 507 deny tcp destination-port eq 1026
+ rule 508 deny tcp destination-port eq 1027
+ rule 509 deny tcp destination-port eq 1028
+ rule 512 deny tcp destination-port eq 10000
+ rule 513 deny tcp destination-port eq 9100
+ rule 514 deny tcp destination-port eq 8443
+ rule 515 deny tcp destination-port eq 990
+ rule 517 deny tcp destination-port eq lpd
+ rule 519 deny tcp destination-port eq 22
+ rule 520 deny tcp destination-port eq 1433
+ rule 530 deny tcp destination-port eq 88
+ rule 535 deny tcp destination-port eq 8080
+ rule 540 deny tcp destination-port eq 3000
+ rule 560 deny tcp destination-port eq 554
+ rule 565 deny tcp destination-port eq 5666
+ rule 570 deny tcp destination-port eq 10022
+ rule 575 deny tcp destination-port eq 13389
+ rule 580 deny tcp destination-port eq 7001
+ rule 590 deny tcp destination-port eq 11521
+ rule 610 deny tcp destination-port eq 2375
+ rule 620 deny udp destination-port eq 2375
+#
+acl number 3600
+ rule 100 permit ip
+#
+traffic classifier 3010 operator or
+traffic classifier 3020 operator or
+ if-match acl 3020
+traffic classifier HWYTH-Deny operator or
+ if-match acl 2070
+traffic classifier HWYTH-Permit operator or
+ if-match acl 2060
+traffic classifier YJZH-Deny operator or
+ if-match acl 2030
+traffic classifier YJZH-Permit operator or
+ if-match acl 2021
+traffic classifier deny operator or
+ if-match acl 3600
+traffic classifier duankou operator or
+ if-match acl 3500
+traffic classifier huiyizhongduan operator or
+ if-match acl 3100
+traffic classifier permit operator or
+ if-match acl 2020
+traffic classifier spvv123 operator or
+ if-match acl 3010
+traffic classifier spvv_super operator or
+ if-match acl 3005
+#
+ deny
+traffic behavior 3020
+traffic behavior HWYTH-Deny
+ deny
+traffic behavior HWYTH-Permit
+traffic behavior YJZH-Deny
+ deny
+traffic behavior YJZH-Permit
+traffic behavior deny
+ deny
+traffic behavior duankou
+ deny
+traffic behavior huiyizhongduan
+ deny
+traffic behavior permit
+traffic behavior spvv123
+ deny
+traffic behavior spvv_super
+#
+traffic policy 123
+ share-mode
+ classifier permit behavior permit
+ classifier 3010 behavior 3010
+ classifier 3020 behavior 3020
+ classifier deny behavior deny
+traffic policy HWYTH
+ share-mode
+ classifier HWYTH-Permit behavior HWYTH-Permit
+ classifier HWYTH-Deny behavior HWYTH-Deny
+traffic policy YJZH
+ share-mode
+ classifier YJZH-Permit behavior YJZH-Permit
+ classifier YJZH-Deny behavior YJZH-Deny
+traffic policy huiyizhongduan
+ share-mode
+ classifier huiyizhongduan behavior huiyizhongduan
+traffic policy spvv123
+ share-mode
+ classifier spvv_super behavior spvv_super
+ classifier spvv123 behavior spvv123
+#
+dot1x-template 1
+#
+aaa
+ access-speed adjustment system-state threshold main-memory-usage alarm 94 resume 89
+ access-speed adjustment system-state threshold slot-memory-usage alarm 94 resume 89
+ local-user xxwlyw2015 service-type ssh
+ local-user xxwlyw2015 level 6
+ local-user xxwlyw2015 state block fail-times 3 interval 20
+ local-user zwjadmin2017 password irreversible-cipher $1a$+xzLTOX8>L$$<!!.:"H!VN=\l%MITj$LNU$$L<DJ2K03\YlDb$)$
+ local-user zwjadmin2017 service-type ssh
+ local-user zwjadmin2017 level 15
+ local-user zwjadmin2017 state block fail-times 3 interval 20
+ local-user zwjadmin2018 password irreversible-cipher $1c$[U6LJd}Xm4$7{~qEe|}D3JUVFU9)'TK}<*S7Owq}Xx3:VQ~'QG4$
+ local-user zwjadmin2018 service-type ssh
+ local-user zwjadmin2018 level 10
+ local-user zwjadmin2018 state block fail-times 3 interval 20
+ local-user zwjadmin2019 password irreversible-cipher $1a$u%u6J29+M:$>Es;-=%4z-<gJ99dUPMBA{c+8[2}N(C)oaLf]7+G$
+ local-user zwjadmin2019 service-type ssh
+ local-user zwjadmin2019 level 1
+ local-user zwjadmin2019 state block fail-times 3 interval 20
+ authentication-scheme default0
+ authentication-scheme default1
+ authentication-scheme default
+  authentication-mode local radius
+ authentication-scheme auth-tacacs
+  authentication-mode local hwtacacs
+ #
+ authorization-scheme default
+  authorization-mode local hwtacacs if-authenticated
+ #
+ accounting-scheme default0
+ accounting-scheme default1
+ accounting-scheme acc-tacacs
+  accounting-mode hwtacacs
+  accounting start-fail online
+ #
+ domain default0
+ domain default1
+ domain default_admin
+  authentication-scheme auth-tacacs
+  authorization-scheme author-tacacs
+  accounting-scheme acc-tacacs
+  hwtacacs-server gwwgjry
+ #
+#
+multicastbandwidth
+#
+isis 100
+ graceful-restart
+ is-level level-2
+ cost-style wide-compatible
+ bfd all-interfaces enable
+ bfd all-interfaces min-tx-interval 100 min-rx-interval 100
+ network-entity 49.0955.0110.8124.9203.00
+ log-peer-change
+ maximum load-balancing 8
+ set-overload on-startup
+#
+ntp-service server disable
+ntp-service ipv6 server disable
+ntp-service unicast-server 11.81.249.250
+ntp-service unicast-server 11.81.249.253
+#
+interface Aux0/0/1
+ link-protocol ppp
+ undo shutdown
+#
+interface Vlanif100
+ ip binding vpn-instance spi
+ ip address 10.217.205.126 255.255.255.224
+#
+interface Vlanif200
+ ip binding vpn-instance spi
+ ip address 10.217.204.254 255.255.255.0
+interface Vlanif300
+ ip binding vpn-instance spi
+#
+interface Vlanif400
+ ip binding vpn-instance spi
+#
+interface Vlanif499
+ ip binding vpn-instance spi
+ ip address 10.217.79.54 255.255.255.248
+#
+interface Vlanif600
+ description HC_YingJiZhiHuiZhongXin
+ ip binding vpn-instance spi
+ ip address 10.217.207.62 255.255.255.224
+#
+interface Vlanif700
+ description HuiYi_OF_YingJiZhiHuiZhongXin
+ ip binding vpn-instance spvv
+ ip address 10.199.164.241 255.255.255.248
+#
+interface Vlanif800
+ description GaoQingHuiYiXiTong
+#
+ description ZaoDiaoHuiXiTong
+ ip binding vpn-instance spvv
+ ip address 29.81.111.1 255.255.255.128
+#
+interface Vlanif901
+ description to zaodiaohuixin
+ ip binding vpn-instance spi
+ ip address 10.217.213.238 255.255.255.248
+#
+interface Vlanif1002
+ description ShiPinVPN CE
+ ip address 29.81.248.241 255.255.255.252
+#
+interface Vlanif1004
+ description MCE HuLian
+ ip binding vpn-instance spi
+ ip address 10.216.147.13 255.255.255.252
+#
+interface Vlanif1005
+ description FW-M-0/0
+ ip binding vpn-instance spi
+ ip address 10.216.142.185 255.255.255.252
+#
+ portswitch
+ description FW-G0/6-0/7
+ port link-type trunk
+ port trunk allow-pass vlan 100 200 499 600 700 900 to 901 1004
+#
+interface Virtual-Template0
+ ppp authentication-mode auto
+#
+interface GigabitEthernet0/0/0
+ speed auto
+ duplex auto
+ undo shutdown
+ ip address 192.168.0.100 255.255.255.0
+#
+interface GigabitEthernet3/0/0
+ negotiation auto
+ description to HaiYuanBianPE G2/0/2
+ undo shutdown
+ ip address 11.80.9.86 255.255.255.252
+ isis enable 100
+ isis circuit-type p2p
+ isis circuit-level level-2
+ isis timer hello 3
+ mpls
+ mpls ldp
+#
+interface GigabitEthernet3/0/1
+ description XinHaiBianPE G3/1/4_HaiYuanGongSi_second_route
+ undo shutdown
+ ip address 11.80.9.117 255.255.255.252
+ isis enable 100
+ isis circuit-type p2p
+ isis circuit-level level-2
+ isis timer hello 3
+ isis small-hello
+ mpls
+ mpls ldp
+#
+interface GigabitEthernet3/0/2
+ description FW-G0/6
+ undo shutdown
+ eth-trunk 1
+#
+interface GigabitEthernet3/0/3
+ portswitch
+ description to F3yingjiZhiHuiZhongDuanZhuJi
+ port link-type access
+ port default vlan 700
+#
+interface GigabitEthernet3/0/4
+ shutdown
+#
+interface GigabitEthernet3/0/5
+ shutdown
+#
+interface GigabitEthernet3/0/6
+ shutdown
+#
+interface GigabitEthernet3/0/7
+ shutdown
+#
+interface GigabitEthernet3/1/0
+ portswitch
+ negotiation auto
+ description HaiYuanGongSiMCE1 G1/1/1
+ undo shutdown
+ port link-type trunk
+ port trunk allow-pass vlan 100 200 600 700 900 to 901 1004
+#
+ portswitch
+ description FW-M-G0/0
+ undo shutdown
+ port link-type access
+ port default vlan 1005
+#
+interface GigabitEthernet3/1/2
+ negotiation auto
+ description HaiChengGongDianSuo G0/0/1
+ undo shutdown
+ ip binding vpn-instance spi
+ ip address 10.216.132.65 255.255.255.252
+ traffic-policy 123 outbound
+#
+interface GigabitEthernet3/1/3
+ description FW-G0/7
+ undo shutdown
+ eth-trunk 1
+#
+interface GigabitEthernet3/1/4
+ description vpn-spims to jiaohuan
+ undo shutdown
+ ip binding vpn-instance spims
+#
+interface GigabitEthernet3/1/5
+ shutdown
+#
+interface GigabitEthernet3/1/6
+ shutdown
+#
+interface GigabitEthernet3/1/7
+ portswitch
+ description GuanQianBianCE
+ shutdown
+ port link-type access
+#
+interface NULL0
+#
+interface LoopBack0
+ ip address 11.81.249.203 255.255.255.255
+ isis enable 100
+#
+interface LoopBack1
+ ip address 11.81.249.202 255.255.255.255
+ isis enable 100
+#
+ ip address 11.81.249.201 255.255.255.255
+ isis enable 100
+#
+interface LoopBack3
+ ip binding vpn-instance spi
+ ip address 10.216.127.96 255.255.255.255
+#
+l2tp-group default-lac
+#
+l2tp-group default-lns
+#
+bgp 18740
+ router-id 11.81.249.203
+ peer 11.81.249.250 as-number 18740
+ peer 11.81.249.250 connect-interface LoopBack1
+ peer 11.81.249.253 as-number 18740
+ peer 11.81.249.253 connect-interface LoopBack1
+ #
+ ipv4-family unicast
+  undo synchronization
+  undo peer 11.81.249.250 enable
+  undo peer 11.81.249.253 enable
+ #
+  undo policy vpn-target
+  peer 11.81.249.250 enable
+  peer 11.81.249.250 advertise-community
+  peer 11.81.249.253 enable
+  peer 11.81.249.253 advertise-community
+ #
+ ipv4-family vpn-instance spi
+  import-route direct
+  import-route static
+  import-route ospf 1
+ #
+ ipv4-family vpn-instance spims
+  import-route direct
+  import-route ospf 3
+ #
+ ipv4-family vpn-instance spvv
+  import-route direct
+  import-route ospf 2
+ #
+ ipv6-family vpnv6
+  policy vpn-target
+  peer 11.81.249.253 enable
+  peer 11.81.249.253 advertise-community
+ospf 1 vpn-instance spi
+ default-route-advertise always
+ import-route static
+ vpn-instance-capability simple
+ area 0.0.0.2
+  network 10.216.127.96 0.0.0.0
+  network 10.216.132.64 0.0.0.3
+  network 10.216.142.184 0.0.0.3
+  network 10.216.147.12 0.0.0.3
+  network 10.217.79.48 0.0.0.7
+  network 10.217.204.0 0.0.0.255
+  network 10.217.205.96 0.0.0.31
+  network 10.217.207.32 0.0.0.31
+  network 10.217.213.232 0.0.0.7
+#
+ospf 2 vpn-instance spvv
+ default-route-advertise always
+ vpn-instance-capability simple
+ area 0.0.0.2
+  network 10.199.164.240 0.0.0.7
+  network 29.81.111.0 0.0.0.127
+#
+ospf 3 vpn-instance spims
+ vpn-instance-capability simple
+ area 0.0.0.2
+  network 30.83.255.152 0.0.0.3
+#
+arp static 10.217.194.94 0000-0000-0001 vpn-instance spi
+arp static 10.217.205.69 0000-0000-0001 vpn-instance spi
+arp static 10.217.207.35 0000-0000-1115 vpn-instance spi
+arp static 10.217.204.53 dc4a-3e9b-1fbe
+arp static 10.217.207.46 0000-0000-0913
+arp static 10.217.204.152 00e0-aed7-2950
+arp static 10.217.204.29 00e2-690a-4e07
+arp static 10.217.204.96 1078-d295-3360 vpn-instance spi
+arp static 10.217.204.17 0000-0000-0001 vpn-instance spi
+arp static 10.217.204.148 0000-0000-0001
+arp static 10.217.204.128 448a-5bad-0e03
+arp static 10.217.204.2 0000-0000-0001
+arp static 10.217.204.2 0000-0000-0001 vpn-instance spi
+arp static 10.217.204.122 0000-0000-0001
+arp static 10.217.204.162 0000-0000-0001
+arp static 10.217.204.169 0000-0000-0001
+arp static 10.217.204.78 0000-0000-0001
+arp static 10.217.204.239 0000-0000-0001
+arp static 10.217.204.3 0000-0000-0001
+arp static 10.217.204.6 0000-0000-0001
+arp static 10.217.204.19 0000-0000-0001
+arp static 10.217.204.60 0000-0000-0001
+arp static 10.217.204.231 0000-0000-0001
+arp static 10.217.204.208 0000-0000-0001 vpn-instance spi
+arp static 10.217.204.218 f86f-b0e9-5c10
+arp static 10.217.204.73 0000-0000-0001
+arp static 10.217.204.210 0000-0000-0001 vpn-instance spi
+arp static 10.217.207.36 0000-0000-0001 vpn-instance spi
+arp static 10.217.204.14 0000-0000-0001
+arp static 10.217.204.234 0000-0000-0001 vpn-instance spi
+arp static 10.217.204.253 0000-0000-0001 vpn-instance spi
+arp static 10.217.204.59 0000-0000-0001 vpn-instance spi
+arp static 10.217.204.140 0000-0000-0001
+arp static 10.217.204.141 0000-0000-0001
+#
+ip route-static vpn-instance spi 10.217.200.64 255.255.255.224 10.216.132.66
+#
+snmp-agent
+snmp-agent local-engineid 800007DB03600810427598
+snmp-agent community read cipher %^%#+3CORm{XC6/>BW(tcN@/)#N=6L'O6&W6'77}i=lIA1is)jDd<;6xCt4_6dNWI{.+;c|Eh=,kA$.[ab22%^%#
+snmp-agent community read cipher %^%#}J@QKhi@!F8ykG&br&>62Y^$+[zt1,Q>"IWEh28P"J@SPe'i3%mXW*8|}>c0!!/*V-9>h:5nyeWtL#KR%^%#
+snmp-agent community read cipher %^%#!^&1WjW_':><8+(gI}B"C1!oWTS3t090%n56`Gi4j<d}Ce2WNWd$[;C!L;.(W!r5~dut](F;oDAO7X5V%^%#
+snmp-agent sys-info version all
+snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname cipher %^%#(0:G/jAXA=yr!iRwnNGLUEid2#4T\>R3E{+o\rO(%^%#
+snmp-agent target-host trap address udp-domain 10.217.193.65 params securityname cipher %^%#}j>B04n)b0{=ct:flh]#]56C$,n4C1pc-=Bb~"l!%^%#
+snmp-agent target-host trap address udp-domain 10.217.5.197 params securityname cipher %^%#TR+lD1&*.3rC!I/QR4v=xZB)0o)\Q:HB;+UJn/C8%^%#
+snmp-agent target-host trap address udp-domain 10.217.5.198 params securityname cipher %^%#A~Kf9[}pA7e<0DP,VA+--#]eJ<-OS>

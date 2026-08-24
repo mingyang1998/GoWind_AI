@@ -1,0 +1,764 @@
+dis cu
+!Software Version V200R008C00SPC500
+#
+sysname YingXiaoLou_HuiJu_A
+#
+info-center loghost 10.217.7.5
+info-center loghost 10.217.193.65
+info-center loghost 10.217.193.101
+#
+vlan batch 100 200 300 to 400 499 to 500 600 999 1001 to 1003
+#
+lldp enable
+#
+undo http server enable
+undo http secure-server enable
+#
+clock timezone bj add 08:00:00
+#
+diffserv domain default
+#
+rsa peer-public-key 192.168.100.5
+ public-key-code begin
+  30820109
+    02820100
+      9FB798C9 3EF52550 394FF326 79201A8E 5D356A67 D99419E3 B0EEC698 AF08866A
+      4363E1BE 324C1A6E 552BD61D 62D1FDE0 80050876 601104C4 CD7BFB64 A014AC24
+      F5AC0FA9 3DA5F550 7092F71C 61348A79 7E6A1B40 71CA5D86 F2D74132 8878DAC6
+      2CC6B8FD 83A62839 0600D9B3 95760877 765A9B98 74497662 10C7588A 9F2DE3C7
+      DD4FB9AA F6C7ADA4 6796BF32 84BE53FD 464ED0B4 BD80CBD2 1264A8A3 D67505D2
+      9CC624D3 14AAA7CD 1F1F849A AD609760 E45A6657 FC2A7E88 22933140 71DAA1E0
+      E984AEF3 AC446A46 AB55DB36 0AF551A0 FD94BB7E F1C02A27 7CE5D39E 703DDAB9
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 10.216.149.113
+ public-key-code begin
+  308188
+    028180
+      C240980F 7B1B2B8C C6B07D5D 393A1CE5 A547AE3C 8B0A508B B2242793 1A5E1129
+      AE7D2F57 199CA6A9 332678C2 ADAD2391 D0DCB091 CAB22EB6 60C2DD9B ADB415EE
+      D2DEBEC5 2FFBEFA4 F53505C4 B61A64B3 8495856E 00708B94 04A4D330 60CF8CA8
+      0AEF1853 8EE6CCFB 69FDB280 B1240180 F8B5381E 317C8A8A 981465D4 6F9AAA2F
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+rsa peer-public-key 192.168.100.8
+ public-key-code begin
+  308188
+    028180
+      D1D09C3F 6BE0FADE 43BFE8CB D843682B 8E5216CF B1CF040F 52C40C5D 52093771
+      110EAA10 E3657A3F 080815E7 98AD83BD D60DAFF4 C904485C AC22B9CD A96F5524
+      DD1CBD9A 7243BF98 4D4F798D 55FDA644 302EFD0D 698A451E 1F4D3439 FD095B36
+      7EC1CCF0 475B334B 1FEB9314 4D40035C FED19F5B 844F86A5 D3C5409B 6D9AACFB
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 192.168.100.9
+ public-key-code begin
+  308188
+    028180
+      A0394EA0 475F6D83 5925C54B C1D0C183 00E94EB2 62630B5D E4C60C05 46643487
+      4DE490C6 699B1982 64D54847 73CF9AE1 F3A0C351 A7C4FC78 3BBD6232 6DB65949
+      01EDC1B0 211DB793 1BBCCFDE FD48E939 A8239198 EDEF1ACD 34D9F75A 805FA868
+      625B94FE A9E0DF9F C90EB284 F226CC64 16256CB4 E9617944 B92BAFF2 861B3401
+    0203
+      010001
+peer-public-key end
+#
+rsa peer-public-key 192.168.100.11
+ public-key-code begin
+  308188
+    028180
+      C7F6C8CA 57D66DE0 1316788A 8F6F7E1C B17D9AE9 B4962004 2335C050 91C5F5ED
+      C713069F C578EEAB A1545D85 5FDBCAF6 87E8E2B8 AECC853A 758CAAC3 D2A99868
+      70CEDA0A 6FB5FE37 A6AC0B36 02A16CFD 39D5035F 153BA6E9 66A03D08 6FAD75E9
+      1FC080EB 814CF4BE 64195010 D28D2417 D04C02DA 8EF7DBBB 49666568 D734B399
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 192.168.100.7
+ public-key-code begin
+  308188
+    028180
+      CE17F797 B354B154 25B480E2 C9F7BB6F EB6CEBE2 ABEAFCA8 C1731650 D78AF18D
+      79E379A1 3E7C19EA FA5F7BD8 12ED60A8 85E55940 24901B4D A31E464D F2788915
+      E5C16734 E42714A5 4770E45D 2DBF98C8 51B881A1 F9761CBF 86FA3385 E3A746CF
+      2D22A23D 3C9F51D6 29131633 FE5ACEA9 6F34D5C9 0527171F 1536462C B4CD2935
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 192.168.100.16
+ public-key-code begin
+  308188
+    028180
+      B7BD6036 752BA82C AD5FB72B 479C03AA 7DC0108E BFAE9941 32413CAB 57E115D0
+      B74B01E5 8B76659D 73440AC1 348CC92F 65B4D75F FF14D8CB CE94F514 CBF2EC7E
+      92F855F2 35C5A4EA 3E4FF1B7 7728AAFD 1713CD33 220D8597 BC8D528B C6CB5136
+      D0C8DD1E 16F8F991 76C72D10 4D6226AB 94C42210 7099E450 8A3CFD9C 574C02E9
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 192.168.100.1
+ public-key-code begin
+  308188
+    028180
+      C37A64C1 D83463E4 46197034 7D5F192E E3726F55 7F3E9745 EE06F0D6 E5C60C34
+      151C77A3 1221FD46 235D79F3 5FAC5F83 47EFB5A0 6F9BEBD6 FF32C5B5 8BD55B7A
+      C6935A48 79F887C8 90EBAA7F 2D47A445 725E326B 1BC35219 AC05E421 F6AC3417
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 192.168.100.3
+ public-key-code begin
+  30820109
+    02820100
+      CA06E531 3694E85F 52C76D85 FBA16A82 C02C806F 71F71CAA FFEB1458 86EF1AC9
+      BF001795 E6224325 6B223DC4 40240307 4A2FD5C9 1EAE49E0 20420A48 ECD21B6C
+      A6B74046 A8C58F67 22D9FF46 233A6238 194AA547 9B64D543 9826DB7E E502422B
+      1B475E0A 61216F0A 33E441B8 401DCF65 CA725464 E014639E 8F53FDD8 B765AF4F
+      AA20A968 04B450F4 AE51107E F80DABF6 60A21C32 706E759F 46E50DA7 2B34B7B3
+      EDCC0ACF 056A1809 6B30F1C7 3AB6257A B2B8B642 63999E4D 3B4744F4 EA1B773D
+      D9C0475D 4890B20E 2F85810C 8C0DF582 D2D7C277 14A590BE 767A08BC 1F555FE6
+      B2224F2D 21675D48 34F02B4B 563E0C60 8605E4D2 BE404A0D 15554902 CC560BBD
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+ public-key-code begin
+  30820109
+    02820100
+      BF27495C 55EDF71E F1EA511B A9ED6A79 36E0DD29 F89E9BDD 067AB604 1B701474
+      F9187FE4 7C3A34CF 3135CF0A 422FEE8C 2460135C C09E6CFE 7CC3FAF7 BDF9083F
+      368DB14C 1926A015 02AFF122 6C823CB2 88C98087 E211B985 2CD069BD 0FD6CB84
+      3ED75AF1 2E89702E 33541C80 4E6A8B18 B8E1BE82 8E2A26A9 C554F467 4BC97A09
+      C035580A 6B199A37 6A6A6AFE 87C7ECCD CD797D4C 3C99F45C A5A08B6A 3D62801E
+      B25229F7 B29E6B2C 90B25C70 22E5285D 26C9A586 AECE959C 8B6C4949 9A36C111
+      E9578774 6CC40BDD 36981354 B688B744 3675BC32 A409896E FC52ECBE 84DD3F66
+      7FCFBA8E 1A50DD67 80999C5E 8767F6E2 50C689C2 963F2F5B 61FC6390 1CE46385
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 192.168.100.6
+ public-key-code begin
+  308188
+    028180
+      D6E2F0D7 4CC8361A 4B399107 67174E32 E34278D9 AA0916E6 8A2601BA 3E497F49
+      A91BBDAA 498D73F1 FD8EFA83 2AFA6064 53212B92 86315711 2CA69820 35E99502
+      25C2C58B 8DEC31F8 01D939AB 67D3631F 0849598A CB6C3DAA 28702950 505FF7F7
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 192.168.100.12
+ public-key-code begin
+  308188
+    028180
+      A08D9C6F 8A107CEB 10937603 0B43AB33 0A865CE1 7489655D 701EB486 0CE1B25D
+      D0BCB9BC 2F7A365C 3BBC8589 5461FCE2 3825B289 470FD132 2D57313A C0348E6D
+      A80E2AE8 CC525396 94826696 D12A402D 403FD731 83CF98B5 125FAB40 9E43E3F9
+      D3A7C892 BD747840 688F5650 E3B04F29 A18EB449 705830E8 2B136301 3FD0F943
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 192.168.100.13
+ public-key-code begin
+  308188
+    028180
+      C056B84B EBF39F61 58819607 B81590F8 9686B748 8D740563 B763AD0E FC1CD8C4
+      35B01CB3 5DBB53A0 9DEBBD7E EB3C2B5D ADF77257 B871134C 229D0703 FC26A8E1
+      343268DB E9468E42 C1E9CDD3 F68B54CC E0D4F3A1 6369F67D 6DE3CD63 A0BC183D
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 192.168.100.14
+ public-key-code begin
+  308188
+    028180
+      D4555DF7 6CC05C4D 675FFC93 CEB94D79 3FC25FA0 D055DDD6 5D33D7C6 C9D162FF
+      4FAEE845 39177AC3 FF7D22E0 933392A3 24795D10 A7564EFD F18B2848 E67C8D0A
+      12A5C795 1D0765DC 9979076B A59FEE7B 2C2470EE F9B1A4F2 74BBA22D 9289F9DF
+      853E5C0F 743F29B8 AD5AEE76 D0A08C87 E8CBD2E8 251E0A33 298DFBC2 4CBB273D
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 192.168.100.15
+ public-key-code begin
+  308188
+      B9779E05 E69E04E1 00B324F6 005E07BD C7EAB869 7BFF30B6 46D9CB75 62A7BA64
+      E79FAC74 B5F9F8A9 33FD68B8 CD9E1F4F 5835FC62 05E5BADA 17960754 8A0C2ED6
+      D208EA56 21D80076 5E399C07 5417C3F2 3CD11E75 19B2D4E2 D86A9C89 026B7207
+      8F32FA20 7D99C226 723108B2 2683DF3D BEC14DEC 10661DAD 31750AC2 BBE171E3
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 192.168.100.17
+ public-key-code begin
+  308188
+    028180
+      AE507C40 9F853A59 09B895F6 F493F51E 1872A21C C9F0F38A CD225549 6FD478E7
+      F3F7AC1E 8BF7FD97 F65C971A 93EB4577 570B3993 8CA4C311 501943DB 63D3AC22
+      E2B4BC3E 8C1ABED2 93D1F3EF C86C2056 148E4C84 031D5ABE E14B6482 89DA7EA9
+      CD9F4F03 76044524 0B274D4C 47EAD905 A461FC14 8781B6D2 32AB8A01 ABFAAB8D
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 192.168.100.10
+  308188
+    028180
+      A1F7ECAB 4B39FBC5 3A2CFEC4 EF4B1318 DDE1F78A 7E3A8BEB 9DB8E4AE 7E960890
+      B3CF1D0B AFAF39BB FE15FBFA 64FAD46D D077365C AA81CA46 DF6DD9E5 12639702
+      32182138 49B30B37 7524C51E A6645888 FD3A7A41 46E506D9 3D13F8DA C11EF503
+      3FFCD311 5BD623BD 1C1967A4 5AFE7E34 CD7F9ECD A1D61ADB A53D2B49 575B67D3
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+acl number 2000
+ rule 1 permit source 10.217.199.86 0
+ rule 2 permit source 10.217.199.66 0
+ rule 3 permit source 10.217.199.97 0
+ rule 4 permit source 10.217.193.65 0
+ rule 5 permit source 10.217.199.68 0
+ rule 6 permit source 10.217.199.70 0
+ rule 7 permit source 10.217.199.80 0
+ rule 8 permit source 10.217.199.103 0
+ rule 9 permit source 10.217.199.123 0
+ rule 10 permit source 10.217.194.186 0
+ rule 11 permit source 10.217.193.70 0
+ rule 13 permit source 10.217.199.87 0
+ rule 100 deny
+#
+drop-profile default
+#
+vlan 600
+ description 360-server
+vlan 999
+ description manager
+vlan 1003
+ description YingLiZhongXinCE
+#
+aaa
+ authentication-scheme default
+ authorization-scheme default
+ accounting-scheme default
+ domain default
+ domain default_admin
+ undo local-user admin
+ local-user zwjadmin2017 password irreversible-cipher %^%#>4'VH*@0;Wu#;w9>>$X+mt-"1%RrX;-D{9YU>%t6q'fw.AdcI=2v!2(*3ss5%^%# idle-timeout 10 0
+ local-user zwjadmin2017 privilege level 15
+ local-user zwjadmin2017 service-type telnet terminal ssh
+ local-user zwjadmin2018 password cipher %^%#(`#BV^#h>"kIBP%06N/MB-6GM=2S13]\NZMncAv1%^%# idle-timeout 20 0
+ local-user zwjadmin2019 password irreversible-cipher %^%#Nt=75V=\M,rwej<R!3cLT6O!3g3Fv%\xNyV`:"HCw1{6Ny]-TI5;7[9Y(i}-%^%# idle-timeout 10 0
+ local-user zwjadmin2019 privilege level 0
+ local-user zwjadmin2019 service-type ssh
+#
+ntp-service server disable
+ntp-service ipv6 server disable
+ntp-service unicast-server 10.200.16.33
+ntp-service unicast-server 10.216.126.226 preference
+ntp-service unicast-server 10.216.126.225
+#
+interface Vlanif1
+#
+interface Vlanif100
+ description 1F
+ ip address 10.217.214.220 255.255.255.224
+ vrrp vrid 1 virtual-ip 10.217.214.222
+ vrrp vrid 1 priority 120
+ vrrp vrid 1 preempt-mode timer delay 20
+#
+interface Vlanif200
+ description 2F
+ ip address 10.217.214.60 255.255.255.192
+ vrrp vrid 2 virtual-ip 10.217.214.62
+ vrrp vrid 2 preempt-mode timer delay 20
+#
+interface Vlanif300
+ description 3F
+ ip address 10.217.214.124 255.255.255.192
+ ip address 10.217.250.206 255.255.255.240 sub
+ vrrp vrid 3 virtual-ip 10.217.214.126
+ vrrp vrid 3 priority 120
+ vrrp vrid 3 preempt-mode timer delay 20
+#
+interface Vlanif400
+ description 4F
+ ip address 10.217.214.188 255.255.255.192
+ ip address 10.217.250.222 255.255.255.240 sub
+ vrrp vrid 4 virtual-ip 10.217.214.190
+ vrrp vrid 4 priority 120
+ vrrp vrid 4 preempt-mode timer delay 20
+#
+interface Vlanif499
+ description Guanli
+ ip address 192.168.100.1 255.255.255.224
+#
+interface Vlanif500
+ ip address 10.217.214.252 255.255.255.224
+ ip address 10.217.201.30 255.255.255.224 sub
+ vrrp vrid 5 virtual-ip 10.217.214.254
+ vrrp vrid 5 priority 120
+ vrrp vrid 5 preempt-mode timer delay 20
+#
+interface Vlanif600
+ description 360-server
+ ip address 10.216.143.81 255.255.255.252
+#
+interface Vlanif999
+ description manager
+ ip address 10.217.79.94 255.255.255.224
+#
+interface Vlanif1001
+ description To_S7503
+ ip address 10.216.149.114 255.255.255.252
+#
+interface Vlanif1002
+ ip address 10.216.142.165 255.255.255.252
+#
+interface Vlanif1003
+ description YingLiZhongXinCE
+ ip address 10.216.143.77 255.255.255.252 sub
+ ospf cost 300
+#
+interface MEth0/0/1
+#
+interface Eth-Trunk1
+ port default vlan 1002
+#
+interface GigabitEthernet0/0/1
+ description To_S5700_1F_1-G28
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/2
+ description To_S5700_1F_2-G28
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/3
+ description To_S5700_2F_1-G28
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+ description To_S5700_2F_2-G28
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/5
+ description To_S5700_2F_3-G28
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/6
+ description To_S5700_3F_1-G28
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/7
+ description To_S5700_3F_2-G28
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/8
+ description To_S5700_3F_3-G28
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+interface GigabitEthernet0/0/9
+ description To_S5700_4F_1-G28
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/10
+ description To_S5700_4F_2-G28
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/11
+ description To_S5700_4F_3-G28
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/12
+ description To_S5700_5F_1-G28
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/13
+ description To_S5700_5F_2-G28
+ port link-type trunk
+#
+interface GigabitEthernet0/0/14
+ description To_S5700_5F_3-G28
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/15
+ description To_S5700_6F_1-G28
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/16
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/17
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/18
+ shutdown
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+interface GigabitEthernet0/0/19
+ shutdown
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface GigabitEthernet0/0/20
+ eth-trunk 1
+#
+interface GigabitEthernet0/0/21
+ shutdown
+#
+interface GigabitEthernet0/0/22
+ eth-trunk 1
+#
+interface GigabitEthernet0/0/23
+ shutdown
+#
+interface GigabitEthernet0/0/24
+ description NXZHW-YingXiaoLouPE G3/1/7
+ port link-type access
+ port default vlan 1001
+#
+interface GigabitEthernet0/0/25
+ port link-type access
+ port default vlan 100
+#
+interface GigabitEthernet0/0/26
+ description 360-server
+ port link-type access
+ port default vlan 600
+#
+interface GigabitEthernet0/0/27
+ description YingLiZhongXinCE
+ port link-type access
+ port default vlan 1003
+#
+interface GigabitEthernet0/0/28
+ description F6 DIANJIAOSHI
+ port link-type access
+ port default vlan 700
+#
+interface XGigabitEthernet0/0/1
+ description to WeiTiZhongXinSW
+ port link-type access
+ port default vlan 500
+#
+ shutdown
+#
+interface XGigabitEthernet0/0/3
+ shutdown
+#
+interface XGigabitEthernet0/0/4
+ shutdown
+ port link-type access
+ port default vlan 1001
+#
+interface NULL0
+#
+ospf 1
+ area 0.0.0.2
+  network 10.216.142.44 0.0.0.3
+  network 10.216.142.164 0.0.0.3
+  network 10.216.142.244 0.0.0.3
+  network 10.216.143.76 0.0.0.3
+  network 10.216.143.80 0.0.0.3
+  network 10.216.149.114 0.0.0.0
+  network 10.217.79.64 0.0.0.31
+  network 10.217.79.94 0.0.0.0
+  network 10.217.198.48 0.0.0.15
+  network 10.217.214.0 0.0.0.63
+  network 10.217.214.64 0.0.0.63
+  network 10.217.214.128 0.0.0.63
+  network 10.217.214.192 0.0.0.31
+  network 10.217.214.224 0.0.0.31
+  network 10.217.215.224 0.0.0.31
+  network 10.217.250.192 0.0.0.15
+  network 10.217.250.208 0.0.0.15
+#
+arp static 10.217.214.10 1803-732c-517e
+arp static 10.217.214.11 0021-973d-a407
+arp static 10.217.214.13 68f7-28c1-a9e9
+arp static 10.217.214.14 001a-6b4c-8bb6
+arp static 10.217.214.24 4437-e661-e9d5
+arp static 10.217.214.30 0021-974d-48bc
+arp static 10.217.214.66 dc4a-3e98-3f72
+arp static 10.217.214.67 0025-1141-5e30
+arp static 10.217.214.79 0000-0000-0001
+arp static 10.217.214.83 0000-0000-0001
+arp static 10.217.214.86 0023-248c-4f7a
+arp static 10.217.214.136 1078-d2ab-d550
+arp static 10.217.214.142 1078-d2c0-d04a
+arp static 10.217.214.145 0023-248c-4f4e
+arp static 10.217.214.149 0021-9729-24c5
+arp static 10.217.214.154 1803-732c-4f20
+arp static 10.217.214.161 0000-0000-0002
+arp static 10.217.214.163 0000-0000-0002
+arp static 10.217.214.202 4ccc-6aed-646a
+arp static 10.217.214.207 0023-24e6-2b5d
+arp static 10.217.214.209 0023-24e6-2aa4
+arp static 10.217.214.212 4ccc-6aed-66ec
+arp static 10.217.214.215 00e0-aed2-48a2
+arp static 10.217.214.231 fc4d-d431-6853
+arp static 10.217.214.237 6c0b-8408-767f
+arp static 10.217.214.206 0023-24e6-8b85
+arp static 10.217.214.134 4ccc-6acb-6c06
+arp static 10.217.214.219 00e0-aed7-25ec
+arp static 10.217.214.218 00e0-aed3-2b0b
+arp static 10.217.214.31 001e-4fc3-d49b
+arp static 10.217.214.19 0022-1900-5dd2
+arp static 10.217.214.37 0030-1854-fe9a
+arp static 10.217.214.22 6c0b-8403-f69b
+arp static 10.217.214.90 0000-0000-0001
+arp static 10.217.214.133 fc4d-d431-6bad
+arp static 10.217.214.146 1078-d2ac-331b
+arp static 10.217.214.158 d8cb-8a0a-f2fc
+arp static 10.217.214.151 0000-0000-0002
+arp static 10.217.214.213 0023-24e6-8bfc
+arp static 10.217.214.152 1860-24b1-8aaa
+arp static 10.217.214.236 1860-24ab-e912
+arp static 10.217.214.155 0001-6c5d-44b9
+arp static 10.217.214.138 6c4b-90b9-d7c4
+arp static 10.217.214.183 6c4b-90b9-da0b
+arp static 10.217.214.42 705a-0f31-89bb
+arp static 10.217.214.44 6c0b-8442-f96a
+arp static 10.217.214.208 0023-24e6-2a88
+arp static 10.217.214.80 6c0b-8403-ea2d
+arp static 10.217.214.68 6c4b-90b9-d99b
+arp static 10.217.214.69 4437-e662-ce76
+arp static 10.217.214.70 6c0b-8403-8645
+arp static 10.217.214.76 0001-6c5d-44b9
+arp static 10.217.214.194 0023-24e6-8bfc
+arp static 10.217.214.21 0000-0000-0001
+arp static 10.217.214.121 6c4b-90b9-d9e1
+arp static 10.217.217.117 0000-0000-0002
+arp static 10.217.214.102 0000-0000-0001
+arp static 10.217.214.168 0000-0000-0002
+arp static 10.217.214.107 0000-0000-0001
+arp static 10.217.214.109 0000-0000-0001
+arp static 10.217.250.193 0000-0000-0001
+arp static 10.217.214.211 0023-24e6-2c10
+arp static 10.217.250.204 0000-0000-0001
+arp static 10.217.250.194 0000-0000-0001
+arp static 10.217.250.195 0000-0000-0001
+arp static 10.217.214.101 0000-0000-0001
+arp static 10.217.214.106 0000-0000-0001
+arp static 10.217.214.88 2cf0-5d11-a1e4
+arp static 10.217.214.94 6c4b-90b9-d526
+arp static 10.217.214.156 0000-0000-0001
+arp static 10.217.250.209 0000-0000-0001
+arp static 10.217.250.212 6c0b-846b-417b
+arp static 10.217.250.217 6c0b-846b-427c
+arp static 10.217.250.218 fc4d-d4f0-94c0
+arp static 10.217.250.219 4437-e661-d5e3
+arp static 10.217.214.130 2cf0-5d11-93c9
+arp static 10.217.214.173 1860-24b1-8a7b
+arp static 10.217.214.189 08ed-eddd-f4a3
+arp static 10.217.214.129 2cf0-5d11-9521
+arp static 10.217.214.75 2cf0-5d11-94ed
+arp static 10.217.214.15 2cf0-5d48-30da
+arp static 10.217.214.201 2cf0-5d11-8c43
+arp static 10.217.214.197 4ccc-6acb-6c52
+arp static 10.217.250.210 1860-24ab-e8f6
+arp static 10.217.214.123 fc4d-d4f0-949b
+arp static 10.217.214.17 2cf0-5d11-a20f
+arp static 10.217.214.20 0023-24a7-6257
+arp static 10.217.214.25 2cf0-5d11-a272
+arp static 10.217.214.38 e86a-6407-553f
+arp static 10.217.214.41 fc4d-d431-679f
+arp static 10.217.250.199 f439-094d-88af
+arp static 10.217.214.120 0023-248c-4f91
+arp static 10.217.214.84 484d-7eb3-cacb
+arp static 10.217.214.74 2cf0-5d48-3378
+arp static 10.217.214.186 4437-e661-3741
+arp static 10.217.214.171 6c4b-90b9-d6a1
+arp static 10.217.214.172 1860-24b1-89e6
+arp static 10.217.214.135 2cf0-5d11-94df
+arp static 10.217.214.144 1860-24b1-8c13
+arp static 10.217.214.93 0000-0000-0001
+arp static 10.217.214.110 0000-0000-0001
+arp static 10.217.214.118 1803-732c-53d3
+arp static 10.217.214.205 0000-0000-0001
+arp static 10.217.214.221 00e2-690a-4fa4
+arp static 10.217.214.193 c051-7e58-e4b2
+arp static 10.217.214.199 a036-9f92-0c45
+arp static 10.217.214.179 0000-0000-0001
+arp static 10.217.214.132 1078-d2ab-d3dc
+arp static 10.217.214.226 0000-0000-0001
+arp static 10.217.214.229 0000-0000-0001
+arp static 10.217.214.195 00e0-aed2-4ccf
+arp static 10.217.214.26 dc4a-3e9b-d918
+arp static 10.217.250.205 0000-0000-0001
+arp static 10.217.214.220 2444-27b9-56ab
+arp static 10.217.214.60 2444-27b9-56a6
+arp static 10.217.214.124 2444-27b9-56a1
+arp static 10.217.214.188 2444-27b9-56ab
+arp static 10.217.214.176 0000-0000-0001
+arp static 10.217.214.252 2444-27b9-56a6
+arp static 10.217.214.242 2cf0-5d11-a1dc
+arp static 10.217.214.96 2cf0-5d48-336c
+arp static 10.217.214.100 0000-0000-0001
+arp static 10.217.214.49 2cf0-5d11-8dc5
+arp static 10.217.250.220 047c-1666-7208
+arp static 10.217.201.9 0000-0000-0001
+arp static 10.217.201.21 0000-0000-0001
+arp static 10.217.201.17 0000-0000-0001
+arp static 10.217.201.19 0000-0000-0001
+arp static 10.217.214.32 047c-1666-70e5
+arp static 10.217.214.217 00e0-aed7-2ff1
+arp static 10.217.214.115 0000-0000-0001
+arp static 10.217.201.16 0000-0000-0001
+arp static 10.217.201.20 0000-0000-0001
+arp static 10.217.250.196 0000-0000-0001
+arp static 10.217.214.97 0000-0000-0001
+arp static 10.217.214.216 00e2-690a-4f04
+arp static 10.217.214.55 047c-1666-70ea
+arp static 10.217.214.29 2cf0-5d11-9503
+arp static 10.217.214.27 0013-3b0f-d526
+arp static 10.217.214.48 047c-1666-7151
+arp static 10.217.214.5 1078-d2ac-a00c
+arp static 10.217.214.39 4ccc-6acb-6daf
+arp static 10.217.214.46 2cf0-5d11-9280
+arp static 10.217.214.33 047c-1666-7197
+arp static 10.217.250.206 2444-27b9-56a1
+arp static 10.217.214.89 0000-0000-0001
+arp static 10.217.214.92 047c-1666-7198
+arp static 10.217.214.125 2cf0-5d48-3e1b
+arp static 10.217.214.113 6c4b-90b9-d83e
+arp static 10.217.214.98 0000-0000-0001
+arp static 10.217.214.81 0000-0000-0001
+arp static 10.217.214.72 047c-1666-70f5
+arp static 10.217.214.87 1860-24b1-8bf6
+arp static 10.217.214.73 6c0b-8443-53ce
+arp static 10.217.214.91 047c-1666-70dd
+arp static 10.217.214.119 2cf0-5d11-a1c1
+arp static 10.217.214.105 d8bb-c1c5-8d2e
+arp static 10.217.250.222 2444-27b9-56ab
+arp static 10.217.214.148 6c0b-8442-eb30
+arp static 10.217.250.216 6c0b-846b-4bd1
+arp static 10.217.214.137 6c4b-90b9-d51d
+arp static 10.217.201.30 2444-27b9-56a6
+arp static 10.217.201.1 e019-5452-3939
+arp static 10.217.214.239 1860-24ab-e91c
+arp static 10.217.201.12 2cf0-5d48-3e31
+arp static 10.217.201.11 4ccc-6acb-6e2c
+arp static 10.217.201.13 2cf0-5d48-3373
+arp static 10.217.214.225 4437-e68f-b636
+arp static 10.217.214.235 2cf0-5d11-9278
+arp static 10.217.214.227 2cf0-5d48-30ce
+arp static 10.217.201.23 6c4b-90b9-d904
+arp static 10.217.214.234 6c0b-8499-f267
+arp static 10.217.214.241 1860-24ab-e8ea
+arp static 10.217.214.243 6c0b-8408-773c
+arp static 10.217.214.230 4439-c490-0bb3
+arp static 10.217.200.190 2444-27b9-56ab
+arp static 10.217.214.122 6c0b-8408-9550
+arp static 10.217.214.95 047c-1666-71ae
+arp static 10.217.250.198 2cf0-5d48-3e1f
+arp static 10.217.214.108 047c-1666-70cc
+arp static 10.217.250.221 4437-e662-b53a
+arp static 10.217.214.177 6c0b-846b-43aa
+arp static 10.217.214.233 2cf0-5d11-951f
+arp static 10.217.201.14 2cf0-5d11-94cc
+arp static 10.217.214.200 0000-0000-0001
+arp static 10.217.214.210 0000-0000-0001
+arp static 10.217.214.203 0000-0000-0001
+arp static 10.217.214.204 0000-0000-0001
+arp static 10.217.214.162 0000-0000-0001
+arp static 10.217.214.77 2cf0-5d48-3c4a
+arp static 10.217.214.214 0000-0000-0001
+arp static 10.217.214.140 0000-0000-0001
+arp static 10.217.214.40 1078-d2ac-364a
+arp static 10.217.250.214 fc4d-d4f0-94c0
+#
+snmp-agent
+snmp-agent acl 2000
+snmp-agent local-engineid 800007DB03244427B956A0
+snmp-agent sys-info version all
+snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname cipher %^%#oau5'H[,k0KV/BM]x-_RBqyh"\XGnI5{)DNpmi2N%^%#
+#
+stelnet server enable
+ssh user xxwlyw2015
+ssh user xxwlyw2015 authentication-type password
+ssh user xxwlyw2015 service-type stelnet
+ssh user zwjadmin2017
+ssh user zwjadmin2017 authentication-type password
+ssh user zwjadmin2017 service-type stelnet
+ssh user zwjadmin2018
+ssh user zwjadmin2018 authentication-type password
+ssh user zwjadmin2018 service-type stelnet
+ssh user zwjadmin2019
+ssh user zwjadmin2019 authentication-type password
+ssh user zwjadmin2019 service-type stelnet
+ssh client first-time enable
+ssh client 10.216.149.113 assign rsa-key 10.216.149.113
+ssh client 192.168.100.1 assign rsa-key 192.168.100.1
+ssh client 192.168.100.10 assign rsa-key 192.168.100.10
+ssh client 192.168.100.11 assign rsa-key 192.168.100.11
+ssh client 192.168.100.12 assign rsa-key 192.168.100.12
+ssh client 192.168.100.13 assign rsa-key 192.168.100.13
+ssh client 192.168.100.15 assign rsa-key 192.168.100.15
+ssh client 192.168.100.16 assign rsa-key 192.168.100.16
+ssh client 192.168.100.17 assign rsa-key 192.168.100.17
+ssh client 192.168.100.3 assign rsa-key 192.168.100.3
+ssh client 192.168.100.4 assign rsa-key 192.168.100.4
+ssh client 192.168.100.5 assign rsa-key 192.168.100.5
+ssh client 192.168.100.6 assign rsa-key 192.168.100.6
+ssh client 192.168.100.7 assign rsa-key 192.168.100.7
+ssh client 192.168.100.8 assign rsa-key 192.168.100.8
+ssh client 192.168.100.9 assign rsa-key 192.168.100.9
+#
+telnet client-source -a 10.217.214.22
+#
+user-interface con 0
+ authentication-mode password
+ set authentication password cipher $1a$/Z^`%C[A=H$@B/r6~_Q+<KMeeA$kX!&OiWM"`nnS~6L"KW;3J8*$
+ idle-timeout 8 0
+user-interface vty 0 4
+ acl 2000 inbound
+ authentication-mode aaa
+ user privilege level 15
+ idle-timeout 8 0
+ protocol inbound all
+#
+return
+<YingXiaoLou_HuiJu_A>

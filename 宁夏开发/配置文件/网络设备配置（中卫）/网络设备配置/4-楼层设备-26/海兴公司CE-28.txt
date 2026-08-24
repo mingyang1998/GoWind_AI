@@ -1,0 +1,1221 @@
+dis cu 
+
+#
+
+ version 7.1.070, Release 6126P38
+
+#
+
+ sysname HaiXinggongsiF1
+
+#
+
+ clock timezone bj add 08:00:00
+
+#
+
+ irf mac-address persistent timer
+
+ irf auto-update enable
+
+ undo irf link-delay
+
+ irf member 1 priority 1
+
+#
+
+ospf 1
+
+ area 0.0.0.2
+
+  network 10.216.142.172 0.0.0.3
+
+  network 10.216.142.176 0.0.0.3
+
+  network 10.216.142.180 0.0.0.3
+
+  network 10.217.79.62 0.0.0.0
+
+  network 10.217.207.128 0.0.0.127
+
+  network 10.217.211.0 0.0.0.31
+
+  network 10.217.213.224 0.0.0.7
+
+#
+
+ lldp global enable
+
+
+               
+#
+
+ password-recovery enable
+
+#
+
+vlan 1
+
+#
+
+vlan 100
+
+#
+
+vlan 200
+
+#
+
+vlan 901
+
+ description ZaoDiaoHui
+
+#
+
+vlan 1001
+
+ description FW-GE0/9
+
+#
+
+vlan 1002
+
+ description F2SW G1/0/48
+
+#
+
+vlan 1003
+
+ description F3SW G1/0/48
+
+#
+
+ stp global enable
+
+#
+
+
+               
+interface NULL0
+
+#
+
+interface Vlan-interface1
+
+#
+
+interface Vlan-interface100
+
+ ip address 10.217.79.62 255.255.255.248
+
+#
+
+interface Vlan-interface200
+
+ ip address 10.217.207.254 255.255.255.128
+
+ ip address 10.217.211.30 255.255.255.224 sub
+
+#
+
+interface Vlan-interface901
+
+ description ZaoDiaoHui
+
+ ip address 10.217.213.230 255.255.255.248
+
+#
+
+interface Vlan-interface1001
+
+ description FW-GE0/9
+
+ ip address 10.216.142.174 255.255.255.252
+
+#
+
+interface Vlan-interface1002
+
+ description F2SW G1/0/48
+
+ ip address 10.216.142.177 255.255.255.252
+
+#
+
+
+               
+interface Vlan-interface1003
+
+ description F3SW G1/0/48
+
+ ip address 10.216.142.181 255.255.255.252
+
+#
+
+interface GigabitEthernet1/0/1
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/2
+
+ port access vlan 200
+
+ shutdown
+
+#
+
+interface GigabitEthernet1/0/3
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/4
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/5
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/6
+
+ port access vlan 200
+
+#
+
+
+               
+interface GigabitEthernet1/0/7
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/8
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/9
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/10
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/11
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/12
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/13
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/14
+
+ port access vlan 200
+
+
+               
+#
+
+interface GigabitEthernet1/0/15
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/16
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/17
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/18
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/19
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/20
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/21
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/22
+
+
+               
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/23
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/24
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/25
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/26
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/27
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/28
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/29
+
+ port access vlan 200
+
+#
+
+
+               
+interface GigabitEthernet1/0/30
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/31
+
+ description ZhiNengHuoGui-SanJiKu
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/32
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/33
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/34
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/35
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/36
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/37
+
+
+               
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/38
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/39
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/40
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/41
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/42
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/43
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/44
+
+ port access vlan 200
+
+#
+
+
+               
+interface GigabitEthernet1/0/45
+
+ description menjin-USG
+
+ port access vlan 200
+
+#
+
+interface GigabitEthernet1/0/46
+
+ description ZaoDiaoHuiXiTong
+
+ port access vlan 901
+
+#
+
+interface GigabitEthernet1/0/47
+
+ description F2-SW
+
+ port link-type trunk
+
+ undo port trunk permit vlan 1
+
+ port trunk permit vlan 100 200 1002
+
+#
+
+interface GigabitEthernet1/0/48
+
+ description F3SW-G1/0/48
+
+ port link-type trunk
+
+ undo port trunk permit vlan 1
+
+ port trunk permit vlan 100 200 1003
+
+#
+
+interface M-GigabitEthernet0/0/0
+
+#
+
+interface Ten-GigabitEthernet1/0/49
+
+
+               
+ description FW-GE0/9
+
+ port access vlan 1001
+
+ speed 1000 
+
+ duplex full
+
+#
+
+interface Ten-GigabitEthernet1/0/50
+
+#
+
+interface Ten-GigabitEthernet1/0/51
+
+#
+
+interface Ten-GigabitEthernet1/0/52
+
+#
+
+ scheduler logfile size 16
+
+#
+
+line class aux
+
+ user-role network-admin
+
+#
+
+line class usb
+
+ user-role network-admin
+
+#
+
+line class vty
+
+ user-role network-operator
+
+#
+
+line aux 0
+
+
+               
+ authentication-mode password
+
+ user-role network-admin
+
+ set authentication password hash $h$6$3hQTSd/Kc48h8roa$Tez1K3VQLRMclet2YRUVvsmbmQOoZnJr1FsXOJR7d8EtcestOzuCfiXLfjk53caVOTCxP1c/2E7cBrA/a5vlig==
+
+#
+
+line vty 0 4
+
+ authentication-mode scheme
+
+ user-role network-operator
+
+ protocol inbound ssh
+
+ idle-timeout 8 0
+
+#
+
+line vty 5 63
+
+ user-role network-operator
+
+#
+
+ info-center loghost source Vlan-interface200
+
+ info-center loghost 10.217.7.5 facility local6
+
+ info-center loghost 10.217.193.65
+
+ info-center loghost 10.217.193.101
+
+ info-center source default loghost level warning
+
+#
+
+ snmp-agent
+
+ snmp-agent local-engineid 800063A28038ADBE88125000000001
+
+ snmp-agent community read nxepc-read
+
+ snmp-agent sys-info version all 
+
+
+               
+ snmp-agent group v3 SNMP_group authentication read-view SNMP_group
+
+ snmp-agent group v3 SNMP_group privacy acl 2000
+
+ snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname nxepc-read
+
+ snmp-agent target-host trap address udp-domain 10.217.193.65 params securityname nxepc-read
+
+ snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname nxepc-read
+
+ snmp-agent usm-user v3 SNMP_user SNMP_group cipher authentication-mode md5 $c$3$Uabd7GurhIjYCeCscD3nqEx4nEtKKAs79xRrx9yhJLQjmg== privacy-mode des56 $c$3$JC1+7sDyicav/XJGTVjJp3G7mVH3I7fHJnZXvw3ZWvMdWA==
+
+ snmp-agent trap enable arp 
+
+ snmp-agent trap enable radius 
+
+ snmp-agent trap enable stp 
+
+ snmp-agent trap enable syslog 
+
+#
+
+ ssh server enable
+
+ ssh user zwjadmin2017 service-type stelnet authentication-type password
+
+ ssh server acl 2000
+
+#
+
+ arp static 10.216.142.173 000d-484e-59d0
+
+ arp static 10.217.200.193 0000-0000-0001
+
+ arp static 10.217.200.194 0000-0000-0001
+
+ arp static 10.217.200.195 0000-0000-0001
+
+ arp static 10.217.200.196 0000-0000-0001
+
+ arp static 10.217.200.197 0000-0000-0001
+
+ arp static 10.217.200.198 0000-0000-0001
+
+ arp static 10.217.200.199 0000-0000-0001
+
+
+               
+ arp static 10.217.200.200 0000-0000-0001
+
+ arp static 10.217.200.201 0000-0000-0001
+
+ arp static 10.217.200.202 0000-0000-0001
+
+ arp static 10.217.200.203 0000-0000-0001
+
+ arp static 10.217.200.204 0000-0000-0001
+
+ arp static 10.217.200.205 0000-0000-0001
+
+ arp static 10.217.200.206 0000-0000-0001
+
+ arp static 10.217.200.207 0000-0000-0001
+
+ arp static 10.217.200.208 0000-0000-0001
+
+ arp static 10.217.200.209 0000-0000-0001
+
+ arp static 10.217.200.210 0000-0000-0001
+
+ arp static 10.217.200.211 0000-0000-0001
+
+ arp static 10.217.200.212 0000-0000-0001
+
+ arp static 10.217.200.213 0000-0000-0001
+
+ arp static 10.217.200.214 0000-0000-0001
+
+ arp static 10.217.200.215 0000-0000-0001
+
+ arp static 10.217.200.216 0000-0000-0001
+
+ arp static 10.217.200.217 0000-0000-0001
+
+ arp static 10.217.200.218 0000-0000-0001
+
+ arp static 10.217.200.219 0000-0000-0001
+
+ arp static 10.217.200.220 0000-0000-0001
+
+ arp static 10.217.200.221 0000-0000-0001
+
+ arp static 10.217.200.222 0000-0000-0001
+
+
+               
+ arp static 10.217.200.223 0000-0000-0001
+
+ arp static 10.217.200.224 0000-0000-0001
+
+ arp static 10.217.200.225 0000-0000-0001
+
+ arp static 10.217.200.226 0000-0000-0001
+
+ arp static 10.217.200.227 0000-0000-0001
+
+ arp static 10.217.200.228 0000-0000-0001
+
+ arp static 10.217.200.229 0000-0000-0001
+
+ arp static 10.217.200.230 0000-0000-0001
+
+ arp static 10.217.200.231 0000-0000-0001
+
+ arp static 10.217.200.232 0000-0000-0001
+
+ arp static 10.217.200.233 0000-0000-0001
+
+ arp static 10.217.200.234 0000-0000-0001
+
+ arp static 10.217.200.235 0000-0000-0001
+
+ arp static 10.217.200.236 0000-0000-0001
+
+ arp static 10.217.200.237 0000-0000-0001
+
+ arp static 10.217.200.238 0000-0000-0001
+
+ arp static 10.217.200.239 0000-0000-0001
+
+ arp static 10.217.200.240 0000-0000-0001
+
+ arp static 10.217.200.241 0000-0000-0001
+
+ arp static 10.217.200.242 0000-0000-0001
+
+ arp static 10.217.200.243 0000-0000-0001
+
+ arp static 10.217.200.244 0000-0000-0001
+
+ arp static 10.217.200.245 0000-0000-0001
+
+
+               
+ arp static 10.217.200.246 0000-0000-0001
+
+ arp static 10.217.200.247 0000-0000-0001
+
+ arp static 10.217.200.248 0000-0000-0001
+
+ arp static 10.217.200.249 0000-0000-0001
+
+ arp static 10.217.200.250 0000-0000-0001
+
+ arp static 10.217.200.251 0000-0000-0001
+
+ arp static 10.217.200.252 0000-0000-0001
+
+ arp static 10.217.200.253 0000-0000-0001
+
+ arp static 10.217.202.207 0000-0000-0001
+
+ arp static 10.217.207.129 047c-1666-7181
+
+ arp static 10.217.207.130 eca8-6b2b-fdb0
+
+ arp static 10.217.207.131 00e0-4d02-d0dd
+
+ arp static 10.217.207.133 00e0-4d02-d0ec
+
+ arp static 10.217.207.134 04c1-d8f6-9239
+
+ arp static 10.217.207.135 2cf0-5d11-a200
+
+ arp static 10.217.207.136 00e0-4d02-d11b
+
+ arp static 10.217.207.137 04c1-d8f6-92a4
+
+ arp static 10.217.207.138 c051-7e58-e4a7
+
+ arp static 10.217.207.139 2cf0-5d11-a1e5
+
+ arp static 10.217.207.140 2cf0-5d11-a1bd
+
+ arp static 10.217.207.141 04c1-d8f6-9249
+
+ arp static 10.217.207.142 2cf0-5d11-9356
+
+ arp static 10.217.207.143 2cf0-5d48-30c9
+
+
+               
+ arp static 10.217.207.144 2cf0-5d11-8990
+
+ arp static 10.217.207.145 00e0-4d02-d123
+
+ arp static 10.217.207.146 1c83-4193-c2ef
+
+ arp static 10.217.207.147 04c1-d8f6-9434
+
+ arp static 10.217.207.148 1078-d295-9e47
+
+ arp static 10.217.207.149 2cf0-5d11-9568
+
+ arp static 10.217.207.150 2cf0-5d11-94e1
+
+ arp static 10.217.207.151 62f5-d61e-c1d1
+
+ arp static 10.217.207.153 047c-1666-715e
+
+ arp static 10.217.207.154 2cf0-5d11-9534
+
+ arp static 10.217.207.155 1c83-4193-c3a9
+
+ arp static 10.217.207.156 00e0-4d02-a6b5
+
+ arp static 10.217.207.157 1c69-7a25-378b
+
+ arp static 10.217.207.158 6c0b-8403-8beb
+
+ arp static 10.217.207.159 2cf0-5d11-94c3
+
+ arp static 10.217.207.160 00e0-4d02-d0df
+
+ arp static 10.217.207.161 0000-0000-0004
+
+ arp static 10.217.207.162 00e0-4d02-d0ee
+
+ arp static 10.217.207.163 1c83-4193-c1e5
+
+ arp static 10.217.207.164 1860-24b1-8beb
+
+ arp static 10.217.207.165 94c6-91df-8de2
+
+ arp static 10.217.207.166 0000-0000-0004
+
+ arp static 10.217.207.167 2cf0-5d11-93a3
+
+
+               
+ arp static 10.217.207.169 5803-fbcc-4efe
+
+ arp static 10.217.207.170 0030-183a-e44c
+
+ arp static 10.217.207.171 2cf0-5d11-8fac
+
+ arp static 10.217.207.172 6c0b-8403-8bbe
+
+ arp static 10.217.207.173 0000-0000-0004
+
+ arp static 10.217.207.174 2cf0-5d11-9538
+
+ arp static 10.217.207.175 0000-0000-0004
+
+ arp static 10.217.207.176 04c1-d8f6-92b5
+
+ arp static 10.217.207.177 00e0-4d02-d129
+
+ arp static 10.217.207.178 04c1-d8f6-928d
+
+ arp static 10.217.207.179 705a-0f31-89c1
+
+ arp static 10.217.207.180 f0fa-c78c-378c
+
+ arp static 10.217.207.181 047c-1666-716d
+
+ arp static 10.217.207.182 2cf0-5d11-a27e
+
+ arp static 10.217.207.183 0000-0000-0004
+
+ arp static 10.217.207.184 2cf0-5d11-9562
+
+ arp static 10.217.207.185 04c1-d8f6-942a
+
+ arp static 10.217.207.186 00e2-690a-9519
+
+ arp static 10.217.207.187 04c1-d8f6-9255
+
+ arp static 10.217.207.188 6c4b-90b9-d8a2
+
+ arp static 10.217.207.189 2cf0-5d11-94e2
+
+ arp static 10.217.207.190 6c0b-8403-f951
+
+ arp static 10.217.207.191 0000-0000-0004
+
+
+               
+ arp static 10.217.207.192 0000-0000-0004
+
+ arp static 10.217.207.193 0000-0000-0004
+
+ arp static 10.217.207.194 04c1-d8f6-9240
+
+ arp static 10.217.207.195 00e0-4d02-d0eb
+
+ arp static 10.217.207.196 2cf0-5d11-936f
+
+ arp static 10.217.207.198 1c83-4193-c240
+
+ arp static 10.217.207.199 2cf0-5d11-85f9
+
+ arp static 10.217.207.200 4437-e662-07d2
+
+ arp static 10.217.207.201 2cf0-5d11-a1d7
+
+ arp static 10.217.207.202 f48e-389d-d71d
+
+ arp static 10.217.207.203 047c-1697-57cf
+
+ arp static 10.217.207.204 f48e-389f-200e
+
+ arp static 10.217.207.205 04c1-d8f6-9433
+
+ arp static 10.217.207.206 047c-1666-71bb
+
+ arp static 10.217.207.207 2cf0-5d11-a1c7
+
+ arp static 10.217.207.208 dc4a-3e9b-1f7a
+
+ arp static 10.217.207.209 6c4b-90f8-b134
+
+ arp static 10.217.207.210 e4f1-4c69-7189
+
+ arp static 10.217.207.211 e4f1-4c69-e839
+
+ arp static 10.217.207.214 2cf0-5d11-939a
+
+ arp static 10.217.207.215 2cf0-5d11-a222
+
+ arp static 10.217.207.216 2cf0-5d11-931c
+
+ arp static 10.217.207.217 00e0-aed9-0b72
+
+
+               
+ arp static 10.217.207.218 1c83-4193-c18d
+
+ arp static 10.217.207.219 2cf0-5d11-a1fa
+
+ arp static 10.217.207.220 6c4b-9097-b089
+
+ arp static 10.217.207.221 0000-0000-0004
+
+ arp static 10.217.207.222 047c-1666-7107
+
+ arp static 10.217.207.223 00e0-4d02-d0e9
+
+ arp static 10.217.207.224 047c-1666-70b8
+
+ arp static 10.217.207.225 f86f-b0e9-5c08
+
+ arp static 10.217.207.227 00e0-4d02-d142
+
+ arp static 10.217.207.228 00e0-4d02-d4cc
+
+ arp static 10.217.207.229 00e0-4d02-d0ed
+
+ arp static 10.217.207.230 2cf0-5dbf-96c5
+
+ arp static 10.217.207.231 047c-1666-718e
+
+ arp static 10.217.207.232 04c1-d8f6-9431
+
+ arp static 10.217.207.233 6c4b-90b9-d95f
+
+ arp static 10.217.207.234 b44b-d65d-75a8
+
+ arp static 10.217.207.235 6c4b-90b9-d5a5
+
+ arp static 10.217.207.236 d8bb-c1c5-9bf3
+
+ arp static 10.217.207.237 94c6-91df-742e
+
+ arp static 10.217.207.238 0000-0000-0004
+
+ arp static 10.217.207.239 04c1-d8f6-9238
+
+ arp static 10.217.207.240 4437-e662-087a
+
+ arp static 10.217.207.241 2cf0-5d11-9506
+
+
+               
+ arp static 10.217.207.242 1c83-4193-c3c2
+
+ arp static 10.217.207.243 6c0b-8442-8a39
+
+ arp static 10.217.207.244 1c83-4193-c57e
+
+ arp static 10.217.207.245 0000-0000-0004
+
+ arp static 10.217.207.246 6c4b-90b9-d98f
+
+ arp static 10.217.207.247 94c6-91df-8dde
+
+ arp static 10.217.207.248 e0be-0315-9748
+
+ arp static 10.217.207.250 2428-fd2b-4222
+
+ arp static 10.217.207.251 240f-9b06-dff2
+
+ arp static 10.217.207.252 2cf0-5d11-a1e8
+
+ arp static 10.217.207.253 fc4d-d431-6ba1
+
+ arp static 10.217.213.228 0050-600d-88d7
+
+#
+
+ ntp-service enable
+
+ ntp-service unicast-server 10.216.126.226 priority
+
+ ntp-service unicast-server 10.216.126.225
+
+ ntp-service unicast-peer 10.216.126.225
+
+ ntp-service unicast-peer 10.216.126.226 priority
+
+#
+
+acl basic 2000
+
+ rule 1 permit source 10.217.199.86 0
+
+ rule 2 permit source 10.217.199.66 0
+
+ rule 3 permit source 10.217.199.97 0
+
+
+               
+ rule 5 permit source 10.217.199.68 0
+
+ rule 6 permit source 10.217.199.70 0
+
+ rule 7 permit source 10.217.199.80 0
+
+ rule 8 permit source 10.217.199.103 0
+
+ rule 9 permit source 10.217.199.123 0
+
+ rule 10 permit source 10.217.194.186 0
+
+ rule 11 permit source 10.217.193.70 0
+
+ rule 12 permit source 10.217.193.65 0
+
+ rule 13 permit source 10.217.7.5 0
+
+ rule 14 permit source 10.217.193.101 0
+
+ rule 15 permit source 10.217.199.87 0
+
+ rule 100 deny
+
+#
+
+radius scheme system
+
+ user-name-format without-domain
+
+#
+
+domain system
+
+#
+
+ domain default enable system
+
+#
+
+role name level-0
+
+ description Predefined level-0 role
+
+#
+
+
+               
+role name level-1
+
+ description Predefined level-1 role
+
+#
+
+role name level-2
+
+ description Predefined level-2 role
+
+#
+
+role name level-3
+
+ description Predefined level-3 role
+
+#
+
+role name level-4
+
+ description Predefined level-4 role
+
+#
+
+role name level-5
+
+ description Predefined level-5 role
+
+#
+
+role name level-6
+
+ description Predefined level-6 role
+
+#
+
+role name level-7
+
+ description Predefined level-7 role
+
+#
+
+role name level-8
+
+ description Predefined level-8 role
+
+
+               
+#
+
+role name level-9
+
+ description Predefined level-9 role
+
+#
+
+role name level-10
+
+ description Predefined level-10 role
+
+#
+
+role name level-11
+
+ description Predefined level-11 role
+
+#
+
+role name level-12
+
+ description Predefined level-12 role
+
+#
+
+role name level-13
+
+ description Predefined level-13 role
+
+#
+
+role name level-14
+
+ description Predefined level-14 role
+
+#
+
+user-group system
+
+#
+
+local-user zwjadmin2017 class manage
+
+ password hash $h$6$asONZKlowD/Ma3ot$9F/SHLH6pgeEPs7A6YQBOZpX4cbZmm9o/+qRgoqOyQysWGbrCMqa9AKRluPrJSEdIph8JE8oCqpg+moglJ8qXg==
+
+
+               
+ service-type telnet ssh terminal
+
+ authorization-attribute user-role level-15
+
+ authorization-attribute user-role network-admin
+
+ authorization-attribute user-role network-operator
+
+ password-control aging 90
+
+ password-control login-attempt 5 exceed lock-time 1
+
+#
+
+local-user zwjadmin2018 class manage
+
+ password hash $h$6$P5xyZWo7zVN231gm$hRbBxsmR8ZX1tFLPsVokI+PsQB8A+4Zja2lKzUlDkFyU2GztZH37+5OPlUnA4b5PD1DHFV3orSrAMa2ntUb7Pw==
+
+ service-type ssh
+
+ authorization-attribute user-role level-10
+
+ authorization-attribute user-role network-operator
+
+ password-control aging 90
+
+ password-control login-attempt 5 exceed lock-time 1
+
+#
+
+local-user zwjadmin2019 class manage
+
+ password hash $h$6$wyFatKN55O+g7DKK$RrxtrfVav/qFsXd7cZtaR/HG068n+/SLgUAuISP77MdlQ6j3+iWckeIb9Ga4x9z7ycMC0aCc5FLxzDHzXwmQlQ==
+
+ service-type ssh terminal
+
+ authorization-attribute user-role level-15
+
+ authorization-attribute user-role network-operator
+
+ password-control aging 90
+
+ password-control login-attempt 5 exceed lock-time 1
+
+#
+
+
+               
+local-user zwjaudit2018 class manage
+
+ password hash $h$6$9M3RsE/kq6qvsrZS$IZPw1umOctjx2SU3mT32C/2oGMKiZuSlmJ1oz4GMHLf8CCOlOKKfqGglEeyj6tvNCma1IPNCvsCLD0xuW5deGg==
+
+ access-limit 3
+
+ service-type ssh terminal
+
+ authorization-attribute session-timeout 20
+
+ authorization-attribute user-role level-3
+
+ authorization-attribute user-role network-operator
+
+#
+
+return
+
+<HaiXinggongsiF1>

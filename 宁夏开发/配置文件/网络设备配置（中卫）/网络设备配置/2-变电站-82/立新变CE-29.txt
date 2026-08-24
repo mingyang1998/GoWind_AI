@@ -1,0 +1,292 @@
+dis cu
+#
+!Software Version V100R005C01
+ sysname LiXinBianCE
+#
+ info-center loghost 10.217.193.65
+ info-center loghost 10.217.7.5 facility local6
+ info-center loghost 10.217.193.101
+#
+ vlan batch 1 100 1001
+#
+ cluster enable
+ ntdp enable
+ ntdp hop 16
+ ndp enable
+#
+ undo telnet server enable
+#
+ dhcp enable
+#
+ undo http server enable
+#
+ rsa peer-public-key 127.0.0.1
+  public-key-code begin
+     0240
+       DFF2CDEC 2905E1CE 81869C36 B8A1590B 9A1D8BCC 87D1F6B4 EF317C13 E9B766CC
+       4E7A8F1B B45D5A88 93EFDF33 CFF366F1 FD43C0BC 7B3A8765 B61EB951 C3EE2CF7
+     0203
+       010001
+  public-key-code end
+ peer-public-key end
+#
+acl number 3200
+ rule 5 deny tcp source 10.217.206.29 0 source-port eq www
+#
+traffic classifier 80 operator and
+ if-match acl 3200
+#
+traffic behavior 80
+ deny
+#
+traffic policy 80
+ classifier 80 behavior 80
+#
+vlan 1001
+ description GuanDiBianPE G3/2/7
+aaa
+ authentication-scheme default
+ authorization-scheme default
+ accounting-scheme default
+ domain default
+ domain default_admin
+ local-user admin password cipher G-C4#()^US-M-K[X6^23RQ!! state block
+ local-user admin privilege level 1
+ local-user zwjadmin2017 password cipher G-C4#()^US0:9S,EI:O]HQ!!
+ local-user zwjadmin2017 privilege level 15
+ local-user zwjadmin2017 service-type terminal ssh
+ local-user zwjadmin2018 password cipher G-C4#()^US/.Z\U,I5K9<A!!
+ local-user zwjadmin2018 privilege level 10
+ local-user zwjadmin2018 service-type ssh
+ local-user zwjadmin2019 password cipher G-C4#()^US-=XBJYK7K95A!!
+ local-user zwjadmin2019 privilege level 0
+ local-user zwjadmin2019 service-type ssh
+#
+ ntp-service unicast-server 10.216.126.226 preference
+ ntp-service unicast-server 10.216.126.225
+#
+interface Vlanif1
+#
+interface Vlanif100
+ ip address 10.217.206.30 255.255.255.240
+#
+interface Vlanif1001
+ ip address 10.216.142.78 255.255.255.252
+#
+interface Ethernet0/0/1
+ description YongDianXinXiCaiJi_206.29
+ port link-type access
+ port default vlan 100
+ traffic-policy 80 inbound
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/2
+ description BanGongDianNao_206.25-ShouDianJi_27
+ port link-type access
+ port default vlan 100
+ ntdp enable
+ ndp enable
+#
+interface Ethernet0/0/3
+ description BanGongDianNao_206.25
+ port link-type access
+ port default vlan 100
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/4
+ description luxiangji
+ port link-type access
+ port default vlan 100
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/5
+ description luxiangji
+ port link-type access
+ port default vlan 100
+ ntdp enable
+ bpdu enable
+#
+interface Ethernet0/0/6
+ description luxiangji
+ port link-type access
+ port default vlan 100
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/7
+ description luxiangji
+ port link-type access
+ port default vlan 100
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/8
+ shutdown
+ ntdp enable
+ ndp enable
+#
+interface Ethernet0/0/9
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/10
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/11
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/12
+ shutdown
+ ntdp enable
+ bpdu enable
+#
+interface Ethernet0/0/13
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/14
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/15
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/16
+ shutdown
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/17
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/18
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/19
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/20
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/21
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/22
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface Ethernet0/0/23
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface GigabitEthernet0/0/1
+ description GuanDiBianBianPE G3/2/7 2Pan_1-2Xin
+ port link-type access
+ port default vlan 1001
+ ntdp enable
+ ndp enable
+ bpdu enable
+ undo negotiation auto
+#
+interface GigabitEthernet0/0/2
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface GigabitEthernet0/0/3
+ shutdown
+ ndp enable
+ bpdu enable
+#
+interface GigabitEthernet0/0/4
+ shutdown
+ ntdp enable
+ ndp enable
+ bpdu enable
+#
+interface NULL0
+#
+ arp static 10.217.206.21 0000-0000-0508
+ arp static 10.217.206.22 0000-0000-0508
+ arp static 10.217.206.23 0000-0000-0508
+ arp static 10.217.206.24 0000-0000-0508
+ arp static 10.217.206.1 0000-0000-0001
+#
+ ip route-static 0.0.0.0 0.0.0.0 10.216.142.77
+#
+ snmp-agent
+ snmp-agent local-engineid 000007DB7F00000100007DE5
+ snmp-agent community read cipher Z@K=CQV*LF03\,Q6*L*D3<"TX$_S#6.NM(0=0\)*5WU!
+ undo snmp-agent sys-info version v3
+ snmp-agent target-host trap  address udp-domain 10.216.168.168 params securityname nxepc-read
+ snmp-agent target-host trap  address udp-domain 10.217.7.5 params securityname nxepc-read
+ snmp-agent trap enable basetrap
+ snmp-agent trap enable
+#
+ stelnet server enable
+ ssh authentication-type default password
+ ssh user zwjadmin2017
+ ssh user zwjadmin2017 authentication-type all
+ ssh user zwjadmin2017 service-type stelnet
+ ssh client first-time enable
+ ssh client 127.0.0.1 assign rsa-key 127.0.0.1
+#
+user-interface con 0
+ authentication-mode aaa
+ user privilege level 15
+ set authentication password cipher G-C4#()^US0:9S,EI:O]HQ!!
+user-interface vty 0 4
+ acl 2000 inbound
+ authentication-mode aaa
+ user privilege level 15
+ protocol inbound all
+#
+return
+<LiXinBianCE>

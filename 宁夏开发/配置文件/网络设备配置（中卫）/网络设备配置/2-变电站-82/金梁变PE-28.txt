@@ -1,0 +1,839 @@
+dis cu 
+
+#
+
+ version 7.1.064, Release 7809P20
+
+#
+
+mdc Admin id 1
+
+#
+
+ sysname JinLiangBianPE
+
+#
+
+ clock timezone BeiJing add 08:00:00
+
+#
+
+isis 1
+
+#
+
+ospf 1
+
+ import-route direct
+
+ import-route static
+
+ area 0.0.0.2
+
+  network 10.216.126.155 0.0.0.0
+
+  network 10.216.143.96 0.0.0.3
+
+  network 10.216.149.36 0.0.0.3
+
+  network 10.216.149.48 0.0.0.3
+
+#
+
+ password-recovery enable
+
+#
+
+vlan 1
+
+
+               
+#
+
+traffic classifier 20170417 operator or
+
+ if-match acl 3500
+
+#
+
+traffic classifier 20170515 operator or
+
+ if-match acl 3600
+
+#
+
+traffic classifier deny operator and
+
+ if-match acl 3300
+
+#
+
+traffic classifier permit operator and
+
+ if-match acl 3200
+
+#
+
+traffic classifier test operator or
+
+ if-match acl 3400
+
+#
+
+traffic behavior 20170417
+
+ filter deny
+
+#
+
+traffic behavior 20170515
+
+ filter deny
+
+#
+
+traffic behavior deny
+
+
+               
+ filter deny
+
+#
+
+traffic behavior permit
+
+ filter permit
+
+#
+
+traffic behavior test
+
+ filter deny
+
+#
+
+qos policy fanghu
+
+ classifier test behavior test
+
+ classifier permit behavior permit
+
+ classifier deny behavior deny
+
+ classifier 20170417 behavior 20170417
+
+ classifier 20170515 behavior 20170515
+
+#
+
+interface NULL0
+
+#
+
+interface LoopBack0
+
+ ip address 10.216.126.155 255.255.255.255
+
+#
+
+interface GigabitEthernet3/0/0
+
+ port link-mode route
+
+ combo enable copper
+
+
+               
+#
+
+interface GigabitEthernet3/0/1
+
+ port link-mode route
+
+ combo enable copper
+
+#
+
+interface GigabitEthernet3/1/0
+
+ port link-mode route
+
+ description to KaiGeBianPE-G2/0/6
+
+ ip address 10.216.149.37 255.255.255.252
+
+#
+
+interface GigabitEthernet3/1/1
+
+ port link-mode route
+
+ description ZhongWeiBianPE
+
+#
+
+interface GigabitEthernet3/1/2
+
+ port link-mode route
+
+ description to SaiShangBianCE TG1/0/50
+
+ shutdown
+
+ ip address 10.216.143.97 255.255.255.252
+
+#
+
+interface GigabitEthernet3/1/3
+
+ port link-mode route
+
+#
+
+
+               
+interface GigabitEthernet3/1/4
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/1/5
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/1/6
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/1/7
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/2/0
+
+ port link-mode route
+
+ description to JinLiangBianMCE-G0/0/0
+
+ ip address 10.216.149.49 255.255.255.252
+
+#
+
+interface GigabitEthernet3/2/1
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/2/2
+
+ port link-mode route
+
+#
+
+
+               
+interface GigabitEthernet3/2/3
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/2/4
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/2/5
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/2/6
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/2/7
+
+ port link-mode route
+
+#
+
+interface M-GigabitEthernet0/0/0
+
+#
+
+ scheduler logfile size 16
+
+#
+
+line class aux
+
+ user-role network-admin
+
+#
+
+line class vty
+
+
+               
+ user-role network-operator
+
+#
+
+line aux 0 1
+
+ authentication-mode password
+
+ user-role network-admin
+
+ set authentication password hash $h$6$7dpCLUGn46pT/UpS$3oPNptyx+w4MuDA+1r7oKi66ZFcePGUfjzQxnr4i7nvbLKVQasxqTrzseylkCzOPV/cwq+bLgyOnMs/kzY5jVQ==
+
+ idle-timeout 8 0
+
+#
+
+line vty 0 4
+
+ authentication-mode scheme
+
+ user-role level-15
+
+ protocol inbound ssh
+
+ idle-timeout 8 0
+
+#
+
+line vty 5 63
+
+ user-role network-operator
+
+#
+
+ info-center loghost 10.217.7.5 facility local6
+
+ info-center loghost 10.217.193.60
+
+ info-center loghost 10.217.193.101
+
+ info-center loghost 10.217.199.115
+
+#
+
+ snmp-agent
+
+
+               
+ snmp-agent local-engineid 800063A2803C8C405F977600000001
+
+ snmp-agent community read SG-I5968WLJ
+
+ snmp-agent community read SG-I6000WLL
+
+ snmp-agent community read nxepc-read
+
+ snmp-agent sys-info version all 
+
+ snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname nxepc-read
+
+ snmp-agent target-host trap address udp-domain 10.217.193.65 params securityname nxepc-read
+
+ snmp-agent target-host trap address udp-domain 10.217.5.197 params securityname nxepc-read
+
+ snmp-agent target-host trap address udp-domain 10.217.5.198 params securityname nxepc-read
+
+ snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname nxepc-read
+
+ snmp-agent target-host trap address udp-domain 10.217.8.145 params securityname nxepc-read
+
+ snmp-agent target-host trap address udp-domain 10.217.8.146 params securityname nxepc-read
+
+ snmp-agent target-host trap address udp-domain 10.217.8.147 params securityname nxepc-read
+
+ snmp-agent trap enable arp 
+
+ snmp-agent trap enable radius 
+
+ snmp-agent trap source LoopBack0
+
+#
+
+ ssh server enable
+
+ ssh user xxwlyw2015 service-type stelnet authentication-type password
+
+ ssh user zwjadmin2017 service-type stelnet authentication-type password
+
+ ssh server acl 2000
+
+#
+
+ ntp-service enable
+
+
+               
+ ntp-service source LoopBack0
+
+ ntp-service unicast-server 10.200.160.1
+
+ ntp-service unicast-server 10.200.160.33
+
+ ntp-service unicast-server 10.217.8.131
+
+#
+
+acl number 2000
+
+ rule 1 permit source 10.217.199.86 0
+
+ rule 2 permit source 10.217.199.66 0
+
+ rule 3 permit source 10.217.199.97 0
+
+ rule 5 permit source 10.217.199.68 0
+
+ rule 6 permit source 10.217.199.70 0
+
+ rule 7 permit source 10.217.199.80 0
+
+ rule 8 permit source 10.217.199.103 0
+
+ rule 9 permit source 10.217.199.123 0
+
+ rule 10 permit source 10.217.194.186 0
+
+ rule 11 permit source 10.217.193.70 0
+
+ rule 12 permit source 10.217.193.65 0
+
+ rule 13 permit source 10.217.193.101 0
+
+ rule 14 permit source 10.216.168.168 0
+
+ rule 15 permit source 10.217.199.87 0
+
+ rule 100 deny
+
+#
+
+acl number 3200
+
+
+               
+ rule 10 permit ip source 10.217.0.0 0.0.255.255
+
+ rule 20 permit ip source 10.216.0.0 0.0.255.255
+
+ rule 30 permit ip source 10.1.182.0 0.0.0.255
+
+ rule 40 permit ip source 10.1.102.0 0.0.0.255
+
+ rule 50 permit ip source 10.1.195.0 0.0.0.255
+
+ rule 60 permit ip source 10.1.101.0 0.0.0.255
+
+ rule 70 permit ip source 10.1.168.0 0.0.0.255
+
+ rule 80 permit ip source 10.64.15.0 0.0.0.255
+
+ rule 90 permit ip source 10.1.169.0 0.0.0.255
+
+#
+
+acl number 3300
+
+ rule 100 deny ip
+
+#
+
+acl number 3400
+
+ rule 10 permit ip source 10.216.52.247 0
+
+#
+
+acl number 3500
+
+ rule 10 deny tcp source-port eq 135
+
+ rule 20 deny tcp source-port eq 137
+
+ rule 30 deny tcp source-port eq 138
+
+ rule 40 deny tcp source-port eq 139
+
+ rule 50 deny tcp source-port eq 445
+
+ rule 60 deny tcp source-port eq 3389
+
+
+               
+ rule 70 deny udp source-port eq 135
+
+ rule 80 deny udp source-port eq netbios-ns
+
+ rule 90 deny udp source-port eq netbios-dgm
+
+ rule 100 deny udp source-port eq netbios-ssn
+
+ rule 110 deny udp source-port eq 445
+
+ rule 120 deny udp source-port eq 3389
+
+#
+
+acl number 3600
+
+ rule 10 deny tcp destination-port eq 135
+
+ rule 20 deny tcp destination-port eq 137
+
+ rule 30 deny tcp destination-port eq 138
+
+ rule 40 deny tcp destination-port eq 139
+
+ rule 50 deny tcp destination-port eq 445
+
+ rule 60 deny tcp destination-port eq 3389
+
+ rule 70 deny udp destination-port eq 135
+
+ rule 80 deny udp destination-port eq netbios-ns
+
+ rule 90 deny udp destination-port eq netbios-dgm
+
+ rule 100 deny udp destination-port eq netbios-ssn
+
+ rule 110 deny udp destination-port eq 445
+
+ rule 120 deny udp destination-port eq 3389
+
+#
+
+ password-control login-attempt 3 exceed lock-time 10
+
+#
+
+
+               
+domain system
+
+#
+
+ domain default enable system
+
+#
+
+role name level-0
+
+ description Predefined level-0 role
+
+#
+
+role name level-1
+
+ description Predefined level-1 role
+
+#
+
+role name level-2
+
+ description Predefined level-2 role
+
+#
+
+role name level-3
+
+ description Predefined level-3 role
+
+#
+
+role name level-4
+
+ description Predefined level-4 role
+
+#
+
+role name level-5
+
+ description Predefined level-5 role
+
+#
+
+role name level-6
+
+
+               
+ description Predefined level-6 role
+
+#
+
+role name level-7
+
+ description Predefined level-7 role
+
+#
+
+role name level-8
+
+ description Predefined level-8 role
+
+#
+
+role name level-9
+
+ description Predefined level-9 role
+
+#
+
+role name level-10
+
+ description Predefined level-10 role
+
+#
+
+role name level-11
+
+ description Predefined level-11 role
+
+#
+
+role name level-12
+
+ description Predefined level-12 role
+
+#
+
+role name level-13
+
+ description Predefined level-13 role
+
+#
+
+
+               
+role name level-14
+
+ description Predefined level-14 role
+
+#
+
+user-group system
+
+#
+
+local-user huawei class manage
+
+ password hash $h$6$qRRa/+pricl9QE4Z$byKWdB2eH7vx5j4e6tttfTNtOJRu04fYKh8uFMmhKGocGP7C1s8iXorafF0KmluzOOGRp14Zu2VBzEZeKPNmPA==
+
+ service-type telnet terminal
+
+ authorization-attribute user-role level-15
+
+ authorization-attribute user-role network-operator
+
+#
+
+local-user xxwlyw2015 class manage
+
+ password hash $h$6$lU5dqPaiUnFMC+P6$uJ2AGMRj63drzNirOC9CMNfiamq37/E4QsnwTalewDanGFj2M7nUHpm6neksVgWZeg7PZg6mqSZrjo/m2WUfig==
+
+ service-type ssh
+
+ authorization-attribute user-role level-6
+
+ authorization-attribute user-role network-operator
+
+#
+
+local-user zwjadmin2017 class manage
+
+ password hash $h$6$opg2h1cS/AbLfI8U$hFW4zLYjMyveIOptW2wfeI+RxQXYTDfE+8W4uQbXW8tbtFtfyEJbHs4jITlBqNVggTRxtlzaE8ccIpFK+8Q7/g==
+
+ service-type ssh
+
+ authorization-attribute user-role level-15
+
+ authorization-attribute user-role network-admin
+
+#
+
+
+               
+local-user zwjadmin2019 class manage
+
+ password hash $h$6$UiD+JLPaOEpR/ROU$lw5HG7rJ8ggfFIsdn/+D7b0Nm8Vey6YDmw+T4HSBaSWqd6qUBeE1Ogg5d/qe/oM9dhHyjlAY0EMPH1hGtTyp2g==
+
+ service-type ssh
+
+ authorization-attribute user-role 15
+
+ authorization-attribute user-role level-15
+
+ authorization-attribute user-role network-admin
+
+ authorization-attribute user-role network-operator
+
+#
+
+public-key peer 10.216.126.157
+
+ public-key-code begin
+
+   308201B63082012B06072A8648CE3804013082011E028181008278C83CE9417203997E6EFF
+
+   52CF3442844B3BEFD4DB0243AF65C10ACE207ED3A6E52B7A4F5F4FD392D2BE7FEDA6A208D4
+
+   89216B2F7FEE49F5CB47CDCF0A2085E2C65F109AFAADAE5323273DE3E4EDA7118CFF146A14
+
+   A1525B35F65E831249AC974BFF46EFF9EC543B97CC8146D45DC81652CC8B5A6ACBE6A3094F
+
+   DCD77A7193021500A80021BCA8E7844BBFDF24B06EDEF8E20A9BE6D7028180045DB9A136DB
+
+   58493C559A8B82DADF12D38CD7090D11687B3983FF3B83CFE18437B5CB3E9D977F5B4158AC
+
+   AAFED686B3EF233A10D19ED2A141CF20C203222D8D094B172043B32AB878A8D6E6B67E1987
+
+   73E6BA086789414CCF0AFC0D4B6AF16C1DDD955371A386B047A50B9EAA620E26B3B102AF14
+
+   9D2DA9C7F2ACE2E728DB5E0381840002818020D7D658C54118BF1F41737FB3A90835659F7F
+
+   4F1F4B4A4E04BABF926B23B7D78DE6F9AF888444D857BF8D5D0169B8615123FB9595A7C662
+
+   55FD4EA1AF1B0B42CA61D6138F2A9BB01D10100FD368315FFDEB85246810B0ACD112F2FEB8
+
+   262173548C0E1628D094A13EE58C9DF25DB2FA3A85C5465F267B4515961771EF94209B
+
+ public-key-code end
+
+
+               
+ peer-public-key end
+
+#
+
+public-key peer 10.216.149.50
+
+ public-key-code begin
+
+   308201B63082012B06072A8648CE3804013082011E028181008278C83CE9417203997E6EFF
+
+   52CF3442844B3BEFD4DB0243AF65C10ACE207ED3A6E52B7A4F5F4FD392D2BE7FEDA6A208D4
+
+   89216B2F7FEE49F5CB47CDCF0A2085E2C65F109AFAADAE5323273DE3E4EDA7118CFF146A14
+
+   A1525B35F65E831249AC974BFF46EFF9EC543B97CC8146D45DC81652CC8B5A6ACBE6A3094F
+
+   DCD77A7193021500A80021BCA8E7844BBFDF24B06EDEF8E20A9BE6D7028180045DB9A136DB
+
+   58493C559A8B82DADF12D38CD7090D11687B3983FF3B83CFE18437B5CB3E9D977F5B4158AC
+
+   AAFED686B3EF233A10D19ED2A141CF20C203222D8D094B172043B32AB878A8D6E6B67E1987
+
+   73E6BA086789414CCF0AFC0D4B6AF16C1DDD955371A386B047A50B9EAA620E26B3B102AF14
+
+   9D2DA9C7F2ACE2E728DB5E0381840002818020D7D658C54118BF1F41737FB3A90835659F7F
+
+   4F1F4B4A4E04BABF926B23B7D78DE6F9AF888444D857BF8D5D0169B8615123FB9595A7C662
+
+   55FD4EA1AF1B0B42CA61D6138F2A9BB01D10100FD368315FFDEB85246810B0ACD112F2FEB8
+
+   262173548C0E1628D094A13EE58C9DF25DB2FA3A85C5465F267B4515961771EF94209B
+
+ public-key-code end
+
+ peer-public-key end
+
+#
+
+public-key peer 10.217.213.110
+
+ public-key-code begin
+
+   308201B63082012B06072A8648CE3804013082011E028181008278C83CE9417203997E6EFF
+
+   52CF3442844B3BEFD4DB0243AF65C10ACE207ED3A6E52B7A4F5F4FD392D2BE7FEDA6A208D4
+
+
+               
+   89216B2F7FEE49F5CB47CDCF0A2085E2C65F109AFAADAE5323273DE3E4EDA7118CFF146A14
+
+   A1525B35F65E831249AC974BFF46EFF9EC543B97CC8146D45DC81652CC8B5A6ACBE6A3094F
+
+   DCD77A7193021500A80021BCA8E7844BBFDF24B06EDEF8E20A9BE6D7028180045DB9A136DB
+
+   58493C559A8B82DADF12D38CD7090D11687B3983FF3B83CFE18437B5CB3E9D977F5B4158AC
+
+   AAFED686B3EF233A10D19ED2A141CF20C203222D8D094B172043B32AB878A8D6E6B67E1987
+
+   73E6BA086789414CCF0AFC0D4B6AF16C1DDD955371A386B047A50B9EAA620E26B3B102AF14
+
+   9D2DA9C7F2ACE2E728DB5E0381840002818020D7D658C54118BF1F41737FB3A90835659F7F
+
+   4F1F4B4A4E04BABF926B23B7D78DE6F9AF888444D857BF8D5D0169B8615123FB9595A7C662
+
+   55FD4EA1AF1B0B42CA61D6138F2A9BB01D10100FD368315FFDEB85246810B0ACD112F2FEB8
+
+   262173548C0E1628D094A13EE58C9DF25DB2FA3A85C5465F267B4515961771EF94209B
+
+ public-key-code end
+
+ peer-public-key end
+
+#
+
+public-key peer 127.0.0.1
+
+ public-key-code begin
+
+   308201B83082012C06072A8648CE3804013082011F02818100D757262C4584C44C211F18BD
+
+   96E5F061C4F0A423F7FE6B6B85B34CEF72CE14A0D3A5222FE08CECE65BE6C265854889DC1E
+
+   DBD13EC8B274DA9F75BA26CCB987723602787E922BA84421F22C3C89CB9B06FD60FE01941D
+
+   DD77FE6B12893DA76EEBC1D128D97F0678D7722B5341C8506F358214B16A2FAC4B36895038
+
+   7811C7DA33021500C773218C737EC8EE993B4F2DED30F48EDACE915F0281810082269009E1
+
+   4EC474BAF2932E69D3B1F18517AD9594184CCDFCEAE96EC4D5EF93133E84B47093C52B20CD
+
+   35D02492B3959EC6499625BC4FA5082E22C5B374E16DD00132CE71B020217091AC717B6123
+
+   91C76C1FB2E88317C1BD8171D41ECB83E210C03CC9B32E810561C21621C73D6DAAC028F4B1
+
+
+               
+   585DA7F42519718CC9B09EEF0381850002818100A8A003252E0B97C8FF043A07C6C65C10A4
+
+   8BCCDD5EFC98E441D5E3BCF3EBFC773CD4703CD99AE2AAF929DDF640FF1E91958E9D6231B4
+
+   8F7D6D93750543E7552F06F4D86DADDF46FC3342ED2B4E27180922E091A91C7FE4B44AA4A4
+
+   F65C4CD5C0EBE90345757A3D4F0E0452732FCFFF3B37196910F166312B49D5FDEF8E34A9F6
+
+ public-key-code end
+
+ peer-public-key end
+
+#
+
+ http method delete
+
+#
+
+return
+
+<JinLiangBianPE>

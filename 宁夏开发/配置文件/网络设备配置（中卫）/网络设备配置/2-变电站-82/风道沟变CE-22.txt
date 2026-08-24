@@ -1,0 +1,313 @@
+enable
+FengDaoGouMCE#show running-config
+Building configuration...
+
+
+Current configuration:
+!
+!version 2.2.0C build 75388
+service timestamps log date
+service timestamps debug date
+service password-encryption
+logging 10.217.193.101
+logging 10.217.193.65
+logging 10.217.7.5
+!
+hostname FengDaoGouMCE
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode rstp
+!
+!
+!
+!
+!
+!
+ permit  10.217.199.86 255.255.255.255
+ permit  10.217.199.66 255.255.255.255
+ permit  10.217.199.97 255.255.255.255
+ permit  10.217.199.68 255.255.255.255
+ permit  10.217.199.70 255.255.255.255
+ permit  10.217.199.80 255.255.255.255
+ permit  10.217.199.103 255.255.255.255
+ permit  10.217.199.123 255.255.255.255
+ permit  10.217.194.186 255.255.255.255
+ permit  10.217.7.5 255.255.255.255
+ permit  10.217.193.65 255.255.255.255
+ permit  192.168.0.11 255.255.255.255
+ permit  10.217.199.87 255.255.255.255
+!
+ip access-list extended jiankongpermit
+ permit ip 0.0.0.0 0.0.0.0 10.217.197.167 255.255.255.255
+ permit ip 0.0.0.0 0.0.0.0 10.217.197.168 255.255.255.255
+ permit ip 10.217.193.75 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.193.78 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.248.11 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.248.12 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.248.13 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.248.15 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.248.16 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.5.11 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.5.12 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.5.14 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.5.19 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.5.101 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.197.172 255.255.255.255 0.0.0.0 0.0.0.0
+ deny   ip any any
+!
+!
+!
+!
+!
+!
+!
+!
+aaa authentication login acl2000 local
+aaa authentication login default local
+aaa authentication enable default none
+aaa authorization exec default local
+!
+ exec privilege default 14
+!
+localauthor wangguan2019
+ exec privilege default 13
+!
+username admin password 7 0626341E150456483121256C120B
+username zwjadmin2017 password 7 0626341E150456483121256C120B
+username zwjadmin2018 password 7 0626341E150456483121216A120C author-group wangg
+uan2018
+username zwjadmin2019 password 7 0626341E150456483121216A120D author-group wangg
+uan2019
+!
+!
+!
+!
+!
+!
+interface Null0
+!
+interface Loopback0
+ ip address 10.216.127.145 255.255.255.255
+ no ip directed-broadcast
+interface GigaEthernet0/1
+ switchport pvid 100
+!
+interface GigaEthernet0/2
+ switchport pvid 100
+!
+interface GigaEthernet0/3
+ switchport pvid 100
+!
+interface GigaEthernet0/4
+ switchport pvid 100
+!
+interface GigaEthernet0/5
+ switchport pvid 100
+!
+interface GigaEthernet0/6
+ switchport pvid 100
+!
+interface GigaEthernet0/7
+ switchport pvid 100
+!
+interface GigaEthernet0/8
+!
+interface GigaEthernet0/9
+ description TongYiShiPing-NVR-197.163
+ switchport pvid 100
+!
+interface GigaEthernet0/10
+ switchport pvid 100
+!
+interface GigaEthernet0/11
+ switchport pvid 100
+!
+interface GigaEthernet0/12
+ switchport pvid 100
+!
+interface GigaEthernet0/13
+ switchport pvid 100
+!
+interface GigaEthernet0/14
+ switchport pvid 100
+!
+interface GigaEthernet0/15
+ switchport pvid 100
+interface GigaEthernet0/16
+ switchport pvid 100
+!
+interface GigaEthernet0/17
+ switchport pvid 100
+!
+interface GigaEthernet0/18
+ switchport pvid 100
+!
+interface GigaEthernet0/19
+ switchport pvid 100
+!
+interface GigaEthernet0/20
+ switchport pvid 100
+!
+interface GigaEthernet0/21
+!
+interface GigaEthernet0/22
+!
+interface GigaEthernet0/23
+!
+interface GigaEthernet0/24
+interface GigaEthernet0/25
+!
+interface GigaEthernet0/26
+!
+interface GigaEthernet0/27
+!
+interface GigaEthernet0/28
+!
+interface GigaEthernet0/29
+!
+interface GigaEthernet0/30
+!
+interface GigaEthernet0/31
+!
+interface GigaEthernet0/32
+!
+interface GigaEthernet0/33
+!
+interface GigaEthernet0/34
+!
+interface GigaEthernet0/35
+!
+!
+interface GigaEthernet0/37
+!
+interface GigaEthernet0/38
+!
+interface GigaEthernet0/39
+!
+interface GigaEthernet0/40
+!
+interface GigaEthernet0/41
+!
+interface GigaEthernet0/42
+!
+interface GigaEthernet0/43
+!
+interface GigaEthernet0/44
+!
+interface GigaEthernet0/45
+!
+interface GigaEthernet0/46
+!
+!
+interface GigaEthernet0/48
+!
+interface TGigaEthernet1/1
+!
+interface TGigaEthernet1/2
+!
+interface TGigaEthernet1/3
+!
+interface TGigaEthernet1/4
+!
+interface TGigaEthernet1/5
+!
+interface TGigaEthernet1/6
+!
+interface TGigaEthernet1/7
+ description NingAnBianPE G1/1/4.1005
+ switchport pvid 1005
+!
+interface TGigaEthernet1/8
+ description YanHuaBianPE G
+ switchport pvid 1001
+interface VLAN1
+ ip address 192.168.0.1 255.255.0.0
+ no ip directed-broadcast
+!
+interface VLAN100
+ description fengdaogoubian
+ ip address 10.217.197.174 255.255.255.240
+ no ip directed-broadcast
+!
+interface VLAN1001
+ description YanHuaBianPE G
+ ip address 10.216.132.37 255.255.255.252
+ no ip directed-broadcast
+!
+interface VLAN1005
+ description NingAnBianPE G1/1/4.1005
+ ip address 10.216.132.114 255.255.255.252
+ no ip directed-broadcast
+!
+!
+!
+vlan 100
+!
+vlan 1001
+ name YanHuaBianPE
+!
+vlan 1005
+ name toNingAnBianPE
+!
+vlan 1,100,1001,1005
+!
+!
+arp 10.217.197.162 00:00:00:00:00:01 VLAN100
+arp 10.217.197.169 00:00:00:00:00:01 VLAN100
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+router ospf 1
+ network 10.216.127.145 255.255.255.255 area 2
+ network 10.216.132.112 255.255.255.252 area 2
+ network 10.217.197.160 255.255.255.240 area 2
+ network 10.216.132.36 255.255.255.252 area 2
+!
+!
+!
+!
+ip exf
+!
+ipv6 exf
+!
+!
+!
+!
+!
+ip telnet attack-defense
+!
+!
+!
+!
+snmp-server host 10.217.7.5 nxepc-read snmp
+snmp-server host 10.216.168.168 nxepc-read 
+!
+privilege exec 14 show running-config 
+!
+!
+ip sshd auth-method acl2000
+ip sshd access-class acl2000
+ip sshd enable
+no ip sshd disable-aes
+!
+time-zone beijing 8 0
+ntp server 10.216.126.226
+ntp server 10.216.126.225
+!
+!
+!Pending configurations for absent linecards:
+!
+!No configurations pending global
+FengDaoGouMCE#

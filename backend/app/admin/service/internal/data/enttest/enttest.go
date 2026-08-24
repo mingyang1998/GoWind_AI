@@ -1,0 +1,64 @@
+// Package enttest 提供 repo 层集成测试的辅助设施。
+//
+// 核心能力：用 SQLite 内存库（modernc.org/sqlite，纯 Go 无 CGO）+ ent 生成的
+// schema 构造可做真实 CRUD 的 ent client，让 repo 层测试无需 MySQL/PG 或
+// testcontainers 即可跑数据库交互。
+//
+// 用法：
+//
+//	func TestFooRepo(t *testing.T) {
+//	    entClient := enttest.NewEntClientForTest(t)
+//	    repo := NewFooRepo(testCtx(), entClient) // 复用生产构造函数
+//	    ctx := enttest.NewSystemViewerCtx(context.Background())
+//	    // ... 对 repo 做 CRUD 断言 ...
+//	}
+//
+// 安全说明：
+//   - 每个 entClient 独占一个 SQLite 内存库，测试间互不干扰；
+//     t.Cleanup 负责关闭，无需手动清理。
+//   - NewSystemViewerCtx 注入平台级 SystemViewer（tenant_id=0），
+//     与生产中系统后台任务的身份一致，满足 ent mixin 的多租户隐私规则。
+package enttest
+
+import (
+	"context"
+	"database/sql"
+	"testing"
+
+	"entgo.io/ent/dialect"
+	"github.com/stretchr/testify/require"
+
+	_ "modernc.org/sqlite" // 纯 Go SQLite（注册名 "sqlite"），无需 CGO
+
+	entsql "entgo.io/ent/dialect/sql"
+	entCrud "github.com/tx7do/go-crud/entgo"
+
+	"go-wind-admin/app/admin/service/internal/data/ent"
+	appViewer "go-wind-admin/pkg/entgo/viewer"
+)
+
+// NewEntClientForTest 构造一个基于 SQLite 内存库的 entCrud.EntClient，
+// 供 repo 层集成测试使用。每个调用独占一个内存库，通过 t.Cleanup 自动关闭。
+func NewEntClientForTest(t *testing.T) *entCrud.EntClient[*ent.Client] {
+	t.Helper()
+	// modernc.org/sqlite 以 "sqlite" 名注册到 database/sql
+	// URI 形式打开内存库，_pragma=foreign_keys(1) 开启外键（ent 要求）
+	db, err := sql.Open("sqlite", "file::memory:?cache=shared&_pragma=foreign_keys(1)")
+	require.NoError(t, err)
+	t.Cleanup(func() { db.Close() })
+
+	drv := entsql.OpenDB(dialect.SQLite, db)
+	t.Cleanup(func() { drv.Close() })
+
+	client := ent.NewClient(ent.Driver(drv))
+	t.Cleanup(func() { client.Close() })
+	require.NoError(t, client.Schema.Create(context.Background()), "SQLite schema 迁移失败")
+
+	return entCrud.NewEntClient[*ent.Client](client, drv)
+}
+
+// NewSystemViewerCtx 返回注入了平台级 SystemViewer 的 context，
+// 满足 ent mixin 多租户隐私规则对 ViewerContext 的强制要求。
+func NewSystemViewerCtx(ctx context.Context) context.Context {
+	return appViewer.NewSystemViewerContext(ctx)
+}

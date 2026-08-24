@@ -1,0 +1,1198 @@
+dis cu 
+#
+ version 5.20, Release 6616P05
+#
+ sysname ShaPoTouGongSiMCE
+#
+ clock timezone bj add 08:00:00
+#
+ undo password-control history enable
+ password-control login-attempt 5 exceed lock-time 1
+#
+ domain default enable system
+#
+ router id 10.216.127.80
+#
+ ipv6
+#
+ undo ip http enable
+#
+switch-mode standard
+switch-mode normal slot 3
+switch-mode normal slot 4
+#
+acl number 2000
+ rule 10 permit source 10.217.199.87 0
+ rule 11 permit source 10.217.199.97 0
+ rule 12 permit source 10.217.199.86 0
+ rule 13 permit source 10.217.199.66 0
+ rule 14 permit source 10.217.199.70 0
+ rule 15 permit source 10.217.199.68 0
+ rule 16 permit source 10.217.199.80 0
+ rule 17 permit source 10.217.199.123 0
+ rule 18 permit source 10.217.199.103 0
+ rule 19 permit source 10.217.193.65 0
+ rule 20 permit source 10.217.7.5 0
+#
+acl number 3001
+#
+vlan 1
+#
+vlan 499
+ description LouCengGuanLi
+#
+vlan 600
+ description YingYeTing-GuangDianZhuanHuan
+#
+ description TianYuanGongSi
+#
+vlan 811
+ description ShaPOTouJu-xinxineiwang
+#
+vlan 888
+ description manager-vlan
+#
+vlan 911
+ description ShaJuF6F7
+#
+vlan 1002
+ description YingShuiQiaoBianPE G3/1/5
+#
+vlan 1003
+ description NanJieYingYeTingCE
+#
+vlan 1006
+ description to ZhongWeiJuPE-MCE
+#
+vlan 1007
+ description To JiliangKuFang
+vlan 1008
+ description to USG
+#
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+#
+ public-key peer 192.168.100.8
+  public-key-code begin
+   308201B83082012C06072A8648CE3804013082011F02818100D757262C4584C44C211F18BD
+   96E5F061C4F0A423F7FE6B6B85B34CEF72CE14A0D3A5222FE08CECE65BE6C265854889DC1E
+   DBD13EC8B274DA9F75BA26CCB987723602787E922BA84421F22C3C89CB9B06FD60FE01941D
+   DD77FE6B12893DA76EEBC1D128D97F0678D7722B5341C8506F358214B16A2FAC4B36895038
+   7811C7DA33021500C773218C737EC8EE993B4F2DED30F48EDACE915F0281810082269009E1
+   4EC474BAF2932E69D3B1F18517AD9594184CCDFCEAE96EC4D5EF93133E84B47093C52B20CD
+   35D02492B3959EC6499625BC4FA5082E22C5B374E16DD00132CE71B020217091AC717B6123
+   91C76C1FB2E88317C1BD8171D41ECB83E210C03CC9B32E810561C21621C73D6DAAC028F4B1
+   585DA7F42519718CC9B09EEF0381850002818100C1263313D5DAE6329A4AAE6AC5E758C48E
+   307ABA37B6DBE018330C8B5245F43C6C09CE907B13B0DBE22BE791302936AFA6968746496F
+   7E3EDA497C6A82B2E55EBDBAD3418EC1DC351F0AF0F90F6519522258ED4C5D2283930E40FA
+  public-key-code end
+ peer-public-key end
+#
+ public-key peer 192.168.100.14
+  public-key-code begin
+   308201B73082012C06072A8648CE3804013082011F02818100D757262C4584C44C211F18BD
+   96E5F061C4F0A423F7FE6B6B85B34CEF72CE14A0D3A5222FE08CECE65BE6C265854889DC1E
+   DBD13EC8B274DA9F75BA26CCB987723602787E922BA84421F22C3C89CB9B06FD60FE01941D
+   DD77FE6B12893DA76EEBC1D128D97F0678D7722B5341C8506F358214B16A2FAC4B36895038
+   7811C7DA33021500C773218C737EC8EE993B4F2DED30F48EDACE915F0281810082269009E1
+   4EC474BAF2932E69D3B1F18517AD9594184CCDFCEAE96EC4D5EF93133E84B47093C52B20CD
+   35D02492B3959EC6499625BC4FA5082E22C5B374E16DD00132CE71B020217091AC717B6123
+   91C76C1FB2E88317C1BD8171D41ECB83E210C03CC9B32E810561C21621C73D6DAAC028F4B1
+   585DA7F42519718CC9B09EEF038184000281807CCBF28B91005C6424F070AE6F396AEF5465
+   8410A3FFA67DE16A833ACDD0FAAE5EF062CAA083FA7F6A9CBD09B6280F717A78D5EC1228E8
+   B47870F82E4A32D443300C79FF9CD87C64983191C0549BBFE7CAC384E6280DD5B9485DCA91
+   1CA99F24835D953CFF95670870E4BCF974C6684C556B9BDE1EC899EFF761D1C30F248F18
+  public-key-code end
+ peer-public-key end
+#
+ public-key peer 10.217.196.30
+  public-key-code begin
+   96E5F061C4F0A423F7FE6B6B85B34CEF72CE14A0D3A5222FE08CECE65BE6C265854889DC1E
+   DBD13EC8B274DA9F75BA26CCB987723602787E922BA84421F22C3C89CB9B06FD60FE01941D
+   DD77FE6B12893DA76EEBC1D128D97F0678D7722B5341C8506F358214B16A2FAC4B36895038
+   7811C7DA33021500C773218C737EC8EE993B4F2DED30F48EDACE915F0281810082269009E1
+   4EC474BAF2932E69D3B1F18517AD9594184CCDFCEAE96EC4D5EF93133E84B47093C52B20CD
+   35D02492B3959EC6499625BC4FA5082E22C5B374E16DD00132CE71B020217091AC717B6123
+   91C76C1FB2E88317C1BD8171D41ECB83E210C03CC9B32E810561C21621C73D6DAAC028F4B1
+   585DA7F42519718CC9B09EEF0381850002818100BEF297EDDA509054F76C851C5137E1E99F
+   13574555E85B2E9073B33A82751FEF523C224DE8D320067F0063BADD1639206158E1A0AA55
+   031A475884757CA9D4A7E1AB5259FB2131066BB3B40276169085C112A15E0F5A4990E3C493
+   798C6CDD42E01F874B4D64823993D0917B4FE24F2042D19D8F212E6B6E0FF5CF154CC25BC3
+  public-key-code end
+ peer-public-key end
+#
+user-group system
+#
+local-user zwjadmin2017
+ password simple ZWGDJwxb@6217
+ authorization-attribute level 3
+ service-type ssh
+ password-control aging 90
+local-user zwjadmin2018
+ authorization-attribute level 2
+ service-type ssh
+ password-control aging 90
+local-user zwjadmin2019
+ password cipher G-C4#()^US-=XBJYK7K95A!!
+ authorization-attribute idle-cut 20
+ service-type ssh
+ password-control aging 90
+#
+interface Bridge-Aggregation1
+#
+interface NULL0
+#
+interface LoopBack0
+ ipv6 address 2405:6F00:2054:1000::6/128
+ ospfv3 1 area 0.0.0.2
+ ip address 10.216.127.80 255.255.255.255
+#
+interface Vlan-interface499
+ description LouCengGuanLi
+ ip address 192.168.100.1 255.255.255.240
+#
+ description yingyeting
+ ip address 10.217.206.94 255.255.255.224
+ ip address 10.217.206.126 255.255.255.224 sub
+#
+interface Vlan-interface711
+ description TianYuanGongSiNeiWang
+ ip address 10.217.196.30 255.255.255.240
+ ip address 10.217.205.254 255.255.255.224 sub
+#
+interface Vlan-interface811
+ description ShaPoTouJu-xinxineiwang
+ ip address 10.217.212.126 255.255.255.128
+ ip address 10.217.207.94 255.255.255.224 sub
+ ip address 10.217.21.126 255.255.255.128 sub
+#
+interface Vlan-interface888
+ description manager-vlan
+ ip address 10.217.79.46 255.255.255.240
+#
+interface Vlan-interface911
+ description ShaJuF6F7
+ ip address 10.217.212.254 255.255.255.128
+interface Vlan-interface1002
+ description to-ShaJuPE
+ ip address 10.216.132.97 255.255.255.252
+ ospf cost 5
+#
+interface Vlan-interface1003
+ description NanJieYingYeTingCE
+ ip address 10.216.142.1 255.255.255.252
+#
+interface Vlan-interface1006
+ description to ZhongWeiJuPE-MCE G2/0/2
+ ip address 10.216.132.34 255.255.255.252
+#
+interface Vlan-interface1007
+ description To JiliangKuFang
+ ip address 10.216.142.121 255.255.255.252
+#
+interface Vlan-interface1008
+ description to USG
+ ipv6 address 2405:6F00:2054:1000:8000::E/126
+ ospfv3 1 area 0.0.0.2
+ ip address 10.216.143.142 255.255.255.252
+ ospf mtu-enable
+#
+interface GigabitEthernet3/0/1
+ port link-mode bridge
+ description to ZhongWeiJuPE-MCE
+ port access vlan 1006
+ shutdown
+#
+interface GigabitEthernet3/0/2
+ port link-mode bridge
+ description NanJieYingYeTingCE G1/0/49
+ port access vlan 1003
+#
+interface GigabitEthernet3/0/3
+ port link-mode bridge
+ description toShuJuPEg3/3/6
+ port access vlan 1002
+#
+interface GigabitEthernet3/0/4
+ port link-mode bridge
+ description To JiLiangKuFang
+ port access vlan 1007
+interface GigabitEthernet3/0/5
+ port link-mode bridge
+ description linkto-TieLuGuangChang
+ port link-type trunk
+ port trunk permit vlan 1 711 888 999
+#
+interface GigabitEthernet3/0/6
+ port link-mode bridge
+ description TianYuanSheJiGongSiCE
+ port link-type trunk
+ port trunk permit vlan 1 499 600
+#
+interface GigabitEthernet3/0/7
+ port link-mode bridge
+ description F9-hub
+ port access vlan 811
+#
+interface GigabitEthernet3/0/8
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/9
+ port link-mode bridge
+ port access vlan 1008
+#
+interface GigabitEthernet3/0/10
+ port link-mode bridge
+ description to ShaJu-USG
+ shutdown
+#
+interface GigabitEthernet3/0/11
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/12
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/13
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/14
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/15
+ port link-mode bridge
+#
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/17
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/18
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/19
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/20
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/21
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/22
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/23
+ port link-mode bridge
+interface GigabitEthernet3/0/24
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/25
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/26
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/27
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/28
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/29
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/30
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/31
+#
+interface GigabitEthernet3/0/32
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/33
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/34
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/35
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/36
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/37
+ port link-mode bridge
+ description LouCengF1
+ port link-type trunk
+ port trunk permit vlan 1 499 711 811 888 911
+#
+ port link-mode bridge
+ description LouCengF2
+ port link-type trunk
+ port trunk permit vlan 1 499 711 811 888
+#
+interface GigabitEthernet3/0/39
+ port link-mode bridge
+ description LouCengF3
+ port link-type trunk
+ port trunk permit vlan 1 499 711 811 888
+#
+interface GigabitEthernet3/0/40
+ port link-mode bridge
+ description LouCeng F4
+ port link-type trunk
+ port trunk permit vlan 1 499 711 811 888
+#
+interface GigabitEthernet3/0/41
+ port link-mode bridge
+ description LouCeng F5
+ port link-type trunk
+ port trunk permit vlan 1 499 711 811 888 911
+interface GigabitEthernet3/0/42
+ port link-mode bridge
+ description louCeng F6
+ port link-type trunk
+ undo port trunk permit vlan 1
+ port trunk permit vlan 499 711 811 888 911
+#
+interface GigabitEthernet3/0/43
+ port link-mode bridge
+ description LouCeng F7
+ port link-type trunk
+ undo port trunk permit vlan 1
+ port trunk permit vlan 499 888 911
+#
+interface GigabitEthernet3/0/44
+ port link-mode bridge
+ description LouCeng F8
+ port link-type trunk
+ port trunk permit vlan 1 499 711 811 888
+#
+interface GigabitEthernet3/0/45
+ port link-mode bridge
+ port access vlan 911
+#
+interface GigabitEthernet3/0/46
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/47
+ port link-mode bridge
+#
+interface GigabitEthernet3/0/48
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/1
+ port link-mode bridge
+ description to ZhongWeiJuPE-MCE
+ port access vlan 1006
+#
+interface GigabitEthernet4/0/2
+ port link-mode bridge
+ description NanJieYingYeTingCE G1/0/49
+ port access vlan 1003
+#
+interface GigabitEthernet4/0/3
+ description YingShuiQiao-PE G3/1/5
+ port access vlan 1002
+#
+interface GigabitEthernet4/0/4
+ port link-mode bridge
+ description To JiLiangKuFang
+ port link-type trunk
+ undo port trunk permit vlan 1
+ port trunk permit vlan 811
+#
+interface GigabitEthernet4/0/5
+ port link-mode bridge
+ description linkto-TieLuGuangChang
+ port link-type trunk
+ port trunk permit vlan 1 711 888 999
+#
+interface GigabitEthernet4/0/6
+ port link-mode bridge
+ description to-XiJieYingYeTingF2-206JiFang
+ port link-type trunk
+ port trunk permit vlan 1 499 600 888
+#
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/8
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/9
+ port link-mode bridge
+ description to ShaJu-USG
+ port link-aggregation group 1
+#
+interface GigabitEthernet4/0/10
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/11
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/12
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/13
+ port link-mode bridge
+#
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/15
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/16
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/17
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/18
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/19
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/20
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/21
+ port link-mode bridge
+interface GigabitEthernet4/0/22
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/23
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/24
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/25
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/26
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/27
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/28
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/29
+#
+interface GigabitEthernet4/0/30
+ port link-mode bridge
+ description zhihuishitang
+#
+interface GigabitEthernet4/0/31
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/32
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/33
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/34
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/35
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/36
+ port link-mode bridge
+interface GigabitEthernet4/0/37
+ port link-mode bridge
+ description LouCeng F1
+ port link-type trunk
+ port trunk permit vlan 1 499 711 811 888 911
+#
+interface GigabitEthernet4/0/38
+ port link-mode bridge
+ description LouCeng F2
+ port link-type trunk
+ port trunk permit vlan 1 499 711 811 888 911
+#
+interface GigabitEthernet4/0/39
+ port link-mode bridge
+ description LouCeng F3
+ port link-type trunk
+ port trunk permit vlan 1 499 711 811 888
+#
+interface GigabitEthernet4/0/40
+ port link-mode bridge
+ description LouCeng F4
+ port link-type trunk
+#
+interface GigabitEthernet4/0/41
+ port link-mode bridge
+ description LouCeng F5
+ port link-type trunk
+ port trunk permit vlan 1 499 711 811 888
+#
+interface GigabitEthernet4/0/42
+ port link-mode bridge
+ description LouCeng F6
+ port link-type trunk
+ undo port trunk permit vlan 1
+ port trunk permit vlan 499 811 888 911
+#
+interface GigabitEthernet4/0/43
+ port link-mode bridge
+ description LouCeng F7
+ port link-type trunk
+ port trunk permit vlan 1 499 711 811 888
+#
+interface GigabitEthernet4/0/44
+ port link-mode bridge
+ port link-type trunk
+ port trunk permit vlan 1 499 711 811 888 911
+#
+interface GigabitEthernet4/0/45
+ port link-mode bridge
+ description zhihuishitang back
+ port access vlan 911
+#
+interface GigabitEthernet4/0/46
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/47
+ port link-mode bridge
+#
+interface GigabitEthernet4/0/48
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/1
+ port link-mode bridge
+ port access vlan 600
+#
+interface GigabitEthernet7/0/2
+ port access vlan 600
+#
+interface GigabitEthernet7/0/3
+ port link-mode bridge
+ port access vlan 600
+#
+interface GigabitEthernet7/0/4
+ port link-mode bridge
+ port access vlan 600
+#
+interface GigabitEthernet7/0/5
+ port link-mode bridge
+ description meijinSERVER
+ port access vlan 811
+#
+interface GigabitEthernet7/0/6
+ port link-mode bridge
+ description MEIJINserver2
+ port access vlan 911
+#
+interface GigabitEthernet7/0/7
+ port link-mode bridge
+ port access vlan 911
+#
+interface GigabitEthernet7/0/8
+ port link-mode bridge
+ description to-ShiYanDaTing-shiyanServer-212.249
+ port access vlan 911
+#
+interface GigabitEthernet7/0/9
+ port link-mode bridge
+ port access vlan 911
+#
+interface GigabitEthernet7/0/10
+ port link-mode bridge
+ port access vlan 911
+#
+interface GigabitEthernet7/0/11
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/12
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/13
+#
+interface GigabitEthernet7/0/14
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/15
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/16
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/17
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/18
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/19
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/20
+ port link-mode bridge
+#
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/22
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/23
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/24
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/25
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/26
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/27
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/28
+ port link-mode bridge
+interface GigabitEthernet7/0/29
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/30
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/31
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/32
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/33
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/34
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/35
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/36
+#
+interface GigabitEthernet7/0/37
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/38
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/39
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/40
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/41
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/42
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/43
+ port link-mode bridge
+#
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/45
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/46
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/47
+ port link-mode bridge
+#
+interface GigabitEthernet7/0/48
+ port link-mode bridge
+#
+interface M-Ethernet0/0/0
+#
+ospf 1
+ import-route static
+ area 0.0.0.2
+  network 10.216.127.80 0.0.0.0
+  network 10.216.132.32 0.0.0.3
+  network 10.217.201.0 0.0.0.63
+  network 10.217.206.64 0.0.0.31
+  network 10.217.206.96 0.0.0.31
+  network 10.217.196.16 0.0.0.15
+  network 10.216.142.0 0.0.0.3
+  network 10.216.142.120 0.0.0.3
+  network 10.217.205.224 0.0.0.31
+  network 10.216.143.88 0.0.0.3
+  network 10.217.212.0 0.0.0.127
+  network 10.217.212.128 0.0.0.127
+  network 10.216.132.96 0.0.0.3
+  network 10.217.79.32 0.0.0.15
+  network 10.217.207.64 0.0.0.31
+  network 10.216.143.142 0.0.0.0
+  network 10.217.21.0 0.0.0.127
+#
+ospfv3 1
+ router-id 10.216.127.80
+ area 0.0.0.2
+#
+ ip route-static 10.217.200.24 255.255.255.248 10.216.142.122
+#
+ info-center source default channel 2 log level warnings
+ info-center loghost 10.217.7.5 facility local6
+ info-center loghost 10.217.193.65
+ info-center loghost 10.217.193.101
+ info-center loghost 10.217.199.115
+#
+ snmp-agent
+ snmp-agent local-engineid 800063A203000FE27BB545
+ snmp-agent community read nxepc-read
+ snmp-agent community write nxepc-write
+ snmp-agent sys-info version v2c v3
+ snmp-agent target-host trap address udp-domain 10.216.2.248 params securityname nx
+ snmp-agent target-host trap address udp-domain 10.216.2.95 params securityname nx
+ snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.193.65 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.5.197 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.5.198 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.5.67 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.8.145 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.8.146 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.8.147 params securityname nxepc-read
+ snmp-agent trap enable default-route
+#
+ ntp-service source-interface LoopBack0
+ ntp-service unicast-server 10.216.126.226 priority
+ ntp-service unicast-server 10.216.126.225
+#
+ ssh server enable
+ ssh user zwjadmin2017 service-type stelnet authentication-type password
+ ssh client authentication server 192.168.100.8 assign publickey 192.168.100.8
+ ssh client authentication server 192.168.100.14 assign publickey 192.168.100.14
+ ssh client authentication server 10.217.196.30 assign publickey 10.217.196.30
+#
+ arp static 10.217.206.79 4487-fcdf-392b
+ arp static 10.217.216.71 00f1-f325-1bc0
+ arp static 10.217.206.93 00e0-4ca0-bd3e
+ arp static 10.217.206.78 e069-9562-f705
+ arp static 10.217.206.90 0000-0000-0001
+ arp static 10.217.206.123 68ed-a413-811c
+ arp static 10.217.206.81 0000-0000-0001
+ arp static 10.217.206.91 1078-d2ac-314f
+ arp static 10.217.206.77 507b-9d5d-5ad2
+ arp static 10.217.206.92 00e0-aed1-5b82
+ arp static 10.217.206.85 c42f-9084-1909
+ arp static 10.217.212.4 0000-0000-0001
+ arp static 10.217.79.44 ccbb-fe24-9784
+ arp static 10.217.212.118 1860-24b1-8c10
+ arp static 10.217.212.172 1078-d2c0-5151
+ arp static 10.217.206.65 4ccc-6aea-a372
+ arp static 10.217.196.20 0000-0000-0001
+ arp static 10.217.196.24 0000-0000-0001
+ arp static 10.217.212.111 4437-e661-fd9b
+ arp static 10.217.212.191 1078-d295-336b
+ arp static 10.217.205.174 0000-0000-0001
+ arp static 10.217.207.91 0000-0000-0001
+ arp static 10.217.205.240 0000-0000-0001
+ arp static 10.217.216.104 0000-0000-0001
+ arp static 10.217.207.73 6c44-2a2a-6c95
+ arp static 10.217.206.112 0000-0000-0001
+ arp static 10.217.212.87 0000-0000-0001
+ arp static 10.217.212.86 0000-0000-0001
+ arp static 10.217.212.35 0000-0000-0001
+ arp static 10.217.212.16 0000-0000-0001
+ arp static 10.217.212.93 0000-0000-0001
+ arp static 10.217.212.54 0000-0000-0001
+ arp static 10.217.206.113 0000-0000-0001
+ arp static 10.217.212.180 7abd-bcf8-e68d
+ arp static 10.217.212.181 ba5d-6f11-4576
+ arp static 10.217.196.28 0000-0000-0001
+ arp static 10.217.212.190 0000-0000-0001
+ arp static 10.217.213.161 0000-0000-0001
+ arp static 10.217.213.162 0000-0000-0001
+ arp static 10.217.212.220 0000-0000-0001
+ arp static 10.217.212.213 0000-0000-0001
+ arp static 10.217.212.27 047c-1666-7c39
+ arp static 10.217.212.56 6c4b-90b9-d9c5
+ arp static 10.217.212.95 0000-0000-0001
+ arp static 10.217.206.111 0000-0000-0001
+ arp static 10.217.206.114 0000-0000-0001
+ arp static 10.217.79.42 688f-8405-1a00
+ arp static 10.217.206.97 4ccc-6aed-646a
+ arp static 10.217.207.72 0000-0000-0001
+ arp static 10.217.212.228 0000-0000-0001
+ arp static 10.217.212.146 0023-2481-4d81
+ arp static 10.217.212.137 4437-e662-09d5
+ arp static 10.217.206.109 0000-0000-0001
+ arp static 10.217.206.110 0000-0000-0001
+ arp static 10.217.212.39 0000-0000-0001
+ arp static 10.217.206.121 0000-0000-0001
+ arp static 192.168.100.4 688f-8405-1a5e
+ arp static 10.217.212.3 0000-0000-0004
+ arp static 10.217.212.112 0000-0000-0004
+ arp static 10.217.21.12 0000-0000-0012
+ arp static 10.217.21.13 0000-0000-0013
+ arp static 10.217.21.14 0000-0000-0014
+ arp static 10.217.21.15 0000-0000-0015
+ arp static 10.217.21.16 0000-0000-0016
+ arp static 10.217.21.17 0000-0000-0017
+ arp static 10.217.21.18 0000-0000-0018
+ arp static 10.217.21.19 0000-0000-0019
+ arp static 10.217.21.20 0000-0000-0020
+ arp static 10.217.21.21 0000-0000-0021
+ arp static 10.217.21.22 0000-0000-0022
+ arp static 10.217.21.23 0000-0000-0023
+ arp static 10.217.21.24 0000-0000-0024
+ arp static 10.217.21.25 0000-0000-0025
+ arp static 10.217.21.26 0000-0000-0026
+ arp static 10.217.21.27 0000-0000-0027
+ arp static 10.217.21.28 0000-0000-0028
+ arp static 10.217.21.29 0000-0000-0029
+ arp static 10.217.21.31 0000-0000-0031
+ arp static 10.217.21.32 0000-0000-0032
+ arp static 10.217.21.33 0000-0000-0033
+ arp static 10.217.21.34 0000-0000-0034
+ arp static 10.217.21.35 0000-0000-0035
+ arp static 10.217.21.36 0000-0000-0036
+ arp static 10.217.21.37 0000-0000-0037
+ arp static 10.217.21.38 0000-0000-0038
+ arp static 10.217.21.39 0000-0000-0039
+ arp static 10.217.21.40 0000-0000-0040
+ arp static 10.217.21.41 0000-0000-0041
+ arp static 10.217.21.42 0000-0000-0042
+ arp static 10.217.21.43 0000-0000-0043
+ arp static 10.217.21.44 0000-0000-0044
+ arp static 10.217.21.45 0000-0000-0045
+ arp static 10.217.21.46 0000-0000-0046
+ arp static 10.217.21.47 0000-0000-0047
+ arp static 10.217.21.48 0000-0000-0048
+ arp static 10.217.21.49 0000-0000-0049
+ arp static 10.217.21.50 0000-0000-0050
+ arp static 10.217.21.51 0000-0000-0051
+ arp static 10.217.21.52 0000-0000-0052
+ arp static 10.217.21.54 0000-0000-0054
+ arp static 10.217.21.55 0000-0000-0055
+ arp static 10.217.21.56 0000-0000-0056
+ arp static 10.217.21.57 0000-0000-0057
+ arp static 10.217.21.58 0000-0000-0058
+ arp static 10.217.21.59 0000-0000-0059
+ arp static 10.217.21.60 0000-0000-0060
+ arp static 10.217.21.61 0000-0000-0061
+ arp static 10.217.21.62 0000-0000-0062
+ arp static 10.217.21.63 0000-0000-0063
+ arp static 10.217.21.64 0000-0000-0064
+ arp static 10.217.21.65 0000-0000-0065
+ arp static 10.217.21.66 0000-0000-0066
+ arp static 10.217.21.67 0000-0000-0067
+ arp static 10.217.21.68 0000-0000-0068
+ arp static 10.217.21.69 0000-0000-0069
+ arp static 10.217.21.70 0000-0000-0070
+ arp static 10.217.21.71 0000-0000-0071
+ arp static 10.217.21.72 0000-0000-0072
+ arp static 10.217.21.73 0000-0000-0073
+ arp static 10.217.21.74 0000-0000-0074
+ arp static 10.217.21.75 0000-0000-0075
+ arp static 10.217.21.77 0000-0000-0077
+ arp static 10.217.21.78 0000-0000-0078
+ arp static 10.217.21.79 0000-0000-0079
+ arp static 10.217.21.80 0000-0000-0080
+ arp static 10.217.21.81 0000-0000-0081
+ arp static 10.217.21.82 0000-0000-0082
+ arp static 10.217.21.83 0000-0000-0083
+ arp static 10.217.21.84 0000-0000-0084
+ arp static 10.217.21.85 0000-0000-0085
+ arp static 10.217.21.86 0000-0000-0086
+ arp static 10.217.21.87 0000-0000-0087
+ arp static 10.217.21.88 0000-0000-0088
+ arp static 10.217.21.89 0000-0000-0089
+ arp static 10.217.21.90 0000-0000-0090
+ arp static 10.217.21.91 0000-0000-0091
+ arp static 10.217.21.92 0000-0000-0092
+ arp static 10.217.21.93 0000-0000-0093
+ arp static 10.217.21.94 0000-0000-0094
+ arp static 10.217.21.95 0000-0000-0095
+ arp static 10.217.21.96 0000-0000-0096
+ arp static 10.217.21.97 0000-0000-0097
+ arp static 10.217.21.98 0000-0000-0098
+ arp static 10.217.21.100 0000-0000-0100
+ arp static 10.217.21.101 0000-0000-0101
+ arp static 10.217.21.102 0000-0000-0102
+ arp static 10.217.21.103 0000-0000-0103
+ arp static 10.217.21.104 0000-0000-0104
+ arp static 10.217.21.105 0000-0000-0105
+ arp static 10.217.21.106 0000-0000-0106
+ arp static 10.217.21.107 0000-0000-0107
+ arp static 10.217.21.108 0000-0000-0108
+ arp static 10.217.21.109 0000-0000-0109
+ arp static 10.217.21.110 0000-0000-0110
+ arp static 10.217.21.111 0000-0000-0111
+ arp static 10.217.21.112 0000-0000-0112
+ arp static 10.217.21.113 0000-0000-0113
+ arp static 10.217.21.114 0000-0000-0114
+ arp static 10.217.21.115 0000-0000-0115
+ arp static 10.217.21.116 0000-0000-0116
+ arp static 10.217.21.117 0000-0000-0117
+ arp static 10.217.21.118 0000-0000-0118
+ arp static 10.217.21.119 0000-0000-0119
+ arp static 10.217.21.120 0000-0000-0120
+ arp static 10.217.21.121 0000-0000-0121
+ arp static 10.217.21.123 0000-0000-0123
+ arp static 10.217.21.124 0000-0000-0124
+ arp static 10.217.21.125 0000-0000-0125
+ arp static 10.217.21.8 04c1-d8f6-92a0
+ arp static 10.217.212.12 0000-0000-0004
+ arp static 10.217.212.65 0000-0000-0004
+ arp static 10.217.212.207 fc4d-d4f0-9404
+ arp static 10.217.212.11 1078-d2ab-d4dd
+ arp static 10.217.212.31 6c0b-8403-8846
+ arp static 10.217.212.62 04c1-d8f6-9430
+ arp static 10.217.207.69 047c-1666-711a
+ arp static 10.217.212.84 04c1-d8f6-9290
+ arp static 10.217.212.15 1c83-4193-c395
+ arp static 10.217.212.66 1c83-4193-c198
+ arp static 10.217.212.70 4437-e660-89c9
+ arp static 10.217.212.79 6c4b-90b9-d9b6
+ arp static 10.217.207.92 705a-0f31-89a0
+ arp static 10.217.212.59 04c1-d8f6-941f
+ arp static 10.217.212.155 2cf0-5d11-8a0b
+ arp static 10.217.212.171 6c0b-8444-53f4
+ arp static 10.217.212.30 0000-0000-0001
+ arp static 10.217.212.248 1078-d295-336b
+ arp static 10.216.143.141 4843-5a1f-ee43
+ arp static 10.217.212.109 047c-1666-7169
+ arp static 10.217.206.80 5803-fbd1-024a
+ arp static 10.217.212.182 ecda-59e8-b885
+ arp static 10.217.206.74 00e0-aed1-5b5e
+ arp static 10.217.206.72 00e0-aed1-5c16
+ arp static 10.217.206.84 5803-fbe9-0739
+ arp static 10.217.206.73 00e0-aed1-5327
+ arp static 10.217.206.70 00e0-aed1-5355
+ arp static 10.217.206.75 00e0-aed1-52d1
+ arp static 10.217.212.251 b44b-d65d-79c2
+ arp static 10.216.142.2 600b-0308-a82c
+ arp static 10.217.212.90 1c83-4193-c444
+ arp static 10.217.212.68 1c83-4193-c2d2
+ arp static 10.217.212.104 1c83-4193-c464
+ arp static 10.217.212.105 2cf0-5d11-9319
+ arp static 10.217.212.108 047c-1666-70d6
+ arp static 10.217.212.106 1c83-4193-c2fe
+ arp static 10.217.212.107 2cf0-5d11-9367
+ arp static 10.217.21.11 1c83-4193-c504
+ arp static 10.217.206.116 00e0-aed8-0074
+ arp static 10.217.206.71 00e0-aed1-5c40
+ arp static 10.217.79.40 9429-2f07-90c9
+ arp static 10.217.79.35 9429-2f07-8e41
+ arp static 10.217.79.33 9429-2f08-0e81
+ arp static 192.168.100.5 9429-2f07-8e44
+ arp static 192.168.100.14 9429-2f08-107c
+ arp static 192.168.100.12 9429-2f07-90cc
+ arp static 192.168.100.10 9429-2f08-0e84
+ arp static 10.217.79.38 9429-2f08-06e9
+ arp static 192.168.100.8 9429-2f08-06ec
+ arp static 10.217.212.149 2cf0-5d11-a6ba
+ arp static 10.217.212.210 2cf0-5d11-952d
+ arp static 10.217.212.209 309c-23f8-ed61
+ arp static 10.217.212.185 2cf0-5d11-94d9
+ arp static 10.217.212.152 4ccc-6acb-6cb0
+ arp static 10.217.212.211 2cf0-5d48-3e29
+ arp static 10.217.212.227 e86a-64d2-fb0f
+ arp static 10.217.212.222 2cf0-5d11-93b5
+ arp static 10.217.212.81 1c83-4193-c2d3
+ arp static 10.217.212.208 2cf0-5d11-88a2
+ arp static 10.217.207.70 2cf0-5d11-950a
+ arp static 10.217.212.91 6c0b-8403-e9e6
+ arp static 10.217.212.63 1c83-4193-c520
+ arp static 10.217.205.236 2cf0-5d48-3371
+ arp static 10.217.205.239 047c-1666-70ef
+ arp static 10.217.205.237 0023-248c-2dba
+ arp static 10.217.212.158 047c-1666-718b
+ arp static 10.217.21.4 1c83-4193-c382
+ arp static 10.217.21.2 1c83-4193-c394
+ arp static 10.217.21.5 1c83-4193-c3ce
+ arp static 10.217.212.78 1078-d2ac-314f
+ arp static 10.217.212.28 4ccc-6acb-6dd8
+ arp static 10.217.212.159 047c-1697-5744
+ arp static 10.217.212.29 fc4d-d4f0-9438
+ arp static 10.217.212.144 047c-1697-574a
+ arp static 10.217.212.32 1c83-4193-c2f5
+ arp static 10.217.212.6 2cf0-5d48-3e57
+ arp static 10.217.212.192 2cf0-5d11-92ed
+ arp static 10.217.212.83 6c0b-8403-1f13
+ arp static 10.217.207.90 047c-1666-7186
+ arp static 10.217.212.45 2cf0-5d11-94eb
+ arp static 10.217.207.80 2cf0-5dbf-9141
+ arp static 10.217.21.3 1c83-4193-c387
+ arp static 10.217.212.94 2cf0-5d11-951c
+ arp static 10.217.212.216 6c4b-90b9-d9c5
+ arp static 10.217.212.47 2cf0-5d11-9374
+ arp static 10.217.207.82 38a8-cd20-97be
+ arp static 10.217.212.49 047c-1666-71a6
+ arp static 10.217.212.42 1c83-4193-c195
+ arp static 10.217.207.83 38a8-cd20-97bf
+ arp static 10.217.212.69 047c-1666-711a
+ arp static 10.217.207.71 6c0b-8403-f69b
+ arp static 10.217.212.74 38a8-cd20-5d4b
+ arp static 10.217.207.84 38a8-cd20-97c0
+ arp static 10.217.21.7 1c83-4193-c38c
+ arp static 10.217.207.81 38a8-cd20-97bd
+ arp static 10.217.212.75 38a8-cd20-3e73
+ arp static 10.217.212.76 38a8-cd20-3e4e
+ arp static 10.217.212.73 38a8-cd20-3e4f
+ arp static 10.217.212.131 2428-fd2b-421f
+ arp static 10.217.212.101 6c0b-8403-f65e
+ arp static 10.217.212.21 6c0b-8403-8852
+ arp static 10.217.212.20 2cf0-5d11-94d5
+ arp static 10.217.212.40 2cf0-5d11-9546
+ arp static 10.217.212.80 2cf0-5d11-8986
+ arp static 10.217.212.2 2cf0-5d11-9536
+ arp static 10.217.212.206 705a-0f31-4c25
+ arp static 10.217.212.221 2cf0-5d11-93c2
+ arp static 10.217.212.203 2cf0-5d11-9399
+ arp static 10.217.212.167 2cf0-5d11-93cc
+ arp static 10.217.212.61 0021-974b-267c
+ arp static 10.217.212.151 c85b-76dc-9ab7
+ arp static 10.217.212.103 6cf0-4925-b9af
+ arp static 10.217.212.143 047c-1666-7188
+ arp static 10.217.212.160 047c-1666-7215
+ arp static 10.217.212.10 fc4d-d431-6aac
+ arp static 10.217.212.132 2cf0-5d48-3e2c
+ arp static 10.217.212.24 4437-e661-ed35
+ arp static 10.217.207.86 047c-1666-713a
+ arp static 10.217.212.186 4ccc-6acb-6c00
+ arp static 10.217.212.48 2cf0-5d11-a1cd
+ arp static 10.217.212.139 00e0-4c76-e046
+ arp static 10.217.212.26 fc4d-d4f0-94b9
+ arp static 10.217.212.236 6c0b-8442-8861
+ arp static 10.217.212.253 04c1-d8f6-9291
+ arp static 10.217.212.183 f46b-8c00-c6be
+ arp static 10.217.212.129 047c-1666-70c9
+ arp static 10.217.212.133 70b5-e84b-01ad
+ arp static 10.217.212.88 2cf0-5d11-8a33
+ arp static 10.217.212.7 6c4b-90b9-d9b6
+ arp static 10.217.212.214 2cf0-5d11-aa75
+ arp static 10.217.212.46 705a-0f31-89b3
+ arp static 10.217.212.224 2cf0-5d11-93c6
+ arp static 10.217.212.98 7427-ea12-1639
+ arp static 10.217.212.53 f875-a488-c06b
+ arp static 10.217.212.164 1c83-4193-c206
+ arp static 10.217.212.113 1860-24ab-e92f
+ arp static 10.217.212.170 1860-24ab-e910
+ arp static 10.217.212.100 04c1-d8f6-9424
+ arp static 10.217.212.223 309c-23f0-2c4a
+ arp static 10.217.212.55 2cf0-5d11-9385
+ arp static 10.217.212.13 047c-1666-70b3
+ arp static 10.217.212.154 2cf0-5d11-a1e7
+ arp static 10.217.212.162 484d-7eb3-ca58
+ arp static 10.217.212.202 2cf0-5d11-92a2
+ arp static 10.217.207.87 0001-6c5d-4551
+ arp static 10.217.212.1 2cf0-5d11-952f
+ arp static 10.217.212.114 1860-24ab-e7a0
+ arp static 10.217.207.88 1078-d295-4665
+ arp static 10.217.212.136 04c1-d8f6-9293
+ arp static 10.217.212.187 2cf0-5d11-939f
+ arp static 10.217.207.65 047c-1666-70f3
+ arp static 10.217.212.18 6c0b-8403-ea2c
+ arp static 10.217.212.99 2cf0-5d11-9526
+ arp static 10.217.212.115 2cf0-5d11-9502
+ arp static 10.217.212.215 484d-7eae-7706
+ arp static 10.217.212.188 2cf0-5d11-8a0b
+ arp static 10.217.212.43 2cf0-5d48-3e1d
+ arp static 10.217.212.217 2cf0-5d11-9380
+ arp static 10.217.212.218 484d-7eae-76fc
+ arp static 10.217.212.119 6c0b-8442-88b5
+ arp static 10.217.212.150 04c1-d8f6-92a3
+ arp static 10.217.212.156 4437-e662-da90
+ arp static 10.217.212.125 1860-24ab-e8f9
+ arp static 10.217.212.165 2cf0-5d11-a201
+ arp static 10.217.212.17 2cf0-5d11-9545
+ arp static 10.217.212.153 04c1-d8f6-929a
+ arp static 10.217.212.116 1860-24ab-e905
+ arp static 10.217.212.38 6c0b-8403-2076
+ arp static 10.217.212.138 2cf0-5d11-a1fe
+ arp static 10.217.212.204 2cf0-5d11-a1e9
+ arp static 10.217.212.72 705a-0f30-4daa
+ arp static 10.217.212.22 0023-248c-4fee
+ arp static 10.217.212.71 2cf0-5d11-9423
+ arp static 10.217.212.219 dc4a-3e98-f3c2
+ arp static 10.217.212.135 2cf0-5d11-94ab
+ arp static 10.217.212.97 6c0b-8408-7b8a
+ arp static 10.217.212.173 2cf0-5d11-a1db
+ arp static 10.217.212.14 0001-6c5b-8a9d
+ arp static 10.217.212.212 047c-1666-7210
+ arp static 10.217.212.34 1860-24b1-8aaa
+ arp static 10.217.212.50 00e0-fc68-6ef0
+ arp static 10.217.212.157 484d-7eb3-cabf
+ arp static 10.217.212.205 047c-1666-70d5
+ arp static 10.217.212.237 2cf0-5d11-952c
+ arp static 10.217.212.96 4437-e661-ece1
+ arp static 10.217.212.230 047c-1666-7166
+ arp static 10.217.207.85 047c-1666-70c0
+ arp static 10.217.212.117 90fb-a676-d01f
+ arp static 10.217.212.200 04c1-d8f6-9425
+ arp static 10.217.212.52 2cf0-5d11-94ff
+ arp static 10.217.207.93 2cf0-5d11-a1fc
+ arp static 10.217.212.60 1860-24b1-8be7
+ arp static 10.217.212.92 04c1-d8f6-9296
+ arp static 10.217.212.23 fc4d-d431-6bad
+ arp static 10.217.212.77 fc4d-d4f0-9430
+ arp static 10.217.212.89 2cf0-5d11-94f4
+ arp static 10.217.212.82 1078-d2ac-3560
+ arp static 10.217.212.25 507b-9d5d-5ad2
+ arp static 10.217.21.1 1c83-4183-d8ce
+ arp static 10.217.212.120 7473-e20e-739b
+ arp static 10.217.212.122 e454-e8cb-a0f5
+ arp static 10.217.212.123 245a-5f60-23db
+ arp static 10.217.212.102 38af-29bb-11fa
+ arp static 10.217.79.41 3cd2-e583-6c98
+ arp static 192.168.100.2 3cd2-e583-6c9b
+ arp static 10.217.79.43 688f-8405-1a5e
+ arp static 10.217.206.66 b4a3-82c7-99dd
+ arp static 10.217.206.124 e4f1-4c69-e83b
+ arp static 10.217.206.125 e4f1-4c69-7163
+ arp static 10.217.206.100 0023-24e6-2c10
+ arp static 10.217.206.117 f875-a48d-bbf0
+ arp static 10.217.206.118 f875-a48d-bf7e
+ arp static 10.217.206.102 4ccc-6aed-66ec
+ arp static 10.217.206.104 00e2-6925-e9b2
+ arp static 10.217.206.69 00e0-aed7-170f
+ arp static 10.217.206.68 00e0-aed1-3c3b
+ arp static 10.217.206.99 0023-24e6-8bfc
+ arp static 10.217.206.98 dc4a-3e9b-d8f4
+ arp static 10.217.206.67 484d-7eb6-3e1f
+ arp static 10.217.206.101 04c1-d8f6-9432
+ arp static 10.217.206.120 f875-a48d-c0fd
+ arp static 10.217.206.119 4437-e661-fb22
+ arp static 10.217.206.106 6c4b-90d4-9368
+ arp static 10.217.206.107 d017-c297-2fdd
+ arp static 10.217.206.108 f875-a48d-c5e7
+ arp static 10.217.212.9 04c1-d8f6-92b1
+ arp static 10.217.212.8 047c-1666-71a2
+ arp static 10.217.79.39 000f-e2d3-d176
+ arp static 192.168.100.11 000f-e2d3-d176
+ arp static 10.217.212.37 1c83-4183-bf3f
+ arp static 10.217.212.5 0010-1880-c10c
+ arp static 10.217.212.67 2cf0-5d48-30d0
+ arp static 10.217.212.41 70b5-e84a-b480
+ arp static 10.217.212.44 6c3c-8cfe-5bdf
+ arp static 10.217.212.36 dc4a-3e9b-1fb9
+#
+ load xml-configuration
+#
+user-interface vty 0 4
+ acl 2000 inbound
+ authentication-mode scheme
+ protocol inbound ssh
+user-interface vty 5 15
+#
+return
+<ShaPoTouGongSiMCE>

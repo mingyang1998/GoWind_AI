@@ -1,0 +1,10 @@
+const XLSX = require('D:/GitHub/go-wind-admin-main/frontend/admin/react/node_modules/xlsx');
+const fs = require('fs');
+const p = 'D:/GitHub/go-wind-admin-main/宁夏开发/Desktop(其他台账模板)/存活地址（中卫）.xlsx';
+const wb = XLSX.read(fs.readFileSync(p), { type: 'buffer' });
+console.log('sheets:', wb.SheetNames);
+const ws = wb.Sheets[wb.SheetNames[0]];
+const txt = XLSX.utils.sheet_to_csv(ws);
+console.log('--- first 1000 chars ---');
+console.log(txt.slice(0, 1000));
+console.log('--- total chars:', txt.length, ' lines:', txt.split('\n').length);

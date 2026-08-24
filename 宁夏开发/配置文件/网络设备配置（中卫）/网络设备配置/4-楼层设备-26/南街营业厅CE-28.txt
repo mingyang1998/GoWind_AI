@@ -1,0 +1,220 @@
+dis cu 
+#
+ version 5.20.99, Release 1106
+#
+ sysname NanJieYingYeTingCE
+#
+ domain default enable system
+#
+ undo ip http enable
+#
+ password-recovery enable
+#
+acl number 2000
+ rule 1 permit source 10.217.199.86 0
+ rule 2 permit source 10.217.199.66 0
+ rule 3 permit source 10.217.199.97 0
+ rule 5 permit source 10.217.199.68 0
+ rule 6 permit source 10.217.199.70 0
+ rule 7 permit source 10.217.199.80 0
+ rule 8 permit source 10.217.199.103 0
+ rule 9 permit source 10.217.199.123 0
+ rule 10 permit source 10.217.199.74 0
+ rule 11 permit source 10.217.193.101 0
+ rule 12 permit source 10.216.168.168 0
+ rule 14 permit source 10.217.199.87 0
+#
+vlan 1
+#
+vlan 100
+#
+vlan 1003
+ description TianYuanGongSiPE G2/0/1
+#
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+#
+user-group system
+ group-attribute allow-guest
+#
+local-user zwjadmin2017
+ password cipher $c$3$8LpKm6TUz7r4KZlpmr4RP1oBW9l0YtCgiHolYg/VUQs=
+ authorization-attribute level 3
+ service-type ssh terminal
+ password cipher $c$3$CDjZ5g4Sz95V8k8s0AD63ObpL4C5qmZwjPftQGSLrQI=
+ authorization-attribute idle-cut 20
+ authorization-attribute level 1
+ service-type ssh
+local-user zwjadmin2019
+ password cipher $c$3$BygyasFPizwEDiGVO2CgWkw4Lc4qz0Ebk9MkOmjCXME=
+ authorization-attribute idle-cut 20
+ service-type ssh
+#
+interface NULL0
+#
+interface Vlan-interface100
+ ip address 10.217.198.110 255.255.255.240
+#
+interface Vlan-interface1003
+ description TianYuanGongSiPE G2/0/1
+ ip address 10.216.142.2 255.255.255.252
+#
+interface Ethernet1/0/1
+ port access vlan 100
+#
+interface Ethernet1/0/2
+ shutdown
+#
+interface Ethernet1/0/3
+ description yingyetingCOMPUTER
+ port access vlan 100
+#
+interface Ethernet1/0/4
+ port access vlan 100
+#
+interface Ethernet1/0/5
+ port access vlan 100
+#
+interface Ethernet1/0/6
+ port access vlan 100
+#
+interface Ethernet1/0/7
+ port access vlan 100
+#
+interface Ethernet1/0/8
+#
+interface Ethernet1/0/9
+#
+#
+interface Ethernet1/0/11
+#
+interface Ethernet1/0/12
+#
+interface Ethernet1/0/13
+#
+interface Ethernet1/0/14
+#
+interface Ethernet1/0/15
+#
+interface Ethernet1/0/16
+#
+interface Ethernet1/0/17
+#
+interface Ethernet1/0/18
+#
+interface Ethernet1/0/19
+#
+interface Ethernet1/0/20
+#
+interface Ethernet1/0/21
+interface Ethernet1/0/22
+#
+interface Ethernet1/0/23
+#
+interface Ethernet1/0/24
+#
+interface Ethernet1/0/25
+#
+interface Ethernet1/0/26
+#
+interface Ethernet1/0/27
+#
+interface Ethernet1/0/28
+#
+interface Ethernet1/0/29
+#
+interface Ethernet1/0/30
+#
+interface Ethernet1/0/31
+#
+interface Ethernet1/0/32
+#
+#
+interface Ethernet1/0/34
+#
+interface Ethernet1/0/35
+#
+interface Ethernet1/0/36
+#
+interface Ethernet1/0/37
+#
+interface Ethernet1/0/38
+#
+interface Ethernet1/0/39
+#
+interface Ethernet1/0/40
+#
+interface Ethernet1/0/41
+#
+interface Ethernet1/0/42
+#
+interface Ethernet1/0/43
+#
+interface Ethernet1/0/44
+interface Ethernet1/0/45
+#
+interface Ethernet1/0/46
+#
+interface Ethernet1/0/47
+#
+interface Ethernet1/0/48
+#
+interface GigabitEthernet1/0/49
+ description TianYuanGongSiPE G2/0/1
+ port access vlan 1003
+#
+interface GigabitEthernet1/0/50
+#
+interface GigabitEthernet1/0/51
+#
+interface GigabitEthernet1/0/52
+#
+ospf 1
+ import-route direct
+ area 0.0.0.2
+  network 10.216.142.0 0.0.0.3
+#
+ info-center source default channel 2 log level warnings
+ info-center loghost 10.217.7.5 facility local6
+ info-center loghost 10.217.193.101
+ info-center loghost 10.217.214.253
+ undo info-center logfile enable
+#
+ snmp-agent
+ snmp-agent local-engineid 383030303633413236353133363030423033303841383243
+ snmp-agent community read nxepc-read
+ snmp-agent sys-info version all
+ snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname nxepc-read
+ snmp-agent trap enable default-route
+#
+ ntp-service unicast-server 10.217.8.131
+#
+ ssh server enable
+ ssh user zwjadmin2017 service-type stelnet authentication-type password
+#
+ arp static 10.217.198.97 0000-0000-0921
+ arp static 10.217.198.98 0000-0000-0921
+ arp static 10.217.198.100 0000-0000-0921
+ arp static 10.217.198.101 0000-0000-0921
+ arp static 10.217.198.102 0000-0000-0921
+ arp static 10.217.198.103 0000-0000-0921
+ arp static 10.217.198.105 0000-0000-0921
+ arp static 10.217.198.104 accb-51d0-9e4e
+ arp static 10.217.198.109 00e0-aed1-53d9
+ arp static 10.217.198.108 00e0-aed9-0bdc
+#
+ load xml-configuration
+#
+ load tr069-configuration
+#
+user-interface aux 0
+user-interface vty 0 4
+ authentication-mode scheme
+user-interface vty 5 15
+#
+return
+<NanJieYingYeTingCE>

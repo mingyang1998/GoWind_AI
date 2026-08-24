@@ -1,0 +1,241 @@
+dis cu 
+#
+ version 5.20, Release 2202
+#
+ sysname MeiLiBianMCE
+#
+ clock timezone bj add 08:00:00
+#
+ super password level 3 cipher %N#LP]Q=R5:'DH3X>$&-$1!!
+#
+ info-center source default channel 2 log level warnings
+ info-center loghost source LoopBack0
+ info-center loghost 10.217.7.5 facility local6
+ info-center loghost 10.217.193.65
+ info-center loghost 10.217.193.101
+ info-center loghost 10.217.199.115
+#
+ irf mac-address persistent timer
+ irf auto-update enable
+ undo irf link-delay
+#
+ domain default enable system
+#
+ undo ip ttl-expires
+ undo ip http enable
+#
+acl number 2000
+ rule 1 permit source 10.217.199.86 0
+ rule 2 permit source 10.217.199.66 0
+ rule 3 permit source 10.217.199.97 0
+ rule 5 permit source 10.217.199.68 0
+ rule 6 permit source 10.217.199.70 0
+ rule 7 permit source 10.217.199.80 0
+ rule 8 permit source 10.217.199.103 0
+ rule 9 permit source 10.217.199.123 0
+ rule 10 permit source 10.217.194.186 0
+ rule 11 permit source 10.217.7.5 0
+ rule 12 permit source 10.217.193.65 0
+ rule 13 permit source 10.217.193.101 0
+ rule 14 permit source 10.216.168.168 0
+ rule 15 permit source 10.217.199.87 0
+ rule 100 deny
+#
+acl number 3500
+ rule 1 deny tcp destination-port eq www
+ rule 3 deny tcp destination-port eq 9010
+ rule 5 deny tcp destination-port eq telnet
+ rule 6 deny tcp destination-port eq 3003
+ rule 7 deny tcp destination-port eq 4001
+#
+vlan 1
+#
+vlan 100
+ description neiwang of MeiLiBianMCE
+#
+vlan 1006
+ description to ZhongWeiBianPE G 2/0/6
+#
+radius scheme system
+ server-type extended
+ primary authentication 127.0.0.1 1645
+ primary accounting 127.0.0.1 1646
+ user-name-format without-domain
+#
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+#
+traffic classifier duankou operator or
+ if-match acl 3500
+#
+traffic behavior duankou
+ filter deny
+#
+qos policy fanghu
+ classifier duankou behavior duankou
+#
+user-group system
+#
+local-user xxwlyw2015
+ password cipher YBC@^T6(\,6'DH3X>$&-$1!!
+ authorization-attribute level 2
+ service-type ssh terminal
+local-user zwjadmin2017
+ password cipher G-C4#()^US0:9S,EI:O]HQ!!
+ authorization-attribute level 3
+ service-type ssh terminal
+local-user zwjadmin2018
+ password cipher G-C4#()^US/.Z\U,I5K9<A!!
+ service-type ssh
+local-user zwjadmin2019
+ password cipher G-C4#()^US-=XBJYK7K95A!!
+ service-type ssh
+#
+interface NULL0
+#
+interface LoopBack0
+ ip address 10.216.126.24 255.255.255.255
+#
+interface Vlan-interface100
+ description neiwang of MeiLiBianMCE
+ ip address 10.217.203.94 255.255.255.240
+#
+interface Vlan-interface1006
+ description to ZhongWeiBianCE
+ ip address 10.216.132.82 255.255.255.252
+#
+interface GigabitEthernet1/0/1
+ description BanGongDianNao
+ port access vlan 100
+#
+ description YongDianXinXiCaiJi
+ port access vlan 100
+#
+interface GigabitEthernet1/0/3
+ description JieSuoYaoShiGuanLiJi
+ port access vlan 100
+#
+interface GigabitEthernet1/0/4
+ description TongYiShiPing-NVR-203.85
+ port access vlan 100
+#
+interface GigabitEthernet1/0/5
+ port access vlan 100
+#
+interface GigabitEthernet1/0/6
+ port access vlan 100
+#
+interface GigabitEthernet1/0/7
+ port access vlan 100
+ shutdown
+#
+interface GigabitEthernet1/0/8
+ port access vlan 100
+#
+interface GigabitEthernet1/0/9
+ shutdown
+#
+interface GigabitEthernet1/0/10
+ shutdown
+#
+interface GigabitEthernet1/0/11
+ shutdown
+#
+interface GigabitEthernet1/0/12
+ shutdown
+#
+interface GigabitEthernet1/0/13
+ shutdown
+#
+interface GigabitEthernet1/0/14
+ shutdown
+#
+interface GigabitEthernet1/0/15
+ shutdown
+interface GigabitEthernet1/0/16
+ shutdown
+#
+interface GigabitEthernet1/0/17
+ shutdown
+#
+interface GigabitEthernet1/0/18
+ shutdown
+#
+interface GigabitEthernet1/0/19
+ shutdown
+#
+interface GigabitEthernet1/0/20
+ shutdown
+#
+interface GigabitEthernet1/0/21
+#
+interface GigabitEthernet1/0/22
+ shutdown
+#
+interface GigabitEthernet1/0/23
+ shutdown
+interface GigabitEthernet1/0/24
+ shutdown
+#
+interface GigabitEthernet1/0/25
+ description to ZhongWeiBianPE G 2/0/6
+ port link-type trunk
+ undo port trunk permit vlan 1
+ port trunk permit vlan 100 1006
+ qos apply policy fanghu inbound
+#
+interface GigabitEthernet1/0/26
+ shutdown
+#
+interface GigabitEthernet1/0/27
+ shutdown
+#
+interface GigabitEthernet1/0/28
+ shutdown
+#
+ospf 1
+ area 0.0.0.2
+  network 10.216.132.80 0.0.0.3
+  network 10.216.126.24 0.0.0.0
+#
+ snmp-agent
+ snmp-agent local-engineid 800063A2030023893A1E96
+ snmp-agent community read nxepc-read
+ snmp-agent sys-info version all
+ snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname nxepc-read
+ snmp-agent trap source LoopBack0
+#
+ ntp-service source-interface LoopBack0
+ ntp-service unicast-server 10.216.126.226 priority
+ ntp-service unicast-server 10.216.126.225
+#
+ ssh server enable
+ ssh user xxwlyw2015 service-type stelnet authentication-type password
+ ssh user zwjadmin2017 service-type stelnet authentication-type password
+#
+ arp static 10.217.203.90 0000-0000-0001
+ arp static 10.217.203.82 0000-0000-0001
+ arp static 10.217.203.87 0000-0000-0001
+ arp static 10.217.203.92 0000-0000-0001
+ arp static 10.217.203.89 0851-1404-47d8
+ arp static 10.217.203.85 c051-7e58-e4aa
+ arp static 10.217.203.88 00df-0ad9-cb58
+ arp static 10.217.203.91 0014-9704-cbcf 100 GigabitEthernet1/0/3
+#
+user-interface aux 0 8
+ authentication-mode password
+ set authentication password cipher G-C4#()^US0:9S,EI:O]HQ!!
+ idle-timeout 8 0
+user-interface vty 0 4
+ acl 2000 inbound
+ authentication-mode scheme
+ user privilege level 3
+ set authentication password cipher G-C4#()^US0:9S,EI:O]HQ!!
+ idle-timeout 8 0
+ protocol inbound ssh
+#
+return
+<MeiLiBianMCE>

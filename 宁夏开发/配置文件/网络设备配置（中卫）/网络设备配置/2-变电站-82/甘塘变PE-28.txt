@@ -1,0 +1,709 @@
+dis cu 
+
+#
+
+ version 7.1.064, Release 7809P20
+
+#
+
+mdc Admin id 1
+
+#
+
+ sysname GanTangBianPE
+
+#
+
+ clock timezone bj add 08:00:00
+
+#
+
+ospf 1
+
+ import-route direct
+
+ import-route static
+
+ area 0.0.0.2
+
+  network 10.216.149.120 0.0.0.3
+
+  network 10.216.149.124 0.0.0.3
+
+  network 10.217.79.20 0.0.0.0
+
+#
+
+ password-recovery enable
+
+#
+
+vlan 1
+
+#
+
+traffic classifier 20170417 operator or
+
+ if-match acl 3500
+
+
+               
+#
+
+traffic classifier 20170515 operator or
+
+ if-match acl 3600
+
+#
+
+traffic classifier deny operator and
+
+ if-match acl 3300
+
+#
+
+traffic classifier permit operator and
+
+ if-match acl 3200
+
+#
+
+traffic classifier test operator or
+
+ if-match acl 3400
+
+#
+
+traffic behavior 20170417
+
+ filter deny
+
+#
+
+traffic behavior 20170515
+
+ filter deny
+
+#
+
+traffic behavior deny
+
+ filter deny
+
+#
+
+traffic behavior permit
+
+
+               
+ filter permit
+
+#
+
+traffic behavior test
+
+ filter deny
+
+#
+
+qos policy fanghu
+
+ classifier test behavior test
+
+ classifier permit behavior permit
+
+ classifier deny behavior deny
+
+ classifier 20170417 behavior 20170417
+
+ classifier 20170515 behavior 20170515
+
+#
+
+interface NULL0
+
+#
+
+interface LoopBack0
+
+ ip address 10.217.79.20 255.255.255.255
+
+#
+
+interface GigabitEthernet3/0/0
+
+ port link-mode route
+
+ combo enable copper
+
+ shutdown
+
+#
+
+interface GigabitEthernet3/0/1
+
+
+               
+ port link-mode route
+
+ combo enable copper
+
+ shutdown
+
+#
+
+interface GigabitEthernet3/2/0
+
+ port link-mode route
+
+ description to GanTangBianMCE
+
+ ip address 10.216.149.121 255.255.255.252
+
+#
+
+interface GigabitEthernet3/2/1
+
+ port link-mode route
+
+ shutdown
+
+#
+
+interface GigabitEthernet3/2/2
+
+ port link-mode route
+
+ shutdown
+
+#
+
+interface GigabitEthernet3/2/3
+
+ port link-mode route
+
+ shutdown
+
+#
+
+interface GigabitEthernet3/2/4
+
+ port link-mode route
+
+
+               
+ shutdown
+
+#
+
+interface GigabitEthernet3/2/5
+
+ port link-mode route
+
+ shutdown
+
+#
+
+interface GigabitEthernet3/2/6
+
+ port link-mode route
+
+ shutdown
+
+#
+
+interface GigabitEthernet3/2/7
+
+ port link-mode route
+
+ shutdown
+
+#
+
+interface GigabitEthernet3/3/0
+
+ port link-mode route
+
+ description to YinShuiQiaoBianPE
+
+ ip address 10.216.149.126 255.255.255.252
+
+ qos apply policy fanghu inbound 
+
+#
+
+interface GigabitEthernet3/3/1
+
+ port link-mode route
+
+ shutdown
+
+
+               
+#
+
+interface GigabitEthernet3/3/2
+
+ port link-mode route
+
+ shutdown
+
+#
+
+interface GigabitEthernet3/3/3
+
+ port link-mode route
+
+ shutdown
+
+#
+
+interface GigabitEthernet3/3/4
+
+ port link-mode route
+
+ shutdown
+
+#
+
+interface GigabitEthernet3/3/5
+
+ port link-mode route
+
+ shutdown
+
+#
+
+interface GigabitEthernet3/3/6
+
+ port link-mode route
+
+ shutdown
+
+#
+
+interface GigabitEthernet3/3/7
+
+ port link-mode route
+
+
+               
+ shutdown
+
+#
+
+interface M-GigabitEthernet0/0/0
+
+ shutdown
+
+#
+
+ scheduler logfile size 16
+
+#
+
+line class aux
+
+ user-role network-admin
+
+#
+
+line class vty
+
+ user-role network-operator
+
+#
+
+line aux 0
+
+ authentication-mode password
+
+ user-role network-admin
+
+ set authentication password hash $h$6$uLVno1KIa7HWORsG$/ICD6dTnwNdw8fLkHFUksy/s82fgpydxflZVMoj3IPyiZ+q8qjMnr7fqd2jKSohA9FLfbm0BD48/Mt+wzSS/SQ==
+
+ idle-timeout 8 0
+
+#
+
+line vty 0 4
+
+ authentication-mode scheme
+
+ user-role network-operator
+
+ protocol inbound ssh
+
+
+               
+ idle-timeout 8 0
+
+#
+
+line vty 5 63
+
+ user-role network-operator
+
+#
+
+ info-center loghost 10.217.7.5 facility local6
+
+ info-center loghost 10.217.193.60
+
+ info-center loghost 10.217.193.65 facility local6
+
+ info-center loghost 10.217.193.101
+
+#
+
+ snmp-agent
+
+ snmp-agent local-engineid 800063A280586AB1135BA000000001
+
+ snmp-agent community read cipher $c$3$uLQBAFfGQKxBFvf0NSF6LSz0D752mkLTpYu8zwQ=
+
+ snmp-agent sys-info version all 
+
+ snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname nxepc-read
+
+ snmp-agent target-host trap address udp-domain 10.217.193.65 params securityname nxepc-read
+
+ snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname nxepc-read
+
+ snmp-agent trap enable arp 
+
+ snmp-agent trap enable radius 
+
+#
+
+ ssh server enable
+
+ ssh user xxwlyw2015 service-type stelnet authentication-type password
+
+ ssh user zwjadmin2017 service-type stelnet authentication-type password
+
+
+               
+ ssh user zwjadmin2019 service-type stelnet authentication-type password
+
+ ssh server acl 2000
+
+#
+
+ ntp-service enable
+
+ ntp-service unicast-server 10.216.126.225
+
+ ntp-service unicast-server 10.216.126.226 priority
+
+#
+
+acl number 2000
+
+ rule 1 permit source 10.217.199.86 0
+
+ rule 2 permit source 10.217.199.66 0
+
+ rule 3 permit source 10.217.199.97 0
+
+ rule 5 permit source 10.217.199.68 0
+
+ rule 6 permit source 10.217.199.70 0
+
+ rule 7 permit source 10.217.199.80 0
+
+ rule 8 permit source 10.217.199.103 0
+
+ rule 9 permit source 10.217.199.123 0
+
+ rule 10 permit source 10.217.194.186 0
+
+ rule 11 permit source 10.217.193.70 0
+
+ rule 12 permit source 10.217.193.65 0
+
+ rule 13 permit source 10.217.193.101 0
+
+ rule 14 permit source 10.216.168.168 0
+
+ rule 15 permit source 10.217.199.87 0
+
+ rule 16 permit source 10.217.7.5 0
+
+
+               
+ rule 100 deny
+
+#
+
+acl number 2100
+
+#
+
+acl number 3200
+
+ rule 1 permit ip source 10.217.199.86 0
+
+ rule 2 permit ip source 10.216.246.212 0
+
+ rule 3 permit ip source 10.216.246.213 0
+
+ rule 4 permit ip source 10.216.246.215 0
+
+ rule 5 permit ip source 10.216.246.216 0
+
+ rule 6 permit ip source 10.216.246.223 0
+
+ rule 10 permit ip source 10.217.0.0 0.0.255.255
+
+ rule 20 permit ip source 10.216.0.0 0.0.255.255
+
+ rule 30 permit ip source 10.1.182.0 0.0.0.255
+
+ rule 40 permit ip source 10.1.102.0 0.0.0.255
+
+ rule 50 permit ip source 10.1.195.0 0.0.0.255
+
+ rule 60 permit ip source 10.1.101.0 0.0.0.255
+
+ rule 70 permit ip source 10.1.168.0 0.0.0.255
+
+ rule 80 permit ip source 10.64.15.0 0.0.0.255
+
+ rule 90 permit ip source 10.1.169.0 0.0.0.255
+
+ rule 91 permit ip source 10.217.8.131 0
+
+#
+
+acl number 3300
+
+
+               
+ rule 100 deny ip
+
+#
+
+acl number 3400
+
+ rule 10 permit ip source 10.216.52.247 0
+
+#
+
+acl number 3500
+
+ rule 10 deny tcp source-port eq 135
+
+ rule 20 deny tcp source-port eq 137
+
+ rule 30 deny tcp source-port eq 138
+
+ rule 40 deny tcp source-port eq 139
+
+ rule 50 deny tcp source-port eq 445
+
+ rule 60 deny tcp source-port eq 3389
+
+ rule 70 deny udp source-port eq 135
+
+ rule 80 deny udp source-port eq netbios-ns
+
+ rule 90 deny udp source-port eq netbios-dgm
+
+ rule 100 deny udp source-port eq netbios-ssn
+
+ rule 110 deny udp source-port eq 445
+
+ rule 120 deny udp source-port eq 3389
+
+#
+
+acl number 3600
+
+ rule 10 deny tcp destination-port eq 135
+
+ rule 20 deny tcp destination-port eq 137
+
+ rule 30 deny tcp destination-port eq 138
+
+
+               
+ rule 40 deny tcp destination-port eq 139
+
+ rule 50 deny tcp destination-port eq 445
+
+ rule 60 deny tcp destination-port eq 3389
+
+ rule 70 deny udp destination-port eq 135
+
+ rule 80 deny udp destination-port eq netbios-ns
+
+ rule 90 deny udp destination-port eq netbios-dgm
+
+ rule 100 deny udp destination-port eq netbios-ssn
+
+ rule 110 deny udp destination-port eq 445
+
+ rule 120 deny udp destination-port eq 3389
+
+#
+
+ password-control login-attempt 3 exceed lock-time 10
+
+#
+
+domain system
+
+#
+
+ domain default enable system
+
+#
+
+role name level-0
+
+ description Predefined level-0 role
+
+#
+
+role name level-1
+
+ description Predefined level-1 role
+
+#
+
+role name level-2
+
+
+               
+ description Predefined level-2 role
+
+#
+
+role name level-3
+
+ description Predefined level-3 role
+
+#
+
+role name level-4
+
+ description Predefined level-4 role
+
+#
+
+role name level-5
+
+ description Predefined level-5 role
+
+#
+
+role name level-6
+
+ description Predefined level-6 role
+
+#
+
+role name level-7
+
+ description Predefined level-7 role
+
+#
+
+role name level-8
+
+ description Predefined level-8 role
+
+#
+
+role name level-9
+
+ description Predefined level-9 role
+
+#
+
+
+               
+role name level-10
+
+ description Predefined level-10 role
+
+#
+
+role name level-11
+
+ description Predefined level-11 role
+
+#
+
+role name level-12
+
+ description Predefined level-12 role
+
+#
+
+role name level-13
+
+ description Predefined level-13 role
+
+#
+
+role name level-14
+
+ description Predefined level-14 role
+
+#
+
+user-group system
+
+#
+
+local-user xxwlyw2015 class manage
+
+ password hash $h$6$KC4UyRPurlDBT7G9$O9RQHQZRdrL6GHfk1fWpmy2G937zPiH26Q/FOZk8t5oIoqG0YRu8x43t9i31iJxYjnY3B6eDKjnBzccE7CcH4Q==
+
+ service-type ssh
+
+ authorization-attribute user-role level-1
+
+ authorization-attribute user-role network-operator
+
+#
+
+
+               
+local-user zwjadmin2017 class manage
+
+ password hash $h$6$UqOSh7gzh85GQ2jD$jQGhypqiX0hQ5zmyWudi4f0pdGJC857aAN1mAuLwsOOPl+m99MU9G5La5zFZmcC4elc2wGlGYNbhfCAfBjKRHg==
+
+ service-type ssh terminal
+
+ authorization-attribute user-role level-15
+
+ authorization-attribute user-role network-admin
+
+ authorization-attribute user-role network-operator
+
+#
+
+local-user zwjadmin2019 class manage
+
+ password hash $h$6$hOq/yAr0Z4OTCDfo$CgJ4/rWwaX56xWqm4p1srRHqAxbmQPbcC/xhBicpuKkwy8iKg7zmkB7KVaYiTuxkDn5fBvHgtnAvx6YEQHfn2Q==
+
+ service-type ssh terminal
+
+ authorization-attribute user-role level-6
+
+ authorization-attribute user-role network-admin
+
+ authorization-attribute user-role network-operator
+
+#
+
+ http method delete
+
+#
+
+return
+
+<GanTangBianPE>

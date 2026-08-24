@@ -1,0 +1,373 @@
+enable
+HaiYuanGongSiMCE1#show running-config
+Building configuration...
+
+
+Current configuration:
+!
+!version 2.2.0C build 62392
+service timestamps log date
+service timestamps debug date
+service password-encryption
+logging 10.217.193.101
+logging 10.217.193.65
+logging 10.217.7.5
+!
+hostname HaiYuanGongSiMCE1
+ddm enable
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode rstp
+!
+!
+!
+!
+!
+ip access-list standard acl2000
+ permit  10.217.199.86 255.255.255.255
+ permit  10.217.199.66 255.255.255.255
+ permit  10.217.199.97 255.255.255.255
+ permit  10.217.199.68 255.255.255.255
+ permit  10.217.199.70 255.255.255.255
+ permit  10.217.199.80 255.255.255.255
+ permit  10.217.199.103 255.255.255.255
+ permit  10.217.199.123 255.255.255.255
+ permit  10.217.194.186 255.255.255.255
+ permit  10.217.7.5 255.255.255.255
+ permit  10.217.193.65 255.255.255.255
+ permit  192.168.0.11 255.255.255.255
+ permit  10.216.168.168 255.255.255.255
+ permit  10.217.193.101 255.255.255.255
+ permit  10.217.199.87 255.255.255.255
+ permit  10.217.7.3 255.255.255.255
+ deny  any 
+!
+!
+!
+!
+!
+!
+!
+aaa authentication login acl2000 local
+aaa authentication login default local
+aaa authentication enable default none
+aaa authorization exec default local
+!
+localauthor wangguan2018
+ exec privilege default 14
+!
+localauthor wangguan2019
+ exec privilege default 13
+!
+username admin password 7 0626341E150456483121256C120B
+username zwjadmin2017 password 7 0626341E150456483121256C120B
+username zwjadmin2018 password 7 0626341E150456483121216A120C author-group wangg
+uan2018
+username zwjadmin2019 password 7 0626341E150456483121216A120D author-group wangg
+uan2019
+!
+!
+!
+!
+!
+interface Null0
+!
+interface Loopback0
+ ip address 10.216.126.56 255.255.255.255
+ no ip directed-broadcast
+!
+interface GigaEthernet0/1
+ switchport trunk vlan-allowed 200,499
+ switchport mode trunk
+!
+interface GigaEthernet0/2
+ switchport pvid 200
+!
+interface GigaEthernet0/3
+ switchport pvid 200
+!
+interface GigaEthernet0/4
+ switchport pvid 200
+interface GigaEthernet0/5
+ switchport pvid 100
+!
+interface GigaEthernet0/6
+ switchport pvid 200
+!
+interface GigaEthernet0/7
+ switchport trunk vlan-allowed 200,499
+ switchport mode trunk
+!
+interface GigaEthernet0/8
+ switchport trunk vlan-allowed 200,499
+ switchport mode trunk
+!
+interface GigaEthernet0/9
+ description to F2jieru-SW
+ switchport trunk vlan-allowed 200,499,900
+ switchport mode trunk
+!
+interface GigaEthernet0/10
+ switchport trunk vlan-allowed 1,200,499
+ switchport mode trunk
+interface GigaEthernet0/11
+ switchport pvid 200
+!
+interface GigaEthernet0/12
+ switchport pvid 200
+!
+interface GigaEthernet0/13
+ switchport pvid 200
+!
+interface GigaEthernet0/14
+ switchport pvid 200
+!
+interface GigaEthernet0/15
+ switchport pvid 200
+!
+interface GigaEthernet0/16
+ switchport pvid 200
+!
+interface GigaEthernet0/17
+ switchport pvid 200
+!
+interface GigaEthernet0/18
+ switchport pvid 900
+!
+interface GigaEthernet0/19
+ switchport pvid 200
+!
+interface GigaEthernet0/20
+ switchport pvid 200
+!
+interface GigaEthernet0/21
+ switchport pvid 200
+!
+interface GigaEthernet0/22
+ switchport pvid 200
+!
+interface GigaEthernet0/23
+ description XinJianYiTiHuaHuiYiXiTong
+ switchport pvid 900
+!
+interface GigaEthernet0/24
+ switchport pvid 200
+!
+interface GigaEthernet0/25
+!
+interface GigaEthernet0/26
+ switchport pvid 200
+!
+interface GigaEthernet0/27
+ switchport pvid 200
+!
+interface GigaEthernet0/28
+ switchport pvid 200
+!
+interface GigaEthernet0/29
+ switchport pvid 200
+!
+interface GigaEthernet0/30
+ switchport pvid 200
+!
+interface GigaEthernet0/31
+ switchport pvid 200
+!
+interface GigaEthernet0/32
+ switchport pvid 200
+!
+ switchport pvid 200
+!
+interface GigaEthernet0/34
+ switchport pvid 200
+!
+interface GigaEthernet0/35
+ switchport pvid 200
+!
+interface GigaEthernet0/36
+ switchport pvid 200
+!
+interface GigaEthernet0/37
+ switchport pvid 200
+!
+interface GigaEthernet0/38
+ description BeiJieYingYeTingGuangDianZhuanHuan
+ switchport pvid 200
+!
+interface GigaEthernet0/39
+ switchport pvid 200
+!
+interface GigaEthernet0/40
+!
+interface GigaEthernet0/41
+ switchport pvid 200
+!
+interface GigaEthernet0/42
+ switchport pvid 200
+!
+interface GigaEthernet0/43
+ switchport pvid 200
+!
+interface GigaEthernet0/44
+ description ZaoDiaoHuiXiTong
+ switchport pvid 900
+!
+interface GigaEthernet0/45
+ switchport pvid 600
+!
+interface GigaEthernet0/46
+ description XinJianYiTiHuaHuiYiXiTong
+ switchport pvid 900
+!
+interface GigaEthernet0/47
+ switchport pvid 901
+!
+interface GigaEthernet0/48
+ switchport pvid 200
+!
+interface TGigaEthernet1/1
+ shutdown
+ description FW-G0/8
+ switchport trunk vlan-allowed 100,200,499,600,700,800,900-901,1004
+ switchport mode trunk
+ speed 1000
+!
+interface TGigaEthernet1/2
+ description FW-G0/9
+ switchport trunk vlan-allowed 100,200,499,600,700,900-901,1004
+ switchport mode trunk
+ speed 1000
+!
+interface TGigaEthernet1/3
+!
+interface TGigaEthernet1/4
+!
+ speed 1000
+!
+interface TGigaEthernet1/6
+ speed 1000
+!
+interface TGigaEthernet1/7
+ speed 1000
+!
+interface TGigaEthernet1/8
+ description to-TianYuanXiangMuzhongxin
+ switchport trunk vlan-allowed 100,200,499
+ switchport mode trunk
+ speed 1000
+!
+interface VLAN1
+ ip address 192.168.168.1 255.255.255.0
+ no ip directed-broadcast
+!
+interface VLAN600
+ description HC_YingJiZhiHuiZhongXin
+ no ip address
+ no ip directed-broadcast
+interface VLAN700
+ description HuiYi_OF_YingJiZhiHuiZhongXin
+ no ip address
+ no ip directed-broadcast
+!
+interface VLAN800
+ description GaoQingHuiYiXiTong
+ no ip address
+ no ip directed-broadcast
+!
+interface VLAN900
+ description ZaoDiaoHuiXiTong
+ no ip address
+ no ip directed-broadcast
+!
+interface VLAN901
+ description to zaodiaohuixin
+ no ip address
+ no ip directed-broadcast
+!
+interface VLAN1004
+ description TO HaiYuanGongSiPE G3/1/0
+ no ip directed-broadcast
+!
+!
+!
+vlan 600
+ name HC-yingjizhihuizhongxin
+!
+vlan 700
+ name huiyi-of-yingjizhihuizhongxin
+!
+vlan 800
+ name GaoQingHuiYiXiTong
+!
+vlan 900
+ name ZaoDiaoHuiXiTong
+!
+vlan 901
+ name toZaoDiaoHuiXin
+!
+vlan 1004
+ name toHaiChengJuPE2-0-3
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+router ospf 1
+ network 10.216.147.12 255.255.255.252 area 2
+ network 10.216.126.56 255.255.255.255 area 2
+!
+!
+!
+!
+ip exf
+!
+ipv6 exf
+!
+!
+!
+!
+no ip telnet enable
+!
+!
+!
+!
+snmp-server group SNMP_group v3 auth read nxepc-read access acl2000
+snmp-server user SNMP_user SNMP_group v3 encrypted auth md5 0 nxepc-read 
+snmp-server host 10.217.7.5 version v3 auth nxepc-read 
+snmp-server host 10.217.193.65 version v3 auth nxepc-read 
+snmp-server trap-source Loopback0
+snmp-server source-addr 10.216.126.56
+snmp-server view nxepc-read internet included
+!
+privilege exec 14 show running-config 
+!
+!
+ip sshd auth-method acl2000
+ip sshd access-class acl2000
+!
+time-zone beijing 8 0
+ntp server 10.216.126.226
+ntp server 10.216.126.225
+!
+time-range bj
+!
+!
+!
+!Pending configurations for absent linecards:
+!
+!No configurations pending global
+HaiYuanGongSiMCE1#

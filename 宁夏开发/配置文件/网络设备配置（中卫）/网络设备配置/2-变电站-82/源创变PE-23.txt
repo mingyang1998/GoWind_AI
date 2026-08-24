@@ -1,0 +1,457 @@
+dis cu 
+
+#
+
+ version 7.1.064, Release 7809P16
+
+#
+
+mdc Admin id 1
+
+#
+
+ sysname YuanChuangBianROUTER
+
+#
+
+ clock timezone bj add 08:00:00
+
+#
+
+ospf 1
+
+ import-route direct
+
+ area 0.0.0.2
+
+  network 10.216.132.196 0.0.0.3
+
+  network 10.216.143.108 0.0.0.3
+
+  network 10.216.143.113 0.0.0.0
+
+  network 10.216.143.114 0.0.0.0
+
+  network 10.217.79.25 0.0.0.0
+
+#
+
+ password-recovery enable
+
+#
+
+vlan 1
+
+#
+
+vlan 1005
+
+
+               
+ description to machanghu
+
+#
+
+interface NULL0
+
+#
+
+interface LoopBack0
+
+ ip address 10.217.79.25 255.255.255.255
+
+#
+
+interface Vlan-interface1005
+
+ ip address 10.216.132.197 255.255.255.252
+
+#
+
+interface GigabitEthernet3/1/0
+
+ port link-mode route
+
+ description to YunChuangBianCE
+
+ ip address 10.216.143.113 255.255.255.252
+
+#
+
+interface GigabitEthernet3/1/1
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/1/2
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/1/3
+
+ port link-mode route
+
+
+               
+#
+
+interface GigabitEthernet3/1/4
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/1/5
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/1/6
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/1/7
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/2/0
+
+ port link-mode route
+
+ description to zhongweibianPE
+
+ ip address 10.216.143.110 255.255.255.252
+
+#
+
+interface GigabitEthernet3/2/2
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/2/3
+
+ port link-mode route
+
+
+               
+#
+
+interface GigabitEthernet3/2/4
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/2/5
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/2/6
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/2/7
+
+ port link-mode route
+
+#
+
+interface GigabitEthernet3/2/1
+
+ port link-mode bridge
+
+ description to machanghuCE
+
+ port link-type trunk
+
+ port trunk permit vlan 1 1005
+
+#
+
+interface M-GigabitEthernet0/0/0
+
+#
+
+ scheduler logfile size 16
+
+#
+
+
+               
+line class aux
+
+ user-role network-admin
+
+#
+
+line class vty
+
+ user-role network-operator
+
+#
+
+line aux 0 1
+
+ user-role network-admin
+
+#
+
+line vty 0 4
+
+ authentication-mode scheme
+
+ user-role network-operator
+
+#
+
+line vty 5 63
+
+ user-role network-operator
+
+#
+
+ info-center loghost source LoopBack0
+
+ info-center loghost 10.217.7.5 facility local6
+
+ info-center loghost 10.217.193.101
+
+ info-center source default logbuffer level warning
+
+#
+
+ snmp-agent
+
+ snmp-agent local-engineid 800063A280542BDE6A5A6800000001
+
+
+               
+ snmp-agent community read cipher $c$3$iNVlwjcNyfrJugLthzVT8LSI+dzXgcN29MKVUdY=
+
+ snmp-agent sys-info version all 
+
+ snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname nxepc-read
+
+ snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname nxepc-read
+
+ snmp-agent trap enable arp 
+
+ snmp-agent trap enable radius 
+
+ snmp-agent trap enable syslog 
+
+ snmp-agent trap source LoopBack0
+
+#
+
+ ssh server enable
+
+ ssh user zwjadmin2017 service-type stelnet authentication-type password
+
+ ssh server acl 2000
+
+#
+
+ ntp-service unicast-server 10.216.126.225
+
+ ntp-service unicast-server 10.216.126.226 priority
+
+#
+
+acl number 2000
+
+ rule 1 permit source 10.217.199.86 0
+
+ rule 2 permit source 10.217.199.66 0
+
+ rule 3 permit source 10.217.199.97 0
+
+ rule 5 permit source 10.217.199.68 0
+
+ rule 6 permit source 10.217.199.70 0
+
+ rule 7 permit source 10.217.199.80 0
+
+
+               
+ rule 8 permit source 10.217.199.103 0
+
+ rule 9 permit source 10.217.199.123 0
+
+ rule 10 permit source 10.217.194.186 0
+
+ rule 11 permit source 10.217.193.101 0
+
+ rule 12 permit source 10.216.168.168 0
+
+ rule 13 permit source 10.217.199.87 0
+
+ rule 14 permit source 10.217.7.5 0
+
+ rule 15 permit source 10.217.193.65 0
+
+ rule 100 deny
+
+#
+
+domain system
+
+#
+
+ domain default enable system
+
+#
+
+role name level-0
+
+ description Predefined level-0 role
+
+#
+
+role name level-1
+
+ description Predefined level-1 role
+
+#
+
+role name level-2
+
+ description Predefined level-2 role
+
+#
+
+
+               
+role name level-3
+
+ description Predefined level-3 role
+
+#
+
+role name level-4
+
+ description Predefined level-4 role
+
+#
+
+role name level-5
+
+ description Predefined level-5 role
+
+#
+
+role name level-6
+
+ description Predefined level-6 role
+
+#
+
+role name level-7
+
+ description Predefined level-7 role
+
+#
+
+role name level-8
+
+ description Predefined level-8 role
+
+#
+
+role name level-9
+
+ description Predefined level-9 role
+
+#
+
+role name level-10
+
+ description Predefined level-10 role
+
+
+               
+#
+
+role name level-11
+
+ description Predefined level-11 role
+
+#
+
+role name level-12
+
+ description Predefined level-12 role
+
+#
+
+role name level-13
+
+ description Predefined level-13 role
+
+#
+
+role name level-14
+
+ description Predefined level-14 role
+
+#
+
+user-group system
+
+#
+
+local-user zwjadmin2017 class manage
+
+ password hash $h$6$qatMWRDnoG8ZdTXD$c4sa0+981lPoA0mSps1MXq6EPg7ceMoOfE5kYhx9WBjK2WMCxOHZdDo/XCJIG4qv6p7ngjJ9b83IuwAzfu74/g==
+
+ service-type ssh telnet
+
+ authorization-attribute user-role level-15
+
+ authorization-attribute user-role network-admin
+
+#
+
+public-key peer 127.0.0.1
+
+ public-key-code begin
+
+
+               
+   30819F300D06092A864886F70D010101050003818D0030818902818100D4AD5D97F8D0AD66
+
+   3C784566196B9FDAB1112DED2AD252739761D3745FA0AB00EEBBC84C63C96612001F7B1760
+
+   7EDA60747A7D0E4189FF021A902B5E37CACB4680AE485ECDBC5B3ADCC6D0B7867ED1B2FAEA
+
+   148D827C0321A4F605EA931507965B5A4F29F66E1BB6A7987C3EA816427D1D9950877F71AE
+
+   C7F9B3EE785A5CC9890203010001
+
+ public-key-code end
+
+ peer-public-key end
+
+#
+
+ ssl renegotiation disable
+
+#
+
+return
+
+<YuanChuangBianROUTER>

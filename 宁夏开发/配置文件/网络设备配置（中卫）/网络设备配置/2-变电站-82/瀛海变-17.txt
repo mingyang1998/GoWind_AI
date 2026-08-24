@@ -1,0 +1,334 @@
+enable
+YingHaiBianMCE#show running-config
+Building configuration...
+
+
+Current configuration:
+!
+!version 2.2.0C build 62392
+service timestamps log date
+service timestamps debug date
+service password-encryption
+logging 10.217.193.101
+!
+hostname YingHaiBianMCE
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode rstp
+!
+!
+!
+!
+!
+!
+ip access-list standard acl2000
+ permit  10.217.199.86 255.255.255.255
+ permit  10.217.199.97 255.255.255.255
+ permit  10.217.199.68 255.255.255.255
+ permit  10.217.199.70 255.255.255.255
+ permit  10.217.199.80 255.255.255.255
+ permit  10.217.199.103 255.255.255.255
+ permit  10.217.199.123 255.255.255.255
+ permit  10.217.194.186 255.255.255.255
+ permit  10.217.7.5 255.255.255.255
+ permit  10.217.193.65 255.255.255.255
+ permit  192.168.0.11 255.255.255.255
+ permit  10.216.168.168 255.255.255.255
+!
+ip access-list extended jiankongpermit
+ permit ip 0.0.0.0 0.0.0.0 10.217.197.185 255.255.255.255
+ permit ip 0.0.0.0 0.0.0.0 10.217.197.184 255.255.255.255
+ permit ip 10.217.193.75 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.193.78 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.248.11 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.248.12 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.248.13 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.248.14 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.248.15 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.5.11 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.5.12 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.5.14 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.5.19 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.5.101 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.197.188 255.255.255.255 0.0.0.0 0.0.0.0
+ permit ip 10.217.199.185 255.255.255.255 0.0.0.0 0.0.0.0
+ deny   ip any any
+!
+ip access-list extended 3001
+ permit ip 10.217.193.75 255.255.255.255 any
+ permit ip 10.217.199.97 255.255.255.255 any
+ permit ip 10.217.199.76 255.255.255.255 any
+ permit ip 10.217.199.77 255.255.255.255 any
+ permit ip 10.217.199.78 255.255.255.255 any
+ permit ip 10.217.248.11 255.255.255.255 any
+ permit ip 10.217.248.12 255.255.255.255 any
+ permit ip 10.217.248.14 255.255.255.255 any
+ permit ip 10.217.248.13 255.255.255.255 any
+ permit ip 10.217.248.15 255.255.255.255 any
+ permit ip 10.217.248.16 255.255.255.255 any
+ permit ip 10.217.5.14 255.255.255.255 any
+ permit ip 10.217.5.12 255.255.255.255 any
+ permit ip 10.217.5.19 255.255.255.255 any
+ permit ip 10.217.5.101 255.255.255.255 any
+ deny   ip any any
+!
+!
+!
+!
+!
+policy-map	3001
+ classify any
+!
+!
+!
+!
+aaa authentication login default local
+aaa authentication login acl2000 local
+aaa authentication enable default none
+aaa authorization exec default local
+!
+localauthor wangguan2018
+!
+localauthor wangguan2019
+ exec privilege default 13
+!
+username admin password 7 021E296E1216544F337915027F18
+username zwjadmin2017 password 7 021E296E1216544F337915027F18
+username zwjadmin2018 password 7 021E296E1216544F3379117F7F19 author-group wangg
+uan2018
+username zwjadmin2019 password 7 021E296E1216544F3379117F7F1A author-group wangg
+uan2019
+!
+!
+!
+!
+!
+!
+interface Null0
+!
+interface Loopback0
+ ip address 10.216.127.86 255.255.255.255
+ no ip directed-broadcast
+!
+ switchport pvid 100
+!
+interface GigaEthernet0/2
+ switchport pvid 100
+!
+interface GigaEthernet0/3
+ switchport pvid 100
+!
+interface GigaEthernet0/4
+ switchport pvid 100
+ ip access-group 3001 egress
+!
+interface GigaEthernet0/5
+ switchport pvid 100
+ ip access-group 3001 egress
+!
+interface GigaEthernet0/6
+ switchport pvid 100
+ ip access-group jiankongpermit egress
+!
+interface GigaEthernet0/7
+ switchport pvid 100
+interface GigaEthernet0/8
+ description YunWei-FuWuQi
+ switchport pvid 100
+!
+interface GigaEthernet0/9
+ description TongYiShiPing-NVR-197.180
+ switchport pvid 100
+!
+interface GigaEthernet0/10
+ description LuXiangJi
+ switchport pvid 100
+!
+interface GigaEthernet0/11
+ shutdown
+!
+interface GigaEthernet0/12
+ shutdown
+!
+interface GigaEthernet0/13
+ shutdown
+!
+interface GigaEthernet0/14
+ shutdown
+interface GigaEthernet0/15
+ shutdown
+!
+interface GigaEthernet0/16
+ shutdown
+!
+interface GigaEthernet0/17
+ shutdown
+!
+interface GigaEthernet0/18
+ shutdown
+!
+interface GigaEthernet0/19
+ shutdown
+!
+interface GigaEthernet0/20
+ shutdown
+!
+interface GigaEthernet0/21
+ shutdown
+!
+interface GigaEthernet0/22
+!
+interface GigaEthernet0/23
+!
+interface GigaEthernet0/24
+ shutdown
+!
+interface GigaEthernet0/25
+ shutdown
+!
+interface GigaEthernet0/26
+ shutdown
+!
+interface GigaEthernet0/27
+ shutdown
+!
+interface GigaEthernet0/28
+ shutdown
+!
+interface GigaEthernet0/29
+ shutdown
+!
+interface GigaEthernet0/30
+!
+interface GigaEthernet0/31
+!
+interface GigaEthernet0/32
+!
+interface GigaEthernet0/33
+!
+interface GigaEthernet0/34
+!
+interface GigaEthernet0/35
+!
+interface GigaEthernet0/36
+!
+interface GigaEthernet0/37
+!
+interface GigaEthernet0/38
+!
+interface GigaEthernet0/39
+!
+interface GigaEthernet0/40
+!
+interface GigaEthernet0/41
+interface GigaEthernet0/42
+!
+interface GigaEthernet0/43
+!
+interface GigaEthernet0/44
+!
+interface GigaEthernet0/45
+!
+interface GigaEthernet0/46
+!
+interface GigaEthernet0/47
+!
+interface GigaEthernet0/48
+!
+interface TGigaEthernet1/1
+!
+interface TGigaEthernet1/2
+!
+interface TGigaEthernet1/3
+!
+interface TGigaEthernet1/4
+!
+!
+interface TGigaEthernet1/6
+!
+interface TGigaEthernet1/7
+!
+interface TGigaEthernet1/8
+ description toNingAnBianPE G1/1/7.1011
+ switchport pvid 1011
+ speed 1000
+!
+interface VLAN1
+ ip address 192.168.0.1 255.255.0.0
+ no ip directed-broadcast
+!
+interface VLAN100
+ description YHB-neiwang
+ ip address 10.217.197.190 255.255.255.240
+ no ip directed-broadcast
+!
+interface VLAN1011
+ description to NingAnBianPE G1/1/7.1011
+ ip address 10.216.132.121 255.255.255.252
+!
+!
+!
+vlan 100
+ name YHB-neiwang
+!
+vlan 1,100,1011
+!
+!
+arp 10.217.197.178 00:00:00:00:00:02 VLAN100
+arp 10.217.197.177 00:00:00:00:00:01 VLAN100
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ network 10.216.127.86 255.255.255.255 area 2
+ network 10.216.132.120 255.255.255.252 area 2
+ network 10.217.197.176 255.255.255.240 area 2
+!
+!
+!
+!
+ip exf
+!
+ipv6 exf
+!
+!
+!
+!
+!
+no ip telnet enable
+!
+!
+!
+!
+snmp-server community 0 nxepc-read RO 
+snmp-server host 10.216.168.168 nxepc-read 
+snmp-server host 10.217.193.65 version v2c nxepc-read snmp
+!
+privilege exec 14 show running-config 
+!
+!
+ip sshd auth-method acl2000
+ip sshd access-class acl2000
+ip sshd enable
+!
+time-zone beijing 8 0
+ntp server 10.216.126.226
+ntp server 10.216.126.225
+!
+!
+!Pending configurations for absent linecards:
+!
+!No configurations pending global
+YingHaiBianMCE#

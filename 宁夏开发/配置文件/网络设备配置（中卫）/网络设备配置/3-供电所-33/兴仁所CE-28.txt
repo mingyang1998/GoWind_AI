@@ -1,0 +1,157 @@
+dis cu 
+#
+ version 5.20.99, Release 1109
+#
+ sysname xinrengongdiansuo
+#
+ domain default enable system
+#
+ ipv6
+#
+ port-group-vlan 1
+#
+ undo ip http enable
+#
+ password-recovery enable
+#
+acl number 2001
+ rule 0 permit source 10.217.210.8 0
+ rule 100 deny
+#
+acl number 3001
+ rule 1 permit ip source 10.217.210.8 0
+ rule 2 permit ip source 10.217.210.24 0
+ rule 3 permit ip source 10.217.210.25 0
+ rule 5 permit ip source 10.217.210.6 0
+ rule 6 permit ip source 10.217.210.27 0
+ rule 7 permit ip source 10.217.210.29 0
+ rule 8 permit ip source 10.217.210.13 0
+ rule 9 permit ip source 10.217.210.22 0
+ rule 10 permit ip source 10.217.210.5 0
+ rule 11 permit ip source 10.217.210.3 0
+ rule 12 permit ip source 10.217.210.12 0
+ rule 13 permit ip source 10.217.210.17 0
+ rule 14 permit ip source 10.217.210.9 0
+ rule 15 permit ip source 10.217.210.14 0
+ rule 16 permit ip source 10.217.210.19 0
+ rule 17 permit ip source 10.217.210.4 0
+ rule 18 permit ip source 10.217.210.20 0
+ rule 20 permit ip source 10.217.210.10 0 destination 10.217.200.17 0
+ rule 21 permit ip source 10.217.210.10 0 destination 10.217.200.21 0
+ rule 22 permit ip source 10.217.210.10 0 destination 10.216.11.242 0
+ rule 23 permit ip source 10.217.210.10 0 destination 10.216.11.230 0
+ rule 24 permit ip source 10.217.210.10 0 destination 10.217.199.132 0
+ rule 25 permit ip source 10.217.210.10 0 destination 10.217.199.154 0
+ rule 100 deny ip
+#
+#
+vlan 100
+ description neiwang
+#
+vlan 1008
+ description to xinrenPE
+#
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+#
+user-group system
+ group-attribute allow-guest
+#
+local-user zwjadmin2017
+ password cipher $c$3$H4IM/zDO1szGRY8qn+uGAZYBsgfVzOi6UcI4bEp1fTE=
+ authorization-attribute level 3
+ service-type ssh terminal
+local-user zwjadmin2018
+ password cipher $c$3$piYt5CdLruUpBOxTZ0GYXCI2n0MzVbJyyhTWOtCPQLk=
+ authorization-attribute level 1
+ service-type ssh
+local-user zwjadmin2019
+ password cipher $c$3$GA7dRX6SHBA7XK+CY5v3ohwzY2Va0IV949vySAqwYI8=
+ authorization-attribute idle-cut 20
+ service-type ssh
+#
+interface NULL0
+#
+interface Vlan-interface1
+ ip address 192.168.0.234 255.255.255.0
+#
+interface Vlan-interface100
+ description xinrensuo neiwang
+ ip address 10.217.210.30 255.255.255.224
+#
+interface Vlan-interface1008
+ ip address 10.216.143.138 255.255.255.252
+#
+interface Ethernet1/0/1
+ port access vlan 100
+#
+ port access vlan 100
+#
+interface Ethernet1/0/3
+ port access vlan 100
+#
+interface Ethernet1/0/4
+ port access vlan 100
+#
+interface Ethernet1/0/5
+ port access vlan 100
+#
+interface Ethernet1/0/6
+ port access vlan 100
+#
+interface Ethernet1/0/7
+ port access vlan 100
+#
+interface Ethernet1/0/8
+ port access vlan 100
+#
+interface GigabitEthernet1/0/9
+#
+ description TO XingRenBianPE
+ port access vlan 1008
+#
+ ip route-static 0.0.0.0 0.0.0.0 10.216.143.137
+#
+ info-center loghost 10.217.193.101
+#
+ snmp-agent
+ snmp-agent local-engineid 800063A20374258A139399
+ snmp-agent community read nxepc-read
+ snmp-agent sys-info version all
+ snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.193.65 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname nxepc-read
+ snmp-agent trap enable default-route
+#
+ ssh server enable
+#
+ arp static 10.217.210.8 0000-0000-0001
+ arp static 10.216.143.137 082f-e9e0-5ab6
+ arp static 10.217.210.13 1860-24ab-e925
+ arp static 10.217.210.22 dc4a-3e9b-d927
+ arp static 10.217.210.3 dc4a-3e98-f3c1
+ arp static 10.217.210.1 1c83-4183-d8d3
+ arp static 10.217.210.5 94c6-91df-765d
+ arp static 10.217.210.9 6c4b-90b9-d13c
+ arp static 10.217.210.14 6c4b-90b9-d7f3
+ arp static 10.217.210.20 047c-1666-7145
+ arp static 10.217.210.4 2cf0-5d11-9535
+ arp static 10.217.210.6 6c4b-90b9-e149
+ arp static 10.217.210.24 64db-8b88-fb07
+ arp static 10.217.210.27 00e2-690a-7833
+ arp static 10.217.210.10 8cdc-02e9-dd46
+ arp static 10.217.210.17 f0fa-c78c-374c
+#
+ load xml-configuration
+#
+user-interface aux 0
+user-interface vty 0 4
+ authentication-mode scheme
+ protocol inbound ssh
+user-interface vty 5 15
+ authentication-mode scheme
+#
+<xinrengongdiansuo>

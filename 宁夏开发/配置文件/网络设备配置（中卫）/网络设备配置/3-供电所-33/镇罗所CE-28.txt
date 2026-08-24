@@ -1,0 +1,306 @@
+dis cu 
+#
+ version 5.20.99, Release 1106
+#
+ sysname ZhenLuoGongDianSuoCE
+#
+ clock timezone bj add 08:00:00
+#
+ password-control login-attempt 5 exceed lock-time 10
+#
+ domain default enable system
+#
+ ipv6
+#
+ undo ip http enable
+#
+ password-recovery enable
+#
+acl number 2000
+ rule 1 permit source 10.217.199.86 0
+ rule 2 permit source 10.217.199.66 0
+ rule 3 permit source 10.217.199.97 0
+ rule 5 permit source 10.217.199.68 0
+ rule 6 permit source 10.217.199.70 0
+ rule 8 permit source 10.217.199.103 0
+ rule 9 permit source 10.217.199.123 0
+ rule 10 permit source 10.217.199.74 0
+ rule 11 permit source 10.217.193.70 0
+ rule 12 permit source 10.217.193.65 0
+ rule 13 permit source 10.217.193.101 0
+ rule 14 permit source 10.216.168.168 0
+ rule 15 permit source 10.217.199.87 0
+ rule 100 deny
+#
+acl number 3001
+ rule 20 permit ip source 10.217.207.97 0 destination 10.217.200.17 0
+ rule 21 permit ip source 10.217.207.97 0 destination 10.217.200.21 0
+ rule 22 permit ip source 10.217.207.97 0 destination 10.216.11.242 0
+ rule 23 permit ip source 10.217.207.97 0 destination 10.216.11.230 0
+ rule 24 permit ip source 10.217.207.97 0 destination 10.217.199.132 0
+ rule 25 permit ip source 10.217.207.97 0 destination 10.217.199.154 0
+ rule 26 permit ip source 10.217.207.97 0 destination 10.217.207.126 0
+ rule 100 deny ip
+#
+vlan 1
+#
+#
+vlan 200
+ description neiwang
+#
+vlan 1004
+ description LiYuanBianPE G2/0/6
+#
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+#
+user-group system
+ group-attribute allow-guest
+#
+local-user zwjadmin2017
+ password cipher $c$3$J6ElXaCvLcLNiuKNeqVuRDjVY5CzeKc419ovcfzL+GE=
+ authorization-attribute idle-cut 20
+ authorization-attribute level 3
+ access-limit 3
+ service-type ssh terminal
+local-user zwjadmin2018
+ password cipher $c$3$T3YrYRcTg37uBLMj10Teme/swY7m56QE5RMf2m6nNdI=
+ authorization-attribute idle-cut 20
+ authorization-attribute level 1
+ service-type ssh
+ password-control aging 90
+local-user zwjadmin2019
+ password cipher $c$3$nQq3k1XtKyTOoz1jMIas5hzS+bnzCxChGp0bPvSBVTU=
+ authorization-attribute idle-cut 20
+ access-limit 3
+ service-type ssh terminal
+ password-control aging 90
+#
+interface NULL0
+#
+interface Vlan-interface100
+ ip address 10.217.198.158 255.255.255.224
+#
+interface Vlan-interface200
+ description neiwang
+ ip address 10.217.203.126 255.255.255.224
+#
+ description LiYuanBianPE G2/0/6
+ ip address 10.216.142.14 255.255.255.252
+#
+interface Ethernet1/0/1
+ port access vlan 100
+#
+interface Ethernet1/0/2
+ port access vlan 100
+#
+interface Ethernet1/0/3
+ port access vlan 100
+#
+interface Ethernet1/0/4
+ port access vlan 100
+#
+interface Ethernet1/0/5
+ port access vlan 200
+#
+interface Ethernet1/0/6
+ port access vlan 100
+#
+interface Ethernet1/0/7
+#
+interface Ethernet1/0/8
+ port access vlan 100
+#
+interface Ethernet1/0/9
+ port access vlan 100
+#
+interface Ethernet1/0/10
+ port access vlan 100
+#
+interface Ethernet1/0/11
+ port access vlan 200
+#
+interface Ethernet1/0/12
+ port access vlan 100
+#
+interface Ethernet1/0/13
+ port access vlan 100
+#
+interface Ethernet1/0/14
+ port access vlan 100
+#
+ port access vlan 100
+#
+interface Ethernet1/0/16
+ port access vlan 100
+#
+interface Ethernet1/0/17
+ port access vlan 100
+#
+interface Ethernet1/0/18
+ port access vlan 100
+#
+interface Ethernet1/0/19
+ port access vlan 100
+#
+interface Ethernet1/0/20
+ port access vlan 100
+#
+interface Ethernet1/0/21
+ port access vlan 100
+#
+interface Ethernet1/0/22
+ port access vlan 100
+interface Ethernet1/0/23
+ port access vlan 100
+#
+interface Ethernet1/0/24
+ port access vlan 100
+#
+interface Ethernet1/0/25
+ port access vlan 100
+#
+interface Ethernet1/0/26
+ port access vlan 100
+#
+interface Ethernet1/0/27
+ port access vlan 100
+#
+interface Ethernet1/0/28
+ port access vlan 100
+#
+interface Ethernet1/0/29
+ port access vlan 100
+#
+interface Ethernet1/0/30
+#
+interface Ethernet1/0/31
+ port access vlan 100
+#
+interface Ethernet1/0/32
+ port access vlan 100
+#
+interface Ethernet1/0/33
+ port access vlan 100
+#
+interface Ethernet1/0/34
+ description iad
+ port access vlan 200
+ packet-filter 3001 inbound
+#
+interface Ethernet1/0/35
+ port access vlan 100
+#
+interface Ethernet1/0/36
+ port access vlan 100
+#
+interface Ethernet1/0/37
+#
+interface Ethernet1/0/38
+ port access vlan 100
+#
+interface Ethernet1/0/39
+ port access vlan 100
+#
+interface Ethernet1/0/40
+ port access vlan 100
+#
+interface Ethernet1/0/41
+ port access vlan 100
+#
+interface Ethernet1/0/42
+ port access vlan 100
+#
+interface Ethernet1/0/43
+ port access vlan 100
+#
+interface Ethernet1/0/44
+ port access vlan 100
+#
+ port access vlan 100
+#
+interface Ethernet1/0/46
+ port access vlan 100
+#
+interface Ethernet1/0/47
+ port access vlan 100
+#
+interface Ethernet1/0/48
+ port access vlan 100
+#
+interface GigabitEthernet1/0/49
+ description LiYuanBianPE G2/0/6
+ port access vlan 1004
+#
+interface GigabitEthernet1/0/50
+#
+interface GigabitEthernet1/0/51
+#
+interface GigabitEthernet1/0/52
+#
+ospf 1
+  network 10.216.142.12 0.0.0.3
+  network 10.217.198.128 0.0.0.31
+  network 10.217.203.126 0.0.0.0
+#
+ info-center loghost 10.217.193.101
+ undo info-center logfile enable
+#
+ snmp-agent
+ snmp-agent local-engineid 383030303633413236353133363030423033303836453643
+ snmp-agent community read nxepc-read
+ snmp-agent sys-info version all
+ snmp-agent target-host trap address udp-domain 10.216.168.168 params securityname nxepc-read
+ snmp-agent target-host trap address udp-domain 10.217.7.5 params securityname nxepc-read
+ snmp-agent trap enable default-route
+#
+ ntp-service unicast-server 10.216.126.226 priority
+ ntp-service unicast-server 10.216.126.225
+#
+ ssh server enable
+ ssh user zwjadmin service-type stelnet authentication-type password
+#
+ arp static 10.217.198.151 0000-0000-0001
+ arp static 10.217.198.130 1c83-418b-958c
+ arp static 10.217.198.147 2cf0-5d11-94d1
+ arp static 10.217.198.139 047c-1666-71a3
+ arp static 10.217.198.135 f0fa-c78c-1110
+ arp static 10.217.198.150 047c-1666-717d
+ arp static 10.217.198.137 e019-5452-3938
+ arp static 10.217.198.136 28b1-3300-359f
+ arp static 10.217.198.143 f0fa-c78c-10da
+ arp static 10.217.198.157 c051-7e58-e479
+ arp static 10.217.198.145 705a-0f31-8afd
+ arp static 10.217.198.144 f0fa-c78c-10c6
+ arp static 10.217.198.153 b4a3-82c6-eed7
+ arp static 10.217.198.152 dc07-f841-408b
+ arp static 10.217.198.156 0030-1855-11a1
+ arp static 10.217.198.155 0024-2512-86c4
+ arp static 10.217.198.148 2cf0-5d11-a1e3
+ arp static 10.217.198.146 2cf0-5d11-937c
+ arp static 10.217.198.131 1c83-418b-4c53
+ arp static 10.217.198.154 00e0-aed2-472b
+ arp static 10.217.198.133 fc4d-d4f0-935c
+ arp static 10.217.198.138 1c83-418b-49e2
+ arp static 10.217.198.149 047c-1666-7176
+#
+ load xml-configuration
+#
+ load tr069-configuration
+#
+user-interface aux 0
+ authentication-mode scheme
+ set authentication password cipher $c$3$yrE8fUSxZsukuFqlPmbS7zVaX4oRbeRSC++70HUpSKo=
+ idle-timeout 8 0
+user-interface vty 0 15
+ acl 2000 inbound
+ authentication-mode scheme
+ set authentication password cipher $c$3$ejp3QWHjFNDtCIeRyRFvk0vOjE1uyTlV9sof0OYLHo0=
+ idle-timeout 8 0
+ protocol inbound ssh
+#
+return
+<ZhenLuoGongDianSuoCE>
