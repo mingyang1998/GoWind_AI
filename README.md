@@ -1,306 +1,167 @@
-<div align="center">
+# GoWind Admin + AI 能力 使用指南
 
-# GoWind Admin｜风行
-
-**开箱即用的企业级前后端一体中后台脚手架**
-
-> **让中后台开发如风般自由 — GoWind Admin**
-
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
-[![Go Version](https://img.shields.io/badge/Go-1.22+-00ADD8?logo=go)](https://go.dev/)
-[![Vue](https://img.shields.io/badge/Vue-3.x-4FC08D?logo=vuedotjs)](https://vuejs.org/)
-[![React](https://img.shields.io/badge/React-19.x-61DAFB?logo=react)](https://react.dev/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)](https://www.docker.com/)
-
-[English](./README.en-US.md) | **中文** | [日本語](./README.ja-JP.md)
-
-</div>
+> 这是一份基于开源项目 [tx7do/go-wind-admin](https://github.com/tx7do/go-wind-admin) 进行的 **AI + 网络安全方向二次开发**版本。在原项目的后台管理能力之上，新增了一整套 AI 能力模块（AI 对话、调用追踪、MCP/Skill 注册表、知识库对比、多协议 provider 配置等）。
 
 ---
 
-## 项目亮点
+## 一、相比原项目，新增了哪些 AI 能力
 
-- **多前端适配**：同时提供 `Vue3 Vben`（Ant Design Vue）、`Vue3 Element Plus`、`React19 Antd` 三套前端，满足不同团队偏好
-- **企业级 RBAC**：支持多租户、多角色、多部门、菜单/按钮/数据级权限控制（Casbin / OPA / Zanzibar）
-- **微服务 + 单体自由切换**：基于 go-kratos 微服务框架，但支持单体架构模式开发与部署，灵活适配团队规模
-- **全栈代码生成**：Protobuf → Go API / TypeScript 客户端，Ent Schema → ORM，一键 CRUD 脚手架
-- **生产就绪**：JWT 鉴权、SSE 消息推送、异步任务调度、分布式链路追踪、Swagger 文档、Docker 一键部署
+### 前端（React 版，侧边栏「AI 能力」分组）
 
----
+| 菜单 | 路径 | 能力 |
+|------|------|------|
+| **AI 对话** | `/ai/chat` | 流式对话；支持 OpenAI 兼容协议与本地 Ollama；推理模型展示「思考过程」(可折叠)；每条回复带可观测面板(模型/耗时/入出 token/finish)；📎 上传文件(.docx/.xlsx/.txt/.csv/.json/代码)解析为文本让 AI 分析；回复 Markdown 渲染(标题/表格/代码/加粗)；调用自动记录到后端追踪表 |
+| **AI 调用追踪** | `/ai/traces` | 聚合所有 AI 调用记录，支持搜索/状态过滤/行展开看 prompt+response；「来源」标签区分本地/后端；可从后端刷新 |
+| **MCP** | `/ai/mcp` | MCP Server 注册表 CRUD（名称/传输类型 stdio·SSE·streamable-http/命令或 URL/启用）；SSE/HTTP 可测连通性；3 个官方预设(filesystem/fetch/git) |
+| **Skill** | `/ai/skill` | 技能库 CRUD（名称/描述/SKILL.md 内容/标签/版本/启用）；关键词搜索 |
+| **OpenAI 协议** | `/ai/openai` | 配置任意 OpenAI 兼容端点(OpenAI/DeepSeek/通义百炼/OpenRouter/Groq/智谱等)，保存后供 AI 对话页使用 |
+| **Ollama 协议** | `/ai/ollama` | 配置本地 Ollama（host/port/模型），免 API Key |
+| **知识库（网安）** | `/ai/knowledge-base` | 网安知识条目 CRUD（基线/漏洞/资产/合规/事件）；**主开关**；上传配置/资产文件 → 按标签/关键词做**常规搜索对比**(非向量) → 列出命中的知识条目 |
 
-## 演示地址
+新增前端文件：
+- `frontend/admin/react/src/router/modules/ai.tsx`（AI 路由）
+- `frontend/admin/react/src/pages/app/ai/{chat,traces,mcp,skill,openai,ollama,knowledge-base}/index.tsx`（7 个页面）
+- `frontend/admin/react/src/pages/app/ai/chat/{fileExtract.ts, Markdown.tsx}`（文件解析、Markdown 渲染）
 
-| 前端版本 | 演示地址 |
-|---------|--------|
-| Vue3 Vben | <https://vben.admin.gowind.cloud> |
-| Vue3 Element Plus | <https://ele.admin.gowind.cloud> |
-| React | <https://react.admin.gowind.cloud> |
+### 后端（AI 调用追踪持久化，Phase 2 第一刀）
 
-- 后端 Swagger：<https://api.demo.admin.gowind.cloud/docs/>
-- 默认账号密码：`admin` / `admin`
-
----
-
-## 技术栈
-
-<table>
-<tr><th>层级</th><th>技术</th></tr>
-<tr><td><strong>后端框架</strong></td><td><code>Golang</code> · <code>go-kratos v2</code> · <code>Wire</code> · <code>Protobuf / Buf</code></td></tr>
-<tr><td><strong>ORM</strong></td><td><code>Ent</code>（主要） · <code>GORM</code>（辅助） · <code>MySQL</code> · <code>PostgreSQL</code></td></tr>
-<tr><td><strong>中间件</strong></td><td><code>Redis 8.0+</code> · <code>MinIO</code>（S3 兼容对象存储） · <code>Jaeger</code>（链路追踪）</td></tr>
-<tr><td><strong>认证授权</strong></td><td><code>JWT</code> · <code>Casbin</code> · <code>OPA</code> · <code>Zanzibar</code></td></tr>
-<tr><td><strong>实时通信</strong></td><td><code>SSE</code>（服务端推送） · <code>Asynq</code>（异步任务）</td></tr>
-<tr><td><strong>脚本引擎</strong></td><td><code>go-scripts</code> · <code>Lua</code>（gopher-lua） · <code>JavaScript</code>（goja） · 多语言 Hook 插件系统</td></tr>
-<tr><td><strong>Vue Vben 版</strong></td><td><code>Vue 3</code> · <code>TypeScript</code> · <code>Vite</code> · <code>Ant Design Vue</code> · <code>Vben Admin</code></td></tr>
-<tr><td><strong>Vue Element 版</strong></td><td><code>Vue 3</code> · <code>TypeScript</code> · <code>Vite</code> · <code>Element Plus</code>（轻量纯净版）</td></tr>
-<tr><td><strong>React 版</strong></td><td><code>React 19</code> · <code>TypeScript</code> · <code>Vite</code> · <code>Zustand</code> · <code>Ant Design V6</code>（无 UMI）</td></tr>
-<tr><td><strong>部署运维</strong></td><td><code>Docker</code> · <code>Docker Compose</code> · <code>PM2</code> · <code>Swagger UI</code></td></tr>
-</table>
-
----
-
-## 快速开始
-
-### 环境要求
-
-| 工具 | 版本 |
+| 文件 | 说明 |
 |------|------|
-| Go | 1.22+ |
-| Node.js | >= 20.10.0 |
-| pnpm | >= 10.0.0 |
-| Docker | 20.0+ |
+| `backend/app/admin/service/internal/server/ai_handler.go` | **新增**：`POST/GET /admin/v1/ai/traces`，自带 pgx 连接 + 原生 SQL，建/存/查 `sys_ai_call_traces` 表 |
+| `backend/app/admin/service/internal/server/rest_server.go` | **改**：注册 `registerAiServiceHandler(srv)`（手动路由，零 DI/wire 改动）|
 
-### 环境脚本选型
+> 采用「手动路由注册 + 原生 SQL」方式接入，绕开 proto/ent 代码生成，便于在不破坏原项目构建的前提下增量扩展。
 
-- Linux / macOS 开发环境：`scripts/env/install_unix_dev.sh`
-- Linux / macOS 生产环境：`scripts/env/install_unix_prod.sh`
-- Windows 开发环境：`scripts/env/install_windows_dev.ps1`
+---
 
-### Docker 两种部署模式
+## 二、环境要求
 
-- **full_deploy 完整模式**：同步启动中间件+后端应用，适用于一键演示、生产部署
-- **libs_only 依赖模式（推荐开发）**：仅启动中间件，应用本地 IDE 运行调试
+| 组件 | 推荐版本 | 最低 |
+|------|---------|------|
+| Go | 1.27.0 | 1.25.7+（go.mod 要求）|
+| Node.js | 24.14.0 | 20.10+ |
+| pnpm | 11.22.0 | 10+ |
+| Docker Desktop | 4.87.0（WSL2 后端）| 任意近期版 |
 
-### 后端启动
+> 本指南基于 Windows 10/11 + PowerShell 验证。Mac/Linux 同理，启动脚本换成等价命令即可。
 
-**Linux / macOS：**
+---
 
-```shell
-# 赋予脚本执行权限
-chmod +x scripts/**/*.sh
+## 三、安装步骤
 
-# 开发环境（推荐）
-./scripts/env/install_unix_dev.sh
-./scripts/docker/libs_only.sh
-gow run admin
-
-# 生产环境
-./scripts/env/install_unix_prod.sh
-./scripts/docker/full_deploy.sh
-
-# PM2 进程托管（生产进阶）
-./scripts/deploy/pm2_service.sh
+### 1. 解压
+```
+解压 go-wind-admin-ai.tar.gz 到任意目录，例如 D:\go-wind-admin
 ```
 
-**Windows（PowerShell 管理员）：**
-
+### 2. 安装前端依赖
 ```powershell
-# 放行脚本策略（首次仅需执行一次）
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-
-# 初始化环境
-.\scripts\env\install_windows_dev.ps1
-
-# 本地开发
-.\scripts\docker\libs_only.ps1
-gow run admin
-
-# 一键完整部署
-.\scripts\docker\full_deploy.ps1
-```
-
-### 前端启动
-
-前端统一存放于 `frontend/admin` 目录，三版前端共享依赖安装命令：
-
-| 前端版本 | 目录 | 启动命令 | 端口 |
-|---------|------|---------|------|
-| React | `frontend/admin/react` | `pnpm dev` | 5888 |
-| Vue Element | `frontend/admin/vue-element` | `pnpm dev` | 5777 |
-| Vue Vben | `frontend/admin/vue-vben` | `pnpm dev:antd` | 5666 |
-
-```shell
-# 安装依赖
+cd <解压目录>\frontend\admin\react
 pnpm install
+```
+> **若 pnpm 报 symlink 权限错误**（Windows 普通用户无创建符号链接权限），二选一：
+> - 开启「Windows 开发者模式」(设置 → 隐私和安全 → 开发者选项 → 开发者模式) 后重跑 `pnpm install`
+> - 或用扁平化安装：`pnpm install --node-linker=hoisted`
+> - 启动前端若 `pnpm dev` 又因 symlink 预检失败，直接跑：`node node_modules/vite/bin/vite.js --mode development`
 
-# React 版本
-cd frontend/admin/react && pnpm dev
+### 3. 启动中间件（PostgreSQL / Redis / MinIO）
+```powershell
+cd <解压目录>\backend
+docker compose -f docker-compose.libs.yaml up -d
+```
+容器：`backend-postgres-1`（端口 **15432**）、`backend-redis-1`（6379）、`backend-minio-1`（9000/9001）。
+> 默认 PG 映射到 **15432**（避免与本机原生 PostgreSQL 5432 冲突）。若你机器 5432 空闲，可改 `docker-compose.libs.yaml` 回 5432，并同步改 `backend/app/admin/service/configs/data.yaml` 的端口。
 
-# Vue3 Element 版本
-cd frontend/admin/vue-element && pnpm dev
+### 4. 一键启动前后端
+```powershell
+cd <解压目录>
+.\start-dev.ps1
+```
+脚本会：检查中间件容器 → 新窗口起后端(`go run ./app/admin/service/cmd/server -c ./app/admin/service/configs`) → 新窗口起前端(`node node_modules/vite/bin/vite.js --mode development`)。
 
-# Vue3 Vben 版本
-cd frontend/admin/vue-vben && pnpm dev:antd
+> 前提：**先启动 Docker Desktop**，等右下角鲸鱼图标静止（容器 restart:always 会自动回来）。
+
+### 5. 访问
+- 前端：**http://localhost:5888**  账号 `admin` / 密码 `admin`（登录页输图形验证码）
+- 后端 Swagger：http://localhost:7788/docs/
+- 看到后端窗口出现 `[HTTP] server listening on :7788` 即就绪。
+
+---
+
+## 四、配置 AI 服务（必做）
+
+AI 对话页默认使用**阿里百炼 DashScope** 的 `qwen3.7-max-2026-05-17`（OpenAI 兼容端点），但 **API Key 已置为占位符**，你需要填自己的：
+
+1. 登录后进入 **AI 能力 → AI 对话**，点右上角齿轮「服务设置」
+2. 填写：
+   - Base URL：`https://dashscope.aliyuncs.com/compatible-mode/v1`
+   - API Key：**你自己的百炼 Key**（在 [百炼控制台](https://bailian.console.aliyun.com/) 获取）
+   - 模型：`qwen3.7-max-2026-05-17`（或其他你开通的模型）
+3. 保存后即可对话。
+
+**或用本地 Ollama（免 Key）**：进「AI 能力 → Ollama 协议」页，填 host/port/模型（需先 `ollama serve` + `ollama pull <模型>`），保存即生效。
+
+> 其它 OpenAI 兼容服务（DeepSeek/通义/OpenRouter/Groq/智谱）同理，改 Base URL + Key + 模型即可。
+
+---
+
+## 五、各功能使用要点
+
+- **AI 对话**：📎 可上传 `.docx/.xlsx/.txt/.csv/.json/.log/代码` 等文件，内容解析后发给模型分析（界面只显示问题+文件名标签，不撑爆）；回复自动 Markdown 渲染。
+- **AI 调用追踪**：每次对话后可在此查看模型/耗时/token/finish；可搜索过滤；点行展开看完整 prompt 与 response。
+- **知识库（网安）**：内置 4 条种子（IP-MAC 绑定基线、高危端口封堵基线、存活 IP 资产台账、防火墙扫描覆盖）。可自行增删改。上传交换机/防火墙配置文件 → 自动按标签命中对比，列出相关知识条目（例如上传交换机配置可立即看出"是否封堵了 445/3389 等高危端口"、"是否做了 IP-MAC 绑定"）。
+- **MCP / Skill**：当前为**注册表 CRUD**（配置管理 + MCP 连通性测试）。**实际工具调用/向量检索需后端代理**（Phase 2 后续工作）。
+
+---
+
+## 六、注意事项
+
+1. **API Key**：包内已剔除原作者的 Key（占位符 `YOUR_DASHSCOPE_API_KEY`），请填你自己的。Key 存浏览器 localStorage，不上后端。
+2. **文件解析限制**：
+   - 支持：`.docx`、`.xlsx`、`.txt/.md/.csv/.json/.log/代码` 等文本类
+   - **不支持**：扫描版 PDF（需 OCR）、老 `.doc`/`.xls` 二进制格式（需后端 LibreOffice）
+   - 单文件上限 1MB（避免撑爆 LLM 上下文）
+3. **PG 端口 15432**：如与你的环境冲突，改 `docker-compose.libs.yaml` + `configs/data.yaml`。
+4. **后端 AI 追踪端点**首次启用：`ai_handler.go` 在首次调用时自动建 `sys_ai_call_traces` 表（无需手动迁移）。
+5. **PowerShell 脚本编码**：`start-dev.ps1` 为纯 ASCII（PS 5.1 对无 BOM UTF-8 中文会乱码）。如需加中文，先转 UTF-8 with BOM。
+6. **数据持久化**：前端对话/知识库等存浏览器 localStorage（清浏览器数据会丢）；后端追踪存 PostgreSQL（持久）。
+7. **模型**：默认 `qwen3.7-max-2026-05-17`（推理模型，带思考过程）。如额度不足可换 `qwen-plus`/`qwen-turbo` 等更便宜的模型。
+
+---
+
+## 七、已知限制与后续规划
+
+| 项 | 当前状态 | 后续 |
+|----|---------|------|
+| MCP 工具调用 | 注册表 + 连通性测试 | 后端 MCP 客户端(stdio/SSE/streamable-http) + 对话内联调用 + 审计 |
+| Skill 检索 | 关键词搜索 | 后端 pgvector 向量检索 |
+| AI 对话后端代理 | 前端直连 LLM | 后端流式代理(统一鉴权/计费/审计) |
+| LLM 调用追踪 | 已落库 sys_ai_call_traces | 接 OpenTelemetry span + OTLP 导出 |
+| 网络配置对比分析 | 知识库常规搜索 | 专用模块:交换机/防火墙配置按设备类型解析 + 台账集合运算 + 导出 Excel |
+
+---
+
+## 八、目录结构速览
+
+```
+go-wind-admin-main/
+├─ backend/
+│  ├─ app/admin/service/internal/server/ai_handler.go   ← AI 追踪端点(新增)
+│  └─ ...（原后端:kratos+ent+多租户+RBAC）
+├─ frontend/admin/react/
+│  ├─ src/router/modules/ai.tsx                          ← AI 路由(新增)
+│  └─ src/pages/app/ai/                                  ← 7 个 AI 页面(新增)
+│     ├─ chat/{index.tsx, fileExtract.ts, Markdown.tsx}
+│     ├─ traces/index.tsx
+│     ├─ mcp/index.tsx
+│     ├─ skill/index.tsx
+│     ├─ openai/index.tsx
+│     ├─ ollama/index.tsx
+│     └─ knowledge-base/index.tsx
+├─ start-dev.ps1                                         ← 一键启动(新增)
+└─ AI使用指南.md                                          ← 本文档
 ```
 
 ---
 
-## 功能列表
-
-### 组织与权限
-
-| 功能 | 说明 |
-|------|-----|
-| 用户管理 | 管理和查询用户，支持高级查询和按部门联动用户，用户可禁用/启用、设置/取消主管、重置密码、配置多角色、多部门和上级主管、一键登录指定用户等功能 |
-| 租户管理 | 管理租户，新增租户后自动初始化租户部门、默认角色和管理员。支持配置套餐、禁用/启用、一键登录租户管理员功能 |
-| 套餐与配额管理 | 管理租户订阅套餐及其资源配额（如模块白名单、用量上限），支持套餐与配额项的增删改查 |
-| 角色管理 | 管理角色和角色分组，支持按角色联动用户，设置菜单和数据权限，批量添加和移除员工 |
-| 权限管理 | 管理权限分组、菜单、权限点，支持树形列表展示 |
-| 组织管理 | 管理组织，支持树形列表展示 |
-| 职位管理 | 用户职务管理，职务可作为用户的一个标签 |
-| 菜单管理 | 配置系统菜单，操作权限，按钮权限标识等，包括目录、菜单、按钮 |
-
-### 系统功能
-
-| 功能 | 说明 |
-|------|-----|
-| 接口管理 | 管理接口，支持接口同步功能，主要用于新增权限点时选择接口，支持树形列表展示、操作日志请求参数和响应结果配置 |
-| 字典管理 | 管理数据字典大类及其小类，支持按字典大类联动字典小类、服务端多列排序、数据导入和导出 |
-| 任务调度 | 管理和查看任务及其任务运行日志，支持任务新增、修改、删除、启动、暂停、立即执行 |
-| 文件管理 | 管理文件上传，支持文件查询、上传到 OSS 或本地、下载、复制文件地址、删除文件、图片支持查看大图功能 |
-| 登录策略 | 管理登录限制策略，配置目标用户的限制类型、限制方式、限制值与限制原因 |
-| 语言管理 | 管理系统支持的多语言，配置语言名称、语言代码、本地名称、启用与默认状态 |
-
-### 消息与日志
-
-| 功能 | 说明 |
-|------|-----|
-| 消息分类 | 管理消息分类，支持 2 级自定义消息分类，用于消息管理消息分类选择 |
-| 消息管理 | 管理消息，支持发送指定用户消息，可查看用户是否已读和已读时间 |
-| 站内信 | 站内消息管理，支持消息详细查看、删除、标为已读、全部已读功能 |
-| 登录日志 | 登录日志列表查询，记录用户登录成功和失败日志，支持 IP 归属地记录 |
-| 操作日志 | 操作日志列表查询，记录用户操作正常和异常日志，支持 IP 归属地记录，查看操作日志详情 |
-| API 日志 | API 日志列表查询，记录 API 请求的操作者、请求路径、方法与成功状态，支持 IP 归属地记录 |
-| 数据日志 | 数据访问日志列表查询，记录数据访问行为及脱敏审计信息 |
-| 权限日志 | 权限变更日志列表查询，记录权限变更操作及原因 |
-| 策略评估日志 | 策略评估日志列表查询，记录策略评估的结果与上下文 |
-| Redis 缓存监控 | Redis 缓存监控，只读展示 Redis INFO、DBSIZE 与慢日志数据，不执行写操作 |
-
-### 个人中心
-
-| 功能 | 说明 |
-|------|-----|
-| 个人中心 | 个人信息展示和修改，查看最后登录信息，密码修改等功能 |
-
----
-
-## 项目结构
-
-```
-go-wind-admin/
-├── backend/                        # 后端项目
-│   ├── api/                        # Protobuf API 定义与生成代码
-│   │   ├── protos/                 # .proto 源文件（按领域分层）
-│   │   └── gen/go/                 # buf 生成的 Go 代码
-│   ├── app/admin/service/          # Admin 服务应用
-│   │   ├── cmd/server/             # 入口 (main.go, wire.go)
-│   │   ├── configs/                # 配置文件 (YAML)
-│   │   └── internal/               # 业务核心（data/service/server）
-│   ├── pkg/                        # 公共包
-│   │   ├── scripting/              # 多语言脚本引擎（Lua + JavaScript）
-│   │   ├── oss/                    # 对象存储（MinIO）
-│   │   ├── eventbus/               # 事件总线
-│   │   └── ...                     # 其他工具包
-│   ├── scripts/                    # 部署脚本（env/docker/deploy）
-│   └── sql/                        # 初始化 SQL 文件
-├── frontend/admin/                 # 前端项目
-│   ├── react/                      # React 19 + Ant Design V6
-│   ├── vue-element/                # Vue 3 + Element Plus
-│   └── vue-vben/                   # Vue 3 + Ant Design Vue + Vben Admin
-└── docs/                           # 项目文档
-```
-
----
-
-## 截图展示
-
-<table>
-    <tr>
-        <td><img src="./docs/images/admin_login_page.png" alt="后台用户登录界面"/></td>
-        <td><img src="./docs/images/admin_dashboard.png" alt="后台分析界面"/></td>
-    </tr>
-    <tr>
-        <td><img src="./docs/images/admin_user_list.png" alt="后台用户列表界面"/></td>
-        <td><img src="./docs/images/admin_user_create.png" alt="后台创建用户界面"/></td>
-    </tr>
-    <tr>
-        <td><img src="./docs/images/admin_tenant_list.png" alt="后台租户列表界面"/></td>
-        <td><img src="./docs/images/admin_tenant_create.png" alt="后台创建租户界面"/></td>
-    </tr>
-    <tr>
-        <td><img src="./docs/images/admin_org_unit_list.png" alt="组织单位列表界面"/></td>
-        <td><img src="./docs/images/admin_org_unit_create.png" alt="创建组织单位界面"/></td>
-    </tr>
-    <tr>
-        <td><img src="./docs/images/admin_position_list.png" alt="后台职位列表界面"/></td>
-        <td><img src="./docs/images/admin_position_create.png" alt="后台创建职位界面"/></td>
-    </tr>
-    <tr>
-        <td><img src="./docs/images/admin_role_list.png" alt="后台角色列表界面"/></td>
-        <td><img src="./docs/images/admin_role_create.png" alt="后台创建角色界面"/></td>
-    </tr>
-    <tr>
-        <td><img src="./docs/images/admin_permission_list.png" alt="后台权限列表界面"/></td>
-        <td><img src="./docs/images/admin_permission_create.png" alt="后台创建权限界面"/></td>
-    </tr>
-    <tr>
-        <td><img src="./docs/images/admin_menu_list.png" alt="后台目录列表界面"/></td>
-        <td><img src="./docs/images/admin_menu_create.png" alt="后台创建目录界面"/></td>
-    </tr>
-    <tr>
-        <td><img src="./docs/images/admin_task_list.png" alt="后台调度任务列表界面"/></td>
-        <td><img src="./docs/images/admin_task_create.png" alt="后台创建调度任务界面"/></td>
-    </tr>
-    <tr>
-        <td><img src="./docs/images/admin_dict_list.png" alt="后台数据字典列表界面"/></td>
-        <td><img src="./docs/images/admin_dict_entry_create.png" alt="后台创建数据字典条目界面"/></td>
-    </tr>
-    <tr>
-        <td><img src="./docs/images/admin_internal_message_list.png" alt="后台站内信消息列表界面"/></td>
-        <td><img src="./docs/images/admin_internal_message_publish.png" alt="后台发布站内信消息界面"/></td>
-    </tr>
-    <tr>
-        <td><img src="./docs/images/admin_login_policy_list.png" alt="登录策略列表界面"/></td>
-        <td><img src="./docs/images/admin_login_policy_create.png" alt="登录策略创建界面"/></td>
-    </tr>
-    <tr>
-        <td><img src="./docs/images/admin_login_audit_log_list.png" alt="后台登录日志界面"/></td>
-        <td><img src="./docs/images/admin_api_audit_log_list.png" alt="后台操作日志界面"/></td>
-    </tr>
-    <tr>
-        <td><img src="./docs/images/admin_api_list.png" alt="API列表界面"/></td>
-        <td><img src="./docs/images/api_swagger_ui.png" alt="后端内置Swagger UI界面"/></td>
-    </tr>
-</table>
-
-## 社区与贡献
-
-欢迎参与 GoWind Admin 的建设。以下文档说明如何贡献代码、报告问题与反馈安全漏洞：
-
-- [贡献指南](./CONTRIBUTING.md) —— 开发环境、代码生成约定、提交规范与 PR 流程
-- [行为准则](./.github/CODE_OF_CONDUCT.md) —— 社区互动预期
-- [安全策略](./SECURITY.md) —— 漏洞上报流程与覆盖范围
-- [更新日志](./CHANGELOG.md) —— 版本变更记录
-- Issue 模板：[Bug 报告](./.github/ISSUE_TEMPLATE/bug_report.md) · [功能请求](./.github/ISSUE_TEMPLATE/feature_request.md)
-- [PR 模板](./.github/PULL_REQUEST_TEMPLATE.md)
-
-## 联系我们
-
-- 微信个人号：`yang_lin_bo`（备注：`go-wind-admin`）
-- 掘金专栏：[go-wind-admin](https://juejin.cn/column/7541283508041826367)
-
-## 致谢
-
-[![JetBrains](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://jb.gg/OpenSource)
-
-感谢 JetBrains 提供免费的 GoLand & WebStorm 开源授权。
+如有问题，联系二次开发者。祝使用顺利。
