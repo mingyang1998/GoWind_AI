@@ -1,6 +1,6 @@
 # GoWind Admin + AI 能力 使用指南
 
-> 这是一份基于开源项目 [tx7do/go-wind-admin](https://github.com/tx7do/go-wind-admin) 进行的 **AI + 网络安全方向二次开发**版本。在原项目的后台管理能力之上，新增了一整套 AI 能力模块（AI 对话、调用追踪、MCP/Skill 注册表、知识库对比、多协议 provider 配置等）。
+> 这是一份基于开源项目 https://github.com/tx7do/go-wind-admin 和 https://github.com/nextlevelbuilder/goclaw 进行的 **AI + 网络安全方向二次开发**版本。在原项目的后台管理能力之上，新增了一整套 AI 能力模块（AI 对话、调用追踪、MCP/Skill 注册表、知识库对比、多协议 provider 配置等）。
 
 ---
 
